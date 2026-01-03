@@ -1,0 +1,86 @@
+table Album
+	lineageTag: 9c94af43-c824-4ccd-8258-a9bedc4afc63
+
+	column pkAlbum
+		dataType: int64
+		formatString: 0
+		lineageTag: 5d951703-8faa-4c16-9774-e95670fa81e1
+		summarizeBy: none
+		sourceColumn: pkAlbum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Album
+		dataType: string
+		lineageTag: 4bc3df03-e7cb-441e-aa83-346670995237
+		summarizeBy: none
+		sourceColumn: Album
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column AlbumArtist = ```
+			
+			//if more than one artist on an album, label as compilation
+			
+			VAR ThisAlbumID =
+			    Album[pkAlbum]
+			
+			VAR ArtistCount =
+			    CALCULATE(
+			        DISTINCTCOUNT( TrackList[fkArtist] ),
+			        TrackList[fkAlbum] = ThisAlbumID
+			    )
+			
+			VAR SingleArtistID =
+			    CALCULATE(
+			        SELECTEDVALUE( TrackList[fkArtist] ),
+			        TrackList[fkAlbum] = ThisAlbumID
+			    )
+			
+			RETURN
+			    IF(
+			        ArtistCount = 1,
+			        // only runs when exactly one artist → safe to lookup
+			        LOOKUPVALUE(
+			            Artist[Artist],
+			            Artist[pkArtist],
+			            SingleArtistID
+			        ),
+			        "Compilation"
+			    )
+			
+			```
+		lineageTag: 7102b0ab-30c5-427f-a2c0-fee2a0946018
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column AlbumSized
+		dataType: string
+		lineageTag: ad09451e-f759-4d2a-94fa-ba5b1f4584f7
+		summarizeBy: none
+		sourceColumn: AlbumSized
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Album = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(ServerName, DBName, [Query="#(lf)            SELECT #(lf)                [pkAlbum],#(lf)                [Album],#(lf)                CASE #(lf)                    WHEN LEN([Album]) > 55 THEN LEFT([Album], 55) + '...'#(lf)                    ELSE [Album]#(lf)                END AS AlbumSized#(lf)                --,[Include]#(lf)  #(lf)            FROM [Music2024].[dbo].[Album]", CommandTimeout=#duration(0, 0, 10, 0)]),
+				    MarkedKeys = Table.AddKey(Source, {"pkAlbum"}, true)
+				in
+				    MarkedKeys
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

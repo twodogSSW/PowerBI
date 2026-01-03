@@ -1,0 +1,564 @@
+table _Categories
+	lineageTag: 5c27c8e2-ae70-4845-a228-f5623a4c6ec0
+
+	measure 'Sale $' = ```
+			
+			     SWITCH(
+			        TRUE(),
+			        pbi.All_SelectedCategory() IN {0,1,2,4,5,6}, CALCULATE(SUM(TrackSales[SalesAmt]),KEEPFILTERS(Calendar[Date])),
+			        pbi.All_SelectedCategory() IN {3,7}, CALCULATE(SUM(AlbumSales[SalesAmt]),KEEPFILTERS(Calendar[Date])),
+			        0
+			    )
+			    + 0
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 33423e5e-e8c6-4555-b4f3-cc9b75128dff
+
+	measure 'Sale #' = ```
+			
+			
+			    SWITCH(
+			        TRUE(),
+			        pbi.All_SelectedCategory() IN {0,1,2,4,5,6}, CALCULATE(SUM(TrackSales[SalesAmt]),KEEPFILTERS(Calendar[Date])),
+			        pbi.All_SelectedCategory() IN {3,7}, CALCULATE(SUM(AlbumSales[SalesAmt]),KEEPFILTERS(Calendar[Date])),
+			        0
+			    )
+			    + 0
+			```
+		lineageTag: 6e0112d7-9198-466f-a38d-151b102bb2af
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sale $ PrevMonth' = ```
+			
+			    CALCULATE(
+			    [Sale $ Current],
+			    DATEADD( Calendar[Date], -1, MONTH )
+			    )
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 15202386-298c-4634-977f-910bed0ed45e
+
+	measure 'Sale $ Current' = ```
+			
+			
+			        SWITCH(
+			            TRUE(),
+			            pbi.All_SelectedCategory() IN {0,1,2,4,5,6}, CALCULATE( SUM( TrackSales[SalesAmt] ), KEEPFILTERS( Calendar[Date] ) ), 
+			            pbi.All_SelectedCategory() IN {3,7}, CALCULATE( SUM( AlbumSales[SalesAmt] ), KEEPFILTERS( Calendar[Date] ) ), 
+			            0
+			        )
+			
+			
+			```
+		lineageTag: cba22f4f-6ed9-45dd-9ae1-582d5a1e49e9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% MoM' = ```
+			
+			    VAR Cur = [Sale $ Current]
+			    VAR Prev = [Sale $ PrevMonth]
+			
+			    RETURN
+			        IF( ISBLANK(Cur) || ISBLANK(Prev), 0,
+			            DIVIDE( Cur - Prev, Prev )
+			        )
+			```
+		formatString: 0%;-0%;0%
+		lineageTag: e01c8af0-1bc9-4b0e-8934-6694e46c3d0e
+
+	measure 'Track Diff % 2' = ```
+			
+			    VAR Cur   = _Categories[Sale $ Current]--[Track Cur Sales]
+			    VAR Prev  = _Categories[Sale $ PrevMonth] --[Track Prev Sales]
+			    VAR Diff  = Cur - Prev
+			
+			    RETURN
+			        IF(
+			            ISBLANK(Prev),               // no prior‐period data → blank
+			            BLANK(),
+			            DIVIDE(                     // safe division
+			                Diff,
+			                Prev
+			            )
+			        )
+			```
+		lineageTag: 19185f7b-2229-4eba-9813-a1c1afaa95d6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Show Icon' = ```
+			
+			    //
+			    VAR ThresholdRaw = SELECTEDVALUE( _PctThreshold[PctThreshold], BLANK() )
+			    VAR Threshold = IF( ThresholdRaw = BLANK(), BLANK(), VALUE( ThresholdRaw ) )
+			    VAR Diff = [Track Diff % 2]
+			    VAR Tiny = 1e-9
+			
+			    RETURN
+			    IF(
+			        ISBLANK( Threshold ) || ABS( Threshold ) < Tiny || ISBLANK( Diff ),
+			        BLANK(),
+			
+			        IF(
+			            Threshold > 0 && Diff >= Threshold, "🟢",
+			            IF( Threshold < 0 && Diff <= Threshold, "🔴", BLANK() )
+			        )
+			    )
+			
+			```
+		lineageTag: 4dd044f4-7713-497c-be5c-490a89354659
+
+	measure %ToMax = ```
+			
+			    //
+			    VAR Selected = _Categories[SelectedSales]
+			    VAR MaxValue = _Categories[MaxSales_Gauge]
+			    VAR PctOfMax = DIVIDE(Selected, MaxValue, 0)
+			
+			    VAR ArrowIcon =
+			        IF(
+			            PctOfMax < 1,
+			            UNICHAR(128308),  // 🔴 red circle
+			            UNICHAR(128994)   // 🟢 green circle
+			        )
+			
+			    RETURN
+			        IF(
+			            NOT(ISBLANK(Selected)),
+			            ArrowIcon & " " & FORMAT(PctOfMax, "0.0%"),
+			            UNICHAR(128994) & " 100.0%"
+			        )
+			
+			```
+		displayFolder: KPI
+		lineageTag: 151772f1-bedf-4266-8f29-820294348ec6
+
+	measure AllSales = ```
+			
+			    //
+			    CALCULATE(
+			        SUM(TrackSales[SalesAmt]),
+			        REMOVEFILTERS(TrackList[Track - Artist]),
+			        REMOVEFILTERS(Genre[Genre]),
+			        REMOVEFILTERS(Artist[Artist]),
+			        REMOVEFILTERS(Album[Album]),
+			        REMOVEFILTERS(Region[Region]),
+			        REMOVEFILTERS(RecordLabel[RecordLabel]),
+			        REMOVEFILTERS(PurchasedFrom[PurchasedFrom]),
+			        KEEPFILTERS(Calendar[Date])
+			    )
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: KPI
+		lineageTag: c7f677ed-5055-4df9-8c11-296a14601fe0
+
+	measure CountRows_All = ```
+			
+			    SWITCH(
+			        pbi.All_SelectedCategory(),
+			        0, COUNTROWS(ALL(TrackList[Track - Artist])),
+			        1, COUNTROWS(ALL(Genre[Genre])),
+			        2, COUNTROWS(ALL(Artist[Artist])),
+			        3, COUNTROWS(ALL(Album[Album])),
+			        4, COUNTROWS(ALL(RecordLabel[RecordLabel])),
+			        5, COUNTROWS(ALL(Region[Region])),
+			        6, COUNTROWS(ALL(PurchasedFrom[PurchasedFrom])),
+			        7, COUNTROWS(ALL(PurchasedFrom[Purchased From])),
+			        0
+			    )
+			```
+		formatString: 0
+		displayFolder: KPI
+		lineageTag: 775b7b40-9411-49de-ac23-1078777b4215
+
+	measure CountRows_Clicked = ```
+			
+			    //0 - Title | 1  Genre | 2 - Artist | 3- Album | 4-RecordLabel | 5-Region | 6-Retailer (tracks) | 7 - Retailer (albums)
+			    Var Ord = pbi.All_SelectedCategory()
+			    
+			    RETURN
+			    SWITCH(
+			        TRUE(),
+			        ORD = 0 && ISFILTERED(TrackList[Track - Artist]), COUNTROWS(VALUES(TrackList[Track - Artist])),
+			        ORD = 1 && ISFILTERED(Genre[Genre]), COUNTROWS(VALUES(Genre[Genre])),
+			        ORD = 2 && ISFILTERED(Artist[Artist]), COUNTROWS(VALUES(Artist[Artist])),
+			        ORD = 3 && ISFILTERED(Album[Album]), COUNTROWS(VALUES(Album[Album])),
+			        ORD = 4 && ISFILTERED(RecordLabel[RecordLabel]), COUNTROWS(VALUES(RecordLabel[RecordLabel])),
+			        ORD = 5 && ISFILTERED(Region[Region]), COUNTROWS(VALUES(Region[Region])),
+			        ORD = 6 && ISFILTERED(PurchasedFrom[PurchasedFrom]), COUNTROWS(VALUES(PurchasedFrom[PurchasedFrom])),
+			        ORD = 7 && ISFILTERED(PurchasedFrom[PurchasedFrom]), COUNTROWS(VALUES(PurchasedFrom[PurchasedFrom])),
+			        BLANK()
+			    )
+			
+			```
+		formatString: 0
+		displayFolder: KPI
+		lineageTag: 48dc091c-bff7-49e1-9651-2af53fe13261
+
+	measure MaxSales_Gauge = ```
+			
+			       SWITCH(
+			       pbi.All_SelectedCategory(),
+			        --------------------------------
+			        0,    --title
+			            MAXX(
+			            ADDCOLUMNS(
+			                CALCULATETABLE(
+			                VALUES(TrackList[Track - Artist]),
+			                REMOVEFILTERS(TrackList),
+			                REMOVEFILTERS('Calendar'),
+			                REMOVEFILTERS(_PeriodSelector[DynamicDateGrain])
+			                ),
+			                "TrackSales", CALCULATE(SUM(TrackSales[SalesAmt]))
+			            ),
+			            [TrackSales]
+			            ),
+			
+			        --------------------------------
+			            1,    --Genre
+			            MAXX(
+			            ADDCOLUMNS(
+			                CALCULATETABLE(
+			                VALUES(Genre[Genre]),
+			                REMOVEFILTERS(Genre),
+			                REMOVEFILTERS('Calendar'),
+			                REMOVEFILTERS(_PeriodSelector[DynamicDateGrain])
+			                ),
+			                "TrackSales", CALCULATE(SUM(TrackSales[SalesAmt]))
+			            ),
+			            [TrackSales]
+			            ),
+			        --------------------------------
+			            2,    --artist
+			            MAXX(
+			            ADDCOLUMNS(
+			                CALCULATETABLE(
+			                VALUES(Artist[Artist]),
+			                REMOVEFILTERS(Artist),
+			                REMOVEFILTERS('Calendar'),
+			                REMOVEFILTERS(_PeriodSelector[DynamicDateGrain])
+			                ),
+			                "TrackSales", CALCULATE(SUM(TrackSales[SalesAmt]))
+			            ),
+			            [TrackSales]
+			            ),
+			        --------------------------------
+			        3,    --Album
+			            MAXX(
+			            ADDCOLUMNS(
+			                CALCULATETABLE(
+			                VALUES(Album[Album]),
+			                REMOVEFILTERS(Album),
+			                REMOVEFILTERS('Calendar'),
+			                REMOVEFILTERS(_PeriodSelector[DynamicDateGrain])
+			                ),
+			                "AlbumSales", CALCULATE(SUM(AlbumSales[SalesAmt]))
+			            ),
+			            [AlbumSales]
+			            ),
+			        --------------------------------
+			            4,    --RecordLabel
+			            MAXX(
+			            ADDCOLUMNS(
+			                CALCULATETABLE(
+			                VALUES(RecordLabel[RecordLabel]),
+			                REMOVEFILTERS(RecordLabel),
+			                REMOVEFILTERS('Calendar'),
+			                REMOVEFILTERS(_PeriodSelector[DynamicDateGrain])
+			                ),
+			                "TrackSales", CALCULATE(SUM(TrackSales[SalesAmt]))
+			            ),
+			            [TrackSales]
+			            ),
+			        --------------------------------
+			            5,    --Region
+			            MAXX(
+			            ADDCOLUMNS(
+			                CALCULATETABLE(
+			                VALUES(Region[Region]),
+			                REMOVEFILTERS(Region),
+			                REMOVEFILTERS('Calendar'),
+			                REMOVEFILTERS(_PeriodSelector[DynamicDateGrain])
+			                ),
+			                "TrackSales", CALCULATE(SUM(TrackSales[SalesAmt]))
+			            ),
+			            [TrackSales]
+			            ),
+			        --------------------------------
+			            6,    --Retail Sales (PurchaseFrom)- Tracks
+			            MAXX(
+			            ADDCOLUMNS(
+			                CALCULATETABLE(
+			                VALUES(PurchasedFrom[PurchasedFrom]),
+			                REMOVEFILTERS(PurchasedFrom),
+			                REMOVEFILTERS('Calendar'),
+			                REMOVEFILTERS(_PeriodSelector[DynamicDateGrain])
+			                ),
+			                "TrackSales", CALCULATE(SUM(TrackSales[SalesAmt]))
+			            ),
+			            [TrackSales]
+			            ),
+			        --------------------------------
+			            7,    --Retail Sales (PurchaseFrom)- ALbums
+			            MAXX(
+			            ADDCOLUMNS(
+			                CALCULATETABLE(
+			                VALUES(PurchasedFrom[Purchased From]),
+			                REMOVEFILTERS(PurchasedFrom),
+			                REMOVEFILTERS('Calendar'),
+			                REMOVEFILTERS(_PeriodSelector[DynamicDateGrain])
+			                ),
+			                "AlbumSales", CALCULATE(SUM(AlbumSales[SalesAmt]))
+			            ),
+			            [AlbumSales]
+			            ),
+			        --------------------------------
+			        BLANK()
+			        )
+			```
+		displayFolder: KPI
+		lineageTag: 41547849-848e-403e-8031-16209d1f5b80
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure SalesRank = ```
+			
+			    SWITCH(
+			        pbi.All_SelectedCategory(),
+			        0, RANKX(ALL(TrackList[Track - Artist]), CALCULATE(SUM(TrackSales[SalesAmt])), , DESC),
+			        1, RANKX(ALL(Genre[Genre]), CALCULATE(SUM(TrackSales[SalesAmt])), , DESC),
+			        2, RANKX(ALL(Artist[Artist]), CALCULATE(SUM(TrackSales[SalesAmt])), , DESC),
+			        3, RANKX(ALL(Album[Album]), CALCULATE(SUM(AlbumSales[SalesAmt])), , DESC),
+			        4, RANKX(ALL(RecordLabel[RecordLabel]), CALCULATE(SUM(TrackSales[SalesAmt])), , DESC),
+			        5, RANKX(ALL(Region[Region]), CALCULATE(SUM(TrackSales[SalesAmt])), , DESC),
+			        6, RANKX(ALL(PurchasedFrom[PurchasedFrom]), CALCULATE(SUM(TrackSales[SalesAmt])), , DESC),
+			        7, RANKX(ALL(PurchasedFrom[Purchased From]), CALCULATE(SUM(AlbumSales[SalesAmt])), , DESC),
+			        BLANK()
+			    )
+			```
+		formatString: 0
+		displayFolder: KPI
+		lineageTag: 99e928f2-fb15-4cc2-96bf-52ba44fd4523
+
+	measure SelectedSales = ```
+			
+			    VAR SelectedEntity =
+			        SWITCH(
+			            pbi.All_SelectedCategory(),
+			            0, SELECTEDVALUE(TrackList[Track - Artist]),
+			            1, SELECTEDVALUE(Genre[Genre]),
+			            2, SELECTEDVALUE(Artist[Artist]),
+			            3, SELECTEDVALUE(Album[Album]),
+			            4, SELECTEDVALUE(RecordLabel[RecordLabel]),
+			            5, SELECTEDVALUE(Region[Region]),
+			            6, SELECTEDVALUE(PurchasedFrom[PurchasedFrom]),
+			            7, SELECTEDVALUE(PurchasedFrom[PurchasedFrom])
+			        )
+			
+			    VAR SalesMeasure =
+			        SWITCH(
+			            pbi.All_SelectedCategory(),
+			            3, SUM(AlbumSales[SalesAmt]),
+			            7, SUM(AlbumSales[SalesAmt]),
+			            SUM(TrackSales[SalesAmt])
+			        )
+			
+			    RETURN
+			    IF(
+			        NOT ISBLANK(SelectedEntity),
+			        CALCULATE(SalesMeasure),
+			        BLANK()
+			    )
+			```
+		displayFolder: KPI
+		lineageTag: afaf773d-5cdd-444b-803d-b439ed659d56
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ShowFont = ```
+			
+			    //1-Positive - 2 - Negative 0-Neither
+			    VAR ThresholdRaw = SELECTEDVALUE(_PctThreshold[PctThreshold], BLANK())
+			    VAR Threshold = IF(ISBLANK(ThresholdRaw), BLANK(), VALUE(ThresholdRaw))
+			    VAR Diff = [Track Diff % 2]
+			    VAR Tiny = 1e-9
+			
+			    RETURN
+			    IF(
+			        ISBLANK(Threshold) || ABS(Threshold) < Tiny || ISBLANK(Diff),
+			        BLANK(),
+			        IF(
+			            Threshold > 0 && Diff >= Threshold, "Green",
+			            IF(Threshold < 0 && Diff <= Threshold, "Red", "Transparent")
+			        )
+			    )
+			```
+		displayFolder: KPI
+		lineageTag: c08f21ad-fb54-4bbb-9d0f-be64d543a21d
+
+	measure WhichSelected = ```
+			
+			    //
+			    IF(_Categories[CountRows_Clicked]>1,_Categories[Sale $],[SelectedSales])+0
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: KPI
+		lineageTag: 50c4bd40-7aa2-4043-a7a3-d60dfac32ee9
+
+	measure AllSales_Header = ```
+			
+			    
+			    SWITCH(
+			        pbi.All_SelectedCategory(),
+			        0,"All Track $",
+			        1,"All Genre $",
+			        2,"All Artist $",
+			        3,"All Album $",
+			        4,"All RecordLabel $",
+			        5,"All Region $",
+			        6,"All Retailer Tracks $",
+			        7,"All Retailer Album $",
+			        BLANK()
+			    )
+			```
+		displayFolder: KPIText
+		lineageTag: 650c7e8f-c659-46e4-bee7-daae4f2d2b55
+
+	measure SelectedSales_Header = ```
+			
+			    SWITCH(
+			        pbi.All_SelectedCategory(),
+			        0,"Selected Track $",
+			        1,"Selected Genre $",
+			        2,"Selected Artist $",
+			        3,"Selected Album $",
+			        4,"Selected Record Label $",
+			        5,"Selected Region $",
+			        6,"Selected Retail Track $",
+			        7,"Selected Retail Album $",
+			        ""
+			    )
+			```
+		displayFolder: KPIText
+		lineageTag: 200ed04c-930e-48c7-b42a-6d2358565b4c
+
+	measure TooltipText = ```
+			
+			    //0 - Title | 1  Genre | 2 - Artist | 3- Album | 4-RecordLabel | 5-Region | 6-Retailer (tracks) | 7 - Retailer (albums)
+			
+			    //populates the tooltip page
+			    VAR Selected = _Categories[SelectedSales]
+			    VAR Ranking = _Categories[SalesRank]
+			    VAR CNT = _Categories[CountRows_All]
+			    VAR MAXSales = _Categories[MaxSales_Gauge]
+			    VAR Pct = DIVIDE(Selected, MAXSales, 0)
+			    VAR Percentile = DIVIDE(Ranking, CNT, 1)
+			
+			    -- 🏷️ Selected Label
+			    VAR Label =
+			        SWITCH(
+			            SELECTEDVALUE(_Categories[Category Order], -1),
+			            0, SELECTEDVALUE(TrackList[Title]),
+			            1, SELECTEDVALUE(Genre[Genre]),
+			            2, SELECTEDVALUE(Artist[Artist]),
+			            3, SELECTEDVALUE(Album[Album]),
+			            4, SELECTEDVALUE(RecordLabel[RecordLabel]),
+			            5, SELECTEDVALUE(Region[Region]),
+			            6, SELECTEDVALUE(PurchasedFrom[PurchasedFrom]),
+			            7, SELECTEDVALUE(PurchasedFrom[PurchasedFrom]),
+			            BLANK()
+			        )
+			
+			    VAR NoSelection = ISBLANK(Label)
+			
+			    -- 🟢🟡🟠🔴 Icon by Percentile
+			    VAR Icon =
+			        SWITCH(
+			            TRUE(),
+			            Percentile = DIVIDE(1, CNT, 0), UNICHAR(128994),  // 🟢 Top 1
+			            Percentile <= 0.10, UNICHAR(129001),              // 🟢🟢 Light green
+			            Percentile <= 0.50, UNICHAR(128993),              // 🟡 Yellow
+			            Percentile <= 0.75, UNICHAR(128992),              // 🟠 Orange
+			            Percentile > 0.75, UNICHAR(128308)                // 🔴 Red
+			        )
+			
+			    -- 🏆 Badge for Top Seller
+			    VAR Badge = IF(Ranking = 1, UNICHAR(127942) & " Top Seller", BLANK())
+			
+			    -- 🧠 Narrative Summary
+			    VAR Narrative =
+			        "This item ranks #" & Ranking & " of " & FORMAT(CNT, "#,##0")--CNT
+			        & ", placing it in the top " & FORMAT(Percentile * 100, "0.0") & "% of the category."
+			
+			    -- ⚠️ Fallback Message
+			    VAR Fallback =
+			        "⚠️ No record selected. Please choose at least one record from the table to view $ details."
+			
+			    RETURN
+			    IF(
+			        NoSelection,
+			        Fallback,
+			        Icon & " " & Label
+			        & UNICHAR(10) & "Sales: $" & FORMAT(Selected, "#,##0")
+			        & UNICHAR(10) & "% to Max: " & FORMAT(Pct, "0.0%")
+			        & UNICHAR(10) & Narrative
+			        & IF(NOT(ISBLANK(Badge)), UNICHAR(10) & Badge)
+			    )
+			
+			```
+		displayFolder: KPIText
+		lineageTag: e0b6fdfc-f570-4fff-88a2-7784f66e6c6f
+
+	column CategorySelector
+		lineageTag: 53bfbef8-72ed-48f6-94ea-04cd1be52231
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Category Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Category Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Category Fields'
+		lineageTag: 76fda6ba-bec1-4017-9042-feeddad0a9cc
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Category Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Category Order'
+		formatString: 0
+		lineageTag: 3b029960-521e-4543-89e1-0bccf75baa9f
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = User
+
+	partition _Categories = calculated
+		mode: import
+		source = ```
+				
+				    {
+				        ("Title - Artist", NAMEOF(TrackList[Track - Artist]), 0),
+				        ("Genre", NAMEOF('Genre'[Genre]), 1),
+				        ("Artist", NAMEOF('Artist'[Artist]), 2),
+				        ("Album", NAMEOF('Album'[Album]), 3),
+				        ("Record Label", NAMEOF('RecordLabel'[RecordLabel]), 4),
+				        ("Region", NAMEOF('Region'[Region]), 5),
+				        ("Retail Sales - Tracks", NAMEOF('PurchasedFrom'[PurchasedFrom]), 6),
+				        ("Retail Sales - Albums", NAMEOF('PurchasedFrom'[Purchased From]), 7)
+				    }
+				```
+
+	annotation PBI_Id = fcf5be50031c4d1eb0c37c55affa194d
+

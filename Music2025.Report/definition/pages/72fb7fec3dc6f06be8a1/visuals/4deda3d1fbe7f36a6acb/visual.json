@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "4deda3d1fbe7f36a6acb",
+  "position": {
+    "x": 11.067861374710263,
+    "y": 13.784272726589041,
+    "z": 1000,
+    "height": 398.27586206896552,
+    "width": 702.06280788177344,
+    "tabOrder": 1000
+  },
+  "visualGroup": {
+    "displayName": "Text Boxes",
+    "groupMode": "ScaleMode"
+  },
+  "parentGroupName": "5d3df9ab64857c370b34"
+}

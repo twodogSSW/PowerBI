@@ -1,0 +1,125 @@
+table TrackList
+	lineageTag: 502901bc-3365-446f-8c7f-470a1e6ece21
+
+	column pkTrackList
+		dataType: int64
+		formatString: 0
+		lineageTag: c10d3693-0575-4b77-892c-dc3048c733f6
+		summarizeBy: none
+		sourceColumn: pkTrackList
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Title
+		dataType: string
+		lineageTag: 1a95e08d-cce4-4435-8e45-ea020b1b2703
+		summarizeBy: none
+		sourceColumn: Title
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column fkArtist
+		dataType: int64
+		formatString: 0
+		lineageTag: 57a2e3f0-4b2c-48c1-abf6-88dc7d3a03ef
+		summarizeBy: none
+		sourceColumn: fkArtist
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column fkAlbum
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d30e647-35e8-44c0-b9ac-b22b3ef4efd4
+		summarizeBy: none
+		sourceColumn: fkAlbum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: double
+		lineageTag: 42335b86-ead5-4e0f-9c6d-fca28663cdb7
+		summarizeBy: none
+		sourceColumn: Year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fkGenre
+		dataType: int64
+		formatString: 0
+		lineageTag: a08d97b6-6f7f-46a9-809d-fb1bd618f38a
+		summarizeBy: none
+		sourceColumn: fkGenre
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Composer
+		dataType: string
+		lineageTag: 954dbda7-26ce-43c2-ad41-4c36e6c56422
+		summarizeBy: none
+		sourceColumn: Composer
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Track - Artist'
+		dataType: string
+		lineageTag: 000035ef-8d0a-40af-825d-b7f1e90a2c7b
+		summarizeBy: none
+		sourceColumn: Track - Artist
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Length_sec
+		dataType: double
+		lineageTag: 594f2ba7-54b6-4d6b-8986-062e06a393aa
+		summarizeBy: none
+		sourceColumn: Length_sec
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Filesize
+		dataType: string
+		lineageTag: 5e8bc460-c25a-4da7-b830-5236690f8794
+		summarizeBy: none
+		sourceColumn: Filesize
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition TrackList = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(ServerName, DBName, [Query="SELECT #(lf)     TL.pkTrackList#(lf)     ,TL.Title#(lf)     ,TL.fkArtist#(lf)     ,TL.fkAlbum#(lf)     ,TL.Year#(lf)     ,TL.fkGenre#(lf)     ,TL.Length_sec#(lf)     ,TL.Filesize#(lf)     ,TL.Composer#(lf)     --,TL.Include#(lf)     --,AR.Artist#(lf)     ,TL.Title + ' - ' + AR.Artist as 'Track - Artist'#(lf)FROM #(lf)     [Music2024].[dbo].[TrackList] TL#(lf)LEFT JOIN #(lf)     Artist AR on AR.pkArtist = TL.fkArtist#(lf)", CommandTimeout=#duration(0, 1, 0, 0)]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Year", type text}, {"Length_sec", type text}}),
+				    MarkedKeys = Table.AddKey(Source, {"pkTrackList"}, true)
+				in
+				    MarkedKeys
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

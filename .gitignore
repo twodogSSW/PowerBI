@@ -14,3 +14,19 @@ Thumbs.db
 # Logs and local notes
 *.log
 *.notes
+
+# Ignore legacy PBIX files (PBIP is now the source of truth)
+*.pbix
+
+# Ignore PBIX backups and test files
+* - Copy.pbix
+* another attempt.pbix
+
+# Ignore Power BI autosaves
+*.pbip.autosave
+
+# Ignore Power BI tool metadata
+*.pbitool.json
+
+# prevents objects over 100mb in size from being added
+**/.pbi/cache.abf

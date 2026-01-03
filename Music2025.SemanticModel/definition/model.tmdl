@@ -1,0 +1,41 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["Album","AlbumNotes","AlbumSales","Artist","Demographics","Geography","PurchasedFrom","RecordLabel","Region","TrackList","TrackSales","Genre","TrackNotes","ServerName","DBName"]
+
+annotation PBI_ProTooling = ["TMDLView_Desktop","DaxQueryView_Desktop","DevMode"]
+
+ref table Album
+ref table AlbumNotes
+ref table AlbumSales
+ref table Artist
+ref table Demographics
+ref table Geography
+ref table PurchasedFrom
+ref table RecordLabel
+ref table Region
+ref table TrackList
+ref table TrackSales
+ref table Genre
+ref table _SummaryPg
+ref table _ExecutivePg
+ref table _PeriodSelector
+ref table _PctThreshold
+ref table _URL
+ref table _BusinessDrivers
+ref table Calendar
+ref table _Categories
+ref table TrackNotes
+
+ref role 'Depeche Mode Fan'
+ref role 'East Africa Region'
+
+ref cultureInfo en-US
+

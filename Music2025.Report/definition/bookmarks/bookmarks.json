@@ -1,0 +1,71 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmarksMetadata/1.0.0/schema.json",
+  "items": [
+    {
+      "name": "13773b52198d25a9a241",
+      "displayName": "PowerApps",
+      "children": [
+        "028fa6efc71c31b09e95",
+        "995833f4a324418061aa"
+      ]
+    },
+    {
+      "name": "822c81048c1b64584a99",
+      "displayName": "Overview",
+      "children": [
+        "f33655493a6523c3084c",
+        "62d2e064260482b65372"
+      ]
+    },
+    {
+      "name": "d0235dbcb936914337dc",
+      "displayName": "Executive Summary",
+      "children": [
+        "18f6b5e2bb1247c8722a",
+        "75de959a35bd66d8599b",
+        "e7ecea648cb473223def"
+      ]
+    },
+    {
+      "name": "73bf1cef8db96aaa876d",
+      "displayName": "Summary of All Sales",
+      "children": [
+        "c8fd0b414c29660e08a8",
+        "8883643dee5c23665eaa",
+        "1c5da6d607aad2a554d5"
+      ]
+    },
+    {
+      "name": "a47d5463b8ca272c77c2",
+      "displayName": "Categories",
+      "children": [
+        "12598284dfa7384e23ce",
+        "267e6c42e8da6f5ab704",
+        "df7bcb41abcea2d3aef4"
+      ]
+    },
+    {
+      "name": "ce952b408440ca050bc9",
+      "displayName": "Decomposition",
+      "children": [
+        "9aa1b262a08be7b139b0",
+        "882958703a83080d6c7d",
+        "6af2daf5db04b08d7159"
+      ]
+    },
+    {
+      "name": "8291dbe71a50051a99dd",
+      "displayName": "Business Drivers",
+      "children": [
+        "0b9162021955ec1bc47c"
+      ]
+    },
+    {
+      "name": "aab73409105a576f1812",
+      "displayName": "Geography",
+      "children": [
+        "78ba42861b587dab6957"
+      ]
+    }
+  ]
+}

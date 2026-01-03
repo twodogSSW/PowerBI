@@ -1,0 +1,25 @@
+table _PctThreshold
+	lineageTag: ef3e2812-67c3-4dc0-8eb4-3984fcfce263
+
+	column PctThreshold
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		lineageTag: 1010dede-85e5-4c4f-be15-24ca37fd0bde
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition _PctThreshold = calculated
+		mode: import
+		source = ```
+				
+				     GENERATESERIES(-1, 5, 0.05)
+				```
+
+	annotation PBI_Id = c5789280ee2e47a59e5ecb8e47fd1167
+

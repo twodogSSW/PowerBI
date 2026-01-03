@@ -1,0 +1,40 @@
+table RecordLabel
+	lineageTag: 9baacb9f-5f7a-443a-be4b-b77d4351f7c5
+
+	column pkRecordLabel
+		dataType: int64
+		formatString: 0
+		lineageTag: e35ec2d3-2433-4a58-82dc-8760d1da1ae5
+		summarizeBy: none
+		sourceColumn: pkRecordLabel
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column RecordLabel
+		dataType: string
+		lineageTag: 1ca87e2d-bf5d-48ce-adde-3272b173ea09
+		summarizeBy: none
+		sourceColumn: RecordLabel
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition RecordLabel = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(ServerName, DBName,
+				    [Query="SELECT #(lf)    [pkRecordLabel]#(lf)    ,[RecordLabel]#(lf)  FROM #(lf)    [Music2024].[dbo].[RecordLabel]"]),
+				    MarkedKeys = Table.AddKey(Source, {"pkRecordLabel"}, true)
+				in
+				    MarkedKeys
+
+	changedProperty = IsHidden
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

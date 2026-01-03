@@ -1,0 +1,310 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 715.18482251625176,
+            "y": 79.483223145285365
+          },
+          "nodeIndex": "Album",
+          "nodeLineageTag": "9c94af43-c824-4ccd-8258-a9bedc4afc63",
+          "size": {
+            "height": 104,
+            "width": 172.75
+          },
+          "zIndex": 16,
+          "expandedHeight": 224
+        },
+        {
+          "location": {
+            "x": 1002.0085908322737,
+            "y": 138.52722337243264
+          },
+          "nodeIndex": "AlbumNotes",
+          "nodeLineageTag": "787fb0e1-dfc6-4a0d-92fb-d8072b85a4a4",
+          "size": {
+            "height": 104,
+            "width": 169
+          },
+          "zIndex": 19,
+          "expandedHeight": 200
+        },
+        {
+          "location": {
+            "x": 10.540114821815521,
+            "y": 819.09386213373807
+          },
+          "nodeIndex": "AlbumSales",
+          "nodeLineageTag": "4efc2010-3cf2-48b9-ad78-66e8d8436f80",
+          "size": {
+            "height": 176,
+            "width": 185
+          },
+          "zIndex": 13,
+          "expandedHeight": 306.25
+        },
+        {
+          "location": {
+            "x": 1235.1742558606645,
+            "y": 460.75359078222152
+          },
+          "nodeIndex": "Artist",
+          "nodeLineageTag": "d5807c9a-cb2e-4798-b4ed-7970fdfd26e2",
+          "size": {
+            "height": 174,
+            "width": 208.14899790960067
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 1238.9742275031797,
+            "y": 327.04369520209173
+          },
+          "nodeIndex": "Genre",
+          "nodeLineageTag": "b9f852f2-6409-4fd1-a9b3-d9ec35799f10",
+          "size": {
+            "height": 104,
+            "width": 202.12607515427749
+          },
+          "zIndex": 10,
+          "expandedHeight": 198.75
+        },
+        {
+          "location": {
+            "x": 910.56375781397185,
+            "y": 694.86963463055861
+          },
+          "nodeIndex": "Geography",
+          "nodeLineageTag": "9022b6a0-cca9-4059-8f0f-e5d82dd25af6",
+          "size": {
+            "height": 128,
+            "width": 224.96561586701546
+          },
+          "zIndex": 15,
+          "expandedHeight": 300
+        },
+        {
+          "location": {
+            "x": 203.27364299215645,
+            "y": 377.52650313559923
+          },
+          "nodeIndex": "PurchasedFrom",
+          "nodeLineageTag": "cfc53502-9865-4e8f-97f1-5634c7ca5ba7",
+          "size": {
+            "height": 104,
+            "width": 203.25
+          },
+          "zIndex": 18,
+          "expandedHeight": 200
+        },
+        {
+          "location": {
+            "x": 1407.08599993917,
+            "y": 841.703455056411
+          },
+          "nodeIndex": "RecordLabel",
+          "nodeLineageTag": "9baacb9f-5f7a-443a-be4b-b77d4351f7c5",
+          "size": {
+            "height": 104,
+            "width": 182.75
+          },
+          "zIndex": 11,
+          "expandedHeight": 176
+        },
+        {
+          "location": {
+            "x": 1177.4777974815102,
+            "y": 846.22064712290364
+          },
+          "nodeIndex": "Region",
+          "nodeLineageTag": "1026b12f-7b1e-45e1-9fdb-39caa750682b",
+          "size": {
+            "height": 104,
+            "width": 176.78223382443002
+          },
+          "zIndex": 12,
+          "expandedHeight": 271.25
+        },
+        {
+          "location": {
+            "x": 473.5093214710522,
+            "y": 421.60459287262091
+          },
+          "nodeIndex": "TrackList",
+          "nodeLineageTag": "502901bc-3365-446f-8c7f-470a1e6ece21",
+          "size": {
+            "height": 176,
+            "width": 176
+          },
+          "zIndex": 14,
+          "expandedHeight": 457.5
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "TrackSales",
+          "nodeLineageTag": "d1fe4f8d-bc56-4b65-9185-817afb88c0e2",
+          "size": {
+            "height": 176,
+            "width": 176
+          },
+          "zIndex": 17,
+          "expandedHeight": 311.9025782898766
+        },
+        {
+          "location": {
+            "x": 1658.3187870687868,
+            "y": 427.07616797574411
+          },
+          "nodeIndex": "_PctThreshold",
+          "nodeLineageTag": "ef3e2812-67c3-4dc0-8eb4-3984fcfce263",
+          "size": {
+            "height": 72,
+            "width": 234
+          },
+          "zIndex": 21,
+          "expandedHeight": 145
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 374.92694151886633
+          },
+          "nodeIndex": "Calendar",
+          "nodeLineageTag": "fca5410b-58b9-40bf-8964-2a1c781ac37d",
+          "size": {
+            "height": 104,
+            "width": 169
+          },
+          "zIndex": 8,
+          "expandedHeight": 200
+        },
+        {
+          "location": {
+            "x": 1659.8216576141749,
+            "y": 337.7975145315902
+          },
+          "nodeIndex": "_URL",
+          "size": {
+            "height": 72,
+            "width": 234
+          },
+          "zIndex": 7,
+          "expandedHeight": 145
+        },
+        {
+          "location": {
+            "x": 359.51715668784658,
+            "y": 667.11856987822671
+          },
+          "nodeIndex": "TrackNotes",
+          "nodeLineageTag": "0058b5a2-0636-4e1f-ba5a-decece567d33",
+          "size": {
+            "height": 104,
+            "width": 169
+          },
+          "zIndex": 6,
+          "expandedHeight": 224
+        },
+        {
+          "location": {
+            "x": 1005.127515627944,
+            "y": 0
+          },
+          "nodeIndex": "Demographics",
+          "size": {
+            "height": 128,
+            "width": 180.25
+          },
+          "zIndex": 1,
+          "expandedHeight": 300
+        },
+        {
+          "location": {
+            "x": 1661.0515950022943,
+            "y": 252.18481211430662
+          },
+          "nodeIndex": "_PeriodSelector",
+          "nodeLineageTag": "f4defc31-cc5d-44ba-8a05-dcdf894fe235",
+          "size": {
+            "height": 72,
+            "width": 234
+          },
+          "zIndex": 20,
+          "expandedHeight": 152
+        },
+        {
+          "location": {
+            "x": 1239.033693100914,
+            "y": 155.8318882626296
+          },
+          "nodeIndex": "_BusinessDrivers",
+          "nodeLineageTag": "125cf666-bac4-4cb7-88a1-30430f5a442f",
+          "size": {
+            "height": 153.75,
+            "width": 220.44842380052296
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 1660.4513027467831,
+            "y": 0
+          },
+          "nodeIndex": "_Categories",
+          "nodeLineageTag": "5c27c8e2-ae70-4845-a228-f5623a4c6ec0",
+          "size": {
+            "height": 72,
+            "width": 234
+          },
+          "zIndex": 3,
+          "expandedHeight": 152
+        },
+        {
+          "location": {
+            "x": 1660.8216576141749,
+            "y": 82.5
+          },
+          "nodeIndex": "_ExecutivePg",
+          "size": {
+            "height": 72,
+            "width": 234
+          },
+          "zIndex": 0,
+          "expandedHeight": 200
+        },
+        {
+          "location": {
+            "x": 1661.75,
+            "y": 168.75
+          },
+          "nodeIndex": "_SummaryPg",
+          "size": {
+            "height": 72,
+            "width": 222.75
+          },
+          "zIndex": 0,
+          "expandedHeight": 211.25
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 66.412938742485707,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

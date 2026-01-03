@@ -1,0 +1,168 @@
+table Geography
+	lineageTag: 9022b6a0-cca9-4059-8f0f-e5d82dd25af6
+
+	measure Selected$ = ```
+			
+			SWITCH(
+			  TRUE(),
+			  HASONEFILTER( TrackList[Track - Artist] ),
+			    SUM( TrackSales[SalesAmt] ),
+			  HASONEFILTER( Album[Album]),
+			    SUM( AlbumSales[SalesAmt] ),
+			  // Default if nothing picked
+			  SUM( TrackSales[SalesAmt] )
+			)
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 225b506c-e2f1-4e28-a469-13c4c6597e33
+
+		changedProperty = IsHidden
+
+	measure Selected$_Region = ```
+			
+			SWITCH(
+			  TRUE(),
+			  HASONEFILTER( TrackList[Track - Artist] ),
+			    "Track Sales - by Region",
+			  HASONEFILTER( Album[Album]),
+			    "Album Sales - By Region",
+			  // Default if nothing picked
+			  "Track Sales by Region")
+			
+			
+			```
+		lineageTag: 69e001e0-be13-4407-ba72-34623513c60d
+
+		changedProperty = IsHidden
+
+	measure Selected$_CountryCity =
+			
+			SWITCH(
+			  TRUE(),
+			  HASONEFILTER( TrackList[Track - Artist] ),
+			    "Track Sales by Country/City",
+			  HASONEFILTER( Album[Album]),
+			    "Album Sales by Country/City",
+			  // Default if nothing picked
+			  "Track Sales by Country/City")
+		lineageTag: 1031d399-9e72-4419-bdd6-de1bbb9c24c6
+
+		changedProperty = IsHidden
+
+	column pkGeography
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f7478ba-75f0-459b-bf97-0099340c5021
+		summarizeBy: none
+		sourceColumn: pkGeography
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column fkRegion
+		dataType: int64
+		formatString: 0
+		lineageTag: eed0a0aa-b521-4ece-92e9-419fee7011c6
+		summarizeBy: none
+		sourceColumn: fkRegion
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 38e966eb-b720-463c-8816-c5006fd3becf
+		dataCategory: City
+		summarizeBy: none
+		sourceColumn: City
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: a3e1b6c7-11ef-4fe9-a6f5-ef05816ff808
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: State
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Province
+		dataType: string
+		lineageTag: 8c291a6e-fe9e-446a-874d-6487ec21c128
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: Province
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: bcf9758f-f03a-451d-82c9-49d549215fea
+		dataCategory: County
+		summarizeBy: none
+		sourceColumn: Country
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Continent
+		dataType: string
+		lineageTag: 63f7e7d4-f361-4f5f-b128-27f6b808b3dc
+		dataCategory: Continent
+		summarizeBy: none
+		sourceColumn: Continent
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column latitude
+		dataType: double
+		lineageTag: 05676355-040c-466c-874c-e8578d3ede79
+		dataCategory: Latitude
+		summarizeBy: none
+		sourceColumn: latitude
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column longitude
+		dataType: double
+		lineageTag: 663be653-8d41-4a8c-8ab9-283cf5921a74
+		dataCategory: Longitude
+		summarizeBy: none
+		sourceColumn: longitude
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Geography = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(ServerName, DBName, [Query="SELECT #(lf)     [pkGeography]#(lf)      ,[fkRegion]#(lf)      ,[City]#(lf)      ,[State]#(lf)      ,[Province]#(lf)      ,[Country]#(lf)      ,[Continent]#(lf)      ,[latitude]#(lf)      ,[longitude]#(lf)  FROM #(lf)     [Music2024].[dbo].[Geography]#(lf)", CommandTimeout=#duration(0, 0, 10, 0)]),
+				    MarkedKeys = Table.AddKey(Source, {"pkGeography"}, true)
+				in
+				    MarkedKeys
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

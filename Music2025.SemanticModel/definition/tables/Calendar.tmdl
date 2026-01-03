@@ -1,0 +1,401 @@
+table Calendar
+	lineageTag: fca5410b-58b9-40bf-8964-2a1c781ac37d
+	dataCategory: Time
+
+	measure AlbumSales_Footer = ```
+			
+			    --Date range of the data used in this measure
+			    Var MinDate = Format(Min('AlbumSales'[Salesdate]),"mm/dd/yy")
+			    Var MaxDate = Format(Max('AlbumSales'[Salesdate]),"mm/dd/yy")
+			    VAR DateRange = " Album Sales between " & MinDate & " and " & MaxDate
+			Return 
+			    DateRange
+			```
+		displayFolder: HeadersFooters
+		lineageTag: cc2b8515-a2ca-423a-bb3b-753f46e87e4d
+
+	measure Date_Footer = ```
+			
+			    'Calendar'[AlbumSales_Footer] & " - " & 'Calendar'[TrackSales_Footer]   
+			```
+		displayFolder: HeadersFooters
+		lineageTag: d14eed32-6deb-4d69-80ea-f6bb264558ae
+
+	measure TrackSales_Footer = ```
+			
+			    --Date range of the data used in this measure
+			    Var MinDate = Format(Min('AlbumSales'[Salesdate]),"mm/dd/yy")
+			    Var MaxDate = Format(Max('AlbumSales'[Salesdate]),"mm/dd/yy")
+			    VAR DateRange = " Track Sales between " & MinDate & " and " & MaxDate
+			Return 
+			    DateRange
+			```
+		displayFolder: HeadersFooters
+		lineageTag: 8612a778-1e92-4c20-9399-1b150b1c1eb6
+
+	measure LastRefreshDate = "Data refreshed as of " &format(now(),"mm/dd/yy")
+		lineageTag: 4681f705-de51-47fa-b5ce-775176e241f3
+
+	measure StartDate = ```
+			
+			    CALCULATE(
+			      MIN( 'Calendar'[Date] ),
+			      KEEPFILTERS( ALLSELECTED( 'Calendar' ) )
+			    )
+			
+			```
+		formatString: General Date
+		displayFolder: HeadersFooters
+		lineageTag: 08037acc-916f-4e8a-ae86-c49ad5291858
+
+	measure EndDate = ```
+			
+			    CALCULATE(
+			      MAX( 'Calendar'[Date] ),
+			      KEEPFILTERS( ALLSELECTED( 'Calendar' ) )
+			    )
+			
+			```
+		formatString: General Date
+		displayFolder: HeadersFooters
+		lineageTag: abd22267-9004-441e-bebb-4863c1015d34
+
+	measure 'ExecSumm Header' = ```
+			
+			VAR sd  = format('Calendar'[StartDate], "mm/dd/yy")   
+			VAR ed  = format('Calendar'[EndDate], "mm/dd/yy")   
+			
+			Return
+			    "30/60/90-day changes are from today; section below uses selected range of ("
+			    & sd & " to " & ed & ")"
+			```
+		displayFolder: HeadersFooters
+		lineageTag: ac664ad7-cba0-4bfb-9e64-50401750dc4b
+
+	measure StartDate_prm = ```
+			
+			VAR dt =
+			    CALCULATE(
+			      MIN( 'Calendar'[Date] ),
+			      KEEPFILTERS( ALLSELECTED( 'Calendar' ) )
+			    )
+			RETURN
+			  "rp:StartDate="
+			    & FORMAT( dt, "yyyy-MM-dd" )
+			    & "%20"
+			    & FORMAT( dt, "HH:mm:ss.0" )
+			
+			```
+		displayFolder: HeadersFooters
+		lineageTag: dfcf4568-73ba-46fb-8f97-7de84ce32dcd
+
+	measure EndDate_prm =
+			
+			//end date parameter
+			VAR dt =
+			    CALCULATE(
+			      MAX( 'Calendar'[Date] ),
+			      KEEPFILTERS( ALLSELECTED( 'Calendar' ) )
+			    )
+			RETURN
+			  "rp:EndDate="
+			    & FORMAT( dt, "yyyy-MM-dd" )
+			    & "%20"
+			    & FORMAT( dt, "HH:mm:ss.0" )
+		displayFolder: HeadersFooters
+		lineageTag: a930220f-33f8-4f97-9a85-4d2be45e9397
+
+	column Date
+		isKey
+		formatString: mm/dd/yy
+		lineageTag: c8999b1f-a45c-4723-a015-da9787175d5d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		formatString: 0
+		lineageTag: 0c88155f-6776-4a88-9448-ea4a9d8959aa
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = User
+
+	column 'Start of Year'
+		formatString: yyyy
+		lineageTag: f51834ef-e6a3-4ee8-bea3-a3497dbacff5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Start of Year]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'End of Year'
+		formatString: General Date
+		lineageTag: 98329586-fdc4-4187-9fde-991c7ab21008
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [End of Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		formatString: 0
+		lineageTag: 4372aa8a-af0b-4916-a1fc-17ef369f935c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month]
+
+		annotation SummarizationSetBy = User
+
+	column 'Start of Month'
+		formatString: mmmm yyyy
+		lineageTag: 46197085-0710-40c0-bec2-1a1a2223d7d5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Start of Month]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'End of Month'
+		formatString: General Date
+		lineageTag: e62b1d6d-5445-4579-80e1-9121b0ad5e0b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [End of Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days in Month'
+		formatString: 0
+		lineageTag: a513a2d1-544a-4c6c-8852-a61bf01b93ab
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Days in Month]
+
+		annotation SummarizationSetBy = User
+
+	column Day
+		formatString: 0
+		lineageTag: 41a0eea3-c8f0-49f8-a4a6-f0b57afe528e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Day]
+
+		annotation SummarizationSetBy = User
+
+	column 'Day Name'
+		lineageTag: a464782f-4985-4144-899f-0e60e6475b4c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Day Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day of Week'
+		formatString: 0
+		lineageTag: 9ff07764-5aef-41c1-8b0a-02f5d5771b15
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Day of Week]
+
+		annotation SummarizationSetBy = User
+
+	column 'Day of Year'
+		formatString: 0
+		lineageTag: bc869ad5-dc8a-4cbe-8a09-6ff01c4e4cea
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Day of Year]
+
+		annotation SummarizationSetBy = User
+
+	column 'Month Name'
+		lineageTag: 97601f83-3ab7-4681-8d6e-99a33755e4df
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		formatString: 0
+		lineageTag: 1c244d72-ff8b-4f48-aefe-dba77c73b18a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = User
+
+	column 'Start of Quarter'
+		formatString: mm/dd/yy
+		lineageTag: 9f04c9d0-bfc2-42d7-a049-ebb682ec0032
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Start of Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'End of Quarter'
+		formatString: General Date
+		lineageTag: 0c504749-7339-4031-850a-e405f568e2c0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [End of Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week of Year'
+		formatString: 0
+		lineageTag: be1b6f16-b85b-4e16-a743-ea856295daae
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Week of Year]
+
+		annotation SummarizationSetBy = User
+
+	column 'Week of Month'
+		formatString: 0
+		lineageTag: 2e72d76b-cd54-4c97-9eac-6955ee38a448
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Week of Month]
+
+		annotation SummarizationSetBy = User
+
+	column 'Start of Week'
+		formatString: m/d/yy
+		lineageTag: 90e50129-9d53-4250-b4e7-8494ba08917c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Start of Week]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'End of Week'
+		formatString: General Date
+		lineageTag: 4b34fa28-f07d-4335-9690-8a0deeeaafa5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [End of Week]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShortMonth
+		lineageTag: e10a4cdf-b573-4132-927b-bc6a7b984e80
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [ShortMonth]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearShortMonth
+		lineageTag: f5899413-3bdc-4bf5-827d-0e15a0614979
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearShortMonth]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendar = calculated
+		mode: import
+		source = ```
+				
+				VAR MinDate = MIN( TrackSales[SalesDate] )
+				VAR MaxDate = MAX( TrackSales[SalesDate] )
+				VAR StartOfFiscalYear = 7
+				VAR ShiftMonths = 13 - StartOfFiscalYear
+				VAR AdjShift =
+				    IF( ShiftMonths >= 12 || ShiftMonths < 0, 0, ShiftMonths )
+				RETURN
+				ADDCOLUMNS(
+				    CALENDAR( MinDate, MaxDate ),
+				    
+				    // Standard date parts
+				    "Year",            YEAR( [Date] ),
+				    "Start of Year",   DATE( YEAR([Date]), 1, 1 ),
+				    "End of Year",     DATE( YEAR([Date]), 12, 31 ),
+				    "Month",           MONTH( [Date] ),
+				    "Start of Month",  DATE( YEAR([Date]), MONTH([Date]), 1 ),
+				    "End of Month",    EOMONTH( [Date], 0 ),
+				    "Days in Month",   DAY( EOMONTH( [Date], 0 ) ),
+				    "Day",             DAY( [Date] ),
+				    "Day Name",        FORMAT( [Date], "dddd" ),
+				    "Day of Week",     WEEKDAY( [Date], 1 ) - 1,                // Sunday=0…Saturday=6
+				    "Day of Year",     DATEDIFF( DATE( YEAR([Date]),1,1 ), [Date], DAY ) + 1,
+				    "Month Name",      FORMAT( [Date], "MMMM" ),
+				    "Quarter",         QUARTER( [Date] ),
+				    "Start of Quarter",
+				       DATE(
+				         YEAR([Date]),
+				         ( QUARTER([Date]) - 1 ) * 3 + 1,
+				         1
+				       ),
+				    "End of Quarter",
+				       EOMONTH(
+				         DATE(
+				           YEAR([Date]),
+				           ( QUARTER([Date]) - 1 ) * 3 + 1,
+				           1
+				         ),
+				         2
+				       ),
+				    
+				    // ISO-ish week calculation with Monday as first day
+				    "Week of Year",    WEEKNUM( [Date], 2 ),
+				    "Week of Month",
+				      WEEKNUM( [Date], 2 )
+				      - WEEKNUM(
+				          DATE( YEAR([Date]), MONTH([Date]), 1 ),
+				          2
+				        )
+				      + 1,
+				    "Start of Week",   [Date] - WEEKDAY( [Date], 2 ) + 1,      // Monday of that week
+				    "End of Week",     [Date] + ( 7 - WEEKDAY( [Date], 2 ) ),
+				    
+				// Fiscal year/quarter/month based on StartOfFiscalYear
+				/*
+				    "Fiscal Year",     YEAR( EDATE( [Date], AdjShift ) ),
+				    "Fiscal Quarter",  QUARTER( EDATE( [Date], AdjShift ) ),
+				    "Fiscal Month",    MONTH( EDATE( [Date], AdjShift ) ),
+				 --*/   
+				
+				// Offsets relative to Today()
+				/*
+				    "Day Offset",      DATEDIFF( TODAY(), [Date], DAY ),
+				    "Month Offset",
+				      ( YEAR([Date]) - YEAR( TODAY() ) ) * 12
+				      + ( MONTH([Date]) - MONTH( TODAY() ) ),
+				    "Year Offset",     YEAR([Date]) - YEAR( TODAY() ),
+				    "Quarter Offset",
+				      ( YEAR([Date]) - YEAR( TODAY() ) ) * 4
+				      + ( QUARTER([Date]) - QUARTER( TODAY() ) ),
+				--*/
+				
+				    // Text & business‐day flags
+				    "ShortMonth",      LEFT( FORMAT([Date],"MMMM"), 3 ),
+				    "YearShortMonth",  LEFT( FORMAT([Date],"MMMM"), 3 ) & " " & YEAR([Date])
+				 //   ,"BusinessDay",
+				//      IF( WEEKDAY( [Date], 2 ) < 6, TRUE(), FALSE() )
+				)
+				
+				
+				```
+
+	annotation PBI_Id = 41ce0e2d914346b0800dc948ff924234
+

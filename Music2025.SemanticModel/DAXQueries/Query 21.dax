@@ -1,0 +1,12 @@
+DEFINE
+    FUNCTION pbi.ExecSumm_LowerSectionDolChange = (SalesCategory:anyref) 
+		=>
+	
+	pbi.ExecSumm_LowerSectionDolChangeCur(SalesCategory)
+	-
+	pbi.ExecSumm_LowerSectionDolChangePrev(SalesCategory)
+
+EVALUATE
+    {
+        pbi.ExecSumm_LowerSectionDolChange(SalesCategory)
+    }

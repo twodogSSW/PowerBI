@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "e9d63ce53037b7e463c5",
+  "position": {
+    "x": 0,
+    "y": 0.094760133639828839,
+    "z": 1000,
+    "height": 108.62215611282173,
+    "width": 636,
+    "tabOrder": 1000
+  },
+  "visualGroup": {
+    "displayName": "Album Sales",
+    "groupMode": "ScaleMode"
+  },
+  "parentGroupName": "52622e2269248f75b4cc"
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "18d7ef3aa4abfb8e3554",
+  "position": {
+    "x": 0,
+    "y": 84.053431952603191,
+    "z": 2000,
+    "height": 56.701225259189442,
+    "width": 1280,
+    "tabOrder": 3000
+  },
+  "visualGroup": {
+    "displayName": "Sales Activity",
+    "groupMode": "ScaleMode"
+  }
+}

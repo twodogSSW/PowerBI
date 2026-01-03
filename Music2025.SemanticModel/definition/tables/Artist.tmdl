@@ -1,0 +1,51 @@
+table Artist
+	lineageTag: d5807c9a-cb2e-4798-b4ed-7970fdfd26e2
+
+	column pkArtist
+		dataType: int64
+		formatString: 0
+		lineageTag: b2b073fd-92f7-4aa9-aba1-c04694d0794b
+		summarizeBy: none
+		sourceColumn: pkArtist
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Artist
+		dataType: string
+		lineageTag: 0d87610b-8afc-4c62-946a-08cf2a0d64b0
+		summarizeBy: none
+		sourceColumn: Artist
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column fkRecordLabel
+		dataType: int64
+		formatString: 0
+		lineageTag: b05a9d1b-c0fb-4dae-ae67-bc9b1d8d10d5
+		summarizeBy: none
+		sourceColumn: fkRecordLabel
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Artist = m
+		mode: import
+		source = ```
+				let
+				    Source = Sql.Database(ServerName, DBName,    
+				        [Query="SELECT #(lf)     [pkArtist]#(lf)     ,[Artist]#(lf)     ,[fkRecordLabel]#(lf)    FROM #(lf)     [Music2024].[dbo].[Artist]#(lf)",
+				    CommandTimeout=#duration(0, 0, 10, 0)]),
+				    MarkedKeys = Table.AddKey(Source, {"pkArtist"}, true)
+				in
+				    MarkedKeys
+				```
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

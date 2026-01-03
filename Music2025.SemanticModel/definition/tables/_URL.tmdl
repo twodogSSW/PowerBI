@@ -1,0 +1,62 @@
+/// Only Measures used in Tracks Page
+table _URL
+	lineageTag: ff967b99-f6ba-423f-bde0-71dc0bff7d71
+
+	measure 'URL - Menu' = ```
+			
+			    --pbi.RptURL(Album[pkAlbum])
+			    
+			  SWITCH(
+			    pbi.All_SelectedCategory(),
+			        0, pbi.Categories_RptURL(TrackList[pkTrackList]), //_URL[URLTracks],
+			        1, pbi.Categories_RptURL(Genre[pkGenre]), //_URL[URLGenres],
+			        2, pbi.Categories_RptURL(Artist[pkArtist]), //_URL[URLArtists],
+			        3, pbi.Categories_RptURL(Album[pkAlbum]), //URL[URLAlbums],
+			        4, pbi.Categories_RptURL(RecordLabel[pkRecordLabel]),//_URL[URLRecLabels],
+			        5, pbi.Categories_RptURL(Region[pkRegion]),//
+			        BLANK()
+			    )
+			
+			```
+		lineageTag: 7a846929-104e-4ba4-85e5-b3250cd581b6
+
+	measure 'URL - Button Text' = ```
+			
+			//1 - Title | 2  Genre | 3 - Artist | 4- Album | 5-Region | 6-Retailer (tracks) | 7 - Retailer (albums)
+			
+			    SWITCH(
+			    pbi.All_SelectedCategory(),
+			        0,"🖨️Print Selected Tracks",
+			        1,"🖨️Print Selected Genre",
+			        2,"🖨️Print Selected Artists",
+			        3,"🖨️Print Selected Albums",
+			        4,"🖨️Print Record Companies",
+			        5,"🖨️🌍Print Regions",
+			        /*
+			        --Ord = 5,_Region[Region Sales Max with % to Max], 
+			        --Ord = 6,_Retailer[Retail TrackSales Max with % to Max],    
+			        --Ord = 7,_Retailer[Retail AlbumSales Max with % to Max],    
+			        */
+			    BLANK()
+			    )
+			
+			```
+		lineageTag: 71f0c9c1-f55b-4016-8c7f-be5abc53c7a0
+
+	column Value
+		isHidden
+		lineageTag: d9261db5-be4d-4480-91a5-72372c32d909
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition _URL = calculated
+		mode: import
+		source = GENERATESERIES(1, 2, 0.05)
+
+	annotation PBI_Id = 80c2da30c80a46caa9eb710c04700d5b
+

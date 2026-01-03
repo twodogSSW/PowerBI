@@ -1,0 +1,7 @@
+role 'East Africa Region'
+	modelPermission: read
+
+	tablePermission Region = [Region] == "East Africa"
+
+	annotation PBI_Id = 822fb8b07b364316babd703d8f3aad08
+

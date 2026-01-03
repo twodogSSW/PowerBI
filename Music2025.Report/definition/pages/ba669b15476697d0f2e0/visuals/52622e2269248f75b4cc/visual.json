@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "52622e2269248f75b4cc",
+  "position": {
+    "x": 1.074727120067223,
+    "y": 145.99341120945786,
+    "z": 5000,
+    "height": 108.71691624646155,
+    "width": 1265.2965278242564,
+    "tabOrder": 4000
+  },
+  "visualGroup": {
+    "displayName": "Momentum",
+    "groupMode": "ScaleMode"
+  }
+}

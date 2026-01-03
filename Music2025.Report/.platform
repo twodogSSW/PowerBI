@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Music2025"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "51b99cc6-a925-4ac2-9413-814d17d443d9"
+  }
+}

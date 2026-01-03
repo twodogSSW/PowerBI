@@ -1,0 +1,17 @@
+createOrReplace
+
+	function 'pbi.NumberFormat' =
+			() =>
+			    VAR _value = SELECTEDMEASURE()
+			    VAR _absvalue = ABS(_value)
+			    VAR _fstring =
+			        SWITCH(TRUE(),
+			            _absvalue >=1e9, "#,##0,,,.00M",
+			            _absvalue >=1e6, "#,##0,,,.0M",
+			            _absvalue >=1e3, "#,##0,,,.0K",
+			            "#,##0"
+			        )
+			    RETURN
+			    _fstring
+		lineageTag: b0104ed6-ec6f-43a8-8bfc-ad244fe4a9ce
+
