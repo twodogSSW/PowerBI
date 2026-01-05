@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "f41e594c00613a008ab3",
   "position": {
-    "x": 415.343046948072,
-    "y": 2.0646772752178868,
+    "x": 398.11023622047242,
+    "y": 0,
     "z": 2000,
-    "height": 68.134350082190252,
-    "width": 769.57577028034291,
+    "height": 62.488188976377955,
+    "width": 670,
     "tabOrder": 6000
   },
   "visual": {
@@ -21,6 +21,7 @@
                   {
                     "value": "A high-level snapshot of current-year album and track sales, designed for quick decision-making. Compare monthly performance to last year, track recent changes, and spot emerging trends at a glance. Ideal for executives and stakeholders who need fast, actionable insights.",
                     "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
                       "fontSize": "11pt",
                       "color": "#ffffff"
                     }

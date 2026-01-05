@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "f489dc7aeed61eb6fa7e",
   "position": {
-    "x": 471.7059377945335,
-    "y": 3.6192271442035819,
+    "x": 419.2755905511811,
+    "y": 4.0314960629921259,
     "z": 3000,
-    "height": 115.81526861451462,
-    "width": 746.76720075400567,
+    "height": 115.90551181102362,
+    "width": 799.24409448818892,
     "tabOrder": 0
   },
   "visual": {
@@ -21,6 +21,7 @@
                   {
                     "value": "This dashboard provides a strategic overview of music sales activity across tracks and albums starting from January 2024. It combines historical performance, forecasted trends, and category-level insights to support planning, marketing, and investment decisions. ",
                     "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
                       "fontSize": "11pt",
                       "color": "#ffffff"
                     }
@@ -32,6 +33,7 @@
                   {
                     "value": "Use the navigation panel to explore detailed views by track, album, genre, artist, region, and retailer — each page includes interactive filters and time-based comparisons to uncover the drivers behind sales performance.",
                     "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
                       "fontSize": "11pt",
                       "color": "#ffffff"
                     }

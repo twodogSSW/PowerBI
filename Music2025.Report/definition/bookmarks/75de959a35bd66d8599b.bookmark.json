@@ -632,15 +632,6 @@
               "objects": {}
             }
           },
-          "12388c6eefe921268b81": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {},
-              "display": {
-                "mode": "hidden"
-              }
-            }
-          },
           "2d745db30ca9911d2be9": {
             "singleVisual": {
               "visualType": "actionButton",

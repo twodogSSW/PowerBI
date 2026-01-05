@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "b1adc9f92c8178954b06",
   "position": {
-    "x": 10.632357407631028,
-    "y": 4.8597144943847193,
+    "x": 8.1306715063520869,
+    "y": 10.401326316943683,
     "z": 7000,
-    "height": 96.0834860017092,
-    "width": 211.43807034122182,
+    "height": 96.4065335753176,
+    "width": 214.88203266787659,
     "tabOrder": 1000
   },
   "visual": {
@@ -73,14 +73,14 @@
             "relativeDuration": {
               "expr": {
                 "Literal": {
-                  "Value": "2D"
+                  "Value": "3D"
                 }
               }
             },
             "relativePeriod": {
               "expr": {
                 "Literal": {
-                  "Value": "'Years'"
+                  "Value": "'Months'"
                 }
               }
             }
@@ -130,6 +130,64 @@
                     },
                     "Annotations": {
                       "PowerBI.MParameterBehavior": 1
+                    }
+                  }
+                ]
+              }
+            },
+            "filter": {
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "c",
+                    "Entity": "Calendar",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "Between": {
+                        "Expression": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "c"
+                              }
+                            },
+                            "Property": "Date"
+                          }
+                        },
+                        "LowerBound": {
+                          "DateSpan": {
+                            "Expression": {
+                              "DateAdd": {
+                                "Expression": {
+                                  "DateAdd": {
+                                    "Expression": {
+                                      "Now": {}
+                                    },
+                                    "Amount": 1,
+                                    "TimeUnit": 0
+                                  }
+                                },
+                                "Amount": -3,
+                                "TimeUnit": 2
+                              }
+                            },
+                            "TimeUnit": 0
+                          }
+                        },
+                        "UpperBound": {
+                          "DateSpan": {
+                            "Expression": {
+                              "Now": {}
+                            },
+                            "TimeUnit": 0
+                          }
+                        }
+                      }
                     }
                   }
                 ]
@@ -543,5 +601,23 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "25a5d9fd31b0dacdafeb"
+  "parentGroupName": "25a5d9fd31b0dacdafeb",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b4d82189aa006a1000e9",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendar"
+              }
+            },
+            "Property": "Date"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
 }

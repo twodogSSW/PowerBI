@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "def3bbdfdddd4600346a",
   "position": {
     "x": 233,
@@ -84,7 +84,7 @@
                 "Property": "Track - Artist"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
         ]
       }

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "4f7640021c3b385dfd32",
   "position": {
-    "x": 497.77777777777777,
-    "y": 4.5804258364644834,
+    "x": 276.15748031496065,
+    "y": 7.05511811023622,
     "z": 3000,
-    "height": 54.965110037573808,
-    "width": 725.53945249597427,
+    "height": 49.385826771653541,
+    "width": 776.06299212598424,
     "tabOrder": 0
   },
   "visual": {
@@ -21,6 +21,7 @@
                   {
                     "value": "Explore music sales by country, city, and region to uncover trends and market opportunities. Use filters to drill into titles, genres, labels, and retailers. Visualize performance and identify hotspots for track and album sales.",
                     "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
                       "fontSize": "11pt",
                       "color": "#ffffff"
                     }

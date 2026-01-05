@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "28183e500138a9301647",
   "position": {
-    "x": 511.17552334943639,
-    "y": 1.177377641145757,
+    "x": 407.18110236220474,
+    "y": 1.0078740157480315,
     "z": 2000,
-    "height": 52.981993851559075,
-    "width": 711.11111111111109,
+    "height": 64.503937007874015,
+    "width": 805.29133858267721,
     "tabOrder": 0
   },
   "visual": {
@@ -19,21 +19,29 @@
               {
                 "textRuns": [
                   {
-                    "value": "See which tracks, albums, artists, genres, regions, labels, and retailers are leading. Use filters to explore top sellers and payment ",
+                    "value": "See which tracks, ",
                     "textStyle": {
                       "color": "#ffffff"
                     }
                   },
                   {
-                    "value": "trends ",
+                    "value": "albums",
                     "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": ", artists, genres, regions, labels, and retail",
+                    "textStyle": {
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "ers are leading. Use filters to explore top sellers and payment trends across the selected date range. Great for spotting what’s working and where momentum is building.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
                       "fontSize": "11pt",
-                      "color": "#ffffff"
-                    }
-                  },
-                  {
-                    "value": "across the selected date range. Great for spotting what’s working and where momentum is building.",
-                    "textStyle": {
                       "color": "#ffffff"
                     }
                   }

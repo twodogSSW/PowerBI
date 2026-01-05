@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "943e45fe1cb2adddb268",
   "position": {
-    "x": 8.1306715063520869,
-    "y": 109.2637866727639,
+    "x": 9.1696476382611536,
+    "y": 103.12997347480105,
     "z": 6000,
-    "height": 116.1524500907441,
-    "width": 212.55898366606169,
+    "height": 130.82228116710874,
+    "width": 211.9893899204244,
     "tabOrder": 7001
   },
   "visual": {
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Use the filters on the right to narrow down results. These filters let you target specific records within your chosen category for deeper analysis.",
+                    "value": "Use the filters on the right of this page, to narrow down results. These filters let you target specific records within your chosen category for deeper analysis.",
                     "textStyle": {
                       "fontFamily": "Segoe UI Semibold"
                     }

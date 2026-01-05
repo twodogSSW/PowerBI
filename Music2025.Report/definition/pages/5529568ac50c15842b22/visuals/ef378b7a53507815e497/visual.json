@@ -58,35 +58,6 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "PurchasedFrom"
-                    }
-                  },
-                  "Property": "PurchasedFrom"
-                }
-              },
-              "queryRef": "PurchasedFrom.PurchasedFrom",
-              "nativeQueryRef": "Purchased From",
-              "displayName": "Purchased From"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Artist"
-                    }
-                  },
-                  "Property": "Artist"
-                }
-              },
-              "queryRef": "Artist.Artist",
-              "nativeQueryRef": "Artist"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
                       "Entity": "Genre"
                     }
                   },
@@ -109,6 +80,35 @@
               },
               "queryRef": "Region.Region",
               "nativeQueryRef": "Region"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Artist"
+                    }
+                  },
+                  "Property": "Artist"
+                }
+              },
+              "queryRef": "Artist.Artist",
+              "nativeQueryRef": "Artist"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PurchasedFrom"
+                    }
+                  },
+                  "Property": "PurchasedFrom"
+                }
+              },
+              "queryRef": "PurchasedFrom.PurchasedFrom",
+              "nativeQueryRef": "Purchased From",
+              "displayName": "Purchased From"
             }
           ]
         }
@@ -350,8 +350,96 @@
         },
         "type": "Advanced",
         "howCreated": "User"
+      },
+      {
+        "name": "ad2c3636e200882167de",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "TrackSales"
+                  }
+                },
+                "Property": "SalesAmt"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "48c4bb93073918484e07",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "TrackList"
+              }
+            },
+            "Property": "Title"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "18118116e05ebc68105c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Genre"
+              }
+            },
+            "Property": "Genre"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "1f6e2505701791d21093",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Region"
+              }
+            },
+            "Property": "Region"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "05861289009365dcd909",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Artist"
+              }
+            },
+            "Property": "Artist"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a11505e51bc14c5ee65c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "PurchasedFrom"
+              }
+            },
+            "Property": "PurchasedFrom"
+          }
+        },
+        "type": "Categorical"
       }
     ]
-  },
-  "isHidden": true
+  }
 }

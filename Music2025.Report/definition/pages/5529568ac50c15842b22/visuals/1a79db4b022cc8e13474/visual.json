@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "1a79db4b022cc8e13474",
   "position": {
-    "x": 10.52743544600939,
+    "x": 8.488262910798122,
     "y": 5,
     "z": 7000,
     "height": 96.755905511811022,
-    "width": 211,
-    "tabOrder": 2000
+    "width": 215,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "slicer",
@@ -70,17 +70,17 @@
                 }
               }
             },
-            "relativePeriod": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Years'"
-                }
-              }
-            },
             "relativeDuration": {
               "expr": {
                 "Literal": {
-                  "Value": "2D"
+                  "Value": "3D"
+                }
+              }
+            },
+            "relativePeriod": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Months'"
                 }
               }
             }
@@ -172,8 +172,8 @@
                                     "TimeUnit": 0
                                   }
                                 },
-                                "Amount": -2,
-                                "TimeUnit": 3
+                                "Amount": -3,
+                                "TimeUnit": 2
                               }
                             },
                             "TimeUnit": 0
@@ -476,5 +476,23 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "e311b8dae00315660784"
+  "parentGroupName": "e311b8dae00315660784",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "0d2a569690759440bb70",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendar"
+              }
+            },
+            "Property": "Date"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
 }

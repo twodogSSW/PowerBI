@@ -104,15 +104,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "PurchasedFrom"
+                      "Entity": "TrackList"
                     }
                   },
-                  "Property": "PurchasedFrom"
+                  "Property": "Track - Artist"
                 }
               },
-              "queryRef": "PurchasedFrom.PurchasedFrom",
-              "nativeQueryRef": "Retail Sales - Tracks",
-              "displayName": "Retail Sales - Tracks"
+              "queryRef": "TrackList.Track - Artist",
+              "nativeQueryRef": "Title - Artist",
+              "displayName": "Title - Artist"
             }
           ],
           "fieldParameters": [
@@ -634,6 +634,62 @@
         },
         "type": "Categorical",
         "howCreated": "User"
+      },
+      {
+        "name": "84c5f1457106290163a3",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendar"
+              }
+            },
+            "Property": "Start of Week"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f110541942101a596c31",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendar"
+              }
+            },
+            "Property": "Start of Quarter"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "07d2188e1e10190eed04",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendar"
+              }
+            },
+            "Property": "Start of Year"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7fae1c821c21d529da5b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "TrackList"
+              }
+            },
+            "Property": "Track - Artist"
+          }
+        },
+        "type": "Categorical"
       }
     ],
     "filterSortOrder": "Custom"

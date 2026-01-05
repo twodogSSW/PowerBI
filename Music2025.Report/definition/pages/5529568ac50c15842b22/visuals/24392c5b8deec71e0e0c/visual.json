@@ -44,20 +44,6 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "PurchasedFrom"
-                    }
-                  },
-                  "Property": "PurchasedFrom"
-                }
-              },
-              "queryRef": "PurchasedFrom.PurchasedFrom",
-              "nativeQueryRef": "PurchasedFrom"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
                       "Entity": "Album"
                     }
                   },
@@ -66,6 +52,20 @@
               },
               "queryRef": "Album.Album",
               "nativeQueryRef": "Album"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PurchasedFrom"
+                    }
+                  },
+                  "Property": "PurchasedFrom"
+                }
+              },
+              "queryRef": "PurchasedFrom.PurchasedFrom",
+              "nativeQueryRef": "PurchasedFrom"
             }
           ]
         }
@@ -261,5 +261,6 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  }
+  },
+  "isHidden": true
 }

@@ -4,7 +4,7 @@
   "name": "78ba42861b587dab6957",
   "options": {
     "targetVisualNames": [
-      "44da4292dbf0a234cd36"
+      "79d52450a626c17818a4"
     ]
   },
   "explorationState": {
@@ -14,21 +14,6 @@
       "74c7fb892ba4da703796": {
         "filters": {
           "byExpr": [
-            {
-              "name": "6ed2a7d7da07a255749e",
-              "type": "Categorical",
-              "expression": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "TrackList"
-                    }
-                  },
-                  "Property": "Artist"
-                }
-              },
-              "howCreated": 5
-            },
             {
               "name": "bc97b2b3802630b85c8e",
               "type": "Categorical",
@@ -88,6 +73,36 @@
                 }
               },
               "howCreated": 5
+            },
+            {
+              "name": "3817a246269517284e70",
+              "type": "Categorical",
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TrackList"
+                    }
+                  },
+                  "Property": "Track - Artist"
+                }
+              },
+              "howCreated": 1
+            },
+            {
+              "name": "38e2ee1400352175d179",
+              "type": "Categorical",
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Artist"
+                    }
+                  },
+                  "Property": "Artist"
+                }
+              },
+              "howCreated": 1
             }
           ]
         },
@@ -96,7 +111,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "d16b863f59debe9505bc",
+                  "name": "37542af01a024b1082da",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -117,11 +132,17 @@
               "objects": {}
             }
           },
+          "1ddf37dc5bc03a005006": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
           "1fbbe23c692ccf0b3581": {
             "filters": {
               "byExpr": [
                 {
-                  "name": "eb5ebfd807235f2175b6",
+                  "name": "2df09573d8e5a0878433",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -136,7 +157,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "ce3123be13e7af25e653",
+                  "name": "6efad4609e5924d0754a",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -151,7 +172,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "ae96e4b38a5192e7225e",
+                  "name": "da1c2bed0008c641b396",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -205,7 +226,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "e30dfee0a2c94db49ee5",
+                  "name": "c31fd2a0cac1801e6407",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -220,7 +241,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "6e228e1040092a5a2c90",
+                  "name": "5b9b2eea7dc4b1dac17a",
                   "type": "Advanced",
                   "expression": {
                     "Aggregation": {
@@ -276,7 +297,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "310de58fc324d7f227f6",
+                  "name": "57b8141c0ce1eba0dca2",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -291,7 +312,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "fa473fd58ab3f9e6a706",
+                  "name": "a2730767900812136ce9",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -306,7 +327,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "ff9e595c35af2bf20357",
+                  "name": "b663af73b041a4998319",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -401,7 +422,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "25c0e8aa25eefee3d153",
+                  "name": "f1375eddc2920edbb54d",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -416,7 +437,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "6f9c57dc91d9473609be",
+                  "name": "76b8e81199dc30454bd9",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -526,7 +547,7 @@
                   "howCreated": 1
                 },
                 {
-                  "name": "deb91c4179a73632d586",
+                  "name": "e5c27a7467be80e82b07",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -583,7 +604,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "5184663d95614bcf2008",
+                  "name": "6eb3958b1e4cd4752575",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -603,6 +624,70 @@
               "visualType": "slicer",
               "objects": {
                 "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "c",
+                                "Entity": "Calendar",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "Between": {
+                                    "Expression": {
+                                      "Column": {
+                                        "Expression": {
+                                          "SourceRef": {
+                                            "Source": "c"
+                                          }
+                                        },
+                                        "Property": "Date"
+                                      }
+                                    },
+                                    "LowerBound": {
+                                      "DateSpan": {
+                                        "Expression": {
+                                          "DateAdd": {
+                                            "Expression": {
+                                              "DateAdd": {
+                                                "Expression": {
+                                                  "Now": {}
+                                                },
+                                                "Amount": 1,
+                                                "TimeUnit": 0
+                                              }
+                                            },
+                                            "Amount": -3,
+                                            "TimeUnit": 2
+                                          }
+                                        },
+                                        "TimeUnit": 0
+                                      }
+                                    },
+                                    "UpperBound": {
+                                      "DateSpan": {
+                                        "Expression": {
+                                          "Now": {}
+                                        },
+                                        "TimeUnit": 0
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
                   "data": [
                     {
                       "properties": {
@@ -616,14 +701,14 @@
                         "relativePeriod": {
                           "expr": {
                             "Literal": {
-                              "Value": "'Years'"
+                              "Value": "'Months'"
                             }
                           }
                         },
                         "relativeDuration": {
                           "expr": {
                             "Literal": {
-                              "Value": "2D"
+                              "Value": "3D"
                             }
                           }
                         },
@@ -706,7 +791,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "711329b4afe7015a1fbb",
+                  "name": "8c9015f95a1eb67039d0",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -738,7 +823,14 @@
               "expanded": {
                 "expr": {
                   "Literal": {
-                    "Value": "false"
+                    "Value": "true"
+                  }
+                }
+              },
+              "visible": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
                   }
                 }
               }

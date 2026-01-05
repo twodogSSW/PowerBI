@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "ca2219ce3b89a4e7da05",
   "position": {
-    "x": 376.12488521579428,
-    "y": 7.0523415977961426,
+    "x": 294.29921259842519,
+    "y": 7.05511811023622,
     "z": 2000,
-    "height": 49.366391184573,
-    "width": 800.44077134986219,
+    "height": 49.385826771653541,
+    "width": 820.40944881889766,
     "tabOrder": 2000
   },
   "visual": {
@@ -21,6 +21,7 @@
                   {
                     "value": "This unified dashboard presents a full view of music track & album sales across a monthly timeframe, combining multiple filters into one interactive interface. Explore sales trends by category with dynamic visuals and export-ready summaries.",
                     "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
                       "fontSize": "11pt",
                       "color": "#ffffff"
                     }

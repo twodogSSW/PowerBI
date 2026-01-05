@@ -3,10 +3,10 @@
   "name": "189a74fb80b2ea0dde72",
   "position": {
     "x": 7.369204812206573,
-    "y": 520.48470515668373,
+    "y": 520.48470515668384,
     "z": 1000,
     "height": 99.020173330190261,
-    "width": 214.75968309859152,
+    "width": 215,
     "tabOrder": 3000
   },
   "visual": {
@@ -480,5 +480,23 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "c6a4ae61824dddb0822e"
+  "parentGroupName": "c6a4ae61824dddb0822e",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "86adb27fa400191e2047",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_PctThreshold"
+              }
+            },
+            "Property": "PctThreshold"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
 }

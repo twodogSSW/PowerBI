@@ -104,16 +104,16 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "PurchasedFrom"
+                      "Entity": "TrackList"
                     }
                   },
-                  "Property": "PurchasedFrom"
+                  "Property": "Track - Artist"
                 }
               },
-              "queryRef": "PurchasedFrom.PurchasedFrom",
-              "nativeQueryRef": "Retail Sales - Tracks",
+              "queryRef": "TrackList.Track - Artist",
+              "nativeQueryRef": "Title - Artist",
               "active": true,
-              "displayName": "Retail Sales - Tracks"
+              "displayName": "Title - Artist"
             }
           ],
           "fieldParameters": [
@@ -1699,7 +1699,40 @@
           }
         },
         "type": "Advanced",
-        "isHiddenInViewMode": true
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "_",
+              "Entity": "_Categories",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 1,
+                  "Left": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "_"
+                        }
+                      },
+                      "Property": "Sale $"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "0L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
       },
       {
         "name": "b32b9093d0c37c461802",
@@ -1744,7 +1777,6 @@
           }
         },
         "type": "Categorical",
-        "howCreated": "User",
         "isHiddenInViewMode": true
       }
     ]

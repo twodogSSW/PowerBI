@@ -3,9 +3,7 @@
   "displayName": "Category Reset (Data)",
   "name": "df7bcb41abcea2d3aef4",
   "options": {
-    "targetVisualNames": [
-      "189a74fb80b2ea0dde72"
-    ]
+    "targetVisualNames": []
   },
   "explorationState": {
     "version": "1.11",
@@ -107,108 +105,10 @@
           ]
         },
         "visualContainers": {
-          "189a74fb80b2ea0dde72": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "2889c687692ac652b01e",
-                  "type": "Advanced",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_PctThreshold"
-                        }
-                      },
-                      "Property": "PctThreshold"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
+          "f7aded56736847b0a770": {
             "singleVisual": {
-              "visualType": "slicer",
-              "objects": {
-                "merge": {
-                  "general": [
-                    {
-                      "properties": {
-                        "filter": {
-                          "filter": {
-                            "Version": 2,
-                            "From": [
-                              {
-                                "Name": "_",
-                                "Entity": "_PctThreshold",
-                                "Type": 0
-                              }
-                            ],
-                            "Where": [
-                              {
-                                "Condition": {
-                                  "Comparison": {
-                                    "ComparisonKind": 0,
-                                    "Left": {
-                                      "Column": {
-                                        "Expression": {
-                                          "SourceRef": {
-                                            "Source": "_"
-                                          }
-                                        },
-                                        "Property": "PctThreshold"
-                                      }
-                                    },
-                                    "Right": {
-                                      "Literal": {
-                                        "Value": "3.191891195797325e-16D"
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    }
-                  ],
-                  "data": [
-                    {
-                      "properties": {
-                        "numericStart": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "3.191891195797325e-16D"
-                            }
-                          }
-                        },
-                        "mode": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "'Single'"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              "activeProjections": {
-                "Values": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_PctThreshold"
-                        }
-                      },
-                      "Property": "PctThreshold"
-                    }
-                  }
-                ]
-              }
+              "visualType": "actionButton",
+              "objects": {}
             }
           },
           "26d29a0649c36d64cc90": {
@@ -220,17 +120,11 @@
               }
             }
           },
-          "329cb2c040555729e097": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
           "333a1707ea9a41664d16": {
             "filters": {
               "byExpr": [
                 {
-                  "name": "b9db39c94cd040ac7642",
+                  "name": "db1ea0ad4b9dcb041960",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -245,7 +139,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "d4568ccc465d24475989",
+                  "name": "fb743612ae9d904749b0",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -260,7 +154,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "5dcfe78438e50a4dac01",
+                  "name": "9534d7277e9edd27e91c",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -275,7 +169,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "cd03d4ea4dc67be2e177",
+                  "name": "555e7dd25c175008005c",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -290,7 +184,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "570c8f0c2556299a856c",
+                  "name": "f267739b36ee2d316847",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -305,7 +199,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "78ebf41d10608aa20bad",
+                  "name": "cbd6e3f625aaeca9903a",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -320,7 +214,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "2d206eb13c2866c0887d",
+                  "name": "b13fa05cb7908291811d",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -335,7 +229,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "e8510b83630e9b2acc17",
+                  "name": "41058f27026630020e2a",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -507,118 +401,60 @@
               }
             }
           },
-          "3908d04b2ade7cc93dc8": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "75d1c2f9125986821062",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Categories"
-                        }
-                      },
-                      "Property": "%ToMax"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "card",
-              "objects": {}
-            }
-          },
-          "4e431e257e4b82bc1a79": {
-            "singleVisual": {
-              "visualType": "textbox",
-              "objects": {}
-            }
-          },
-          "74e961fb4323a11cb8c0": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "bd30c0e767045d7d742c",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Calendar"
-                        }
-                      },
-                      "Property": "Date_Footer"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "card",
-              "objects": {}
-            }
-          },
-          "78716a29b80f92083744": {
-            "singleVisual": {
-              "visualType": "shape",
-              "objects": {}
-            }
-          },
-          "9c1f08492dad79a02981": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {},
-              "display": {
-                "mode": "hidden"
-              }
-            }
-          },
-          "9d029a7226465deb0da8": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "478ed33125067ae8ec11",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Categories"
-                        }
-                      },
-                      "Property": "WhichSelected"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "card",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Categories"
-                        }
-                      },
-                      "Property": "SelectedSales"
-                    }
-                  }
-                }
-              ]
-            }
-          },
           "a88b69b85a3346e65ac0": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "69a4a4ae219809c70802",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "_",
+                        "Entity": "_Categories",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 1,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "_"
+                                  }
+                                },
+                                "Property": "Sale $"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "0L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Categories"
+                        }
+                      },
+                      "Property": "Sale $"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
             "singleVisual": {
               "visualType": "pivotTable",
               "objects": {},
@@ -787,20 +623,26 @@
               }
             }
           },
-          "aa283feb3bd4827440d5": {
+          "cd626da082807110dd40": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "3908d04b2ade7cc93dc8": {
             "filters": {
               "byExpr": [
                 {
-                  "name": "787e70dc8473b137716a",
+                  "name": "2f69859a79b083758ccc",
                   "type": "Advanced",
                   "expression": {
-                    "Column": {
+                    "Measure": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Artist"
+                          "Entity": "_Categories"
                         }
                       },
-                      "Property": "pkArtist"
+                      "Property": "%ToMax"
                     }
                   },
                   "howCreated": 0
@@ -808,18 +650,55 @@
               ]
             },
             "singleVisual": {
-              "visualType": "PowerApps_PBI_CV_C29F1DCC_81F5_4973_94AD_0517D44CC06A",
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "9d029a7226465deb0da8": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "4026044d376d7c800968",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Categories"
+                        }
+                      },
+                      "Property": "WhichSelected"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
               "objects": {},
-              "display": {
-                "mode": "hidden"
-              }
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Categories"
+                        }
+                      },
+                      "Property": "SelectedSales"
+                    }
+                  }
+                }
+              ]
             }
           },
           "b06c83e534acdc0b1791": {
             "filters": {
               "byExpr": [
                 {
-                  "name": "1a4bd4c6075a4e90bb5d",
+                  "name": "1b594c9c8290105c54e8",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -844,7 +723,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "224a2402b2cd18d60168",
+                  "name": "1639b62a5cc61e9a4010",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -859,7 +738,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "f4e9c8767a082aa24207",
+                  "name": "f3daa36d50688e123977",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -874,7 +753,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "733afe45bd3c090856ed",
+                  "name": "c751503a07491a3e5be0",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -910,6 +789,74 @@
               ]
             }
           },
+          "74e961fb4323a11cb8c0": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "cbfd8de150e80967518b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendar"
+                        }
+                      },
+                      "Property": "Date_Footer"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "f1e3e43880523ed98279": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "d533e5ee0b1786113309",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendar"
+                        }
+                      },
+                      "Property": "LastRefreshDate"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "866c466de0c505de6098": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "329cb2c040555729e097": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "4e431e257e4b82bc1a79": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
           "ca2219ce3b89a4e7da05": {
             "singleVisual": {
               "visualType": "textbox",
@@ -922,10 +869,445 @@
               "objects": {}
             }
           },
-          "cd626da082807110dd40": {
+          "dd2d70a20d798e81e356": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "189a74fb80b2ea0dde72": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "edf67ea9eb281d9cc409",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_PctThreshold"
+                        }
+                      },
+                      "Property": "PctThreshold"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "_",
+                                "Entity": "_PctThreshold",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "Comparison": {
+                                    "ComparisonKind": 0,
+                                    "Left": {
+                                      "Column": {
+                                        "Expression": {
+                                          "SourceRef": {
+                                            "Source": "_"
+                                          }
+                                        },
+                                        "Property": "PctThreshold"
+                                      }
+                                    },
+                                    "Right": {
+                                      "Literal": {
+                                        "Value": "3.191891195797325e-16D"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "data": [
+                    {
+                      "properties": {
+                        "numericStart": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "3.191891195797325e-16D"
+                            }
+                          }
+                        },
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Single'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_PctThreshold"
+                        }
+                      },
+                      "Property": "PctThreshold"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "78716a29b80f92083744": {
             "singleVisual": {
               "visualType": "shape",
               "objects": {}
+            }
+          },
+          "d8fef6f0cf94f75bac08": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "f6616530ba781a5416de",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Categories"
+                        }
+                      },
+                      "Property": "CategorySelector"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "_",
+                                "Entity": "_Categories",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "In": {
+                                    "Expressions": [
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Source": "_"
+                                            }
+                                          },
+                                          "Property": "Category Fields"
+                                        }
+                                      }
+                                    ],
+                                    "Values": [
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "'''TrackList''[Track - Artist]'"
+                                          }
+                                        }
+                                      ]
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "selection": [
+                    {
+                      "properties": {
+                        "strictSingleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "true"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Categories"
+                        }
+                      },
+                      "Property": "CategorySelector"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Categories"
+                        }
+                      },
+                      "Property": "CategorySelector"
+                    }
+                  }
+                ]
+              },
+              "cachedFilterDisplayItems": [
+                {
+                  "id": {
+                    "scopeId": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "_Categories"
+                              }
+                            },
+                            "Property": "Category Fields"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'''TrackList''[Track - Artist]'"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "displayName": "Title - Artist"
+                }
+              ]
+            }
+          },
+          "eb33c0d9a7094e570b29": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "6a0c4bd04107b24e5cc5",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendar"
+                        }
+                      },
+                      "Property": "Date"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "c",
+                                "Entity": "Calendar",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "Between": {
+                                    "Expression": {
+                                      "Column": {
+                                        "Expression": {
+                                          "SourceRef": {
+                                            "Source": "c"
+                                          }
+                                        },
+                                        "Property": "Date"
+                                      }
+                                    },
+                                    "LowerBound": {
+                                      "DateSpan": {
+                                        "Expression": {
+                                          "DateAdd": {
+                                            "Expression": {
+                                              "DateAdd": {
+                                                "Expression": {
+                                                  "Now": {}
+                                                },
+                                                "Amount": 1,
+                                                "TimeUnit": 0
+                                              }
+                                            },
+                                            "Amount": -1,
+                                            "TimeUnit": 3
+                                          }
+                                        },
+                                        "TimeUnit": 0
+                                      }
+                                    },
+                                    "UpperBound": {
+                                      "DateSpan": {
+                                        "Expression": {
+                                          "Now": {}
+                                        },
+                                        "TimeUnit": 0
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "data": [
+                    {
+                      "properties": {
+                        "relativeRange": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Last'"
+                            }
+                          }
+                        },
+                        "relativePeriod": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Years'"
+                            }
+                          }
+                        },
+                        "relativeDuration": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "1D"
+                            }
+                          }
+                        },
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Relative'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "selection": [
+                    {
+                      "properties": {
+                        "strictSingleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "false"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "dateRange": [
+                    {
+                      "properties": {
+                        "includeToday": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "true"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendar"
+                        }
+                      },
+                      "Property": "Date"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendar"
+                        }
+                      },
+                      "Property": "Date"
+                    }
+                  }
+                ]
+              }
             }
           },
           "d7f6ef4e0c1335e8d966": {
@@ -982,7 +1364,7 @@
                   "howCreated": 1
                 },
                 {
-                  "name": "7b069f405307a1a89a05",
+                  "name": "1ce10f2ee92dd3087083",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -997,7 +1379,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "e1c256d940a063489418",
+                  "name": "3eb99206d9b71889824b",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -1012,7 +1394,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "8fd5aa557c5cc048e016",
+                  "name": "f6eaaa2ea95097270203",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -1027,7 +1409,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "2503143e025033d9bb3b",
+                  "name": "c1e51c109b10e1603e0b",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -1223,20 +1605,29 @@
               }
             }
           },
-          "d8fef6f0cf94f75bac08": {
+          "9c1f08492dad79a02981": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "aa283feb3bd4827440d5": {
             "filters": {
               "byExpr": [
                 {
-                  "name": "103313deace5d167cb71",
-                  "type": "Categorical",
+                  "name": "02d2fa95a07a706c94b7",
+                  "type": "Advanced",
                   "expression": {
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "_Categories"
+                          "Entity": "Artist"
                         }
                       },
-                      "Property": "CategorySelector"
+                      "Property": "pkArtist"
                     }
                   },
                   "howCreated": 0
@@ -1244,133 +1635,11 @@
               ]
             },
             "singleVisual": {
-              "visualType": "slicer",
-              "objects": {
-                "merge": {
-                  "general": [
-                    {
-                      "properties": {
-                        "filter": {
-                          "filter": {
-                            "Version": 2,
-                            "From": [
-                              {
-                                "Name": "_",
-                                "Entity": "_Categories",
-                                "Type": 0
-                              }
-                            ],
-                            "Where": [
-                              {
-                                "Condition": {
-                                  "In": {
-                                    "Expressions": [
-                                      {
-                                        "Column": {
-                                          "Expression": {
-                                            "SourceRef": {
-                                              "Source": "_"
-                                            }
-                                          },
-                                          "Property": "Category Fields"
-                                        }
-                                      }
-                                    ],
-                                    "Values": [
-                                      [
-                                        {
-                                          "Literal": {
-                                            "Value": "'''TrackList''[Track - Artist]'"
-                                          }
-                                        }
-                                      ]
-                                    ]
-                                  }
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    }
-                  ],
-                  "selection": [
-                    {
-                      "properties": {
-                        "strictSingleSelect": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "true"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              "orderBy": [
-                {
-                  "Direction": 1,
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Categories"
-                        }
-                      },
-                      "Property": "CategorySelector"
-                    }
-                  }
-                }
-              ],
-              "activeProjections": {
-                "Values": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Categories"
-                        }
-                      },
-                      "Property": "CategorySelector"
-                    }
-                  }
-                ]
-              },
-              "cachedFilterDisplayItems": [
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "_Categories"
-                              }
-                            },
-                            "Property": "Category Fields"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "'''TrackList''[Track - Artist]'"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "Title - Artist"
-                }
-              ]
-            }
-          },
-          "dd2d70a20d798e81e356": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
+              "visualType": "PowerApps_PBI_CV_C29F1DCC_81F5_4973_94AD_0517D44CC06A",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
             }
           },
           "e5e241b4f3cc30c1eefb": {
@@ -1380,218 +1649,6 @@
               "display": {
                 "mode": "hidden"
               }
-            }
-          },
-          "eb33c0d9a7094e570b29": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "fbb7f96e0b2450a39604",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Calendar"
-                        }
-                      },
-                      "Property": "Date"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "slicer",
-              "objects": {
-                "merge": {
-                  "general": [
-                    {
-                      "properties": {
-                        "filter": {
-                          "filter": {
-                            "Version": 2,
-                            "From": [
-                              {
-                                "Name": "c",
-                                "Entity": "Calendar",
-                                "Type": 0
-                              }
-                            ],
-                            "Where": [
-                              {
-                                "Condition": {
-                                  "Between": {
-                                    "Expression": {
-                                      "Column": {
-                                        "Expression": {
-                                          "SourceRef": {
-                                            "Source": "c"
-                                          }
-                                        },
-                                        "Property": "Date"
-                                      }
-                                    },
-                                    "LowerBound": {
-                                      "DateSpan": {
-                                        "Expression": {
-                                          "DateAdd": {
-                                            "Expression": {
-                                              "DateAdd": {
-                                                "Expression": {
-                                                  "Now": {}
-                                                },
-                                                "Amount": 1,
-                                                "TimeUnit": 0
-                                              }
-                                            },
-                                            "Amount": -1,
-                                            "TimeUnit": 3
-                                          }
-                                        },
-                                        "TimeUnit": 0
-                                      }
-                                    },
-                                    "UpperBound": {
-                                      "DateSpan": {
-                                        "Expression": {
-                                          "Now": {}
-                                        },
-                                        "TimeUnit": 0
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    }
-                  ],
-                  "data": [
-                    {
-                      "properties": {
-                        "relativeRange": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "'Last'"
-                            }
-                          }
-                        },
-                        "relativePeriod": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "'Years'"
-                            }
-                          }
-                        },
-                        "relativeDuration": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "1D"
-                            }
-                          }
-                        },
-                        "mode": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "'Relative'"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ],
-                  "selection": [
-                    {
-                      "properties": {
-                        "strictSingleSelect": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "false"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ],
-                  "dateRange": [
-                    {
-                      "properties": {
-                        "includeToday": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "true"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              "orderBy": [
-                {
-                  "Direction": 1,
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Calendar"
-                        }
-                      },
-                      "Property": "Date"
-                    }
-                  }
-                }
-              ],
-              "activeProjections": {
-                "Values": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Calendar"
-                        }
-                      },
-                      "Property": "Date"
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          "f1e3e43880523ed98279": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "fd62ae4c9705b403314c",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Calendar"
-                        }
-                      },
-                      "Property": "LastRefreshDate"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "card",
-              "objects": {}
-            }
-          },
-          "f7aded56736847b0a770": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
             }
           }
         }

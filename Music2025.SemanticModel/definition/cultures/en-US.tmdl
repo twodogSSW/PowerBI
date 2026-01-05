@@ -3374,16 +3374,6 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Retailers": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        },
-			        {
 			          "purchased from name": {
 			            "State": "Deleted",
 			            "LastModified": "2025-12-28T22:16:38.578Z"

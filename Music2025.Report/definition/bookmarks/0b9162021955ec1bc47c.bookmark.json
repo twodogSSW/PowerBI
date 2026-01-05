@@ -3,13 +3,94 @@
   "displayName": "Reset",
   "name": "0b9162021955ec1bc47c",
   "options": {
-    "targetVisualNames": []
+    "targetVisualNames": [
+      "3414da7c5a0744e1e897"
+    ]
   },
   "explorationState": {
     "version": "1.3",
     "activeSection": "fb9c64dd75d8975152ce",
     "sections": {
       "fb9c64dd75d8975152ce": {
+        "filters": {
+          "byExpr": [
+            {
+              "name": "d6fadc6d15260b699d07",
+              "type": "Categorical",
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TrackList"
+                    }
+                  },
+                  "Property": "Track - Artist"
+                }
+              },
+              "howCreated": 1
+            },
+            {
+              "name": "9e433b907cc07d621d91",
+              "type": "Categorical",
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Artist"
+                    }
+                  },
+                  "Property": "Artist"
+                }
+              },
+              "howCreated": 1
+            },
+            {
+              "name": "272b1106e84d23d05a0e",
+              "type": "Categorical",
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Genre"
+                    }
+                  },
+                  "Property": "Genre"
+                }
+              },
+              "howCreated": 1
+            },
+            {
+              "name": "c88c0c63d09005276d63",
+              "type": "Categorical",
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RecordLabel"
+                    }
+                  },
+                  "Property": "RecordLabel"
+                }
+              },
+              "howCreated": 1
+            },
+            {
+              "name": "fc3b04ec60301c69c4a9",
+              "type": "Categorical",
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PurchasedFrom"
+                    }
+                  },
+                  "Property": "PurchasedFrom"
+                }
+              },
+              "howCreated": 1
+            }
+          ]
+        },
         "visualContainers": {
           "55cd60af2437bb3d1274": {
             "filters": {
@@ -90,7 +171,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "876bdcbb3f2b1f954ad2",
+                  "name": "9a85828c0e6c03906008",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -197,7 +278,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "305557f9d9926a68846e",
+                  "name": "236a6cb50921be41c7c1",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -212,7 +293,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "0a56f607df79515c9629",
+                  "name": "c0109cff1d416bd196b0",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -265,7 +346,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "1d7a4431eed4ddcd37cc",
+                  "name": "ce431974080ed03ded0d",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -290,7 +371,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "e4724036bf4b67cc36ec",
+                  "name": "d8275b508acb6b5a971e",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -315,7 +396,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "cb0ce61b11580d9ef69d",
+                  "name": "f6f6a540e761d695440d",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -390,6 +471,18 @@
                   }
                 ]
               }
+            }
+          },
+          "444c6ed75bca218287c3": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "943e45fe1cb2adddb268": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
             }
           },
           "984585dc480c0900c98c": {
@@ -526,7 +619,7 @@
                   "howCreated": 1
                 },
                 {
-                  "name": "22a6996c6c547758e2c2",
+                  "name": "4dc3b236747717cd535a",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -604,7 +697,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "3411139cb17650089c14",
+                  "name": "c76fab4eb57ba91b8073",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -619,7 +712,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "92c3985fd9f3bac5c721",
+                  "name": "670a676bc097488368ee",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -634,7 +727,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "f4e34ec11ef0eae5c9d7",
+                  "name": "774959a961031ba0554d",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -694,86 +787,6 @@
                   }
                 ]
               }
-            },
-            "highlight": {
-              "selection": [
-                {
-                  "dataMap": {
-                    "TrackList.Track - Artist": [
-                      {
-                        "scopeId": {
-                          "Comparison": {
-                            "ComparisonKind": 0,
-                            "Left": {
-                              "Column": {
-                                "Expression": {
-                                  "SourceRef": {
-                                    "Entity": "TrackList"
-                                  }
-                                },
-                                "Property": "Track - Artist"
-                              }
-                            },
-                            "Right": {
-                              "Literal": {
-                                "Value": "'#1 Crush - Garbage'"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    ]
-                  },
-                  "metadata": [
-                    "TrackList.Track - Artist"
-                  ]
-                }
-              ],
-              "filterExpressionMetadata": {
-                "expressions": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "TrackList"
-                        }
-                      },
-                      "Property": "Track - Artist"
-                    }
-                  }
-                ],
-                "cachedValueItems": [
-                  {
-                    "identities": [
-                      {
-                        "scopeId": {
-                          "Comparison": {
-                            "ComparisonKind": 0,
-                            "Left": {
-                              "Column": {
-                                "Expression": {
-                                  "SourceRef": {
-                                    "Entity": "TrackList"
-                                  }
-                                },
-                                "Property": "Track - Artist"
-                              }
-                            },
-                            "Right": {
-                              "Literal": {
-                                "Value": "'#1 Crush - Garbage'"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    ],
-                    "valueMap": {
-                      "0": "#1 Crush - Garbage"
-                    }
-                  }
-                ]
-              }
             }
           },
           "efbfe5e001a7c3e5edd4": {
@@ -793,7 +806,14 @@
               "expanded": {
                 "expr": {
                   "Literal": {
-                    "Value": "false"
+                    "Value": "true"
+                  }
+                }
+              },
+              "visible": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
                   }
                 }
               }

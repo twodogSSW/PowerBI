@@ -3,10 +3,10 @@
   "name": "d8fef6f0cf94f75bac08",
   "position": {
     "x": 7.369204812206573,
-    "y": 111.03109877321901,
+    "y": 115.71870349392225,
     "z": 4000,
     "height": 207.36190456237676,
-    "width": 214.75968309859152,
+    "width": 215,
     "tabOrder": 1000
   },
   "visual": {
@@ -85,7 +85,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'''PurchasedFrom''[PurchasedFrom]'"
+                                "Value": "'''TrackList''[Track - Artist]'"
                               }
                             }
                           ]
@@ -113,7 +113,7 @@
                                 "0": [
                                   {
                                     "Literal": {
-                                      "Value": "'''PurchasedFrom''[PurchasedFrom]'"
+                                      "Value": "'''TrackList''[Track - Artist]'"
                                     }
                                   }
                                 ]
@@ -137,7 +137,7 @@
                         },
                         "valueMap": [
                           {
-                            "0": "Retail Sales - Tracks"
+                            "0": "Title - Artist"
                           }
                         ]
                       }
@@ -431,5 +431,23 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "c6a4ae61824dddb0822e"
+  "parentGroupName": "c6a4ae61824dddb0822e",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "eadbfe8faace3d9163cb",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Categories"
+              }
+            },
+            "Property": "CategorySelector"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
 }

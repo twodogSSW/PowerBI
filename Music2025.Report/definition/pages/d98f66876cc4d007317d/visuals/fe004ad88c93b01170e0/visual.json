@@ -73,14 +73,14 @@
             "relativeDuration": {
               "expr": {
                 "Literal": {
-                  "Value": "2D"
+                  "Value": "3D"
                 }
               }
             },
             "relativePeriod": {
               "expr": {
                 "Literal": {
-                  "Value": "'Years'"
+                  "Value": "'Months'"
                 }
               }
             }
@@ -172,8 +172,8 @@
                                     "TimeUnit": 0
                                   }
                                 },
-                                "Amount": -2,
-                                "TimeUnit": 3
+                                "Amount": -3,
+                                "TimeUnit": 2
                               }
                             },
                             "TimeUnit": 0

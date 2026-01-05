@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "c1ed42d86e889036a50c",
   "position": {
-    "x": 431.36822773186407,
-    "y": 2.3507805325987143,
+    "x": 385.00787401574803,
+    "y": 2.015748031496063,
     "z": 5000,
-    "height": 57.5941230486685,
-    "width": 799.26538108356283,
+    "height": 57.448818897637793,
+    "width": 818.3937007874016,
     "tabOrder": 3000
   },
   "visual": {
@@ -21,6 +21,7 @@
                   {
                     "value": "See which tracks, albums, artists, genres, regions, labels, & retailers are leading the way. Use filters to explore top sellers and payment trends across the selected date range. Great for spotting what’s working and where momentum is building.",
                     "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
                       "fontSize": "11pt",
                       "color": "#ffffff"
                     }
