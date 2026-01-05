@@ -8,7 +8,8 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "6ed2a7d7da07a255749e",
+        "name": "11b99cbc17b41d0c03e6",
+        "ordinal": 0,
         "field": {
           "Column": {
             "Expression": {
@@ -16,15 +17,38 @@
                 "Entity": "TrackList"
               }
             },
-            "Property": "Artist"
+            "Property": "Track - Artist"
           }
         },
         "type": "Categorical",
-        "howCreated": "Drillthrough",
-        "isHiddenInViewMode": true
+        "howCreated": "User"
+      },
+      {
+        "name": "bd837b4cb7c0b7db0236",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Region"
+              }
+            },
+            "Property": "Region"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
       },
       {
         "name": "bc97b2b3802630b85c8e",
+        "ordinal": 2,
         "field": {
           "Column": {
             "Expression": {
@@ -40,6 +64,7 @@
       },
       {
         "name": "e6d65b0fae090e78b5c0",
+        "ordinal": 3,
         "field": {
           "Column": {
             "Expression": {
@@ -55,6 +80,7 @@
       },
       {
         "name": "d0a8b635e1c64db07775",
+        "ordinal": 4,
         "field": {
           "Column": {
             "Expression": {
@@ -70,6 +96,7 @@
       },
       {
         "name": "ecdd9b73376285b0837d",
+        "ordinal": 5,
         "field": {
           "Column": {
             "Expression": {
@@ -83,26 +110,13 @@
         "type": "Categorical",
         "howCreated": "Drillthrough"
       }
-    ]
+    ],
+    "filterSortOrder": "Custom"
   },
   "pageBinding": {
     "name": "c117556c10ad865a84c8",
     "type": "Drillthrough",
     "parameters": [
-      {
-        "name": "85b74ec4e8358d086090",
-        "boundFilter": "6ed2a7d7da07a255749e",
-        "fieldExpr": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "TrackList"
-              }
-            },
-            "Property": "Artist"
-          }
-        }
-      },
       {
         "name": "09568f3cd8a964539888",
         "boundFilter": "bc97b2b3802630b85c8e",
@@ -174,6 +188,19 @@
                     "Value": "'#E6E6E6'"
                   }
                 }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "225L"
               }
             }
           }

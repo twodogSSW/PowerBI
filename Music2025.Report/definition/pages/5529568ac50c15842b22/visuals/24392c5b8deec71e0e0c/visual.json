@@ -44,21 +44,6 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Album"
-                    }
-                  },
-                  "Property": "Album"
-                }
-              },
-              "queryRef": "Album.Album",
-              "nativeQueryRef": "Album",
-              "active": true
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
                       "Entity": "PurchasedFrom"
                     }
                   },
@@ -66,8 +51,21 @@
                 }
               },
               "queryRef": "PurchasedFrom.PurchasedFrom",
-              "nativeQueryRef": "PurchasedFrom",
-              "active": true
+              "nativeQueryRef": "PurchasedFrom"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Album"
+                    }
+                  },
+                  "Property": "Album"
+                }
+              },
+              "queryRef": "Album.Album",
+              "nativeQueryRef": "Album"
             }
           ]
         }
@@ -96,58 +94,6 @@
         "isDefaultSort": true
       }
     },
-    "expansionStates": [
-      {
-        "roles": [
-          "ExplainBy"
-        ],
-        "levels": [
-          {
-            "queryRefs": [
-              "Album.Album"
-            ],
-            "isCollapsed": true,
-            "identityKeys": [
-              {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Album"
-                    }
-                  },
-                  "Property": "Album"
-                }
-              }
-            ],
-            "isPinned": true
-          },
-          {
-            "queryRefs": [
-              "PurchasedFrom.PurchasedFrom"
-            ],
-            "isCollapsed": true,
-            "isPinned": true,
-            "AIInformation": {
-              "method": "MaxSplit"
-            }
-          }
-        ],
-        "root": {
-          "children": [
-            {
-              "identityValues": [
-                {
-                  "Literal": {
-                    "Value": "'12 Inches of Snow'"
-                  }
-                }
-              ],
-              "isToggled": true
-            }
-          ]
-        }
-      }
-    ],
     "objects": {
       "tree": [
         {
@@ -315,24 +261,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "fa28e2af0d1d00c40960",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_TopN"
-              }
-            },
-            "Property": "Track Ranking"
-          }
-        },
-        "type": "Advanced",
-        "howCreated": "User"
-      }
-    ]
   }
 }

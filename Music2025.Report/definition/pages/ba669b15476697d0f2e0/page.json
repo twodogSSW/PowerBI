@@ -8,22 +8,6 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "6ed2a7d7da07a255749e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "TrackList"
-              }
-            },
-            "Property": "Artist"
-          }
-        },
-        "type": "Categorical",
-        "howCreated": "Drillthrough",
-        "isHiddenInViewMode": true
-      },
-      {
         "name": "bc97b2b3802630b85c8e",
         "field": {
           "Column": {
@@ -36,7 +20,8 @@
           }
         },
         "type": "Categorical",
-        "howCreated": "Drillthrough"
+        "howCreated": "Drillthrough",
+        "isHiddenInViewMode": true
       },
       {
         "name": "e6d65b0fae090e78b5c0",
@@ -51,7 +36,8 @@
           }
         },
         "type": "Categorical",
-        "howCreated": "Drillthrough"
+        "howCreated": "Drillthrough",
+        "isHiddenInViewMode": true
       },
       {
         "name": "d0a8b635e1c64db07775",
@@ -66,7 +52,8 @@
           }
         },
         "type": "Categorical",
-        "howCreated": "Drillthrough"
+        "howCreated": "Drillthrough",
+        "isHiddenInViewMode": true
       },
       {
         "name": "ecdd9b73376285b0837d",
@@ -81,7 +68,8 @@
           }
         },
         "type": "Categorical",
-        "howCreated": "Drillthrough"
+        "howCreated": "Drillthrough",
+        "isHiddenInViewMode": true
       }
     ]
   },
@@ -89,20 +77,6 @@
     "name": "a5cb380ffd7d2fa60a4b",
     "type": "Drillthrough",
     "parameters": [
-      {
-        "name": "85b74ec4e8358d086090",
-        "boundFilter": "6ed2a7d7da07a255749e",
-        "fieldExpr": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "TrackList"
-              }
-            },
-            "Property": "Artist"
-          }
-        }
-      },
       {
         "name": "09568f3cd8a964539888",
         "boundFilter": "bc97b2b3802630b85c8e",

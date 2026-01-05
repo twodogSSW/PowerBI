@@ -104,16 +104,16 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "TrackList"
+                      "Entity": "PurchasedFrom"
                     }
                   },
-                  "Property": "Track - Artist"
+                  "Property": "PurchasedFrom"
                 }
               },
-              "queryRef": "TrackList.Track - Artist",
-              "nativeQueryRef": "Title - Artist",
+              "queryRef": "PurchasedFrom.PurchasedFrom",
+              "nativeQueryRef": "Retail Sales - Tracks",
               "active": true,
-              "displayName": "Title - Artist"
+              "displayName": "Retail Sales - Tracks"
             }
           ],
           "fieldParameters": [
@@ -1623,5 +1623,130 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "275b8fa87539ea90ead3"
+  "parentGroupName": "275b8fa87539ea90ead3",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "212e81d030790b38440c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendar"
+              }
+            },
+            "Property": "Start of Week"
+          }
+        },
+        "type": "Categorical",
+        "isHiddenInViewMode": true
+      },
+      {
+        "name": "1d9747e7277843008205",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendar"
+              }
+            },
+            "Property": "Start of Month"
+          }
+        },
+        "type": "Categorical",
+        "isHiddenInViewMode": true
+      },
+      {
+        "name": "ad5fcaaf8b098069b881",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendar"
+              }
+            },
+            "Property": "Start of Quarter"
+          }
+        },
+        "type": "Categorical",
+        "isHiddenInViewMode": true
+      },
+      {
+        "name": "66b76e57e28d7d70186b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendar"
+              }
+            },
+            "Property": "Start of Year"
+          }
+        },
+        "type": "Categorical",
+        "isHiddenInViewMode": true
+      },
+      {
+        "name": "69a4a4ae219809c70802",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Categories"
+              }
+            },
+            "Property": "Sale $"
+          }
+        },
+        "type": "Advanced",
+        "isHiddenInViewMode": true
+      },
+      {
+        "name": "b32b9093d0c37c461802",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Categories"
+              }
+            },
+            "Property": "% MoM"
+          }
+        },
+        "type": "Advanced",
+        "isHiddenInViewMode": true
+      },
+      {
+        "name": "ed1c62dea0385b1a6586",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Categories"
+              }
+            },
+            "Property": "Show Icon"
+          }
+        },
+        "type": "Advanced",
+        "isHiddenInViewMode": true
+      },
+      {
+        "name": "4ef5384a7a8995b80cad",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "TrackList"
+              }
+            },
+            "Property": "Track - Artist"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "isHiddenInViewMode": true
+      }
+    ]
+  }
 }

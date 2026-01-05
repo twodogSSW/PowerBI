@@ -1571,19 +1571,6 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Sales": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "Sale": {
-			            "Type": "Noun",
-			            "State": "Generated",
-			            "Weight": 0.7566
-			          }
-			        },
-			        {
 			          "sale sum": {
 			            "Type": "Noun",
 			            "State": "Deleted",
@@ -3387,7 +3374,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Retail Sales": {
+			          "Retailers": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -5616,12 +5603,6 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Sales": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
 			          "sale quantity": {
 			            "Type": "Noun",
 			            "State": "Suggested",
@@ -5689,36 +5670,6 @@ cultureInfo en-US
 			              "Agent": "Thesaurus"
 			            },
 			            "Weight": 0.485
-			          }
-			        },
-			        {
-			          "auction": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "transaction": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.466
-			          }
-			        },
-			        {
-			          "deal": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.452
 			          }
 			        }
 			      ]
@@ -20812,7 +20763,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "TrackSales_have_Sales"
+			          "ID": "TrackSales_have_SalesAmts"
 			        },
 			        {
 			          "Adjective": {
@@ -20839,7 +20790,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "Sale_indicates_how_expensive_TrackSales_are"
+			          "ID": "SalesAmt_indicates_how_expensive_TrackSales_are"
 			        }
 			      ]
 			    },

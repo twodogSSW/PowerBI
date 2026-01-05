@@ -104,15 +104,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "TrackList"
+                      "Entity": "PurchasedFrom"
                     }
                   },
-                  "Property": "Track - Artist"
+                  "Property": "PurchasedFrom"
                 }
               },
-              "queryRef": "TrackList.Track - Artist",
-              "nativeQueryRef": "Title - Artist",
-              "displayName": "Title - Artist"
+              "queryRef": "PurchasedFrom.PurchasedFrom",
+              "nativeQueryRef": "Retail Sales - Tracks",
+              "displayName": "Retail Sales - Tracks"
             }
           ],
           "fieldParameters": [

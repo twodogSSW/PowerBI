@@ -85,7 +85,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'''TrackList''[Track - Artist]'"
+                                "Value": "'''PurchasedFrom''[PurchasedFrom]'"
                               }
                             }
                           ]
@@ -113,7 +113,7 @@
                                 "0": [
                                   {
                                     "Literal": {
-                                      "Value": "'''TrackList''[Track - Artist]'"
+                                      "Value": "'''PurchasedFrom''[PurchasedFrom]'"
                                     }
                                   }
                                 ]
@@ -137,7 +137,7 @@
                         },
                         "valueMap": [
                           {
-                            "0": "Title - Artist"
+                            "0": "Retail Sales - Tracks"
                           }
                         ]
                       }
@@ -382,6 +382,46 @@
               "expr": {
                 "Literal": {
                   "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "showTooltipButton": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeaderTooltip": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'After selecting a category from the slicer (e.g., Genre, Album, Region), use the filters on the right to narrow down results. These filters let you target specific records within your chosen category for deeper analysis.'"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
                 }
               }
             }

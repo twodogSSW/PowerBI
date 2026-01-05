@@ -8,21 +8,6 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "6ed2a7d7da07a255749e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "TrackList"
-              }
-            },
-            "Property": "Artist"
-          }
-        },
-        "type": "Categorical",
-        "howCreated": "Drillthrough"
-      },
-      {
         "name": "bc97b2b3802630b85c8e",
         "field": {
           "Column": {
@@ -65,45 +50,6 @@
           }
         },
         "type": "Categorical",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "p",
-              "Entity": "PurchasedFrom",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "In": {
-                  "Expressions": [
-                    {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Source": "p"
-                          }
-                        },
-                        "Property": "PurchasedFrom"
-                      }
-                    }
-                  ],
-                  "Values": [
-                    [
-                      {
-                        "Literal": {
-                          "Value": "'7digital'"
-                        }
-                      }
-                    ]
-                  ]
-                }
-              }
-            }
-          ]
-        },
         "howCreated": "Drillthrough"
       },
       {
@@ -120,27 +66,44 @@
         },
         "type": "Categorical",
         "howCreated": "Drillthrough"
-      }
-    ]
-  },
-  "pageBinding": {
-    "name": "00dc79d3161c5f441ffc",
-    "type": "Drillthrough",
-    "parameters": [
+      },
       {
-        "name": "85b74ec4e8358d086090",
-        "boundFilter": "6ed2a7d7da07a255749e",
-        "fieldExpr": {
+        "name": "3817a246269517284e70",
+        "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
                 "Entity": "TrackList"
               }
             },
+            "Property": "Track - Artist"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "38e2ee1400352175d179",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Artist"
+              }
+            },
             "Property": "Artist"
           }
-        }
-      },
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      }
+    ],
+    "filterSortOrder": "Ascending"
+  },
+  "pageBinding": {
+    "name": "00dc79d3161c5f441ffc",
+    "type": "Drillthrough",
+    "parameters": [
       {
         "name": "09568f3cd8a964539888",
         "boundFilter": "bc97b2b3802630b85c8e",
@@ -244,6 +207,11 @@
     {
       "source": "8352185da00f652f07b0",
       "target": "44da4292dbf0a234cd36",
+      "type": "DataFilter"
+    },
+    {
+      "source": "1fbbe23c692ccf0b3581",
+      "target": "7b096b2c435cdea70df2",
       "type": "DataFilter"
     }
   ]
