@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "7102b729cb5d657aab12",
   "position": {
     "x": 233,
     "y": 348,
-    "z": 5000,
+    "z": 2000,
     "height": 337,
     "width": 426,
-    "tabOrder": 5000
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "TornadoChart1452517688218",
@@ -60,11 +60,11 @@
                       "Entity": "Demographics"
                     }
                   },
-                  "Property": "DynamicDemoCount"
+                  "Property": "DynamicDemo_Count"
                 }
               },
               "queryRef": "Demos.Dynamic Demo Count (No Zeros)",
-              "nativeQueryRef": "Dynamic Demo Count (No Zeros)"
+              "nativeQueryRef": "DynamicDemo_Count"
             }
           ]
         }
@@ -134,7 +134,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#9071ce'"
+                      "Value": "'#9071CE'"
                     }
                   }
                 }
@@ -314,7 +314,7 @@
                 "Entity": "Demographics"
               }
             },
-            "Property": "DynamicDemoCount"
+            "Property": "DynamicDemo_Count"
           }
         },
         "type": "Advanced",
@@ -341,7 +341,7 @@
                               "Source": "d1"
                             }
                           },
-                          "Property": "DynamicDemoCount"
+                          "Property": "DynamicDemo_Count"
                         }
                       },
                       "Right": {

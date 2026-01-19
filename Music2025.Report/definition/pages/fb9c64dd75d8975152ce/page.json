@@ -108,17 +108,32 @@
   "visualInteractions": [
     {
       "source": "def3bbdfdddd4600346a",
-      "target": "55cd60af2437bb3d1274",
-      "type": "DataFilter"
-    },
-    {
-      "source": "def3bbdfdddd4600346a",
       "target": "7102b729cb5d657aab12",
       "type": "DataFilter"
     },
     {
       "source": "def3bbdfdddd4600346a",
       "target": "2f70c28ce0b9dc89c803",
+      "type": "DataFilter"
+    },
+    {
+      "source": "def3bbdfdddd4600346a",
+      "target": "f56458c9e6e0b00e6206",
+      "type": "DataFilter"
+    },
+    {
+      "source": "def3bbdfdddd4600346a",
+      "target": "984585dc480c0900c98c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "7102b729cb5d657aab12",
+      "target": "984585dc480c0900c98c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "7102b729cb5d657aab12",
+      "target": "f56458c9e6e0b00e6206",
       "type": "DataFilter"
     }
   ]

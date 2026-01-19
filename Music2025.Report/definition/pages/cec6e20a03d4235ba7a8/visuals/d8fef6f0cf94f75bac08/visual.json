@@ -431,23 +431,5 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "c6a4ae61824dddb0822e",
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "eadbfe8faace3d9163cb",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Categories"
-              }
-            },
-            "Property": "CategorySelector"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
-  }
+  "parentGroupName": "c6a4ae61824dddb0822e"
 }

@@ -1,16 +1,16 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "984585dc480c0900c98c",
   "position": {
     "x": 667.61419714965416,
     "y": 348.73225954325926,
-    "z": 7000,
+    "z": 4000,
     "height": 336,
     "width": 300,
-    "tabOrder": 7000
+    "tabOrder": 6000
   },
   "visual": {
-    "visualType": "donutChart",
+    "visualType": "clusteredColumnChart",
     "query": {
       "queryState": {
         "Category": {
@@ -43,11 +43,11 @@
                       "Entity": "Demographics"
                     }
                   },
-                  "Property": "DynamicDemoCount"
+                  "Property": "DynamicDemo_Count"
                 }
               },
               "queryRef": "Demographics.DynamicDemoCount",
-              "nativeQueryRef": "DynamicDemoCount"
+              "nativeQueryRef": "DynamicDemo_Count"
             }
           ]
         }
@@ -74,24 +74,10 @@
       "labels": [
         {
           "properties": {
-            "labelStyle": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Category, percent of total'"
-                }
-              }
-            },
             "fontFamily": {
               "expr": {
                 "Literal": {
                   "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
-                }
-              }
-            },
-            "percentageLabelPrecision": {
-              "expr": {
-                "Literal": {
-                  "Value": "0L"
                 }
               }
             }
@@ -112,19 +98,6 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "slices": [
-        {
-          "properties": {
-            "startAngle": {
-              "expr": {
-                "Literal": {
-                  "Value": "19L"
                 }
               }
             }
@@ -298,6 +271,32 @@
                 }
               }
             ]
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
           }
         }
       ]

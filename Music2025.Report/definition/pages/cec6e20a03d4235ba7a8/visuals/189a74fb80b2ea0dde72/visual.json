@@ -480,23 +480,5 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "c6a4ae61824dddb0822e",
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "86adb27fa400191e2047",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_PctThreshold"
-              }
-            },
-            "Property": "PctThreshold"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
-  }
+  "parentGroupName": "c6a4ae61824dddb0822e"
 }

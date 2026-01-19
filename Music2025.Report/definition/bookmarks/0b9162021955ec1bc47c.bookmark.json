@@ -92,135 +92,6 @@
           ]
         },
         "visualContainers": {
-          "55cd60af2437bb3d1274": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "64afdf13ab79423ee4ee",
-                  "type": "Categorical",
-                  "filter": {
-                    "Version": 2,
-                    "From": [
-                      {
-                        "Name": "_",
-                        "Entity": "_BusinessDrivers",
-                        "Type": 0
-                      }
-                    ],
-                    "Where": [
-                      {
-                        "Condition": {
-                          "In": {
-                            "Expressions": [
-                              {
-                                "Column": {
-                                  "Expression": {
-                                    "SourceRef": {
-                                      "Source": "_"
-                                    }
-                                  },
-                                  "Property": "DisplayName"
-                                }
-                              }
-                            ],
-                            "Values": [
-                              [
-                                {
-                                  "Literal": {
-                                    "Value": "'Women 18'"
-                                  }
-                                }
-                              ],
-                              [
-                                {
-                                  "Literal": {
-                                    "Value": "'Women 18–34'"
-                                  }
-                                }
-                              ],
-                              [
-                                {
-                                  "Literal": {
-                                    "Value": "'Women 34–54'"
-                                  }
-                                }
-                              ],
-                              [
-                                {
-                                  "Literal": {
-                                    "Value": "'Women 54+'"
-                                  }
-                                }
-                              ]
-                            ]
-                          }
-                        }
-                      }
-                    ]
-                  },
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_BusinessDrivers"
-                        }
-                      },
-                      "Property": "DisplayName"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "9a85828c0e6c03906008",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Demographics"
-                        }
-                      },
-                      "Property": "DemoCount_Selected"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "donutChart",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_BusinessDrivers"
-                        }
-                      },
-                      "Property": "DisplayName"
-                    }
-                  }
-                }
-              ],
-              "activeProjections": {
-                "Category": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_BusinessDrivers"
-                        }
-                      },
-                      "Property": "DisplayName"
-                    }
-                  }
-                ]
-              }
-            }
-          },
           "7102b729cb5d657aab12": {
             "filters": {
               "byExpr": [
@@ -250,7 +121,7 @@
                                         "Source": "d1"
                                       }
                                     },
-                                    "Property": "DynamicDemoCount"
+                                    "Property": "DynamicDemo_Count"
                                   }
                                 },
                                 "Right": {
@@ -272,7 +143,7 @@
                           "Entity": "Demographics"
                         }
                       },
-                      "Property": "DynamicDemoCount"
+                      "Property": "DynamicDemo_Count"
                     }
                   },
                   "howCreated": 0
@@ -405,7 +276,7 @@
                           "Entity": "Demographics"
                         }
                       },
-                      "Property": "Demographic - Slicer"
+                      "Property": "Demographic_Slicer"
                     }
                   },
                   "howCreated": 0
@@ -466,7 +337,7 @@
                           "Entity": "Demographics"
                         }
                       },
-                      "Property": "Demographic - Slicer"
+                      "Property": "Demographic_Slicer"
                     }
                   }
                 ]
@@ -628,7 +499,7 @@
                           "Entity": "Demographics"
                         }
                       },
-                      "Property": "DynamicDemoCount"
+                      "Property": "DynamicDemo_Count"
                     }
                   },
                   "howCreated": 0

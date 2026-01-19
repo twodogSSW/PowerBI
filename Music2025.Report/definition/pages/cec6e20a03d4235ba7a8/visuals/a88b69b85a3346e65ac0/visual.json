@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "a88b69b85a3346e65ac0",
   "position": {
-    "x": 1.9932168428568673,
-    "y": 0.0304845395585005,
+    "x": 0,
+    "y": 0,
     "z": 1000,
     "height": 318.48818897637796,
     "width": 839.55905511811022,
@@ -1777,6 +1777,22 @@
           }
         },
         "type": "Categorical",
+        "isHiddenInViewMode": true
+      },
+      {
+        "name": "1505293ae162c8570d08",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Genre"
+              }
+            },
+            "Property": "Genre"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
         "isHiddenInViewMode": true
       }
     ]

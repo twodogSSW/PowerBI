@@ -5,135 +5,10 @@
   "displayOption": "FitToPage",
   "height": 720,
   "width": 1280,
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "bc97b2b3802630b85c8e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "RecordLabel"
-              }
-            },
-            "Property": "RecordLabel"
-          }
-        },
-        "type": "Categorical",
-        "howCreated": "Drillthrough",
-        "isHiddenInViewMode": true
-      },
-      {
-        "name": "e6d65b0fae090e78b5c0",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Genre"
-              }
-            },
-            "Property": "Genre"
-          }
-        },
-        "type": "Categorical",
-        "howCreated": "Drillthrough",
-        "isHiddenInViewMode": true
-      },
-      {
-        "name": "d0a8b635e1c64db07775",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "PurchasedFrom"
-              }
-            },
-            "Property": "PurchasedFrom"
-          }
-        },
-        "type": "Categorical",
-        "howCreated": "Drillthrough",
-        "isHiddenInViewMode": true
-      },
-      {
-        "name": "ecdd9b73376285b0837d",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Album"
-              }
-            },
-            "Property": "Album"
-          }
-        },
-        "type": "Categorical",
-        "howCreated": "Drillthrough",
-        "isHiddenInViewMode": true
-      }
-    ]
-  },
   "pageBinding": {
     "name": "a5cb380ffd7d2fa60a4b",
-    "type": "Drillthrough",
-    "parameters": [
-      {
-        "name": "09568f3cd8a964539888",
-        "boundFilter": "bc97b2b3802630b85c8e",
-        "fieldExpr": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "RecordLabel"
-              }
-            },
-            "Property": "RecordLabel"
-          }
-        }
-      },
-      {
-        "name": "17422ec3de839ddd2e21",
-        "boundFilter": "e6d65b0fae090e78b5c0",
-        "fieldExpr": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Genre"
-              }
-            },
-            "Property": "Genre"
-          }
-        }
-      },
-      {
-        "name": "b8099e7320d1297d0086",
-        "boundFilter": "d0a8b635e1c64db07775",
-        "fieldExpr": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "PurchasedFrom"
-              }
-            },
-            "Property": "PurchasedFrom"
-          }
-        }
-      },
-      {
-        "name": "5dc4b2673826d2a2bdbb",
-        "boundFilter": "ecdd9b73376285b0837d",
-        "fieldExpr": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Album"
-              }
-            },
-            "Property": "Album"
-          }
-        }
-      }
-    ],
+    "type": "Default",
+    "parameters": [],
     "acceptsFilterContext": "None"
   },
   "objects": {
@@ -170,6 +45,5 @@
         }
       }
     ]
-  },
-  "type": "Drillthrough"
+  }
 }

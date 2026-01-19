@@ -19,7 +19,7 @@
             "height": 104,
             "width": 172.75
           },
-          "zIndex": 16,
+          "zIndex": 14,
           "expandedHeight": 224
         },
         {
@@ -33,7 +33,7 @@
             "height": 104,
             "width": 169
           },
-          "zIndex": 19,
+          "zIndex": 16,
           "expandedHeight": 200
         },
         {
@@ -47,7 +47,7 @@
             "height": 176,
             "width": 185
           },
-          "zIndex": 13,
+          "zIndex": 11,
           "expandedHeight": 306.25
         },
         {
@@ -58,10 +58,11 @@
           "nodeIndex": "Artist",
           "nodeLineageTag": "d5807c9a-cb2e-4798-b4ed-7970fdfd26e2",
           "size": {
-            "height": 174,
+            "height": 128,
             "width": 208.14899790960067
           },
-          "zIndex": 9
+          "zIndex": 7,
+          "expandedHeight": 174
         },
         {
           "location": {
@@ -74,7 +75,7 @@
             "height": 104,
             "width": 202.12607515427749
           },
-          "zIndex": 10,
+          "zIndex": 8,
           "expandedHeight": 198.75
         },
         {
@@ -88,7 +89,7 @@
             "height": 128,
             "width": 224.96561586701546
           },
-          "zIndex": 15,
+          "zIndex": 13,
           "expandedHeight": 300
         },
         {
@@ -102,7 +103,7 @@
             "height": 104,
             "width": 203.25
           },
-          "zIndex": 18,
+          "zIndex": 15,
           "expandedHeight": 200
         },
         {
@@ -116,7 +117,7 @@
             "height": 104,
             "width": 182.75
           },
-          "zIndex": 11,
+          "zIndex": 9,
           "expandedHeight": 176
         },
         {
@@ -130,7 +131,7 @@
             "height": 104,
             "width": 176.78223382443002
           },
-          "zIndex": 12,
+          "zIndex": 10,
           "expandedHeight": 271.25
         },
         {
@@ -144,7 +145,7 @@
             "height": 176,
             "width": 176
           },
-          "zIndex": 14,
+          "zIndex": 12,
           "expandedHeight": 457.5
         },
         {
@@ -158,7 +159,7 @@
             "height": 176,
             "width": 176
           },
-          "zIndex": 17,
+          "zIndex": 19,
           "expandedHeight": 311.9025782898766
         },
         {
@@ -172,7 +173,7 @@
             "height": 72,
             "width": 234
           },
-          "zIndex": 21,
+          "zIndex": 18,
           "expandedHeight": 145
         },
         {
@@ -186,21 +187,8 @@
             "height": 104,
             "width": 169
           },
-          "zIndex": 8,
+          "zIndex": 20,
           "expandedHeight": 200
-        },
-        {
-          "location": {
-            "x": 1659.8216576141749,
-            "y": 337.7975145315902
-          },
-          "nodeIndex": "_URL",
-          "size": {
-            "height": 72,
-            "width": 234
-          },
-          "zIndex": 7,
-          "expandedHeight": 145
         },
         {
           "location": {
@@ -226,7 +214,7 @@
             "height": 128,
             "width": 180.25
           },
-          "zIndex": 1,
+          "zIndex": 3,
           "expandedHeight": 300
         },
         {
@@ -240,7 +228,7 @@
             "height": 72,
             "width": 234
           },
-          "zIndex": 20,
+          "zIndex": 17,
           "expandedHeight": 152
         },
         {
@@ -254,7 +242,7 @@
             "height": 153.75,
             "width": 220.44842380052296
           },
-          "zIndex": 2
+          "zIndex": 4
         },
         {
           "location": {
@@ -267,7 +255,7 @@
             "height": 72,
             "width": 234
           },
-          "zIndex": 3,
+          "zIndex": 5,
           "expandedHeight": 152
         },
         {
@@ -280,7 +268,7 @@
             "height": 72,
             "width": 234
           },
-          "zIndex": 0,
+          "zIndex": 1,
           "expandedHeight": 200
         },
         {
@@ -293,13 +281,13 @@
             "height": 72,
             "width": 222.75
           },
-          "zIndex": 0,
+          "zIndex": 2,
           "expandedHeight": 211.25
         }
       ],
       "name": "All tables",
       "zoomValue": 66.412938742485707,
-      "pinKeyFieldsToTop": false,
+      "pinKeyFieldsToTop": true,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,
       "tablesLocked": false

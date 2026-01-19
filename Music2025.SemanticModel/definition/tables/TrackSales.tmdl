@@ -1,8 +1,11 @@
+/// Table used to store sales of Track Sales
 table TrackSales
 	lineageTag: d1fe4f8d-bc56-4b65-9185-817afb88c0e2
 
+	/// pkTrackSales
 	column pkTrackSales
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: e8f1b1aa-e877-4486-a856-65d9b51e6e4d
 		summarizeBy: none
@@ -12,8 +15,10 @@ table TrackSales
 
 		annotation SummarizationSetBy = User
 
+	/// fkPurchasedFrom
 	column fkTrackList
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: be3ecdb8-8af1-409a-b958-47ca589dcd49
 		summarizeBy: none
@@ -23,8 +28,10 @@ table TrackSales
 
 		annotation SummarizationSetBy = Automatic
 
+	/// fkGeographyNo
 	column fkGeographyNo
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: b76a87c3-2a3c-4806-9dd2-b83017e268ec
 		summarizeBy: none
@@ -34,6 +41,7 @@ table TrackSales
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Salesdate
 	column Salesdate
 		dataType: dateTime
 		formatString: mm/dd/yy
@@ -47,6 +55,7 @@ table TrackSales
 
 		annotation PBI_FormatHint = {"isDateTimeCustom":true}
 
+	/// SaleCount
 	column SaleCount
 		dataType: int64
 		formatString: #,0
@@ -58,6 +67,7 @@ table TrackSales
 
 		annotation SummarizationSetBy = User
 
+	/// SalesAmt
 	column SalesAmt
 		dataType: double
 		formatString: \$#,0;(\$#,0);\$#,0
@@ -71,8 +81,10 @@ table TrackSales
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
+	/// fkPurchasedFrom
 	column fkPurchasedFrom
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 6b6c7c7e-b828-4530-90c7-ff63aa4c435c
 		summarizeBy: none
@@ -82,6 +94,7 @@ table TrackSales
 
 		annotation SummarizationSetBy = Automatic
 
+	/// CC
 	column CC
 		dataType: double
 		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
@@ -95,6 +108,7 @@ table TrackSales
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
+	/// Bitcoin
 	column Bitcoin
 		dataType: double
 		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
@@ -108,6 +122,7 @@ table TrackSales
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
+	/// Cash
 	column Cash
 		dataType: double
 		lineageTag: 9c8e3e57-6975-4ee7-aab0-8c7d9bae6d89

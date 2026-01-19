@@ -73,7 +73,7 @@
             "relativeDuration": {
               "expr": {
                 "Literal": {
-                  "Value": "3D"
+                  "Value": "6D"
                 }
               }
             },
@@ -172,7 +172,7 @@
                                     "TimeUnit": 0
                                   }
                                 },
-                                "Amount": -3,
+                                "Amount": -6,
                                 "TimeUnit": 2
                               }
                             },
@@ -476,23 +476,5 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "e311b8dae00315660784",
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "0d2a569690759440bb70",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Calendar"
-              }
-            },
-            "Property": "Date"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
-  }
+  "parentGroupName": "e311b8dae00315660784"
 }

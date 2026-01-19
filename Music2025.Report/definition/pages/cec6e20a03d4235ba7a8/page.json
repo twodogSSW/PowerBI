@@ -47,24 +47,8 @@
         }
       },
       {
-        "name": "bc97b2b3802630b85c8e",
+        "name": "f161927008c9c8290b51",
         "ordinal": 2,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "RecordLabel"
-              }
-            },
-            "Property": "RecordLabel"
-          }
-        },
-        "type": "Categorical",
-        "howCreated": "Drillthrough"
-      },
-      {
-        "name": "e6d65b0fae090e78b5c0",
-        "ordinal": 3,
         "field": {
           "Column": {
             "Expression": {
@@ -76,27 +60,27 @@
           }
         },
         "type": "Categorical",
-        "howCreated": "Drillthrough"
+        "howCreated": "User"
       },
       {
-        "name": "d0a8b635e1c64db07775",
-        "ordinal": 4,
+        "name": "e71aa8b1d09023500031",
+        "ordinal": 3,
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "PurchasedFrom"
+                "Entity": "Artist"
               }
             },
-            "Property": "PurchasedFrom"
+            "Property": "Artist"
           }
         },
         "type": "Categorical",
-        "howCreated": "Drillthrough"
+        "howCreated": "User"
       },
       {
-        "name": "ecdd9b73376285b0837d",
-        "ordinal": 5,
+        "name": "c478e0233e02b335c045",
+        "ordinal": 4,
         "field": {
           "Column": {
             "Expression": {
@@ -108,72 +92,48 @@
           }
         },
         "type": "Categorical",
-        "howCreated": "Drillthrough"
+        "howCreated": "User"
+      },
+      {
+        "name": "f9a533efbc7d01b0e4c5",
+        "ordinal": 5,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "RecordLabel"
+              }
+            },
+            "Property": "RecordLabel"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "40285da9618260d8be06",
+        "displayName": "Retail Sales",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "PurchasedFrom"
+              }
+            },
+            "Property": "PurchasedFrom"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
       }
     ],
     "filterSortOrder": "Custom"
   },
   "pageBinding": {
     "name": "c117556c10ad865a84c8",
-    "type": "Drillthrough",
-    "parameters": [
-      {
-        "name": "09568f3cd8a964539888",
-        "boundFilter": "bc97b2b3802630b85c8e",
-        "fieldExpr": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "RecordLabel"
-              }
-            },
-            "Property": "RecordLabel"
-          }
-        }
-      },
-      {
-        "name": "17422ec3de839ddd2e21",
-        "boundFilter": "e6d65b0fae090e78b5c0",
-        "fieldExpr": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Genre"
-              }
-            },
-            "Property": "Genre"
-          }
-        }
-      },
-      {
-        "name": "b8099e7320d1297d0086",
-        "boundFilter": "d0a8b635e1c64db07775",
-        "fieldExpr": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "PurchasedFrom"
-              }
-            },
-            "Property": "PurchasedFrom"
-          }
-        }
-      },
-      {
-        "name": "5dc4b2673826d2a2bdbb",
-        "boundFilter": "ecdd9b73376285b0837d",
-        "fieldExpr": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Album"
-              }
-            },
-            "Property": "Album"
-          }
-        }
-      }
-    ],
+    "type": "Default",
+    "parameters": [],
     "acceptsFilterContext": "None"
   },
   "objects": {
@@ -207,6 +167,5 @@
         }
       }
     ]
-  },
-  "type": "Drillthrough"
+  }
 }

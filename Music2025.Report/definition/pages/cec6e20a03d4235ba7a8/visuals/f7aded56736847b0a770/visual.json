@@ -79,7 +79,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "_URL"
+                      "Entity": "_Categories"
                     }
                   },
                   "Property": "URL - Button Text"
@@ -204,7 +204,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "_URL"
+                      "Entity": "_Categories"
                     }
                   },
                   "Property": "URL - Menu"

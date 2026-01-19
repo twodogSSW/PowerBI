@@ -1,8 +1,11 @@
+/// Table used to store sales of albums
 table AlbumSales
 	lineageTag: 4efc2010-3cf2-48b9-ad78-66e8d8436f80
 
+	/// Primary key
 	column pkAlbumSales
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: b486a2d6-915c-45d1-9eef-75a097961256
 		summarizeBy: none
@@ -14,6 +17,7 @@ table AlbumSales
 
 	column fkAlbum
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 86b4a5b6-79d2-4824-a7ef-8cdac796f00c
 		summarizeBy: none
@@ -25,6 +29,7 @@ table AlbumSales
 
 	column fkGeographyNo
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 5cc7b1e6-06c5-4f7a-8a0f-b97e64c1297b
 		summarizeBy: none
@@ -71,6 +76,7 @@ table AlbumSales
 
 	column fkPurchasedFrom
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 555d6c08-79a1-430f-a0e2-523e9edc853a
 		summarizeBy: none

@@ -1,6 +1,8 @@
+/// Measures used in Business Drivers Page
 table _BusinessDrivers
 	lineageTag: 125cf666-bac4-4cb7-88a1-30430f5a442f
 
+	/// Demographic
 	column Demographic
 		lineageTag: eb02ec91-51bd-4dcb-8412-ef145906a944
 		summarizeBy: none
@@ -9,6 +11,7 @@ table _BusinessDrivers
 
 		annotation SummarizationSetBy = Automatic
 
+	/// DisplayName
 	column DisplayName
 		lineageTag: 0260a439-2a4e-49b2-bfed-b30334b7c933
 		summarizeBy: none
@@ -18,6 +21,7 @@ table _BusinessDrivers
 
 		annotation SummarizationSetBy = Automatic
 
+	/// SortOrder
 	column SortOrder
 		formatString: 0
 		lineageTag: 6b6cb347-ddb7-4f35-8c15-7abbbf8a34c1

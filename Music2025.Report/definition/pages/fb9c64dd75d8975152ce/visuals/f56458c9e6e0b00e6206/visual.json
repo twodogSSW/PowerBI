@@ -1,16 +1,16 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
-  "name": "55cd60af2437bb3d1274",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "f56458c9e6e0b00e6206",
   "position": {
-    "x": 974.61419714965416,
-    "y": 348.73225954325926,
-    "z": 2000,
-    "height": 336,
-    "width": 300,
-    "tabOrder": 4000
+    "x": 974.09386281588445,
+    "y": 348.4187725631769,
+    "z": 7000,
+    "height": 337.32851985559569,
+    "width": 301.2851985559567,
+    "tabOrder": 7000
   },
   "visual": {
-    "visualType": "donutChart",
+    "visualType": "clusteredColumnChart",
     "query": {
       "queryState": {
         "Category": {
@@ -43,12 +43,11 @@
                       "Entity": "Demographics"
                     }
                   },
-                  "Property": "DemoCount_Selected"
+                  "Property": "DynamicDemo_Count"
                 }
               },
-              "queryRef": "Demos.Selected DemoCount",
-              "nativeQueryRef": "Selected Demos",
-              "displayName": "Selected Demos"
+              "queryRef": "Demographics.DynamicDemoCount",
+              "nativeQueryRef": "DynamicDemo_Count"
             }
           ]
         }
@@ -75,24 +74,10 @@
       "labels": [
         {
           "properties": {
-            "labelStyle": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Category, percent of total'"
-                }
-              }
-            },
             "fontFamily": {
               "expr": {
                 "Literal": {
                   "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
-                }
-              }
-            },
-            "percentageLabelPrecision": {
-              "expr": {
-                "Literal": {
-                  "Value": "0L"
                 }
               }
             }
@@ -127,7 +112,49 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 7,
+                      "ColorId": 3,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "_BusinessDrivers"
+                          }
+                        },
+                        "Property": "DisplayName"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Men 54+'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
                       "Percent": -0.25
                     }
                   }
@@ -153,7 +180,7 @@
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Women 54+'"
+                        "Value": "'Men 34–54'"
                       }
                     }
                   }
@@ -169,49 +196,7 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 7,
-                      "Percent": 0.2
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "_BusinessDrivers"
-                          }
-                        },
-                        "Property": "DisplayName"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Women 34–54'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 7,
+                      "ColorId": 2,
                       "Percent": 0.4
                     }
                   }
@@ -237,7 +222,7 @@
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Women 18–34'"
+                        "Value": "'Men 18–34'"
                       }
                     }
                   }
@@ -253,7 +238,7 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 7,
+                      "ColorId": 2,
                       "Percent": 0.6
                     }
                   }
@@ -279,13 +264,54 @@
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Women 18'"
+                        "Value": "'Men 18'"
                       }
                     }
                   }
                 }
               }
             ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#9071CE'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
           }
         }
       ]
@@ -331,7 +357,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "64afdf13ab79423ee4ee",
+        "name": "3f64aff7e28228bc7e35",
         "field": {
           "Column": {
             "Expression": {
@@ -403,6 +429,61 @@
             }
           ]
         }
+      },
+      {
+        "name": "1bbc950c81971de8791c",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Demographics"
+                  }
+                },
+                "Property": "DemoCount - Copy"
+              }
+            },
+            "Function": 5
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "f9060471e338a915b7a9",
+        "field": {
+          "Arithmetic": {
+            "Left": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Demographics"
+                  }
+                },
+                "Property": "DemoCount_Selected"
+              }
+            },
+            "Right": {
+              "ScopedEval": {
+                "Expression": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Demographics"
+                      }
+                    },
+                    "Property": "DemoCount_Selected"
+                  }
+                },
+                "Scope": []
+              }
+            },
+            "Operator": 3
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
       }
     ]
   }

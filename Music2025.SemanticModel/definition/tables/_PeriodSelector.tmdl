@@ -1,7 +1,10 @@
+/// Used to choose between Week Month Quarter and Year
 table _PeriodSelector
 	lineageTag: f4defc31-cc5d-44ba-8a05-dcdf894fe235
 
+	/// DynamicDateGrain
 	column DynamicDateGrain
+		dataType: string
 		lineageTag: f506b9b9-77d0-4a27-aa29-2a436ee3e91b
 		summarizeBy: none
 		sourceColumn: [Value1]
@@ -12,6 +15,7 @@ table _PeriodSelector
 
 		annotation SummarizationSetBy = Automatic
 
+	/// DynamicDateGrain
 	column 'DynamicDateGrain Fields'
 		lineageTag: d214dae9-ae46-4d38-ad26-ed309546e742
 		summarizeBy: none
@@ -26,6 +30,7 @@ table _PeriodSelector
 
 		annotation SummarizationSetBy = Automatic
 
+	/// DynamicDateGrain
 	column 'DynamicDateGrain Order'
 		formatString: 0
 		lineageTag: 4d10c0c0-1a3f-47e2-a54e-7f40b5debff6

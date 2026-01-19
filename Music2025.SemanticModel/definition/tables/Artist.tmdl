@@ -1,8 +1,11 @@
+/// Table used to store Artist/Recording group information (unique records)
 table Artist
 	lineageTag: d5807c9a-cb2e-4798-b4ed-7970fdfd26e2
 
+	/// Primary key
 	column pkArtist
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: b2b073fd-92f7-4aa9-aba1-c04694d0794b
 		summarizeBy: none
@@ -24,6 +27,7 @@ table Artist
 
 	column fkRecordLabel
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: b05a9d1b-c0fb-4dae-ae67-bc9b1d8d10d5
 		summarizeBy: none

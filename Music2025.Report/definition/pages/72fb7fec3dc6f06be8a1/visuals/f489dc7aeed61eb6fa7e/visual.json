@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "f489dc7aeed61eb6fa7e",
   "position": {
-    "x": 419.2755905511811,
-    "y": 4.0314960629921259,
+    "x": 435.43766578249335,
+    "y": 6.684350132625994,
     "z": 3000,
-    "height": 115.90551181102362,
-    "width": 799.24409448818892,
+    "height": 114.58885941644562,
+    "width": 775.38461538461536,
     "tabOrder": 0
   },
   "visual": {
@@ -19,7 +19,19 @@
               {
                 "textRuns": [
                   {
-                    "value": "This dashboard provides a strategic overview of music sales activity across tracks and albums starting from January 2024. It combines historical performance, forecasted trends, and category-level insights to support planning, marketing, and investment decisions. ",
+                    "value": "This dashboard provides a strategic overview of music sales activity across tracks and albums starting from ",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
+                      "fontSize": "11pt",
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "May 2024. It combines historical performance, forecasted trends, and category-level insights to support planning, marketing, and investment decisions. ",
                     "textStyle": {
                       "fontFamily": "Segoe UI Semibold",
                       "fontSize": "11pt",
@@ -84,7 +96,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -93,8 +105,8 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 1,
-                      "Percent": 0
+                      "ColorId": 0,
+                      "Percent": -0.1
                     }
                   }
                 }

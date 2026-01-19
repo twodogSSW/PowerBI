@@ -1,8 +1,11 @@
+/// Table used to store album data
 table Album
 	lineageTag: 9c94af43-c824-4ccd-8258-a9bedc4afc63
 
+	/// pkAlbum (primary key)
 	column pkAlbum
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 5d951703-8faa-4c16-9774-e95670fa81e1
 		summarizeBy: none
@@ -12,6 +15,7 @@ table Album
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Album
 	column Album
 		dataType: string
 		lineageTag: 4bc3df03-e7cb-441e-aa83-346670995237
@@ -22,6 +26,9 @@ table Album
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Name
+	/// AlbumArtist
+	/// 
 	column AlbumArtist = ```
 			
 			//if more than one artist on an album, label as compilation
@@ -61,6 +68,7 @@ table Album
 
 		annotation SummarizationSetBy = Automatic
 
+	/// AlbumSized
 	column AlbumSized
 		dataType: string
 		lineageTag: ad09451e-f759-4d2a-94fa-ba5b1f4584f7

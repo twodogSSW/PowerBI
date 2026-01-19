@@ -1,6 +1,8 @@
+/// Measures used in Categories Page
 table _Categories
 	lineageTag: 5c27c8e2-ae70-4845-a228-f5623a4c6ec0
 
+	/// Sale
 	measure 'Sale $' = ```
 			
 			     SWITCH(
@@ -14,6 +16,7 @@ table _Categories
 		formatString: \$#,0;(\$#,0);\$#,0
 		lineageTag: 33423e5e-e8c6-4555-b4f3-cc9b75128dff
 
+	/// Sale
 	measure 'Sale #' = ```
 			
 			
@@ -29,6 +32,7 @@ table _Categories
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	/// Sale
 	measure 'Sale $ PrevMonth' = ```
 			
 			    CALCULATE(
@@ -39,6 +43,7 @@ table _Categories
 		formatString: \$#,0;(\$#,0);\$#,0
 		lineageTag: 15202386-298c-4634-977f-910bed0ed45e
 
+	/// Sale
 	measure 'Sale $ Current' = ```
 			
 			
@@ -55,6 +60,7 @@ table _Categories
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	/// % MoM
 	measure '% MoM' = ```
 			
 			    VAR Cur = [Sale $ Current]
@@ -68,6 +74,7 @@ table _Categories
 		formatString: 0%;-0%;0%
 		lineageTag: e01c8af0-1bc9-4b0e-8934-6694e46c3d0e
 
+	/// Track Diff % 2
 	measure 'Track Diff % 2' = ```
 			
 			    VAR Cur   = _Categories[Sale $ Current]--[Track Cur Sales]
@@ -88,6 +95,7 @@ table _Categories
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	/// Show Icon
 	measure 'Show Icon' = ```
 			
 			    //
@@ -110,6 +118,7 @@ table _Categories
 			```
 		lineageTag: 4dd044f4-7713-497c-be5c-490a89354659
 
+	/// %ToMax
 	measure %ToMax = ```
 			
 			    //
@@ -135,6 +144,7 @@ table _Categories
 		displayFolder: KPI
 		lineageTag: 151772f1-bedf-4266-8f29-820294348ec6
 
+	/// AllSales
 	measure AllSales = ```
 			
 			    //
@@ -154,6 +164,7 @@ table _Categories
 		displayFolder: KPI
 		lineageTag: c7f677ed-5055-4df9-8c11-296a14601fe0
 
+	/// CountRows_All
 	measure CountRows_All = ```
 			
 			    SWITCH(
@@ -173,6 +184,7 @@ table _Categories
 		displayFolder: KPI
 		lineageTag: 775b7b40-9411-49de-ac23-1078777b4215
 
+	/// CountRows_Clicked
 	measure CountRows_Clicked = ```
 			
 			    //0 - Title | 1  Genre | 2 - Artist | 3- Album | 4-RecordLabel | 5-Region | 6-Retailer (tracks) | 7 - Retailer (albums)
@@ -197,6 +209,7 @@ table _Categories
 		displayFolder: KPI
 		lineageTag: 48dc091c-bff7-49e1-9651-2af53fe13261
 
+	/// MaxSales_Gauge
 	measure MaxSales_Gauge = ```
 			
 			       SWITCH(
@@ -323,6 +336,7 @@ table _Categories
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	/// SalesRank
 	measure SalesRank = ```
 			
 			    SWITCH(
@@ -342,6 +356,7 @@ table _Categories
 		displayFolder: KPI
 		lineageTag: 99e928f2-fb15-4cc2-96bf-52ba44fd4523
 
+	/// SelectedSales
 	measure SelectedSales = ```
 			
 			    VAR SelectedEntity =
@@ -377,6 +392,7 @@ table _Categories
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	/// ShowFont
 	measure ShowFont = ```
 			
 			    //1-Positive - 2 - Negative 0-Neither
@@ -398,6 +414,7 @@ table _Categories
 		displayFolder: KPI
 		lineageTag: c08f21ad-fb54-4bbb-9d0f-be64d543a21d
 
+	/// WhichSelected
 	measure WhichSelected = ```
 			
 			    //
@@ -511,6 +528,52 @@ table _Categories
 		displayFolder: KPIText
 		lineageTag: e0b6fdfc-f570-4fff-88a2-7784f66e6c6f
 
+	/// URL - Button Text
+	measure 'URL - Button Text' = ```
+			
+			//1 - Title | 2  Genre | 3 - Artist | 4- Album | 5-Region | 6-Retailer (tracks) | 7 - Retailer (albums)
+			
+			    SWITCH(
+			    pbi.All_SelectedCategory(),
+			        0,"🖨️Print Selected Tracks",
+			        1,"🖨️Print Selected Genre",
+			        2,"🖨️Print Selected Artists",
+			        3,"🖨️Print Selected Albums",
+			        4,"🖨️Print Record Companies",
+			        5,"🖨️🌍Print Regions",
+			        /*
+			        --Ord = 5,_Region[Region Sales Max with % to Max], 
+			        --Ord = 6,_Retailer[Retail TrackSales Max with % to Max],    
+			        --Ord = 7,_Retailer[Retail AlbumSales Max with % to Max],    
+			        */
+			    BLANK()
+			    )
+			
+			```
+		displayFolder: URL
+		lineageTag: 71f0c9c1-f55b-4016-8c7f-be5abc53c7a0
+
+	/// URL - Menu
+	measure 'URL - Menu' = ```
+			
+			    --pbi.RptURL(Album[pkAlbum])
+			    
+			  SWITCH(
+			    pbi.All_SelectedCategory(),
+			        0, pbi.Categories_RptURL(TrackList[pkTrackList]), //_URL[URLTracks],
+			        1, pbi.Categories_RptURL(Genre[pkGenre]), //_URL[URLGenres],
+			        2, pbi.Categories_RptURL(Artist[pkArtist]), //_URL[URLArtists],
+			        3, pbi.Categories_RptURL(Album[pkAlbum]), //URL[URLAlbums],
+			        4, pbi.Categories_RptURL(RecordLabel[pkRecordLabel]),//_URL[URLRecLabels],
+			        5, pbi.Categories_RptURL(Region[pkRegion]),//
+			        BLANK()
+			    )
+			
+			```
+		displayFolder: URL
+		lineageTag: 7a846929-104e-4ba4-85e5-b3250cd581b6
+
+	/// CategorySelector
 	column CategorySelector
 		lineageTag: 53bfbef8-72ed-48f6-94ea-04cd1be52231
 		summarizeBy: none
@@ -522,6 +585,7 @@ table _Categories
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Category Fields
 	column 'Category Fields'
 		lineageTag: 76fda6ba-bec1-4017-9042-feeddad0a9cc
 		summarizeBy: none
@@ -536,6 +600,7 @@ table _Categories
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Category Order
 	column 'Category Order'
 		formatString: 0
 		lineageTag: 3b029960-521e-4543-89e1-0bccf75baa9f

@@ -23,11 +23,11 @@
                       "Entity": "Demographics"
                     }
                   },
-                  "Property": "Demographic - Slicer"
+                  "Property": "Demographic_Slicer"
                 }
               },
               "queryRef": "Demographics.Demographic - Slicer",
-              "nativeQueryRef": "Demographic - Slicer",
+              "nativeQueryRef": "Demographic_Slicer",
               "active": true
             }
           ]

@@ -1,8 +1,11 @@
+/// Table used to store Genre Descriptions (unique records)
 table Genre
 	lineageTag: b9f852f2-6409-4fd1-a9b3-d9ec35799f10
 
+	/// pkGenre
 	column pkGenre
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 5fbffd60-6016-4e1c-bd0f-92a227dc1f3f
 		summarizeBy: none
@@ -12,6 +15,7 @@ table Genre
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Genre
 	column Genre
 		dataType: string
 		lineageTag: 7c576fa2-3f30-4951-9aba-bc033ad9a19e
@@ -22,27 +26,16 @@ table Genre
 
 		annotation SummarizationSetBy = Automatic
 
-	column CNT
-		dataType: int64
-		formatString: 0
-		lineageTag: 7abf0e0e-aea3-471c-a382-58cfb6e19802
-		summarizeBy: none
-		sourceColumn: CNT
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
 	partition Genre = m
 		mode: import
 		source =
 				let
-				    Source = Sql.Database(ServerName, DBName, [Query="SELECT  #(lf)    g.pkGenre,#(lf)    g.Genre, #(lf)    --g.Include,#(lf)    COUNT(ts.pkTrackSales) AS CNT#(lf)FROM #(lf)    TrackList AS tl#(lf)INNER JOIN #(lf)    Genre AS g#(lf)        ON g.pkGenre = tl.fkGenre#(lf)LEFT JOIN #(lf)    TrackSales AS ts#(lf)    ON ts.fkTrackList = tl.pkTrackList#(lf)GROUP BY #(lf)    g.pkGenre,#(lf)    g.Genre, #(lf)    g.FileDate,#(lf)    g.ModDate#(lf)    --g.Include#(lf)HAVING #(lf)    COUNT(ts.pkTrackSales) > 0#(lf)order by g.pkGenre"]),
+				    Source = Sql.Database(ServerName, DBName, [Query="SELECT  #(lf)    g.pkGenre,#(lf)    g.Genre #(lf)    --g.Include#(lf)    --COUNT(ts.pkTrackSales) AS CNT#(lf)FROM #(lf)    TrackList AS tl#(lf)INNER JOIN #(lf)    Genre AS g#(lf)        ON g.pkGenre = tl.fkGenre#(lf)LEFT JOIN #(lf)    TrackSales AS ts#(lf)    ON ts.fkTrackList = tl.pkTrackList#(lf)GROUP BY #(lf)    g.pkGenre,#(lf)    g.Genre, #(lf)    g.FileDate,#(lf)    g.ModDate#(lf)    --g.Include#(lf)HAVING #(lf)    COUNT(ts.pkTrackSales) > 0#(lf)order by g.pkGenre"]),
 				    MarkedKeys = Table.AddKey(Source, {"pkGenre"}, true)
 				in
 				    MarkedKeys
 
-	annotation PBI_ResultType = Table
+	annotation PBI_ResultType = Exception
 
 	annotation PBI_NavigationStepName = Navigation
 

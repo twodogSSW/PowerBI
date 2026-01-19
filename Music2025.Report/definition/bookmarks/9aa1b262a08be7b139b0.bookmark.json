@@ -60,139 +60,6 @@
           ]
         },
         "visualContainers": {
-          "7e8d0ea922987d02ca83": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "9eb990160158383394c4",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Calendar"
-                        }
-                      },
-                      "Property": "Date_Footer"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "card",
-              "objects": {}
-            }
-          },
-          "be0e5447a5e072445072": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "47080dc4bb109dc633a9",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Calendar"
-                        }
-                      },
-                      "Property": "LastRefreshDate"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "card",
-              "objects": {}
-            }
-          },
-          "24392c5b8deec71e0e0c": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "3089a71e0195ee89e003",
-                  "type": "Advanced",
-                  "expression": {
-                    "Aggregation": {
-                      "Expression": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "AlbumSales"
-                            }
-                          },
-                          "Property": "SalesAmt"
-                        }
-                      },
-                      "Function": 0
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "5eb08ff1ece834dd0651",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "PurchasedFrom"
-                        }
-                      },
-                      "Property": "PurchasedFrom"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "ab47eb3014156896e055",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Album"
-                        }
-                      },
-                      "Property": "Album"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "decompositionTreeVisual",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Aggregation": {
-                      "Expression": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "TrackSales"
-                            }
-                          },
-                          "Property": "SalesAmt"
-                        }
-                      },
-                      "Function": 0
-                    }
-                  }
-                }
-              ],
-              "display": {
-                "mode": "hidden"
-              }
-            }
-          },
           "0970c524a19c00b40cbc": {
             "singleVisual": {
               "visualType": "textbox",
@@ -209,7 +76,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "d4fdd927277b5584e85c",
+                  "name": "0d2a569690759440bb70",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -386,13 +253,164 @@
               }
             }
           },
+          "24392c5b8deec71e0e0c": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "99332590837bcd9cdad3",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "AlbumSales"
+                            }
+                          },
+                          "Property": "SalesAmt"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "442f1a38089a86317bb3",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Album"
+                        }
+                      },
+                      "Property": "Album"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "36489dbe32ea94e93ad6",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "PurchasedFrom"
+                        }
+                      },
+                      "Property": "PurchasedFrom"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "decompositionTreeVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "TrackSales"
+                            }
+                          },
+                          "Property": "SalesAmt"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  }
+                }
+              ],
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "28183e500138a9301647": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "64ca27ce78384d954192": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
           "67bbf03908d6f314dd80": {
             "singleVisual": {
               "visualType": "shape",
               "objects": {}
             }
           },
+          "7e8d0ea922987d02ca83": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "db6579903adc2006956d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendar"
+                        }
+                      },
+                      "Property": "Date_Footer"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
           "a7d9c49e14a0eddb8a67": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "be0e5447a5e072445072": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "948a7172381d08a98b8d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendar"
+                        }
+                      },
+                      "Property": "LastRefreshDate"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "e98a159c52a750ace4a6": {
             "singleVisual": {
               "visualType": "actionButton",
               "objects": {}
@@ -417,7 +435,7 @@
                   "howCreated": 1
                 },
                 {
-                  "name": "43d17446eb808bba1d70",
+                  "name": "ad2c3636e200882167de",
                   "type": "Advanced",
                   "expression": {
                     "Aggregation": {
@@ -437,7 +455,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "a3d7bc95a89ac6c07a08",
+                  "name": "48c4bb93073918484e07",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -452,37 +470,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "fd3948251cce598e4ed9",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "PurchasedFrom"
-                        }
-                      },
-                      "Property": "PurchasedFrom"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "80bd68ba448dede008a0",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Artist"
-                        }
-                      },
-                      "Property": "Artist"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "e568285001849a8c66e4",
+                  "name": "18118116e05ebc68105c",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -497,7 +485,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "7202ab5c6c76b9a063e9",
+                  "name": "1f6e2505701791d21093",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -507,6 +495,36 @@
                         }
                       },
                       "Property": "Region"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "05861289009365dcd909",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Artist"
+                        }
+                      },
+                      "Property": "Artist"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a11505e51bc14c5ee65c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "PurchasedFrom"
+                        }
+                      },
+                      "Property": "PurchasedFrom"
                     }
                   },
                   "howCreated": 0
@@ -536,24 +554,6 @@
                   }
                 }
               ]
-            }
-          },
-          "28183e500138a9301647": {
-            "singleVisual": {
-              "visualType": "textbox",
-              "objects": {}
-            }
-          },
-          "64ca27ce78384d954192": {
-            "singleVisual": {
-              "visualType": "textbox",
-              "objects": {}
-            }
-          },
-          "e98a159c52a750ace4a6": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
             }
           },
           "f0f0ba3913815c400e56": {

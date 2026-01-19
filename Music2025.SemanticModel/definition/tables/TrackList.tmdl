@@ -1,8 +1,11 @@
+/// Table of each unique track and track details
 table TrackList
 	lineageTag: 502901bc-3365-446f-8c7f-470a1e6ece21
 
+	/// pkTrackList
 	column pkTrackList
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: c10d3693-0575-4b77-892c-dc3048c733f6
 		summarizeBy: none
@@ -12,6 +15,7 @@ table TrackList
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Title
 	column Title
 		dataType: string
 		lineageTag: 1a95e08d-cce4-4435-8e45-ea020b1b2703
@@ -22,8 +26,10 @@ table TrackList
 
 		annotation SummarizationSetBy = Automatic
 
+	/// fkArtist
 	column fkArtist
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 57a2e3f0-4b2c-48c1-abf6-88dc7d3a03ef
 		summarizeBy: none
@@ -33,8 +39,10 @@ table TrackList
 
 		annotation SummarizationSetBy = Automatic
 
+	/// fkAlbum
 	column fkAlbum
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 3d30e647-35e8-44c0-b9ac-b22b3ef4efd4
 		summarizeBy: none
@@ -44,6 +52,7 @@ table TrackList
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Year
 	column Year
 		dataType: double
 		lineageTag: 42335b86-ead5-4e0f-9c6d-fca28663cdb7
@@ -56,8 +65,10 @@ table TrackList
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	/// fkGenre
 	column fkGenre
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: a08d97b6-6f7f-46a9-809d-fb1bd618f38a
 		summarizeBy: none
@@ -67,6 +78,7 @@ table TrackList
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Composer
 	column Composer
 		dataType: string
 		lineageTag: 954dbda7-26ce-43c2-ad41-4c36e6c56422
@@ -77,6 +89,7 @@ table TrackList
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Track - Artist
 	column 'Track - Artist'
 		dataType: string
 		lineageTag: 000035ef-8d0a-40af-825d-b7f1e90a2c7b
@@ -87,6 +100,7 @@ table TrackList
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Length_sec
 	column Length_sec
 		dataType: double
 		lineageTag: 594f2ba7-54b6-4d6b-8986-062e06a393aa
@@ -99,6 +113,7 @@ table TrackList
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	/// Filesize
 	column Filesize
 		dataType: string
 		lineageTag: 5e8bc460-c25a-4da7-b830-5236690f8794

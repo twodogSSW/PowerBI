@@ -1,18 +1,22 @@
-/// Only stuff used in Tab 2
+/// Measures used in Executive Page
 table _ExecutivePg
+	isHidden
 	lineageTag: d300fb61-d09e-4024-b31c-4dbc23236ad7
 
+	/// Album$_Prev
 	measure Album$_Prev = ```
 			
 			    --the previous amount based on time period
 			    pbi.ExecSumm_LowerSectionDolChangePrev(SUM(AlbumSales[SalesAmt]))
 			  
 			```
+		isHidden
 		displayFolder: AlbumSectionLower
 		lineageTag: 7955f0fc-360a-47b2-8ae8-c209af3e488a
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	/// Album%_Chg_LgBox
 	measure Album%_Chg_LgBox = ```
 			
 			    DIVIDE(
@@ -24,21 +28,25 @@ table _ExecutivePg
 			        0
 			    )
 			```
+		isHidden
 		displayFolder: AlbumSectionLower
 		lineageTag: eb28b361-0e29-49f6-be36-ab9b698c4496
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	/// Album$_Diff
 	measure Album$_Diff = ```
 			
 			   --change between this time and prev time period
 			   pbi.ExecSumm_LowerSectionDolChange(SUM(AlbumSales[SalesAmt]) )
 			```
+		isHidden
 		displayFolder: AlbumSectionLower
 		lineageTag: 0e5f4b9a-289f-44e5-a070-4ad1cd84b97f
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	/// Album$_PosOrNeg
 	measure Album$_PosOrNeg = ```
 			
 			    VAR PosOrNeg = 
@@ -48,6 +56,7 @@ table _ExecutivePg
 			           
 			```
 		formatString: 0
+		isHidden
 		displayFolder: AlbumSectionLower
 		lineageTag: f3ab0e9a-3784-47fa-b06f-7ba7df57eec7
 
@@ -56,6 +65,7 @@ table _ExecutivePg
 			    pbi.ExecSumm_LowerSectionDolChangePrev(SUM(TrackSales[SalesAmt]))
 			
 			```
+		isHidden
 		displayFolder: TrackSectionLower
 		lineageTag: 28a4b6ae-1f5f-41ab-8ccb-1b101bd05ba5
 
@@ -73,6 +83,7 @@ table _ExecutivePg
 			    )
 			```
 		formatString: 0
+		isHidden
 		displayFolder: TrackSectionLower
 		lineageTag: aff75473-9a5d-49ef-9d78-c9a29a208d2e
 
@@ -82,6 +93,7 @@ table _ExecutivePg
 			   pbi.ExecSumm_LowerSectionDolChange(SUM(TrackSales[SalesAmt]) 
 			)
 			```
+		isHidden
 		displayFolder: TrackSectionLower
 		lineageTag: 8eeba2b4-b687-4ab6-841e-1cf02ecf3167
 
@@ -96,9 +108,11 @@ table _ExecutivePg
 			
 			```
 		formatString: 0
+		isHidden
 		displayFolder: TrackSectionLower
 		lineageTag: ede8f021-cba5-44dc-ab7e-a7bd625b5975
 
+	/// Album%_Chg_LgBox_Narrative
 	measure Album%_Chg_LgBox_Narrative = ```
 			
 			    //Create the narrative used in the card visual
@@ -112,9 +126,11 @@ table _ExecutivePg
 			            "Album sales rose " & FORMAT(Change, "0%") & " vs same period last year."
 			        )
 			```
+		isHidden
 		displayFolder: AlbumSectionLower
 		lineageTag: 0e21e304-ba50-4830-9e47-76c6fd928968
 
+	/// Album$_Chg%
 	measure Album$_Chg% = ```
 			
 			    VAR PrevSales = 
@@ -136,6 +152,7 @@ table _ExecutivePg
 			    RETURN
 			        Arrow & FORMAT(ChangePct, "0.0%")
 			```
+		isHidden
 		displayFolder: AlbumSectionLower
 		lineageTag: c606d095-4aa4-4fe4-a2b1-43a3eae133ce
 
@@ -159,9 +176,11 @@ table _ExecutivePg
 			RETURN
 			    Arrow & FORMAT(ChangePct, "0.0%")
 			```
+		isHidden
 		displayFolder: TrackSectionLower
 		lineageTag: 89b73959-23f6-4fce-bbb1-9c26aace3853
 
+	/// Album$_%ChgColor
 	measure Album$_%ChgColor = ```
 			
 			    VAR PrevSales = 
@@ -178,9 +197,11 @@ table _ExecutivePg
 			
 			```
 		formatString: 0
+		isHidden
 		displayFolder: AlbumSectionLower
 		lineageTag: d07e0301-da50-4772-bc19-1b0f0e4c113e
 
+	/// Narrative
 	measure Album30d_Narrative = ```
 			
 			    VAR Change = 
@@ -189,9 +210,11 @@ table _ExecutivePg
 			        pbi.ExecSumm_Momentum_Narrative(Change,30)
 			
 			```
+		isHidden
 		displayFolder: _Momentum
 		lineageTag: 8b8a8f49-d85f-412e-8a71-002a0ace6342
 
+	/// Narrative
 	measure Album60d_Narrative = ```
 			
 			    VAR Change = 
@@ -199,9 +222,11 @@ table _ExecutivePg
 			    RETURN
 			        pbi.ExecSumm_Momentum_Narrative(Change,60)
 			```
+		isHidden
 		displayFolder: _Momentum
 		lineageTag: b78da05c-f55b-48d2-a665-1c273878a2b7
 
+	/// Narrative
 	measure Tracks30d_Narrative = ```
 			
 			     VAR Change = 
@@ -210,9 +235,11 @@ table _ExecutivePg
 			        pbi.ExecSumm_Momentum_Narrative(Change,30)
 			
 			```
+		isHidden
 		displayFolder: _Momentum
 		lineageTag: d27c2138-baea-42b7-8454-4d01970d313b
 
+	/// Narrative
 	measure Tracks60d_Narrative = ```
 			
 			    VAR Change = 
@@ -221,9 +248,11 @@ table _ExecutivePg
 			        pbi.ExecSumm_Momentum_Narrative(Change,60)
 			
 			```
+		isHidden
 		displayFolder: _Momentum
 		lineageTag: 8bf661ec-66ad-4002-880f-42b6fa76b6c9
 
+	/// ColorCode
 	measure Album30d_ColorCode = ```
 			
 			     VAR ChangePct =
@@ -233,9 +262,11 @@ table _ExecutivePg
 			
 			```
 		formatString: 0
+		isHidden
 		displayFolder: _Momentum
 		lineageTag: 625aa5e4-978e-4853-bc10-803f15bfe68f
 
+	/// ColorCode
 	measure Tracks30d_ColorCode = ```
 			
 			     VAR ChangePct =   
@@ -245,9 +276,11 @@ table _ExecutivePg
 			
 			```
 		formatString: 0
+		isHidden
 		displayFolder: _Momentum
 		lineageTag: d956eb6a-6707-4fde-a25d-305345b10908
 
+	/// ColorCode
 	measure Tracks60d_ColorCode = ```
 			
 			     VAR 
@@ -257,9 +290,11 @@ table _ExecutivePg
 			
 			```
 		formatString: 0
+		isHidden
 		displayFolder: _Momentum
 		lineageTag: f9d019bf-94f2-4974-ba81-bc704b02174f
 
+	/// ColorCode
 	measure Album60d_ColorCode = ```
 			
 			    VAR ChangePct =
@@ -268,6 +303,7 @@ table _ExecutivePg
 			         pbi.All_Sales0or1(ChangePct)
 			```
 		formatString: 0
+		isHidden
 		displayFolder: _Momentum
 		lineageTag: 269c216e-9975-460d-8ee6-efc13e357e76
 
@@ -283,6 +319,7 @@ table _ExecutivePg
 			            "Album sales rose " & FORMAT(Change, "0%") & " vs same period last year."
 			        )
 			```
+		isHidden
 		displayFolder: TrackSectionLower
 		lineageTag: 42a0bf78-4fdf-46f8-a29e-fb269391770d
 
@@ -300,9 +337,11 @@ table _ExecutivePg
 			        
 			```
 		formatString: 0
+		isHidden
 		displayFolder: TrackSectionLower
 		lineageTag: a5768e34-6a08-4ad1-a3b4-d345fe52c6e1
 
+	/// Narrative
 	measure Album90d_Narrative = ```
 			
 			    VAR Change = 
@@ -310,9 +349,11 @@ table _ExecutivePg
 			    RETURN
 			        pbi.ExecSumm_Momentum_Narrative(Change,90)
 			```
+		isHidden
 		displayFolder: _Momentum
 		lineageTag: e37001b1-c789-435f-ac6d-c187dcf0ccd3
 
+	/// ColorCode
 	measure Album90d_ColorCode = ```
 			
 			    VAR ChangePct =
@@ -321,9 +362,11 @@ table _ExecutivePg
 			         pbi.All_Sales0or1(ChangePct)
 			```
 		formatString: 0
+		isHidden
 		displayFolder: _Momentum
 		lineageTag: 0f9f4060-af10-4fbb-951b-e6e0562afb6b
 
+	/// ColorCode
 	measure Tracks90d_ColorCode = ```
 			
 			     VAR 
@@ -333,9 +376,11 @@ table _ExecutivePg
 			
 			```
 		formatString: 0
+		isHidden
 		displayFolder: _Momentum
 		lineageTag: e4fc2bd2-138a-4e09-a56a-00e5f6482ae5
 
+	/// Narrative
 	measure Tracks90d_Narrative = ```
 			
 			    VAR Change = 
@@ -344,6 +389,7 @@ table _ExecutivePg
 			        pbi.ExecSumm_Momentum_Narrative(Change,90)
 			
 			```
+		isHidden
 		displayFolder: _Momentum
 		lineageTag: 37543980-f49a-4211-8e43-a65d814ee234
 

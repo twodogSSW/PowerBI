@@ -1,8 +1,11 @@
+/// Table used to store Region and Continent Name
 table Region
 	lineageTag: 1026b12f-7b1e-45e1-9fdb-39caa750682b
 
+	/// pkRegion
 	column pkRegion
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: fb779fc9-4839-4024-8011-446148b7426a
 		summarizeBy: none
@@ -12,6 +15,7 @@ table Region
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Region
 	column Region
 		dataType: string
 		lineageTag: f0d1028b-90b7-4d57-83ef-508238d6c462
@@ -22,6 +26,7 @@ table Region
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Continent
 	column Continent
 		dataType: string
 		lineageTag: b7a098b6-e775-43dc-8bd3-5b1f729f7809

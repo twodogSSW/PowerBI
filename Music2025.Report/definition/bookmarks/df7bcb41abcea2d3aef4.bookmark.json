@@ -3,7 +3,9 @@
   "displayName": "Category Reset (Data)",
   "name": "df7bcb41abcea2d3aef4",
   "options": {
-    "targetVisualNames": []
+    "targetVisualNames": [
+      "dd2d70a20d798e81e356"
+    ]
   },
   "explorationState": {
     "version": "1.11",
@@ -43,22 +45,7 @@
               "howCreated": 1
             },
             {
-              "name": "bc97b2b3802630b85c8e",
-              "type": "Categorical",
-              "expression": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "RecordLabel"
-                    }
-                  },
-                  "Property": "RecordLabel"
-                }
-              },
-              "howCreated": 5
-            },
-            {
-              "name": "e6d65b0fae090e78b5c0",
+              "name": "f161927008c9c8290b51",
               "type": "Categorical",
               "expression": {
                 "Column": {
@@ -70,25 +57,25 @@
                   "Property": "Genre"
                 }
               },
-              "howCreated": 5
+              "howCreated": 1
             },
             {
-              "name": "d0a8b635e1c64db07775",
+              "name": "e71aa8b1d09023500031",
               "type": "Categorical",
               "expression": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "PurchasedFrom"
+                      "Entity": "Artist"
                     }
                   },
-                  "Property": "PurchasedFrom"
+                  "Property": "Artist"
                 }
               },
-              "howCreated": 5
+              "howCreated": 1
             },
             {
-              "name": "ecdd9b73376285b0837d",
+              "name": "c478e0233e02b335c045",
               "type": "Categorical",
               "expression": {
                 "Column": {
@@ -100,7 +87,37 @@
                   "Property": "Album"
                 }
               },
-              "howCreated": 5
+              "howCreated": 1
+            },
+            {
+              "name": "f9a533efbc7d01b0e4c5",
+              "type": "Categorical",
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RecordLabel"
+                    }
+                  },
+                  "Property": "RecordLabel"
+                }
+              },
+              "howCreated": 1
+            },
+            {
+              "name": "40285da9618260d8be06",
+              "type": "Categorical",
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PurchasedFrom"
+                    }
+                  },
+                  "Property": "PurchasedFrom"
+                }
+              },
+              "howCreated": 1
             }
           ]
         },
@@ -120,289 +137,25 @@
               }
             }
           },
-          "333a1707ea9a41664d16": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "db1ea0ad4b9dcb041960",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Calendar"
-                        }
-                      },
-                      "Property": "Start of Week"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "fb743612ae9d904749b0",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Calendar"
-                        }
-                      },
-                      "Property": "Start of Month"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "9534d7277e9edd27e91c",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Calendar"
-                        }
-                      },
-                      "Property": "Start of Quarter"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "555e7dd25c175008005c",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Calendar"
-                        }
-                      },
-                      "Property": "Start of Year"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "f267739b36ee2d316847",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "TrackList"
-                        }
-                      },
-                      "Property": "Title"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "cbd6e3f625aaeca9903a",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Categories"
-                        }
-                      },
-                      "Property": "Sale $"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "b13fa05cb7908291811d",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Categories"
-                        }
-                      },
-                      "Property": "% MoM"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "41058f27026630020e2a",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Categories"
-                        }
-                      },
-                      "Property": "Show Icon"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "pivotTable",
-              "objects": {},
-              "activeProjections": {
-                "Columns": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Calendar"
-                        }
-                      },
-                      "Property": "Start of Week"
-                    }
-                  }
-                ],
-                "Rows": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "TrackList"
-                        }
-                      },
-                      "Property": "Title"
-                    }
-                  }
-                ]
-              },
-              "projections": {
-                "Columns": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Calendar"
-                        }
-                      },
-                      "Property": "Start of Week"
-                    }
-                  },
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Calendar"
-                        }
-                      },
-                      "Property": "Start of Month"
-                    }
-                  },
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Calendar"
-                        }
-                      },
-                      "Property": "Start of Quarter"
-                    }
-                  },
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Calendar"
-                        }
-                      },
-                      "Property": "Start of Year"
-                    }
-                  }
-                ],
-                "Rows": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "TrackList"
-                        }
-                      },
-                      "Property": "Title"
-                    }
-                  }
-                ],
-                "Values": [
-                  {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Categories"
-                        }
-                      },
-                      "Property": "Sale $"
-                    }
-                  },
-                  {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Categories"
-                        }
-                      },
-                      "Property": "% MoM"
-                    }
-                  },
-                  {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Categories"
-                        }
-                      },
-                      "Property": "Show Icon"
-                    }
-                  }
-                ]
-              },
-              "parameters": {
-                "Columns": [
-                  {
-                    "expr": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "_PeriodSelector"
-                          }
-                        },
-                        "Property": "DynamicDateGrain"
-                      }
-                    },
-                    "index": 0,
-                    "length": 4
-                  }
-                ],
-                "Rows": [
-                  {
-                    "expr": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "_Categories"
-                          }
-                        },
-                        "Property": "CategorySelector"
-                      }
-                    },
-                    "index": 0,
-                    "length": 1
-                  }
-                ]
-              },
-              "display": {
-                "mode": "hidden"
-              }
-            }
-          },
           "a88b69b85a3346e65ac0": {
             "filters": {
+              "byName": {
+                "1505293ae162c8570d08": {
+                  "name": "1505293ae162c8570d08",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Genre"
+                        }
+                      },
+                      "Property": "Genre"
+                    }
+                  },
+                  "howCreated": 1
+                }
+              },
               "byExpr": [
                 {
                   "name": "69a4a4ae219809c70802",
@@ -623,17 +376,11 @@
               }
             }
           },
-          "cd626da082807110dd40": {
-            "singleVisual": {
-              "visualType": "shape",
-              "objects": {}
-            }
-          },
           "3908d04b2ade7cc93dc8": {
             "filters": {
               "byExpr": [
                 {
-                  "name": "2f69859a79b083758ccc",
+                  "name": "adc9e3643e2d7d0c6000",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -658,7 +405,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "4026044d376d7c800968",
+                  "name": "5ab6b752a01d0ba35575",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -698,7 +445,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "1b594c9c8290105c54e8",
+                  "name": "366ac802631ab235d2c1",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -723,7 +470,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "1639b62a5cc61e9a4010",
+                  "name": "73b230f0cbb6587e1430",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -738,7 +485,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "f3daa36d50688e123977",
+                  "name": "ebb7624f009c09164761",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -753,7 +500,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "c751503a07491a3e5be0",
+                  "name": "9cfe39c139003aece2de",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -793,7 +540,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "cbfd8de150e80967518b",
+                  "name": "63000a26501e2300be18",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -818,7 +565,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "d533e5ee0b1786113309",
+                  "name": "c241f0e0b080dc7e6d47",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -879,7 +626,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "edf67ea9eb281d9cc409",
+                  "name": "c4cbc910cb09ce7e7bbc",
                   "type": "Advanced",
                   "expression": {
                     "Column": {
@@ -989,7 +736,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "f6616530ba781a5416de",
+                  "name": "18d34603eb14086d92de",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -1133,7 +880,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "6a0c4bd04107b24e5cc5",
+                  "name": "9e5bad81ca1050892a52",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -1193,8 +940,8 @@
                                                 "TimeUnit": 0
                                               }
                                             },
-                                            "Amount": -1,
-                                            "TimeUnit": 3
+                                            "Amount": -6,
+                                            "TimeUnit": 2
                                           }
                                         },
                                         "TimeUnit": 0
@@ -1230,14 +977,14 @@
                         "relativePeriod": {
                           "expr": {
                             "Literal": {
-                              "Value": "'Years'"
+                              "Value": "'Months'"
                             }
                           }
                         },
                         "relativeDuration": {
                           "expr": {
                             "Literal": {
-                              "Value": "1D"
+                              "Value": "6D"
                             }
                           }
                         },
@@ -1364,7 +1111,7 @@
                   "howCreated": 1
                 },
                 {
-                  "name": "1ce10f2ee92dd3087083",
+                  "name": "67726f447b8492890c4b",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -1379,7 +1126,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "3eb99206d9b71889824b",
+                  "name": "1788858fd79512b24e12",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -1394,7 +1141,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "f6eaaa2ea95097270203",
+                  "name": "f90b304bd86c6a333828",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -1409,7 +1156,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "c1e51c109b10e1603e0b",
+                  "name": "640a84ef19b132030de5",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -1539,18 +1286,6 @@
                     }
                   }
                 ],
-                "Rows": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "TrackList"
-                        }
-                      },
-                      "Property": "Track - Artist"
-                    }
-                  }
-                ],
                 "Y": [
                   {
                     "Aggregation": {
@@ -1565,6 +1300,18 @@
                         }
                       },
                       "Function": 0
+                    }
+                  }
+                ],
+                "Rows": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "TrackList"
+                        }
+                      },
+                      "Property": "Track - Artist"
                     }
                   }
                 ]
@@ -1618,7 +1365,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "02d2fa95a07a706c94b7",
+                  "name": "1ff8c4a33001cd67eada",
                   "type": "Advanced",
                   "expression": {
                     "Column": {

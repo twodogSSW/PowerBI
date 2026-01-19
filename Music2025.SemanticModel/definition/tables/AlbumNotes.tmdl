@@ -1,8 +1,11 @@
+/// Table used to store album notes (many notes per single album)
 table AlbumNotes
 	lineageTag: 787fb0e1-dfc6-4a0d-92fb-d8072b85a4a4
 
+	/// Primary key
 	column pkAlbumNotes
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 873de091-0d76-4ff5-b1f9-211284b99d1e
 		summarizeBy: none
@@ -14,6 +17,7 @@ table AlbumNotes
 
 	column fkAlbum
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: e4f856e0-2a8c-4a7f-b2f0-1c6272e4fffe
 		summarizeBy: none

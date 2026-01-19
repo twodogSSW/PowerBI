@@ -4,10 +4,10 @@
   "position": {
     "x": 0,
     "y": 0,
-    "z": 1000,
-    "height": 204.35013262599469,
-    "width": 213.89920424403181,
-    "tabOrder": 2000
+    "z": 0,
+    "height": 204.48694214860427,
+    "width": 212.84741396911949,
+    "tabOrder": 0
   },
   "visual": {
     "visualType": "slicer",
@@ -85,7 +85,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'''PurchasedFrom''[Purchased From]'"
+                                "Value": "'''RecordLabel''[RecordLabel]'"
                               }
                             }
                           ]
@@ -113,7 +113,7 @@
                                 "0": [
                                   {
                                     "Literal": {
-                                      "Value": "'''PurchasedFrom''[Purchased From]'"
+                                      "Value": "'''RecordLabel''[RecordLabel]'"
                                     }
                                   }
                                 ]
@@ -137,7 +137,7 @@
                         },
                         "valueMap": [
                           {
-                            "0": "Retail Sales - Albums"
+                            "0": "Record Label"
                           }
                         ]
                       }

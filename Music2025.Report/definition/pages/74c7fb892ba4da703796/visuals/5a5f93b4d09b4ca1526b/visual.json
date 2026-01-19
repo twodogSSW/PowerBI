@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "5a5f93b4d09b4ca1526b",
   "position": {
-    "x": 664.68513853904278,
-    "y": 407.15365239294709,
+    "x": 665.02793296089385,
+    "y": 406.57621707901041,
     "z": 5000,
-    "height": 276.57430730478586,
-    "width": 610.2770780856423,
-    "tabOrder": 6000
+    "height": 276.83958499600959,
+    "width": 609.86432561851552,
+    "tabOrder": 5000
   },
   "visualGroup": {
     "displayName": "By Album",

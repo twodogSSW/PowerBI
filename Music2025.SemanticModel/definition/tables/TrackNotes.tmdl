@@ -1,8 +1,11 @@
+/// Table used to store Track notes (many notes per single Track)
 table TrackNotes
 	lineageTag: 0058b5a2-0636-4e1f-ba5a-decece567d33
 
+	/// pkTrackNotes
 	column pkTrackNotes
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 355e9e38-a5c0-4de6-9ab2-264beb6f028f
 		summarizeBy: none
@@ -12,8 +15,10 @@ table TrackNotes
 
 		annotation SummarizationSetBy = User
 
+	/// fkTrackList
 	column fkTrackList
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 352067d1-ad2d-43c1-92f9-8f0520aa5204
 		summarizeBy: none
@@ -23,6 +28,7 @@ table TrackNotes
 
 		annotation SummarizationSetBy = Automatic
 
+	/// TrackNotesDate
 	column TrackNotesDate
 		dataType: dateTime
 		formatString: General Date
@@ -34,6 +40,7 @@ table TrackNotes
 
 		annotation SummarizationSetBy = Automatic
 
+	/// TrackNotes
 	column TrackNotes
 		dataType: string
 		lineageTag: a9ad711c-9e3a-4f69-b2e1-3028d20a51bc

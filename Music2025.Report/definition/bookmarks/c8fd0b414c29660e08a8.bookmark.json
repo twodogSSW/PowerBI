@@ -3,7 +3,9 @@
   "displayName": "Top Stuff Reset",
   "name": "c8fd0b414c29660e08a8",
   "options": {
-    "targetVisualNames": []
+    "targetVisualNames": [
+      "fe004ad88c93b01170e0"
+    ]
   },
   "explorationState": {
     "version": "1.11",
@@ -15,7 +17,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "e6c973ec0a7450b5269e",
+                  "name": "9ffafd18308e0509de0c",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -36,356 +38,11 @@
               "objects": {}
             }
           },
-          "46eaaf563bb30c12566b": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "c89f9ff204798aeada9c",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Calendar"
-                        }
-                      },
-                      "Property": "LastRefreshDate"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "card",
-              "objects": {}
-            }
-          },
-          "c9b95330a1c1282300a5": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "fd0c7eb20ccd53d00520",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Calendar"
-                        }
-                      },
-                      "Property": "Date_Footer"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "card",
-              "objects": {}
-            }
-          },
-          "4919710b2cb363b1542d": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "e3a9f093053ca478d07e",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_SummaryPg"
-                        }
-                      },
-                      "Property": "_RecLabelCombo"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "card",
-              "objects": {}
-            }
-          },
-          "62b8f646284d613b5771": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "66dbfcdf27b2ac6d67ed": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "74cbc28044ed55e0eda0": {
-            "singleVisual": {
-              "visualType": "textbox",
-              "objects": {}
-            }
-          },
-          "c1ed42d86e889036a50c": {
-            "singleVisual": {
-              "visualType": "textbox",
-              "objects": {}
-            }
-          },
-          "83a23f423f1cc66821d0": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "3fea8e9f749170a7ba4e",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_SummaryPg"
-                        }
-                      },
-                      "Property": "_RetailTrackCombo"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "card",
-              "objects": {}
-            }
-          },
-          "9dc9397daec702398bf8": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "ac7c54968306760420e8",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_SummaryPg"
-                        }
-                      },
-                      "Property": "_RetailAlbumCombo"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "card",
-              "objects": {}
-            }
-          },
-          "a6e285fa546f49926fbb": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "5b0f552c942c072566ad",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_SummaryPg"
-                        }
-                      },
-                      "Property": "_AlbumCombo"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "card",
-              "objects": {}
-            }
-          },
-          "bf9a21be3667e201156b": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "6c278f8db9a7d740ee9c",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_SummaryPg"
-                        }
-                      },
-                      "Property": "_TrackCombo"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "card",
-              "objects": {}
-            }
-          },
-          "c677a9516bccaa64cdb0": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "941adad4b320e144d03b",
-                  "type": "Advanced",
-                  "expression": {
-                    "Aggregation": {
-                      "Expression": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "TrackSales"
-                            }
-                          },
-                          "Property": "Bitcoin"
-                        }
-                      },
-                      "Function": 0
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "87653250e03b96c77384",
-                  "type": "Advanced",
-                  "expression": {
-                    "Aggregation": {
-                      "Expression": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "TrackSales"
-                            }
-                          },
-                          "Property": "CC"
-                        }
-                      },
-                      "Function": 0
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "0b734fdc80b6e101300e",
-                  "type": "Advanced",
-                  "expression": {
-                    "Aggregation": {
-                      "Expression": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "TrackSales"
-                            }
-                          },
-                          "Property": "Cash"
-                        }
-                      },
-                      "Function": 0
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "treemap",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Aggregation": {
-                      "Expression": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "TrackSales"
-                            }
-                          },
-                          "Property": "Bitcoin"
-                        }
-                      },
-                      "Function": 0
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "ca1ef6f1de6a6507b3cb": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "44ce0b60968c0059521b",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_SummaryPg"
-                        }
-                      },
-                      "Property": "_ArtistCombo"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "card",
-              "objects": {}
-            }
-          },
-          "d62553e5261f6121f6da": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "6c0a4945b88149355ae1",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_SummaryPg"
-                        }
-                      },
-                      "Property": "_RegionCombo"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "card",
-              "objects": {}
-            }
-          },
-          "7e27b38c07ee57488d18": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
           "342edb4fb10a15b4a75a": {
             "filters": {
               "byExpr": [
                 {
-                  "name": "0e664afa47a09029e4e4",
+                  "name": "e565b6d55a64750a1b48",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -525,6 +182,74 @@
               ]
             }
           },
+          "46eaaf563bb30c12566b": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "43ee208033076db1c8e7",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendar"
+                        }
+                      },
+                      "Property": "LastRefreshDate"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "4919710b2cb363b1542d": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "d25c112687d9dc9ca707",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_SummaryPg"
+                        }
+                      },
+                      "Property": "_RecLabelCombo"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "62b8f646284d613b5771": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "66dbfcdf27b2ac6d67ed": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "74cbc28044ed55e0eda0": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
           "7c4b611081d3e832a271": {
             "filters": {
               "byExpr": [
@@ -578,7 +303,7 @@
                   "howCreated": 1
                 },
                 {
-                  "name": "cc687fe34be0ab4242be",
+                  "name": "2c785d5048034ad1969e",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -593,7 +318,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "fbddb627665357edd668",
+                  "name": "3c97e197ed81b08a224e",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -608,7 +333,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "f47fac5960e163080e7c",
+                  "name": "9993ff17e2e6d9e284a0",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -728,9 +453,121 @@
               }
             }
           },
+          "7e27b38c07ee57488d18": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "83a23f423f1cc66821d0": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "6ffdf16ce224c03199e0",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_SummaryPg"
+                        }
+                      },
+                      "Property": "_RetailTrackCombo"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "9dc9397daec702398bf8": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "16961d413c01aee39e5b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_SummaryPg"
+                        }
+                      },
+                      "Property": "_RetailAlbumCombo"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "a6e285fa546f49926fbb": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e55621be105109044769",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_SummaryPg"
+                        }
+                      },
+                      "Property": "_AlbumCombo"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
           "be345c12d81a4432a268": {
             "singleVisual": {
               "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "bf9a21be3667e201156b": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "4781174ec56eea190e00",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_SummaryPg"
+                        }
+                      },
+                      "Property": "_TrackCombo"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "c1ed42d86e889036a50c": {
+            "singleVisual": {
+              "visualType": "textbox",
               "objects": {}
             }
           },
@@ -740,11 +577,266 @@
               "objects": {}
             }
           },
+          "c677a9516bccaa64cdb0": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "a2eb0a8f78400b006612",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "TrackSales"
+                            }
+                          },
+                          "Property": "Bitcoin"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "8c2c517e97e7391186ab",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "TrackSales"
+                            }
+                          },
+                          "Property": "CC"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "61fd9ee2d3b6b3400168",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "TrackSales"
+                            }
+                          },
+                          "Property": "Cash"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "treemap",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "TrackSales"
+                            }
+                          },
+                          "Property": "Bitcoin"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "c9b95330a1c1282300a5": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "47bb79d44d950b08950a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendar"
+                        }
+                      },
+                      "Property": "Date_Footer"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "ca1ef6f1de6a6507b3cb": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e2a5c376b8d92d4db81d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_SummaryPg"
+                        }
+                      },
+                      "Property": "_ArtistCombo"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "d62553e5261f6121f6da": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "4455ad443b5d03a5c736",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_SummaryPg"
+                        }
+                      },
+                      "Property": "_RegionCombo"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "df97c724da2e820ae7cd": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "206e6010edc914d0c6ac",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "AlbumSales"
+                            }
+                          },
+                          "Property": "Bitcoin"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "2d21c45c2c404146e20d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "AlbumSales"
+                            }
+                          },
+                          "Property": "CC"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f0538c7aa7478d17db22",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "TrackSales"
+                            }
+                          },
+                          "Property": "Cash"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "treemap",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "AlbumSales"
+                            }
+                          },
+                          "Property": "Bitcoin"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  }
+                }
+              ]
+            }
+          },
           "fe004ad88c93b01170e0": {
             "filters": {
               "byExpr": [
                 {
-                  "name": "16d57e7304da8ab50c04",
+                  "name": "efffa0aa3b53cb6ca9a8",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -804,7 +896,7 @@
                                                 "TimeUnit": 0
                                               }
                                             },
-                                            "Amount": -3,
+                                            "Amount": -6,
                                             "TimeUnit": 2
                                           }
                                         },
@@ -848,7 +940,7 @@
                         "relativeDuration": {
                           "expr": {
                             "Literal": {
-                              "Value": "3D"
+                              "Value": "6D"
                             }
                           }
                         },
@@ -919,96 +1011,6 @@
                   }
                 ]
               }
-            }
-          },
-          "df97c724da2e820ae7cd": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "a76022b16850231c4a0b",
-                  "type": "Advanced",
-                  "expression": {
-                    "Aggregation": {
-                      "Expression": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "AlbumSales"
-                            }
-                          },
-                          "Property": "Bitcoin"
-                        }
-                      },
-                      "Function": 0
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "7d31edf22ade96733814",
-                  "type": "Advanced",
-                  "expression": {
-                    "Aggregation": {
-                      "Expression": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "AlbumSales"
-                            }
-                          },
-                          "Property": "CC"
-                        }
-                      },
-                      "Function": 0
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "d58932d0d57d30e10038",
-                  "type": "Advanced",
-                  "expression": {
-                    "Aggregation": {
-                      "Expression": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "TrackSales"
-                            }
-                          },
-                          "Property": "Cash"
-                        }
-                      },
-                      "Function": 0
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "treemap",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Aggregation": {
-                      "Expression": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "AlbumSales"
-                            }
-                          },
-                          "Property": "Bitcoin"
-                        }
-                      },
-                      "Function": 0
-                    }
-                  }
-                }
-              ]
             }
           }
         },

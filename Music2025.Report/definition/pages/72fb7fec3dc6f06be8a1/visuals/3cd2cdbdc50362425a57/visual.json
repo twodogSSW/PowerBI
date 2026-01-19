@@ -5,8 +5,8 @@
     "x": 0,
     "y": 0,
     "z": 1000,
-    "height": 535.98694757749877,
-    "width": 630.1405164206684,
+    "height": 542.44213886671992,
+    "width": 635.40303272146843,
     "tabOrder": 1000
   },
   "visual": {
@@ -329,6 +329,25 @@
               "expr": {
                 "Literal": {
                   "Value": "1D"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.2
+                    }
+                  }
                 }
               }
             }

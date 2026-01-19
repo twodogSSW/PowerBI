@@ -1,6 +1,8 @@
+/// Table used to store Demographics of each Track (popularity among age groups)
 table Demographics
 	lineageTag: 58a39f59-d175-4288-aab3-a5ca8fdc0867
 
+	/// DemoCount_Selected
 	measure DemoCount_Selected = ```
 			
 			
@@ -16,6 +18,7 @@ table Demographics
 
 		changedProperty = IsHidden
 
+	/// DemoCountM
 	measure DemoCountM = ```
 			
 			    SUM(Demographics[DemoCount])
@@ -27,6 +30,7 @@ table Demographics
 
 		changedProperty = IsHidden
 
+	/// DemoCount_Tornado
 	measure DemoCount_Tornado =
 			
 			VAR Gender = SELECTEDVALUE(Demographics[Gender])
@@ -38,7 +42,8 @@ table Demographics
 
 		changedProperty = IsHidden
 
-	measure DynamicDemoCount =
+	/// DynamicDemoCount
+	measure DynamicDemo_Count =
 			
 			VAR SelCount = COUNTROWS( VALUES( 'TrackList'[Track - Artist] ) )
 			VAR ThisValue = Demographics[DemoCount_Tornado]
@@ -68,8 +73,10 @@ table Demographics
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	/// pkDemo
 	column pkDemo
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 6e00348b-0529-40b6-a24f-12fd87c86c48
 		summarizeBy: none
@@ -79,6 +86,7 @@ table Demographics
 
 		annotation SummarizationSetBy = User
 
+	/// fkTrackList
 	column fkTrackList
 		dataType: int64
 		formatString: 0
@@ -90,6 +98,7 @@ table Demographics
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Demographic
 	column Demographic
 		dataType: string
 		lineageTag: 16e19e4d-3104-4938-befb-8ce7b4bfafb0
@@ -100,6 +109,7 @@ table Demographics
 
 		annotation SummarizationSetBy = Automatic
 
+	/// DemoCount
 	column DemoCount
 		dataType: int64
 		formatString: 0
@@ -111,6 +121,7 @@ table Demographics
 
 		annotation SummarizationSetBy = User
 
+	/// Gender
 	column Gender =
 			
 			IF(
@@ -125,6 +136,7 @@ table Demographics
 
 		annotation SummarizationSetBy = Automatic
 
+	/// AgeGroup
 	column AgeGroup = ```
 			
 			VAR demo = Demographics[Demographic]
@@ -144,6 +156,7 @@ table Demographics
 
 		annotation SummarizationSetBy = Automatic
 
+	/// DemoCount_Tornado_Column
 	column DemoCount_Tornado_Column = ```
 			
 			IF(
@@ -161,6 +174,7 @@ table Demographics
 
 		annotation SummarizationSetBy = User
 
+	/// DemoLabel
 	column DemoLabel = ```
 			
 			VAR demo = Demographics[Demographic]
@@ -201,6 +215,7 @@ table Demographics
 
 		annotation SummarizationSetBy = Automatic
 
+	/// SortOrder
 	column SortOrder =
 			
 			SWITCH(
@@ -225,21 +240,12 @@ table Demographics
 
 		annotation SummarizationSetBy = User
 
-	column 'DemoCount - Copy'
-		dataType: string
-		lineageTag: 66290c8b-2e51-43bd-8aab-a6af72481927
-		summarizeBy: none
-		sourceColumn: DemoCount - Copy
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Demographic - Slicer'
+	/// Demographic - Slicer
+	column Demographic_Slicer
 		dataType: string
 		lineageTag: 63da9ac1-9188-4f36-b2e5-1182bb810c9f
 		summarizeBy: none
-		sourceColumn: Demographic - Slicer
+		sourceColumn: Demographic_Slicer
 
 		changedProperty = IsHidden
 
@@ -265,9 +271,11 @@ table Demographics
 				    #"Replaced Value5" = Table.ReplaceValue(#"Replaced Value4","Males3454","Men 34-54",Replacer.ReplaceText,{"Demographic - Slicer"}),
 				    #"Replaced Value6" = Table.ReplaceValue(#"Replaced Value5","Females1834","Women 18-34",Replacer.ReplaceText,{"Demographic - Slicer"}),
 				    #"Replaced Value7" = Table.ReplaceValue(#"Replaced Value6","Females18","Women 18",Replacer.ReplaceText,{"Demographic - Slicer"}),
-				    #"Replaced Value8" = Table.ReplaceValue(#"Replaced Value7","Males18","Men 18",Replacer.ReplaceText,{"Demographic - Slicer"})
+				    #"Replaced Value8" = Table.ReplaceValue(#"Replaced Value7","Males18","Men 18",Replacer.ReplaceText,{"Demographic - Slicer"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Replaced Value8",{"DemoCount - Copy"}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Removed Columns",{{"Demographic - Slicer", "Demographic_Slicer"}})
 				in
-				    #"Replaced Value8"
+				    #"Renamed Columns2"
 
 	changedProperty = IsHidden
 

@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "7c4b611081d3e832a271",
   "position": {
-    "x": 572.473180241891,
-    "y": 65.591392485509928,
-    "z": 2500,
-    "height": 316.4724409448819,
-    "width": 563.40157480314963,
-    "tabOrder": 0
+    "x": 569.65820144963891,
+    "y": 65.635304994779816,
+    "z": 1000,
+    "height": 316.68431476658378,
+    "width": 560.63120312578621,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "tableEx",
@@ -20,15 +20,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "PurchasedFrom"
+                      "Entity": "RecordLabel"
                     }
                   },
-                  "Property": "Purchased From"
+                  "Property": "RecordLabel"
                 }
               },
-              "queryRef": "PurchasedFrom.Purchased From",
-              "nativeQueryRef": "Retail Sales - Albums",
-              "displayName": "Retail Sales - Albums"
+              "queryRef": "RecordLabel.RecordLabel",
+              "nativeQueryRef": "Record Label",
+              "displayName": "Record Label"
             },
             {
               "field": {

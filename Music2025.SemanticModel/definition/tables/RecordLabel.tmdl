@@ -1,8 +1,11 @@
+/// Table used to store name of the record label where each track is connected to
 table RecordLabel
 	lineageTag: 9baacb9f-5f7a-443a-be4b-b77d4351f7c5
 
+	/// pkRecordLabel
 	column pkRecordLabel
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: e35ec2d3-2433-4a58-82dc-8760d1da1ae5
 		summarizeBy: none
@@ -12,6 +15,7 @@ table RecordLabel
 
 		annotation SummarizationSetBy = Automatic
 
+	/// RecordLabel
 	column RecordLabel
 		dataType: string
 		lineageTag: 1ca87e2d-bf5d-48ce-adde-3272b173ea09
