@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "8ebc00ea805a4b33d557",
   "position": {
     "x": 13.20812807881773,
@@ -56,7 +56,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "So in late August as I became able to return to what I like to do, I built a music database with SQL Server 2022, and used the data to power the PowerBI Report."
+                    "value": "So in late August 2024 as I became able to return to what I like to do, I built a music database with SQL Server 2022, and used the data to power the PowerBI Report."
                   }
                 ]
               },
@@ -84,14 +84,14 @@
               {
                 "textRuns": [
                   {
-                    "value": "23,5K of music tracks, including Tracks and their detail which includes album, artists, genres and the record labels"
+                    "value": "Over 23,5K of music tracks, including Tracks and their detail which includes album, artists, genres and the record labels,"
                   }
                 ]
               },
               {
                 "textRuns": [
                   {
-                    "value": "SQL Code to create the tables and connect them to PBI."
+                    "value": "SQL Code to create the tables and connect them to PBI, and update them monthly."
                   }
                 ]
               },

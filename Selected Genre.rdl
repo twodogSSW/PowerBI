@@ -11,7 +11,7 @@
       <am:Name>PBIRB</am:Name>
       <am:Version>15.7.1815.334</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-10-27T15:15:49.3582130Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2026-02-20T13:17:22.7347147Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
@@ -27,7 +27,7 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DS_ArtistSales">
+    <DataSet Name="DS_GenreSales">
       <Query>
         <DataSourceName>DSMusic</DataSourceName>
         <QueryParameters>
@@ -44,25 +44,48 @@
           <QueryParameter Name="@EndDate">
             <Value>=Parameters!EndDate.Value</Value>
           </QueryParameter>
+          <QueryParameter Name="@pArtist">
+            <Value>=Parameters!pArtist.Value</Value>
+          </QueryParameter>
         </QueryParameters>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
-        <CommandText>SELECT
+        <CommandText>WITH Months AS (
+    SELECT DATEFROMPARTS(YEAR(@StartDate), MONTH(@StartDate), 1) AS MonthStart
+    UNION ALL
+    SELECT DATEADD(MONTH, 1, MonthStart)
+    FROM Months
+    WHERE MonthStart &lt; DATEFROMPARTS(YEAR(@EndDate), MONTH(@EndDate), 1)
+)
+
+SELECT
     a.pkArtist,
     a.Artist,
     t.Title,
     t.Composer,
     g.Genre,
-    ts.Salesdate,
-    ts.SalesAmt
-FROM dbo.TrackList AS t
-LEFT JOIN dbo.Artist     AS a  ON t.fkArtist      = a.pkArtist
-LEFT JOIN dbo.Genre      AS g  ON t.fkGenre       = g.pkGenre
-LEFT JOIN dbo.TrackSales AS ts ON t.pkTrackList   = ts.fkTrackList
+    m.MonthStart,
+    SUM(ts.SalesAmt) AS SalesAmt
+FROM Months m
+CROSS JOIN dbo.Genre g
+LEFT JOIN dbo.TrackList t
+    ON t.fkGenre = g.pkGenre
+LEFT JOIN dbo.Artist a
+    ON t.fkArtist = a.pkArtist
+LEFT JOIN dbo.TrackSales ts
+    ON t.pkTrackList = ts.fkTrackList
+    AND DATEFROMPARTS(YEAR(ts.SalesDate), MONTH(ts.SalesDate), 1) = m.MonthStart
 WHERE
-  
-g.pkGenre IN (@Genre)
-  AND (@StartDate IS NULL OR ts.Salesdate &gt;= @StartDate)
-  AND (@EndDate IS NULL OR ts.Salesdate &lt;= @EndDate)</CommandText>
+    g.pkGenre IN (@Genre)
+    AND a.pkArtist IN (@pArtist)
+GROUP BY
+    a.pkArtist,
+    a.Artist,
+    t.Title,
+    t.Composer,
+    g.Genre,
+    m.MonthStart
+ORDER BY g.Genre,Sum(SalesAmt) DESC
+OPTION (MAXRECURSION 0);</CommandText>
       </Query>
       <Fields>
         <Field Name="pkArtist">
@@ -85,9 +108,108 @@ g.pkGenre IN (@Genre)
           <rd:TypeName>System.String</rd:TypeName>
           <DataField>Genre</DataField>
         </Field>
-        <Field Name="Salesdate">
+        <Field Name="MonthStart">
           <rd:TypeName>System.DateTime</rd:TypeName>
-          <DataField>Salesdate</DataField>
+          <DataField>MonthStart</DataField>
+        </Field>
+        <Field Name="SalesAmt">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>SalesAmt</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="dsArtistFiltered">
+      <Query>
+        <DataSourceName>DSMusic</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@Genre">
+            <Value>=Parameters!Genre.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT DISTINCT a.pkArtist, a.Artist FROM dbo.TrackList AS t LEFT JOIN dbo.Artist a ON t.fkArtist = a.pkArtist LEFT JOIN dbo.Genre g ON t.fkGenre = g.pkGenre WHERE g.pkGenre IN (@Genre) ORDER BY a.Artist</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="pkArtist">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>pkArtist</DataField>
+        </Field>
+        <Field Name="Artist">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Artist</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="dsRegionFiltered">
+      <Query>
+        <DataSourceName>DSMusic</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@Genre">
+            <Value>=Parameters!Genre.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText>SELECT DISTINCT 
+           g.Genre,r.Region,geo.country, Sum(tr.SalesAmt) as Sales FROM 
+dbo.TrackList AS t 
+          LEFT JOIN dbo.Genre g ON t.fkGenre = g.pkGenre 
+          LEFT JOIN dbo.TrackSales tr ON tr.fkTrackList = t.pkTrackList
+          LEFT JOIN dbo.Geography geo ON geo.pkGeography= tr.fkGeographyNo
+          LEFT JOIN dbo.Region r ON r.pkRegion= geo.fkRegion
+     WHERE g.pkGenre IN (@Genre) and r.Region is not null
+     GROUP BY  g.Genre,r.Region,geo.country</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Genre">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Genre</DataField>
+        </Field>
+        <Field Name="Region">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Region</DataField>
+        </Field>
+        <Field Name="country">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>country</DataField>
+        </Field>
+        <Field Name="Sales">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>Sales</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="dsCalendar">
+      <Query>
+        <DataSourceName>DSMusic</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@StartDate">
+            <Value>=Parameters!StartDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@EndDate">
+            <Value>=Parameters!EndDate.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>WITH Months AS (
+   SELECT DATEFROMPARTS(YEAR(@StartDate), MONTH(@StartDate), 1) AS MonthStart
+   UNION ALL
+   SELECT DATEADD(MONTH, 1, MonthStart)  
+   FROM Months
+   WHERE MonthStart &lt; DATEFROMPARTS(YEAR(@EndDate), MONTH(@EndDate), 1)
+   )
+
+SELECT 
+    m.MonthStart,
+    SUM(s.SalesAmt) AS SalesAmt
+FROM Months m
+LEFT JOIN TrackSales s
+    ON DATEFROMPARTS(YEAR(s.SalesDate), MONTH(s.SalesDate), 1) = m.MonthStart
+GROUP BY m.MonthStart
+OPTION (MAXRECURSION 0)
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="MonthStart">
+          <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField>MonthStart</DataField>
         </Field>
         <Field Name="SalesAmt">
           <rd:TypeName>System.Decimal</rd:TypeName>
@@ -100,20 +222,186 @@ g.pkGenre IN (@Genre)
     <ReportSection>
       <Body>
         <ReportItems>
-          <Tablix Name="Tablix1">
+          <Tablix Name="Tablix5">
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>2.38541in</Width>
+                  <Width>1.9753in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.81875in</Width>
+                  <Width>2.67113in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.39753in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.25278in</Height>
+                  <Height>0.25in</Height>
                   <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox52">
+                          <rd:DefaultName>Textbox52</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Title</Value>
+                                  <Style>
+                                    <FontSize>11pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>#666666</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <BottomBorder>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <BackgroundColor>White</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox48">
+                          <rd:DefaultName>Textbox48</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Composer</Value>
+                                  <Style>
+                                    <FontSize>11pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>#666666</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <BottomBorder>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <BackgroundColor>White</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox37">
+                          <rd:DefaultName>Textbox37</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Sales Amt</Value>
+                                  <Style>
+                                    <FontSize>11pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>#666666</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <BottomBorder>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <BackgroundColor>White</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Title">
+                          <rd:DefaultName>Title</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Title.Value</Value>
+                                  <Style>
+                                    <FontWeight>Normal</FontWeight>
+                                    <Color>#333333</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <BackgroundColor>White</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Composer">
@@ -126,7 +414,6 @@ g.pkGenre IN (@Genre)
                                 <TextRun>
                                   <Value>=Fields!Composer.Value</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Normal</FontWeight>
                                     <Color>#333333</Color>
                                   </Style>
@@ -162,8 +449,7 @@ g.pkGenre IN (@Genre)
                                 <TextRun>
                                   <Value>=Sum(Fields!SalesAmt.Value)</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
-                                    <FontWeight>Normal</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>#333333</Color>
                                   </Style>
@@ -191,12 +477,12 @@ g.pkGenre IN (@Genre)
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.25278in</Height>
+                  <Height>0.25in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox76">
-                          <rd:DefaultName>Textbox76</rd:DefaultName>
+                        <Textbox Name="Textbox54">
+                          <rd:DefaultName>Textbox54</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -221,6 +507,8 @@ g.pkGenre IN (@Genre)
                             </Border>
                             <BottomBorder>
                               <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
                             </BottomBorder>
                             <BackgroundColor>White</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -233,8 +521,8 @@ g.pkGenre IN (@Genre)
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox73">
-                          <rd:DefaultName>Textbox73</rd:DefaultName>
+                        <Textbox Name="Textbox50">
+                          <rd:DefaultName>Textbox50</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -244,52 +532,6 @@ g.pkGenre IN (@Genre)
                                   <Value />
                                   <Style>
                                     <FontWeight>Normal</FontWeight>
-                                    <Format>'$'#,0;('$'#,0)</Format>
-                                    <Color>#333333</Color>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <Style>
-                            <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <BottomBorder>
-                              <Color>LightGrey</Color>
-                            </BottomBorder>
-                            <BackgroundColor>White</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>0.25278in</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox77">
-                          <rd:DefaultName>Textbox77</rd:DefaultName>
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Artist Total</Value>
-                                  <Style>
-                                    <FontSize>8pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
                                     <Color>#333333</Color>
                                   </Style>
                                 </TextRun>
@@ -306,6 +548,7 @@ g.pkGenre IN (@Genre)
                             <BottomBorder>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
+                              <Width>1pt</Width>
                             </BottomBorder>
                             <BackgroundColor>White</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -318,8 +561,8 @@ g.pkGenre IN (@Genre)
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox62">
-                          <rd:DefaultName>Textbox62</rd:DefaultName>
+                        <Textbox Name="SalesAmt2">
+                          <rd:DefaultName>SalesAmt</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -328,7 +571,6 @@ g.pkGenre IN (@Genre)
                                 <TextRun>
                                   <Value>=Sum(Fields!SalesAmt.Value)</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>#333333</Color>
@@ -345,10 +587,6 @@ g.pkGenre IN (@Genre)
                             <Border>
                               <Style>None</Style>
                             </Border>
-                            <BottomBorder>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </BottomBorder>
                             <BackgroundColor>White</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -361,21 +599,20 @@ g.pkGenre IN (@Genre)
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.25278in</Height>
+                  <Height>0.25in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox78">
-                          <rd:DefaultName>Textbox78</rd:DefaultName>
+                        <Textbox Name="Textbox55">
+                          <rd:DefaultName>Textbox55</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Grand Total</Value>
+                                  <Value />
                                   <Style>
-                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>#333333</Color>
                                   </Style>
@@ -401,8 +638,43 @@ g.pkGenre IN (@Genre)
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox58">
-                          <rd:DefaultName>Textbox58</rd:DefaultName>
+                        <Textbox Name="Textbox51">
+                          <rd:DefaultName>Textbox51</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>#333333</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <BackgroundColor>White</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox44">
+                          <rd:DefaultName>Textbox44</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -411,8 +683,7 @@ g.pkGenre IN (@Genre)
                                 <TextRun>
                                   <Value>=Sum(Fields!SalesAmt.Value)</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
+                                    <FontWeight>Normal</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>#333333</Color>
                                   </Style>
@@ -445,43 +716,318 @@ g.pkGenre IN (@Genre)
               <TablixMembers>
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
               <TablixMembers>
                 <TablixMember>
-                  <Group Name="pkArtist">
-                    <GroupExpressions>
-                      <GroupExpression>=Fields!pkArtist.Value</GroupExpression>
-                    </GroupExpressions>
-                  </Group>
-                  <SortExpressions>
-                    <SortExpression>
-                      <Value>=Fields!Artist.Value</Value>
-                    </SortExpression>
-                  </SortExpressions>
+                  <TablixHeader>
+                    <Size>2.55378in</Size>
+                    <CellContents>
+                      <Textbox Name="Textbox40">
+                        <rd:DefaultName>Textbox40</rd:DefaultName>
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>Genre</Value>
+                                <Style>
+                                  <FontSize>11pt</FontSize>
+                                  <FontWeight>Bold</FontWeight>
+                                  <Color>#666666</Color>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style>
+                              <TextAlign>Left</TextAlign>
+                            </Style>
+                          </Paragraph>
+                        </Paragraphs>
+                        <Style>
+                          <Border>
+                            <Style>None</Style>
+                          </Border>
+                          <BottomBorder>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                            <Width>1pt</Width>
+                          </BottomBorder>
+                          <BackgroundColor>White</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
                   <TablixMembers>
                     <TablixMember>
-                      <Group Name="Genre">
-                        <GroupExpressions>
-                          <GroupExpression>=Fields!Genre.Value</GroupExpression>
-                        </GroupExpressions>
-                      </Group>
                       <TablixHeader>
-                        <Size>1.68333in</Size>
+                        <Size>2.40794in</Size>
                         <CellContents>
-                          <Textbox Name="Genre1">
-                            <rd:DefaultName>Genre1</rd:DefaultName>
+                          <Textbox Name="Textbox38">
+                            <rd:DefaultName>Textbox38</rd:DefaultName>
                             <CanGrow>true</CanGrow>
                             <KeepTogether>true</KeepTogether>
                             <Paragraphs>
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>=Fields!Genre.Value</Value>
+                                    <Value>Artist</Value>
                                     <Style>
-                                      <FontSize>8pt</FontSize>
+                                      <FontSize>11pt</FontSize>
+                                      <FontWeight>Bold</FontWeight>
+                                      <Color>#666666</Color>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style>
+                                  <TextAlign>Left</TextAlign>
+                                </Style>
+                              </Paragraph>
+                            </Paragraphs>
+                            <Style>
+                              <Border>
+                                <Style>None</Style>
+                              </Border>
+                              <BottomBorder>
+                                <Color>LightGrey</Color>
+                                <Style>Solid</Style>
+                                <Width>1pt</Width>
+                              </BottomBorder>
+                              <BackgroundColor>White</BackgroundColor>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                      <TablixMembers>
+                        <TablixMember />
+                      </TablixMembers>
+                    </TablixMember>
+                  </TablixMembers>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Genre">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!Genre.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!Genre.Value</Value>
+                    </SortExpression>
+                    <SortExpression>
+                      <Value>=Fields!SalesAmt.Value</Value>
+                      <Direction>Descending</Direction>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixHeader>
+                    <Size>2.55378in</Size>
+                    <CellContents>
+                      <Textbox Name="Genre">
+                        <rd:DefaultName>Genre</rd:DefaultName>
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>=Fields!Genre.Value</Value>
+                                <Style>
+                                  <FontWeight>Normal</FontWeight>
+                                  <Color>#333333</Color>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style>
+                              <TextAlign>Left</TextAlign>
+                            </Style>
+                          </Paragraph>
+                        </Paragraphs>
+                        <Style>
+                          <Border>
+                            <Style>None</Style>
+                          </Border>
+                          <BottomBorder>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                            <Width>1pt</Width>
+                          </BottomBorder>
+                          <BackgroundColor>White</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember>
+                      <Group Name="Artist">
+                        <GroupExpressions>
+                          <GroupExpression>=Fields!Artist.Value</GroupExpression>
+                        </GroupExpressions>
+                      </Group>
+                      <SortExpressions>
+                        <SortExpression>
+                          <Value>=Fields!Artist.Value</Value>
+                        </SortExpression>
+                      </SortExpressions>
+                      <TablixHeader>
+                        <Size>2.40794in</Size>
+                        <CellContents>
+                          <Textbox Name="Artist">
+                            <rd:DefaultName>Artist</rd:DefaultName>
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value>=Fields!Artist.Value</Value>
+                                    <Style>
                                       <FontWeight>Normal</FontWeight>
+                                      <Color>#333333</Color>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style>
+                                  <TextAlign>Left</TextAlign>
+                                </Style>
+                              </Paragraph>
+                            </Paragraphs>
+                            <Style>
+                              <Border>
+                                <Style>None</Style>
+                              </Border>
+                              <BottomBorder>
+                                <Color>LightGrey</Color>
+                                <Style>Solid</Style>
+                                <Width>1pt</Width>
+                              </BottomBorder>
+                              <BackgroundColor>White</BackgroundColor>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                      <TablixMembers>
+                        <TablixMember />
+                      </TablixMembers>
+                      <Visibility>
+                        <Hidden>true</Hidden>
+                        <ToggleItem>Genre</ToggleItem>
+                      </Visibility>
+                    </TablixMember>
+                    <TablixMember>
+                      <TablixHeader>
+                        <Size>2.40794in</Size>
+                        <CellContents>
+                          <Textbox Name="Textbox46">
+                            <rd:DefaultName>Textbox46</rd:DefaultName>
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value />
+                                    <Style>
+                                      <FontWeight>Normal</FontWeight>
+                                      <Color>#333333</Color>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style>
+                                  <TextAlign>Left</TextAlign>
+                                </Style>
+                              </Paragraph>
+                            </Paragraphs>
+                            <Style>
+                              <Border>
+                                <Style>None</Style>
+                              </Border>
+                              <BottomBorder>
+                                <Color>LightGrey</Color>
+                                <Style>Solid</Style>
+                                <Width>1pt</Width>
+                              </BottomBorder>
+                              <BackgroundColor>White</BackgroundColor>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                      <KeepWithGroup>Before</KeepWithGroup>
+                    </TablixMember>
+                  </TablixMembers>
+                </TablixMember>
+                <TablixMember>
+                  <TablixHeader>
+                    <Size>2.55378in</Size>
+                    <CellContents>
+                      <Textbox Name="Textbox42">
+                        <rd:DefaultName>Textbox42</rd:DefaultName>
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>Total</Value>
+                                <Style>
+                                  <FontWeight>Bold</FontWeight>
+                                  <Color>#333333</Color>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <Style>
+                          <Border>
+                            <Style>None</Style>
+                          </Border>
+                          <BackgroundColor>White</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember>
+                      <TablixHeader>
+                        <Size>2.40794in</Size>
+                        <CellContents>
+                          <Textbox Name="Textbox43">
+                            <rd:DefaultName>Textbox43</rd:DefaultName>
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value />
+                                    <Style>
+                                      <FontWeight>Bold</FontWeight>
                                       <Color>#333333</Color>
                                     </Style>
                                   </TextRun>
@@ -493,8 +1039,182 @@ g.pkGenre IN (@Genre)
                               <Border>
                                 <Style>None</Style>
                               </Border>
+                              <BackgroundColor>White</BackgroundColor>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                    </TablixMember>
+                  </TablixMembers>
+                  <KeepWithGroup>Before</KeepWithGroup>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <RepeatRowHeaders>true</RepeatRowHeaders>
+            <FixedRowHeaders>true</FixedRowHeaders>
+            <DataSetName>DS_GenreSales</DataSetName>
+            <SortExpressions>
+              <SortExpression>
+                <Value>=Fields!Genre.Value</Value>
+              </SortExpression>
+              <SortExpression>
+                <Value>=Fields!SalesAmt.Value</Value>
+                <Direction>Descending</Direction>
+              </SortExpression>
+            </SortExpressions>
+            <Top>0.04167in</Top>
+            <Left>0.08055in</Left>
+            <Height>1in</Height>
+            <Width>11.00568in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Rectangle Name="Rectangle2">
+            <ReportItems>
+              <Tablix Name="Tablix2">
+                <TablixBody>
+                  <TablixColumns>
+                    <TablixColumn>
+                      <Width>1.4349in</Width>
+                    </TablixColumn>
+                  </TablixColumns>
+                  <TablixRows>
+                    <TablixRow>
+                      <Height>0.32899in</Height>
+                      <TablixCells>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox9">
+                              <rd:DefaultName>Textbox9</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>Sales</Value>
+                                      <Style>
+                                        <FontSize>11pt</FontSize>
+                                        <FontWeight>Bold</FontWeight>
+                                        <Color>#666666</Color>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Right</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <BottomBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </BottomBorder>
+                                <BackgroundColor>White</BackgroundColor>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                      </TablixCells>
+                    </TablixRow>
+                    <TablixRow>
+                      <Height>0.32899in</Height>
+                      <TablixCells>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Sales1">
+                              <rd:DefaultName>Sales1</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Sum(Fields!Sales.Value)</Value>
+                                      <Style>
+                                        <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
+                                        <FontWeight>Normal</FontWeight>
+                                        <Format>'$'#,0;('$'#,0)</Format>
+                                        <Color>#333333</Color>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Right</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <BackgroundColor>White</BackgroundColor>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                      </TablixCells>
+                    </TablixRow>
+                  </TablixRows>
+                </TablixBody>
+                <TablixColumnHierarchy>
+                  <TablixMembers>
+                    <TablixMember />
+                  </TablixMembers>
+                </TablixColumnHierarchy>
+                <TablixRowHierarchy>
+                  <TablixMembers>
+                    <TablixMember>
+                      <TablixHeader>
+                        <Size>1.88281in</Size>
+                        <CellContents>
+                          <Textbox Name="Textbox12">
+                            <rd:DefaultName>Textbox12</rd:DefaultName>
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value>Genre</Value>
+                                    <Style>
+                                      <FontSize>11pt</FontSize>
+                                      <FontWeight>Bold</FontWeight>
+                                      <Color>#666666</Color>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style>
+                                  <TextAlign>Left</TextAlign>
+                                </Style>
+                              </Paragraph>
+                            </Paragraphs>
+                            <Style>
+                              <Border>
+                                <Style>None</Style>
+                              </Border>
                               <BottomBorder>
                                 <Color>LightGrey</Color>
+                                <Style>Solid</Style>
                                 <Width>1pt</Width>
                               </BottomBorder>
                               <BackgroundColor>White</BackgroundColor>
@@ -509,25 +1229,27 @@ g.pkGenre IN (@Genre)
                       <TablixMembers>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>1.56875in</Size>
+                            <Size>2.02865in</Size>
                             <CellContents>
-                              <Textbox Name="Artist">
-                                <rd:DefaultName>Artist</rd:DefaultName>
+                              <Textbox Name="Textbox10">
+                                <rd:DefaultName>Textbox10</rd:DefaultName>
                                 <CanGrow>true</CanGrow>
                                 <KeepTogether>true</KeepTogether>
                                 <Paragraphs>
                                   <Paragraph>
                                     <TextRuns>
                                       <TextRun>
-                                        <Value>=Fields!Artist.Value</Value>
+                                        <Value>Region</Value>
                                         <Style>
-                                          <FontSize>8pt</FontSize>
-                                          <FontWeight>Normal</FontWeight>
-                                          <Color>#333333</Color>
+                                          <FontSize>11pt</FontSize>
+                                          <FontWeight>Bold</FontWeight>
+                                          <Color>#666666</Color>
                                         </Style>
                                       </TextRun>
                                     </TextRuns>
-                                    <Style />
+                                    <Style>
+                                      <TextAlign>Left</TextAlign>
+                                    </Style>
                                   </Paragraph>
                                 </Paragraphs>
                                 <Style>
@@ -536,7 +1258,7 @@ g.pkGenre IN (@Genre)
                                   </Border>
                                   <BottomBorder>
                                     <Color>LightGrey</Color>
-                                    <Width>1pt</Width>
+                                    <Style>Solid</Style>
                                   </BottomBorder>
                                   <BackgroundColor>White</BackgroundColor>
                                   <PaddingLeft>2pt</PaddingLeft>
@@ -549,31 +1271,28 @@ g.pkGenre IN (@Genre)
                           </TablixHeader>
                           <TablixMembers>
                             <TablixMember>
-                              <Group Name="Title">
-                                <GroupExpressions>
-                                  <GroupExpression>=Fields!Title.Value</GroupExpression>
-                                </GroupExpressions>
-                              </Group>
                               <TablixHeader>
-                                <Size>2.05833in</Size>
+                                <Size>3.15018in</Size>
                                 <CellContents>
-                                  <Textbox Name="Title">
-                                    <rd:DefaultName>Title</rd:DefaultName>
+                                  <Textbox Name="Textbox4">
+                                    <rd:DefaultName>Textbox4</rd:DefaultName>
                                     <CanGrow>true</CanGrow>
                                     <KeepTogether>true</KeepTogether>
                                     <Paragraphs>
                                       <Paragraph>
                                         <TextRuns>
                                           <TextRun>
-                                            <Value>=Fields!Title.Value</Value>
+                                            <Value>country</Value>
                                             <Style>
-                                              <FontSize>8pt</FontSize>
-                                              <FontWeight>Normal</FontWeight>
-                                              <Color>#333333</Color>
+                                              <FontSize>11pt</FontSize>
+                                              <FontWeight>Bold</FontWeight>
+                                              <Color>#666666</Color>
                                             </Style>
                                           </TextRun>
                                         </TextRuns>
-                                        <Style />
+                                        <Style>
+                                          <TextAlign>Left</TextAlign>
+                                        </Style>
                                       </Paragraph>
                                     </Paragraphs>
                                     <Style>
@@ -582,7 +1301,7 @@ g.pkGenre IN (@Genre)
                                       </Border>
                                       <BottomBorder>
                                         <Color>LightGrey</Color>
-                                        <Width>1pt</Width>
+                                        <Style>Solid</Style>
                                       </BottomBorder>
                                       <BackgroundColor>White</BackgroundColor>
                                       <PaddingLeft>2pt</PaddingLeft>
@@ -597,64 +1316,29 @@ g.pkGenre IN (@Genre)
                                 <TablixMember />
                               </TablixMembers>
                             </TablixMember>
-                            <TablixMember>
-                              <TablixHeader>
-                                <Size>2.05833in</Size>
-                                <CellContents>
-                                  <Textbox Name="Textbox71">
-                                    <rd:DefaultName>Textbox71</rd:DefaultName>
-                                    <CanGrow>true</CanGrow>
-                                    <KeepTogether>true</KeepTogether>
-                                    <Paragraphs>
-                                      <Paragraph>
-                                        <TextRuns>
-                                          <TextRun>
-                                            <Value />
-                                            <Style>
-                                              <FontWeight>Normal</FontWeight>
-                                              <Color>#333333</Color>
-                                            </Style>
-                                          </TextRun>
-                                        </TextRuns>
-                                        <Style />
-                                      </Paragraph>
-                                    </Paragraphs>
-                                    <Style>
-                                      <Border>
-                                        <Style>None</Style>
-                                      </Border>
-                                      <BottomBorder>
-                                        <Color>LightGrey</Color>
-                                        <Width>1pt</Width>
-                                      </BottomBorder>
-                                      <BackgroundColor>White</BackgroundColor>
-                                      <PaddingLeft>2pt</PaddingLeft>
-                                      <PaddingRight>2pt</PaddingRight>
-                                      <PaddingTop>2pt</PaddingTop>
-                                      <PaddingBottom>2pt</PaddingBottom>
-                                    </Style>
-                                  </Textbox>
-                                </CellContents>
-                              </TablixHeader>
-                              <KeepWithGroup>Before</KeepWithGroup>
-                            </TablixMember>
                           </TablixMembers>
                         </TablixMember>
                       </TablixMembers>
                     </TablixMember>
                     <TablixMember>
+                      <Group Name="Genre2">
+                        <GroupExpressions>
+                          <GroupExpression>=Fields!Genre.Value</GroupExpression>
+                        </GroupExpressions>
+                      </Group>
                       <TablixHeader>
-                        <Size>1.68333in</Size>
+                        <Size>1.88281in</Size>
                         <CellContents>
-                          <Textbox Name="Textbox69">
-                            <rd:DefaultName>Textbox69</rd:DefaultName>
+                          <rd:Selected>true</rd:Selected>
+                          <Textbox Name="Genre2">
+                            <rd:DefaultName>Genre2</rd:DefaultName>
                             <CanGrow>true</CanGrow>
                             <KeepTogether>true</KeepTogether>
                             <Paragraphs>
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value />
+                                    <Value>=Fields!Genre.Value</Value>
                                     <Style>
                                       <FontWeight>Normal</FontWeight>
                                       <Color>#333333</Color>
@@ -684,18 +1368,23 @@ g.pkGenre IN (@Genre)
                       </TablixHeader>
                       <TablixMembers>
                         <TablixMember>
+                          <Group Name="Region1">
+                            <GroupExpressions>
+                              <GroupExpression>=Fields!Region.Value</GroupExpression>
+                            </GroupExpressions>
+                          </Group>
                           <TablixHeader>
-                            <Size>1.56875in</Size>
+                            <Size>2.02865in</Size>
                             <CellContents>
-                              <Textbox Name="Textbox72">
-                                <rd:DefaultName>Textbox72</rd:DefaultName>
+                              <Textbox Name="Region1">
+                                <rd:DefaultName>Region1</rd:DefaultName>
                                 <CanGrow>true</CanGrow>
                                 <KeepTogether>true</KeepTogether>
                                 <Paragraphs>
                                   <Paragraph>
                                     <TextRuns>
                                       <TextRun>
-                                        <Value />
+                                        <Value>=Fields!Region.Value</Value>
                                         <Style>
                                           <FontWeight>Normal</FontWeight>
                                           <Color>#333333</Color>
@@ -726,17 +1415,17 @@ g.pkGenre IN (@Genre)
                           <TablixMembers>
                             <TablixMember>
                               <TablixHeader>
-                                <Size>2.05833in</Size>
+                                <Size>3.15018in</Size>
                                 <CellContents>
-                                  <Textbox Name="Textbox61">
-                                    <rd:DefaultName>Textbox61</rd:DefaultName>
+                                  <Textbox Name="country">
+                                    <rd:DefaultName>country</rd:DefaultName>
                                     <CanGrow>true</CanGrow>
                                     <KeepTogether>true</KeepTogether>
                                     <Paragraphs>
                                       <Paragraph>
                                         <TextRuns>
                                           <TextRun>
-                                            <Value />
+                                            <Value>=Fields!country.Value</Value>
                                             <Style>
                                               <FontWeight>Normal</FontWeight>
                                               <Color>#333333</Color>
@@ -764,40 +1453,286 @@ g.pkGenre IN (@Genre)
                                   </Textbox>
                                 </CellContents>
                               </TablixHeader>
+                              <TablixMembers>
+                                <TablixMember />
+                              </TablixMembers>
                             </TablixMember>
                           </TablixMembers>
                         </TablixMember>
                       </TablixMembers>
-                      <KeepWithGroup>Before</KeepWithGroup>
                     </TablixMember>
                   </TablixMembers>
-                </TablixMember>
+                </TablixRowHierarchy>
+                <DataSetName>dsRegionFiltered</DataSetName>
+                <PageBreak>
+                  <BreakLocation>Start</BreakLocation>
+                </PageBreak>
+                <SortExpressions>
+                  <SortExpression>
+                    <Value>=Fields!Genre.Value</Value>
+                  </SortExpression>
+                  <SortExpression>
+                    <Value>=Fields!Sales.Value</Value>
+                    <Direction>Descending</Direction>
+                  </SortExpression>
+                </SortExpressions>
+                <Left>1.41666in</Left>
+                <Height>0.65798in</Height>
+                <Width>8.49654in</Width>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                </Style>
+              </Tablix>
+            </ReportItems>
+            <Top>5.21403in</Top>
+            <Left>0.1118in</Left>
+            <Height>0.76042in</Height>
+            <Width>11.0057in</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Rectangle>
+          <Tablix Name="Tablix6">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>0.03125in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.03125in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox58">
+                          <rd:DefaultName>Textbox58</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontSize>11pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>#666666</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <BottomBorder>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <BackgroundColor>White</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox59">
+                          <rd:DefaultName>Textbox59</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>#333333</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <BackgroundColor>White</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>3.44792in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox60">
+                          <rd:DefaultName>Textbox60</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>#333333</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <BackgroundColor>White</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
                 <TablixMember>
                   <TablixHeader>
-                    <Size>1.68333in</Size>
+                    <Size>10.96528in</Size>
                     <CellContents>
-                      <Textbox Name="Textbox70">
-                        <rd:DefaultName>Textbox70</rd:DefaultName>
+                      <Textbox Name="Textbox41">
+                        <rd:DefaultName>Textbox40</rd:DefaultName>
                         <CanGrow>true</CanGrow>
                         <KeepTogether>true</KeepTogether>
                         <Paragraphs>
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value />
+                                <Value>Genre</Value>
                                 <Style>
+                                  <FontSize>11pt</FontSize>
                                   <FontWeight>Bold</FontWeight>
-                                  <Color>#333333</Color>
+                                  <Color>#666666</Color>
                                 </Style>
                               </TextRun>
                             </TextRuns>
-                            <Style />
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
                           </Paragraph>
                         </Paragraphs>
                         <Style>
                           <Border>
                             <Style>None</Style>
                           </Border>
+                          <BottomBorder>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                            <Width>1pt</Width>
+                          </BottomBorder>
+                          <BackgroundColor>White</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember />
+                  </TablixMembers>
+                  <Visibility>
+                    <Hidden>true</Hidden>
+                  </Visibility>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Genre4">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!Genre.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!Genre.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixHeader>
+                    <Size>0.03125in</Size>
+                    <CellContents>
+                      <Textbox Name="Genre4">
+                        <rd:DefaultName>Genre</rd:DefaultName>
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>=Fields!Genre.Value</Value>
+                                <Style>
+                                  <FontWeight>Normal</FontWeight>
+                                  <Color>#333333</Color>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style>
+                              <TextAlign>Left</TextAlign>
+                            </Style>
+                          </Paragraph>
+                        </Paragraphs>
+                        <Style>
+                          <Border>
+                            <Style>None</Style>
+                          </Border>
+                          <BottomBorder>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                            <Width>1pt</Width>
+                          </BottomBorder>
                           <BackgroundColor>White</BackgroundColor>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
@@ -810,75 +1745,423 @@ g.pkGenre IN (@Genre)
                   <TablixMembers>
                     <TablixMember>
                       <TablixHeader>
-                        <Size>1.56875in</Size>
+                        <Size>10.93403in</Size>
                         <CellContents>
-                          <Textbox Name="Textbox56">
-                            <rd:DefaultName>Textbox56</rd:DefaultName>
-                            <CanGrow>true</CanGrow>
-                            <KeepTogether>true</KeepTogether>
-                            <Paragraphs>
-                              <Paragraph>
-                                <TextRuns>
-                                  <TextRun>
-                                    <Value />
+                          <Chart Name="Chart2">
+                            <ChartCategoryHierarchy>
+                              <ChartMembers>
+                                <ChartMember>
+                                  <Group Name="Chart2_CategoryGroup">
+                                    <GroupExpressions>
+                                      <GroupExpression>=Fields!MonthStart.Value</GroupExpression>
+                                    </GroupExpressions>
+                                  </Group>
+                                  <SortExpressions>
+                                    <SortExpression>
+                                      <Value>=Fields!MonthStart.Value</Value>
+                                    </SortExpression>
+                                  </SortExpressions>
+                                  <Label>=Fields!MonthStart.Value</Label>
+                                </ChartMember>
+                              </ChartMembers>
+                            </ChartCategoryHierarchy>
+                            <ChartSeriesHierarchy>
+                              <ChartMembers>
+                                <ChartMember>
+                                  <Group Name="Chart1_SeriesGroup2">
+                                    <GroupExpressions>
+                                      <GroupExpression>=Fields!Genre.Value</GroupExpression>
+                                    </GroupExpressions>
+                                  </Group>
+                                  <SortExpressions>
+                                    <SortExpression>
+                                      <Value>=Fields!Genre.Value</Value>
+                                    </SortExpression>
+                                  </SortExpressions>
+                                  <Label>=Fields!Genre.Value</Label>
+                                </ChartMember>
+                              </ChartMembers>
+                            </ChartSeriesHierarchy>
+                            <ChartData>
+                              <ChartSeriesCollection>
+                                <ChartSeries Name="SalesAmt">
+                                  <ChartDataPoints>
+                                    <ChartDataPoint>
+                                      <ChartDataPointValues>
+                                        <Y>=Sum(Fields!SalesAmt.Value)</Y>
+                                      </ChartDataPointValues>
+                                      <ChartDataLabel>
+                                        <Style>
+                                          <FontSize>12pt</FontSize>
+                                          <Format>#,0;(#,0)</Format>
+                                        </Style>
+                                        <UseValueAsLabel>true</UseValueAsLabel>
+                                        <Visible>true</Visible>
+                                      </ChartDataLabel>
+                                      <ToolTip>#VALY</ToolTip>
+                                      <Style />
+                                      <ChartMarker>
+                                        <Style />
+                                      </ChartMarker>
+                                      <DataElementOutput>Output</DataElementOutput>
+                                    </ChartDataPoint>
+                                  </ChartDataPoints>
+                                  <Type>Line</Type>
+                                  <Style>
+                                    <ShadowOffset>0pt</ShadowOffset>
+                                  </Style>
+                                  <ChartEmptyPoints>
+                                    <Style />
+                                    <ChartMarker>
+                                      <Style />
+                                    </ChartMarker>
+                                    <ChartDataLabel>
+                                      <Style />
+                                    </ChartDataLabel>
+                                  </ChartEmptyPoints>
+                                  <ValueAxisName>Primary</ValueAxisName>
+                                  <CategoryAxisName>Primary</CategoryAxisName>
+                                  <ChartSmartLabel>
+                                    <CalloutLineColor>Black</CalloutLineColor>
+                                    <MinMovingDistance>0pt</MinMovingDistance>
+                                  </ChartSmartLabel>
+                                </ChartSeries>
+                              </ChartSeriesCollection>
+                            </ChartData>
+                            <ChartAreas>
+                              <ChartArea Name="Default">
+                                <ChartCategoryAxes>
+                                  <ChartAxis Name="Primary">
                                     <Style>
-                                      <FontWeight>Bold</FontWeight>
-                                      <Color>#333333</Color>
+                                      <Border>
+                                        <Color>#5c5c5c</Color>
+                                        <Style>None</Style>
+                                      </Border>
+                                      <FontSize>8pt</FontSize>
+                                      <Format>MM/dd/yy</Format>
+                                      <Color>#5c5c5c</Color>
                                     </Style>
-                                  </TextRun>
-                                </TextRuns>
-                                <Style />
-                              </Paragraph>
-                            </Paragraphs>
+                                    <ChartAxisTitle>
+                                      <Caption />
+                                      <Style>
+                                        <FontSize>9pt</FontSize>
+                                        <Color>#5c5c5c</Color>
+                                      </Style>
+                                    </ChartAxisTitle>
+                                    <ChartMajorGridLines>
+                                      <Enabled>False</Enabled>
+                                      <Style>
+                                        <Border>
+                                          <Color>Gainsboro</Color>
+                                        </Border>
+                                      </Style>
+                                    </ChartMajorGridLines>
+                                    <ChartMinorGridLines>
+                                      <Style>
+                                        <Border>
+                                          <Color>Gainsboro</Color>
+                                          <Style>Dotted</Style>
+                                        </Border>
+                                      </Style>
+                                    </ChartMinorGridLines>
+                                    <ChartMajorTickMarks>
+                                      <Style>
+                                        <Border>
+                                          <Color>LightGrey</Color>
+                                          <Style>None</Style>
+                                        </Border>
+                                      </Style>
+                                    </ChartMajorTickMarks>
+                                    <ChartMinorTickMarks>
+                                      <Style>
+                                        <Border>
+                                          <Color>LightGrey</Color>
+                                        </Border>
+                                      </Style>
+                                      <Length>0.5</Length>
+                                    </ChartMinorTickMarks>
+                                    <CrossAt>NaN</CrossAt>
+                                    <Minimum>NaN</Minimum>
+                                    <Maximum>NaN</Maximum>
+                                    <ChartAxisScaleBreak>
+                                      <Style />
+                                    </ChartAxisScaleBreak>
+                                  </ChartAxis>
+                                  <ChartAxis Name="Secondary">
+                                    <Style>
+                                      <Border>
+                                        <Color>#5c5c5c</Color>
+                                        <Style>None</Style>
+                                      </Border>
+                                      <FontSize>8pt</FontSize>
+                                      <Color>#5c5c5c</Color>
+                                    </Style>
+                                    <ChartAxisTitle>
+                                      <Caption />
+                                      <Style>
+                                        <FontSize>9pt</FontSize>
+                                        <Color>#5c5c5c</Color>
+                                      </Style>
+                                    </ChartAxisTitle>
+                                    <ChartMajorGridLines>
+                                      <Enabled>False</Enabled>
+                                      <Style>
+                                        <Border>
+                                          <Color>Gainsboro</Color>
+                                        </Border>
+                                      </Style>
+                                    </ChartMajorGridLines>
+                                    <ChartMinorGridLines>
+                                      <Style>
+                                        <Border>
+                                          <Color>Gainsboro</Color>
+                                          <Style>Dotted</Style>
+                                        </Border>
+                                      </Style>
+                                    </ChartMinorGridLines>
+                                    <ChartMajorTickMarks>
+                                      <Style>
+                                        <Border>
+                                          <Color>LightGrey</Color>
+                                          <Style>None</Style>
+                                        </Border>
+                                      </Style>
+                                    </ChartMajorTickMarks>
+                                    <ChartMinorTickMarks>
+                                      <Style>
+                                        <Border>
+                                          <Color>LightGrey</Color>
+                                        </Border>
+                                      </Style>
+                                      <Length>0.5</Length>
+                                    </ChartMinorTickMarks>
+                                    <CrossAt>NaN</CrossAt>
+                                    <Location>Opposite</Location>
+                                    <Minimum>NaN</Minimum>
+                                    <Maximum>NaN</Maximum>
+                                    <ChartAxisScaleBreak>
+                                      <Style />
+                                    </ChartAxisScaleBreak>
+                                  </ChartAxis>
+                                </ChartCategoryAxes>
+                                <ChartValueAxes>
+                                  <ChartAxis Name="Primary">
+                                    <Visible>False</Visible>
+                                    <Style>
+                                      <Border>
+                                        <Color>#5c5c5c</Color>
+                                        <Style>None</Style>
+                                      </Border>
+                                      <FontSize>8pt</FontSize>
+                                      <Color>#5c5c5c</Color>
+                                    </Style>
+                                    <ChartAxisTitle>
+                                      <Caption />
+                                      <Style>
+                                        <FontSize>9pt</FontSize>
+                                        <Color>#5c5c5c</Color>
+                                      </Style>
+                                    </ChartAxisTitle>
+                                    <ChartMajorGridLines>
+                                      <Style>
+                                        <Border>
+                                          <Color>Gainsboro</Color>
+                                        </Border>
+                                      </Style>
+                                    </ChartMajorGridLines>
+                                    <ChartMinorGridLines>
+                                      <Style>
+                                        <Border>
+                                          <Color>Gainsboro</Color>
+                                          <Style>Dotted</Style>
+                                        </Border>
+                                      </Style>
+                                    </ChartMinorGridLines>
+                                    <ChartMajorTickMarks>
+                                      <Style>
+                                        <Border>
+                                          <Color>LightGrey</Color>
+                                          <Style>None</Style>
+                                        </Border>
+                                      </Style>
+                                    </ChartMajorTickMarks>
+                                    <ChartMinorTickMarks>
+                                      <Style>
+                                        <Border>
+                                          <Color>LightGrey</Color>
+                                        </Border>
+                                      </Style>
+                                      <Length>0.5</Length>
+                                    </ChartMinorTickMarks>
+                                    <CrossAt>NaN</CrossAt>
+                                    <Minimum>NaN</Minimum>
+                                    <Maximum>NaN</Maximum>
+                                    <ChartAxisScaleBreak>
+                                      <Style />
+                                    </ChartAxisScaleBreak>
+                                  </ChartAxis>
+                                  <ChartAxis Name="Secondary">
+                                    <Style>
+                                      <Border>
+                                        <Color>#5c5c5c</Color>
+                                        <Style>None</Style>
+                                      </Border>
+                                      <FontSize>8pt</FontSize>
+                                      <Color>#5c5c5c</Color>
+                                    </Style>
+                                    <ChartAxisTitle>
+                                      <Caption />
+                                      <Style>
+                                        <FontSize>9pt</FontSize>
+                                        <Color>#5c5c5c</Color>
+                                      </Style>
+                                    </ChartAxisTitle>
+                                    <ChartMajorGridLines>
+                                      <Style>
+                                        <Border>
+                                          <Color>Gainsboro</Color>
+                                        </Border>
+                                      </Style>
+                                    </ChartMajorGridLines>
+                                    <ChartMinorGridLines>
+                                      <Style>
+                                        <Border>
+                                          <Color>Gainsboro</Color>
+                                          <Style>Dotted</Style>
+                                        </Border>
+                                      </Style>
+                                    </ChartMinorGridLines>
+                                    <ChartMajorTickMarks>
+                                      <Style>
+                                        <Border>
+                                          <Color>LightGrey</Color>
+                                          <Style>None</Style>
+                                        </Border>
+                                      </Style>
+                                    </ChartMajorTickMarks>
+                                    <ChartMinorTickMarks>
+                                      <Style>
+                                        <Border>
+                                          <Color>LightGrey</Color>
+                                        </Border>
+                                      </Style>
+                                      <Length>0.5</Length>
+                                    </ChartMinorTickMarks>
+                                    <CrossAt>NaN</CrossAt>
+                                    <Location>Opposite</Location>
+                                    <Minimum>NaN</Minimum>
+                                    <Maximum>NaN</Maximum>
+                                    <ChartAxisScaleBreak>
+                                      <Style />
+                                    </ChartAxisScaleBreak>
+                                  </ChartAxis>
+                                </ChartValueAxes>
+                                <ChartThreeDProperties>
+                                  <Rotation>15</Rotation>
+                                </ChartThreeDProperties>
+                                <Style>
+                                  <BackgroundColor>#00ffffff</BackgroundColor>
+                                  <BackgroundGradientType>None</BackgroundGradientType>
+                                </Style>
+                              </ChartArea>
+                            </ChartAreas>
+                            <ChartLegends>
+                              <ChartLegend Name="Default">
+                                <Hidden>true</Hidden>
+                                <Style>
+                                  <Border>
+                                    <Color>#5c5c5c</Color>
+                                  </Border>
+                                  <BackgroundGradientType>TopBottom</BackgroundGradientType>
+                                  <FontSize>8pt</FontSize>
+                                </Style>
+                                <Position>TopLeft</Position>
+                                <ChartLegendTitle>
+                                  <Caption />
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
+                                </ChartLegendTitle>
+                                <HeaderSeparatorColor>Black</HeaderSeparatorColor>
+                                <ColumnSeparatorColor>Black</ColumnSeparatorColor>
+                              </ChartLegend>
+                            </ChartLegends>
+                            <ChartTitles>
+                              <ChartTitle Name="Default">
+                                <Caption>= "Sales by " &amp; Fields!Genre.Value</Caption>
+                                <Style>
+                                  <BackgroundGradientType>None</BackgroundGradientType>
+                                  <FontSize>9pt</FontSize>
+                                  <FontWeight>Bold</FontWeight>
+                                  <TextAlign>Left</TextAlign>
+                                  <VerticalAlign>Top</VerticalAlign>
+                                  <Color>#a6a6a6</Color>
+                                </Style>
+                              </ChartTitle>
+                            </ChartTitles>
+                            <Palette>Pacific</Palette>
+                            <ChartBorderSkin>
+                              <Style>
+                                <BackgroundColor>Gray</BackgroundColor>
+                                <BackgroundGradientType>None</BackgroundGradientType>
+                                <Color>White</Color>
+                              </Style>
+                            </ChartBorderSkin>
+                            <ChartNoDataMessage Name="NoDataMessage">
+                              <Caption>No Data Available</Caption>
+                              <Style>
+                                <BackgroundGradientType>None</BackgroundGradientType>
+                                <FontWeight>Bold</FontWeight>
+                                <TextAlign>General</TextAlign>
+                                <VerticalAlign>Top</VerticalAlign>
+                              </Style>
+                            </ChartNoDataMessage>
+                            <DataSetName>DS_GenreSales</DataSetName>
+                            <ZIndex>2</ZIndex>
                             <Style>
                               <Border>
                                 <Style>None</Style>
                               </Border>
+                              <TopBorder>
+                                <Color>Black</Color>
+                                <Style>Solid</Style>
+                                <Width>1pt</Width>
+                              </TopBorder>
+                              <BottomBorder>
+                                <Color>Black</Color>
+                                <Style>Solid</Style>
+                                <Width>1pt</Width>
+                              </BottomBorder>
                               <BackgroundColor>White</BackgroundColor>
-                              <PaddingLeft>2pt</PaddingLeft>
-                              <PaddingRight>2pt</PaddingRight>
-                              <PaddingTop>2pt</PaddingTop>
-                              <PaddingBottom>2pt</PaddingBottom>
+                              <BackgroundGradientType>None</BackgroundGradientType>
                             </Style>
-                          </Textbox>
+                          </Chart>
                         </CellContents>
                       </TablixHeader>
                       <TablixMembers>
                         <TablixMember>
-                          <TablixHeader>
-                            <Size>2.05833in</Size>
-                            <CellContents>
-                              <Textbox Name="Textbox57">
-                                <rd:DefaultName>Textbox57</rd:DefaultName>
-                                <CanGrow>true</CanGrow>
-                                <KeepTogether>true</KeepTogether>
-                                <Paragraphs>
-                                  <Paragraph>
-                                    <TextRuns>
-                                      <TextRun>
-                                        <Value />
-                                        <Style>
-                                          <FontWeight>Bold</FontWeight>
-                                          <Color>#333333</Color>
-                                        </Style>
-                                      </TextRun>
-                                    </TextRuns>
-                                    <Style />
-                                  </Paragraph>
-                                </Paragraphs>
-                                <Style>
-                                  <Border>
-                                    <Style>None</Style>
-                                  </Border>
-                                  <BackgroundColor>White</BackgroundColor>
-                                  <PaddingLeft>2pt</PaddingLeft>
-                                  <PaddingRight>2pt</PaddingRight>
-                                  <PaddingTop>2pt</PaddingTop>
-                                  <PaddingBottom>2pt</PaddingBottom>
-                                </Style>
-                              </Textbox>
-                            </CellContents>
-                          </TablixHeader>
+                          <Group Name="Artist2">
+                            <GroupExpressions>
+                              <GroupExpression>=Fields!Artist.Value</GroupExpression>
+                            </GroupExpressions>
+                          </Group>
+                          <SortExpressions>
+                            <SortExpression>
+                              <Value>=Fields!Artist.Value</Value>
+                            </SortExpression>
+                          </SortExpressions>
+                          <TablixMembers>
+                            <TablixMember />
+                          </TablixMembers>
+                          <Visibility>
+                            <Hidden>true</Hidden>
+                            <ToggleItem>Genre4</ToggleItem>
+                          </Visibility>
+                        </TablixMember>
+                        <TablixMember>
+                          <KeepWithGroup>Before</KeepWithGroup>
                         </TablixMember>
                       </TablixMembers>
                     </TablixMember>
@@ -886,19 +2169,14 @@ g.pkGenre IN (@Genre)
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>DS_ArtistSales</DataSetName>
-            <SortExpressions>
-              <SortExpression>
-                <Value>=Fields!Artist.Value</Value>
-              </SortExpression>
-              <SortExpression>
-                <Value>=Fields!SalesAmt.Value</Value>
-                <Direction>Descending</Direction>
-              </SortExpression>
-            </SortExpressions>
-            <Top>0.05556in</Top>
-            <Height>1.01112in</Height>
-            <Width>8.51457in</Width>
+            <RepeatRowHeaders>true</RepeatRowHeaders>
+            <FixedRowHeaders>true</FixedRowHeaders>
+            <DataSetName>DS_GenreSales</DataSetName>
+            <Top>1.21639in</Top>
+            <Left>0.08055in</Left>
+            <Height>3.72917in</Height>
+            <Width>10.99653in</Width>
+            <ZIndex>2</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -906,17 +2184,20 @@ g.pkGenre IN (@Genre)
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>1.56946in</Height>
+        <Height>9.26612in</Height>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
+          <BottomBorder>
+            <Style>Solid</Style>
+          </BottomBorder>
         </Style>
       </Body>
-      <Width>8.51458in</Width>
+      <Width>11.1175in</Width>
       <Page>
         <PageHeader>
-          <Height>0.76389in</Height>
+          <Height>0.52431in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -928,7 +2209,7 @@ g.pkGenre IN (@Genre)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>="Selected Genre Between " &amp; Format(Parameters!StartDate.Value, "MM/dd/yyyy") &amp; " and "
+                      <Value>="Selected Genre(s) Between " &amp; Format(Parameters!StartDate.Value, "MM/dd/yyyy") &amp; " and "
 &amp; Format(Parameters!EndDate.Value, "MM/dd/yyyy")</Value>
                       <Style>
                         <FontSize>16pt</FontSize>
@@ -941,7 +2222,7 @@ g.pkGenre IN (@Genre)
                 </Paragraph>
               </Paragraphs>
               <Height>0.39361in</Height>
-              <Width>8.51457in</Width>
+              <Width>11.07708in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -953,201 +2234,6 @@ g.pkGenre IN (@Genre)
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
-            <Textbox Name="Textbox12">
-              <rd:DefaultName>Textbox12</rd:DefaultName>
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Genre</Value>
-                      <Style>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Left</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <Top>0.40847in</Top>
-              <Height>0.2825in</Height>
-              <Width>1.64292in</Width>
-              <ZIndex>1</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <VerticalAlign>Top</VerticalAlign>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox13">
-              <rd:DefaultName>Textbox12</rd:DefaultName>
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Artist</Value>
-                      <Style>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Left</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <Top>0.40847in</Top>
-              <Left>1.71111in</Left>
-              <Height>0.2825in</Height>
-              <Width>1.54097in</Width>
-              <ZIndex>2</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <VerticalAlign>Top</VerticalAlign>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox14">
-              <rd:DefaultName>Textbox12</rd:DefaultName>
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Title</Value>
-                      <Style>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Left</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <Top>0.40847in</Top>
-              <Left>3.29375in</Left>
-              <Height>0.2825in</Height>
-              <Width>2.01666in</Width>
-              <ZIndex>3</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox15">
-              <rd:DefaultName>Textbox12</rd:DefaultName>
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Composer</Value>
-                      <Style>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Left</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <Top>0.40847in</Top>
-              <Left>5.31041in</Left>
-              <Height>0.2825in</Height>
-              <Width>2.38541in</Width>
-              <ZIndex>4</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox16">
-              <rd:DefaultName>Textbox12</rd:DefaultName>
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Sales Amt.</Value>
-                      <Style>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Left</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <Top>0.40847in</Top>
-              <Left>7.69582in</Left>
-              <Height>0.2825in</Height>
-              <Width>0.81875in</Width>
-              <ZIndex>5</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Line Name="Line1">
-              <Top>0.68625in</Top>
-              <Left>0.00917in</Left>
-              <Height>0in</Height>
-              <Width>8.50541in</Width>
-              <ZIndex>6</ZIndex>
-              <Style>
-                <Border>
-                  <Style>Solid</Style>
-                </Border>
-              </Style>
-            </Line>
-          </ReportItems>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-          </Style>
-        </PageHeader>
-        <PageFooter>
-          <Height>0.45in</Height>
-          <PrintOnFirstPage>true</PrintOnFirstPage>
-          <PrintOnLastPage>true</PrintOnLastPage>
-          <ReportItems>
             <Textbox Name="ExecutionTime">
               <rd:DefaultName>ExecutionTime</rd:DefaultName>
               <CanGrow>true</CanGrow>
@@ -1165,9 +2251,10 @@ g.pkGenre IN (@Genre)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>0.04167in</Top>
+              <Left>9.05084in</Left>
               <Height>0.38056in</Height>
-              <Width>8.51457in</Width>
+              <Width>2.03541in</Width>
+              <ZIndex>1</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1179,6 +2266,16 @@ g.pkGenre IN (@Genre)
               </Style>
             </Textbox>
           </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageHeader>
+        <PageFooter>
+          <Height>0.325in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1206,16 +2303,35 @@ g.pkGenre IN (@Genre)
     </ReportParameter>
     <ReportParameter Name="StartDate">
       <DataType>DateTime</DataType>
-      <Prompt>StartingDate</Prompt>
-      <Hidden>true</Hidden>
+      <Prompt>Start Date</Prompt>
       <cl:ComponentMetadata>
         <cl:HideUpdateNotifications>true</cl:HideUpdateNotifications>
       </cl:ComponentMetadata>
     </ReportParameter>
     <ReportParameter Name="EndDate">
       <DataType>DateTime</DataType>
-      <Prompt>EndingDate</Prompt>
-      <Hidden>true</Hidden>
+      <Prompt>End Date</Prompt>
+      <cl:ComponentMetadata>
+        <cl:HideUpdateNotifications>true</cl:HideUpdateNotifications>
+      </cl:ComponentMetadata>
+    </ReportParameter>
+    <ReportParameter Name="pArtist">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>dsArtistFiltered</DataSetName>
+          <ValueField>pkArtist</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Choose Artist(s)</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>dsArtistFiltered</DataSetName>
+          <ValueField>pkArtist</ValueField>
+          <LabelField>Artist</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
       <cl:ComponentMetadata>
         <cl:HideUpdateNotifications>true</cl:HideUpdateNotifications>
       </cl:ComponentMetadata>
@@ -1224,7 +2340,7 @@ g.pkGenre IN (@Genre)
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
+      <NumberOfRows>1</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -1240,6 +2356,11 @@ g.pkGenre IN (@Genre)
           <ColumnIndex>2</ColumnIndex>
           <RowIndex>0</RowIndex>
           <ParameterName>EndDate</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>3</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>pArtist</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
