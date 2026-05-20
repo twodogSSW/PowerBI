@@ -4,7 +4,7 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 0,
+        "x": 195.74498954800259,
         "y": 0
       },
       "nodes": [
@@ -283,6 +283,18 @@
           },
           "zIndex": 2,
           "expandedHeight": 211.25
+        },
+        {
+          "location": {
+            "x": 1945.0515950022943,
+            "y": 397.54693106686904
+          },
+          "nodeIndex": "dimDateSlicer",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",

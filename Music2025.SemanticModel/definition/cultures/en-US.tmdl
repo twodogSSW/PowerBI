@@ -10318,7 +10318,7 @@ cultureInfo en-US
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "_Categories",
-			          "ConceptualProperty": "CategorySelector"
+			          "ConceptualProperty": "Selection"
 			        }
 			      },
 			      "State": "Generated",

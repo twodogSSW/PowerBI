@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "558d972bad504a849958",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "3e4cd1db08e09b693162",
   "position": {
-    "x": 10.236684143574276,
-    "y": 0,
-    "z": 1000,
-    "height": 32.219499345361982,
-    "width": 191.36677299805794,
-    "tabOrder": 0
+    "x": 0,
+    "y": 1.7225794241313643,
+    "z": 500,
+    "height": 31.361161524500908,
+    "width": 223.01270417422867,
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "card",
@@ -97,9 +97,73 @@
             }
           }
         }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "showTooltipButton": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeaderTooltip": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'🤔Today''s Date🤔'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "67f691e00a5558192a22"
+  "parentGroupName": "67f691e00a5558192a22",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "0088f20dcd7789800038",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendar"
+              }
+            },
+            "Property": "LastRefreshDate"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
 }

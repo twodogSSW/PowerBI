@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.0.0/schema.json",
   "displayName": "PApps Show form",
   "name": "028fa6efc71c31b09e95",
   "options": {
@@ -1098,7 +1098,7 @@
                           "Entity": "_Categories"
                         }
                       },
-                      "Property": "CategorySelector"
+                      "Property": "Selection"
                     }
                   },
                   "howCreated": 0
@@ -1181,7 +1181,7 @@
                           "Entity": "_Categories"
                         }
                       },
-                      "Property": "CategorySelector"
+                      "Property": "Selection"
                     }
                   }
                 }
@@ -1195,7 +1195,7 @@
                           "Entity": "_Categories"
                         }
                       },
-                      "Property": "CategorySelector"
+                      "Property": "Selection"
                     }
                   }
                 ]

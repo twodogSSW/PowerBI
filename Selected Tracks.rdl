@@ -11,7 +11,7 @@
       <am:Name>PBIRB</am:Name>
       <am:Version>15.7.1815.334</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2026-02-13T20:08:26.4239107Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2026-03-25T21:59:04.8230823Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
@@ -1384,7 +1384,7 @@ order by SalesAmt Desc </CommandText>
             <KeepTogether>true</KeepTogether>
             <Top>1.65624in</Top>
             <Left>0.08208in</Left>
-            <Height>3.39041in</Height>
+            <Height>3.68208in</Height>
             <Width>11.12625in</Width>
             <ZIndex>4</ZIndex>
             <Style>
@@ -1453,7 +1453,6 @@ order by SalesAmt Desc </CommandText>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <rd:Selected>true</rd:Selected>
                         <Chart Name="ChartMonthlyActivity">
                           <ChartCategoryHierarchy>
                             <ChartMembers>
@@ -1859,7 +1858,7 @@ order by SalesAmt Desc </CommandText>
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>Track Sales In Date Range</Value>
+                                    <Value />
                                     <Style>
                                       <FontWeight>Bold</FontWeight>
                                     </Style>

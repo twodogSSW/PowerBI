@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.0.0/schema.json",
   "displayName": "Category Reset (Data)",
   "name": "df7bcb41abcea2d3aef4",
   "options": {
@@ -745,7 +745,7 @@
                           "Entity": "_Categories"
                         }
                       },
-                      "Property": "CategorySelector"
+                      "Property": "Selection"
                     }
                   },
                   "howCreated": 0
@@ -828,7 +828,7 @@
                           "Entity": "_Categories"
                         }
                       },
-                      "Property": "CategorySelector"
+                      "Property": "Selection"
                     }
                   }
                 }
@@ -842,7 +842,7 @@
                           "Entity": "_Categories"
                         }
                       },
-                      "Property": "CategorySelector"
+                      "Property": "Selection"
                     }
                   }
                 ]

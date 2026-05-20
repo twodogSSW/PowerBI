@@ -11,7 +11,7 @@
       <am:Name>PBIRB</am:Name>
       <am:Version>15.7.1815.334</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2026-03-16T19:29:50.7844341Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2026-03-15T21:14:11.8156559Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
@@ -48,26 +48,21 @@
         al.Album              AS Album,
         NULL                  AS Artist,
         NULL                  AS Title,
-        NULL                  AS TrackSalesAmt,
+        SUM(als.SalesAmt)     AS TrackSalesAmt,
         SUM(als.SalesAmt)     AS SalesAmt,
         NULL                  AS SaleCount,
-        NULL                  AS SalesDate
+        MAX(als.SalesDate)    AS SalesDate
     FROM dbo.Album al
     LEFT JOIN dbo.AlbumSales als
         ON als.fkAlbum = al.pkAlbum
         AND als.SalesDate BETWEEN @StartDate AND @EndDate
-    WHERE al.pkAlbum IN (@Album)   -- SSRS multi-value parameter
+    WHERE al.pkAlbum IN (@Album)
     GROUP BY al.pkAlbum, al.Album
-),
-FilteredAlbums AS (
-    SELECT AlbumID
-    FROM AlbumData
-    WHERE SalesAmt &gt; 0
 ),
 TrackData AS (
     SELECT
         tl.fkAlbum            AS AlbumID,
-        al.Album              AS Album,
+        NULL                  AS Album,
         ar.Artist             AS Artist,
         tl.Title              AS Title,
         ts.SalesAmt           AS TrackSalesAmt,
@@ -80,21 +75,14 @@ TrackData AS (
         AND ts.SalesDate BETWEEN @StartDate AND @EndDate
     LEFT JOIN dbo.Artist ar
         ON ar.pkArtist = tl.fkArtist
-    LEFT JOIN dbo.Album al
-        ON al.pkAlbum = tl.fkAlbum
-    WHERE tl.fkAlbum IN (@Album)   -- SSRS multi-value parameter
+    WHERE tl.fkAlbum IN (@Album)
 )
-SELECT *
-FROM AlbumData
-WHERE AlbumID IN (SELECT AlbumID FROM FilteredAlbums)
-
-UNION ALL
-
-SELECT *
-FROM TrackData
-WHERE AlbumID IN (SELECT AlbumID FROM FilteredAlbums)
-
-ORDER BY SalesAmt DESC;</CommandText>
+(
+    SELECT * FROM AlbumData
+    UNION ALL
+    SELECT * FROM TrackData
+)
+ORDER BY SalesDate DESC;</CommandText>
       </Query>
       <Fields>
         <Field Name="AlbumID">
@@ -169,7 +157,7 @@ ORDER BY SalesAmt DESC;</CommandText>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Left</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -210,7 +198,7 @@ ORDER BY SalesAmt DESC;</CommandText>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Left</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -239,82 +227,8 @@ ORDER BY SalesAmt DESC;</CommandText>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox2">
-                          <rd:DefaultName>Textbox2</rd:DefaultName>
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontWeight>Normal</FontWeight>
-                                    <Color>#333333</Color>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <BackgroundColor>White</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="SalesAmt">
-                          <rd:DefaultName>SalesAmt</rd:DefaultName>
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=First(Fields!SalesAmt.Value)</Value>
-                                  <Style>
-                                    <FontWeight>Normal</FontWeight>
-                                    <Format>#,0;(#,0)</Format>
-                                    <Color>#333333</Color>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <BackgroundColor>White</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>0.23958in</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox34">
-                          <rd:DefaultName>Textbox33</rd:DefaultName>
+                        <Textbox Name="TrackSalesAmt">
+                          <rd:DefaultName>TrackSalesAmt</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -336,11 +250,6 @@ ORDER BY SalesAmt DESC;</CommandText>
                             <Border>
                               <Style>None</Style>
                             </Border>
-                            <BottomBorder>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
-                            </BottomBorder>
                             <BackgroundColor>White</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -390,8 +299,8 @@ ORDER BY SalesAmt DESC;</CommandText>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox5">
-                          <rd:DefaultName>Textbox5</rd:DefaultName>
+                        <Textbox Name="Textbox33">
+                          <rd:DefaultName>Textbox33</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -466,21 +375,22 @@ ORDER BY SalesAmt DESC;</CommandText>
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.05208in</Height>
+                  <Height>0.25in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox64">
-                          <rd:DefaultName>Textbox64</rd:DefaultName>
+                        <Textbox Name="Textbox34">
+                          <rd:DefaultName>Textbox34</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Sum(Fields!TrackSalesAmt.Value)</Value>
                                   <Style>
                                     <FontWeight>Normal</FontWeight>
+                                    <Format>#,0;(#,0)</Format>
                                     <Color>#333333</Color>
                                   </Style>
                                 </TextRun>
@@ -507,17 +417,18 @@ ORDER BY SalesAmt DESC;</CommandText>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox65">
-                          <rd:DefaultName>Textbox65</rd:DefaultName>
+                        <Textbox Name="Textbox27">
+                          <rd:DefaultName>Textbox27</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Sum(Fields!SalesAmt.Value)</Value>
                                   <Style>
                                     <FontWeight>Normal</FontWeight>
+                                    <Format>#,0;(#,0)</Format>
                                     <Color>#333333</Color>
                                   </Style>
                                 </TextRun>
@@ -549,9 +460,8 @@ ORDER BY SalesAmt DESC;</CommandText>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <rd:Selected>true</rd:Selected>
-                        <Textbox Name="TrackSalesAmt">
-                          <rd:DefaultName>TrackSalesAmt</rd:DefaultName>
+                        <Textbox Name="Textbox35">
+                          <rd:DefaultName>Textbox35</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -566,9 +476,7 @@ ORDER BY SalesAmt DESC;</CommandText>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
+                              <Style />
                             </Paragraph>
                           </Paragraphs>
                           <Style>
@@ -586,8 +494,8 @@ ORDER BY SalesAmt DESC;</CommandText>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="SalesAmt1">
-                          <rd:DefaultName>SalesAmt1</rd:DefaultName>
+                        <Textbox Name="Textbox23">
+                          <rd:DefaultName>Textbox23</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -602,9 +510,7 @@ ORDER BY SalesAmt DESC;</CommandText>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
+                              <Style />
                             </Paragraph>
                           </Paragraphs>
                           <Style>
@@ -772,9 +678,9 @@ ORDER BY SalesAmt DESC;</CommandText>
                   </TablixMembers>
                 </TablixMember>
                 <TablixMember>
-                  <Group Name="AlbumID">
+                  <Group Name="Album">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!AlbumID.Value</GroupExpression>
+                      <GroupExpression>=Fields!Album.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
@@ -782,158 +688,69 @@ ORDER BY SalesAmt DESC;</CommandText>
                       <Value>=Fields!Album.Value</Value>
                     </SortExpression>
                   </SortExpressions>
+                  <TablixHeader>
+                    <Size>2.11979in</Size>
+                    <CellContents>
+                      <Textbox Name="Album">
+                        <rd:DefaultName>Album</rd:DefaultName>
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>=Fields!Album.Value</Value>
+                                <Style>
+                                  <FontWeight>Normal</FontWeight>
+                                  <Color>#333333</Color>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <Style>
+                          <Border>
+                            <Style>None</Style>
+                          </Border>
+                          <BottomBorder>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                            <Width>1pt</Width>
+                          </BottomBorder>
+                          <BackgroundColor>White</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
                   <TablixMembers>
                     <TablixMember>
-                      <TablixHeader>
-                        <Size>2.11979in</Size>
-                        <CellContents>
-                          <Textbox Name="Album1">
-                            <rd:DefaultName>Album1</rd:DefaultName>
-                            <CanGrow>true</CanGrow>
-                            <KeepTogether>true</KeepTogether>
-                            <Paragraphs>
-                              <Paragraph>
-                                <TextRuns>
-                                  <TextRun>
-                                    <Value>=Fields!Album.Value</Value>
-                                    <Style>
-                                      <FontWeight>Normal</FontWeight>
-                                      <Color>#333333</Color>
-                                    </Style>
-                                  </TextRun>
-                                </TextRuns>
-                                <Style />
-                              </Paragraph>
-                            </Paragraphs>
-                            <Style>
-                              <Border>
-                                <Style>None</Style>
-                              </Border>
-                              <BottomBorder>
-                                <Color>LightGrey</Color>
-                                <Style>Solid</Style>
-                                <Width>1pt</Width>
-                              </BottomBorder>
-                              <BackgroundColor>White</BackgroundColor>
-                              <PaddingLeft>2pt</PaddingLeft>
-                              <PaddingRight>2pt</PaddingRight>
-                              <PaddingTop>2pt</PaddingTop>
-                              <PaddingBottom>2pt</PaddingBottom>
-                            </Style>
-                          </Textbox>
-                        </CellContents>
-                      </TablixHeader>
-                      <TablixMembers>
-                        <TablixMember>
-                          <TablixHeader>
-                            <Size>2.11979in</Size>
-                            <CellContents>
-                              <Textbox Name="Artist1">
-                                <rd:DefaultName>Artist1</rd:DefaultName>
-                                <CanGrow>true</CanGrow>
-                                <KeepTogether>true</KeepTogether>
-                                <Paragraphs>
-                                  <Paragraph>
-                                    <TextRuns>
-                                      <TextRun>
-                                        <Value>=Fields!Artist.Value</Value>
-                                        <Style>
-                                          <FontWeight>Normal</FontWeight>
-                                          <Color>#333333</Color>
-                                        </Style>
-                                      </TextRun>
-                                    </TextRuns>
-                                    <Style />
-                                  </Paragraph>
-                                </Paragraphs>
-                                <Style>
-                                  <Border>
-                                    <Style>None</Style>
-                                  </Border>
-                                  <BottomBorder>
-                                    <Color>LightGrey</Color>
-                                    <Style>Solid</Style>
-                                    <Width>1pt</Width>
-                                  </BottomBorder>
-                                  <BackgroundColor>White</BackgroundColor>
-                                  <PaddingLeft>2pt</PaddingLeft>
-                                  <PaddingRight>2pt</PaddingRight>
-                                  <PaddingTop>2pt</PaddingTop>
-                                  <PaddingBottom>2pt</PaddingBottom>
-                                </Style>
-                              </Textbox>
-                            </CellContents>
-                          </TablixHeader>
-                          <TablixMembers>
-                            <TablixMember>
-                              <TablixHeader>
-                                <Size>2.17187in</Size>
-                                <CellContents>
-                                  <Textbox Name="Title1">
-                                    <rd:DefaultName>Title1</rd:DefaultName>
-                                    <CanGrow>true</CanGrow>
-                                    <KeepTogether>true</KeepTogether>
-                                    <Paragraphs>
-                                      <Paragraph>
-                                        <TextRuns>
-                                          <TextRun>
-                                            <Value>=Fields!Title.Value</Value>
-                                            <Style>
-                                              <FontWeight>Normal</FontWeight>
-                                              <Color>#333333</Color>
-                                            </Style>
-                                          </TextRun>
-                                        </TextRuns>
-                                        <Style />
-                                      </Paragraph>
-                                    </Paragraphs>
-                                    <Style>
-                                      <Border>
-                                        <Style>None</Style>
-                                      </Border>
-                                      <BottomBorder>
-                                        <Color>LightGrey</Color>
-                                        <Style>Solid</Style>
-                                        <Width>1pt</Width>
-                                      </BottomBorder>
-                                      <BackgroundColor>White</BackgroundColor>
-                                      <PaddingLeft>2pt</PaddingLeft>
-                                      <PaddingRight>2pt</PaddingRight>
-                                      <PaddingTop>2pt</PaddingTop>
-                                      <PaddingBottom>2pt</PaddingBottom>
-                                    </Style>
-                                  </Textbox>
-                                </CellContents>
-                              </TablixHeader>
-                            </TablixMember>
-                          </TablixMembers>
-                        </TablixMember>
-                      </TablixMembers>
-                      <KeepWithGroup>After</KeepWithGroup>
-                    </TablixMember>
-                    <TablixMember>
-                      <Group Name="Album">
+                      <Group Name="Artist">
                         <GroupExpressions>
-                          <GroupExpression>=Fields!Album.Value</GroupExpression>
+                          <GroupExpression>=Fields!Artist.Value</GroupExpression>
                         </GroupExpressions>
                       </Group>
                       <SortExpressions>
                         <SortExpression>
-                          <Value>=Fields!Album.Value</Value>
+                          <Value>=Fields!Artist.Value</Value>
                         </SortExpression>
                       </SortExpressions>
                       <TablixHeader>
                         <Size>2.11979in</Size>
                         <CellContents>
-                          <Textbox Name="Album">
-                            <rd:DefaultName>Album</rd:DefaultName>
+                          <Textbox Name="Artist">
+                            <rd:DefaultName>Artist</rd:DefaultName>
                             <CanGrow>true</CanGrow>
                             <KeepTogether>true</KeepTogether>
                             <Paragraphs>
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>=""</Value>
+                                    <Value>=Fields!Artist.Value</Value>
                                     <Style>
                                       <FontWeight>Normal</FontWeight>
                                       <Color>#333333</Color>
@@ -963,28 +780,28 @@ ORDER BY SalesAmt DESC;</CommandText>
                       </TablixHeader>
                       <TablixMembers>
                         <TablixMember>
-                          <Group Name="Artist">
+                          <Group Name="Title">
                             <GroupExpressions>
-                              <GroupExpression>=Fields!Artist.Value</GroupExpression>
+                              <GroupExpression>=Fields!Title.Value</GroupExpression>
                             </GroupExpressions>
                           </Group>
                           <SortExpressions>
                             <SortExpression>
-                              <Value>=Fields!Artist.Value</Value>
+                              <Value>=Fields!Title.Value</Value>
                             </SortExpression>
                           </SortExpressions>
                           <TablixHeader>
-                            <Size>2.11979in</Size>
+                            <Size>2.17187in</Size>
                             <CellContents>
-                              <Textbox Name="Artist">
-                                <rd:DefaultName>Artist</rd:DefaultName>
+                              <Textbox Name="Title">
+                                <rd:DefaultName>Title</rd:DefaultName>
                                 <CanGrow>true</CanGrow>
                                 <KeepTogether>true</KeepTogether>
                                 <Paragraphs>
                                   <Paragraph>
                                     <TextRuns>
                                       <TextRun>
-                                        <Value>=Fields!Artist.Value</Value>
+                                        <Value>=Fields!Title.Value</Value>
                                         <Style>
                                           <FontWeight>Normal</FontWeight>
                                           <Color>#333333</Color>
@@ -1013,116 +830,15 @@ ORDER BY SalesAmt DESC;</CommandText>
                             </CellContents>
                           </TablixHeader>
                           <TablixMembers>
-                            <TablixMember>
-                              <Group Name="Title">
-                                <GroupExpressions>
-                                  <GroupExpression>=Fields!Title.Value</GroupExpression>
-                                </GroupExpressions>
-                              </Group>
-                              <SortExpressions>
-                                <SortExpression>
-                                  <Value>=Fields!Title.Value</Value>
-                                </SortExpression>
-                              </SortExpressions>
-                              <TablixHeader>
-                                <Size>2.17187in</Size>
-                                <CellContents>
-                                  <Textbox Name="Title">
-                                    <rd:DefaultName>Title</rd:DefaultName>
-                                    <CanGrow>true</CanGrow>
-                                    <KeepTogether>true</KeepTogether>
-                                    <Paragraphs>
-                                      <Paragraph>
-                                        <TextRuns>
-                                          <TextRun>
-                                            <Value>=Fields!Title.Value</Value>
-                                            <Style>
-                                              <FontWeight>Normal</FontWeight>
-                                              <Color>#333333</Color>
-                                            </Style>
-                                          </TextRun>
-                                        </TextRuns>
-                                        <Style />
-                                      </Paragraph>
-                                    </Paragraphs>
-                                    <Style>
-                                      <Border>
-                                        <Style>None</Style>
-                                      </Border>
-                                      <BottomBorder>
-                                        <Color>LightGrey</Color>
-                                        <Style>Solid</Style>
-                                        <Width>1pt</Width>
-                                      </BottomBorder>
-                                      <BackgroundColor>White</BackgroundColor>
-                                      <PaddingLeft>2pt</PaddingLeft>
-                                      <PaddingRight>2pt</PaddingRight>
-                                      <PaddingTop>2pt</PaddingTop>
-                                      <PaddingBottom>2pt</PaddingBottom>
-                                    </Style>
-                                  </Textbox>
-                                </CellContents>
-                              </TablixHeader>
-                              <TablixMembers>
-                                <TablixMember />
-                              </TablixMembers>
-                            </TablixMember>
-                            <TablixMember>
-                              <TablixHeader>
-                                <Size>2.17187in</Size>
-                                <CellContents>
-                                  <Textbox Name="Textbox6">
-                                    <rd:DefaultName>Textbox6</rd:DefaultName>
-                                    <CanGrow>true</CanGrow>
-                                    <KeepTogether>true</KeepTogether>
-                                    <Paragraphs>
-                                      <Paragraph>
-                                        <TextRuns>
-                                          <TextRun>
-                                            <Value />
-                                            <Style>
-                                              <FontWeight>Normal</FontWeight>
-                                              <Color>#333333</Color>
-                                            </Style>
-                                          </TextRun>
-                                        </TextRuns>
-                                        <Style />
-                                      </Paragraph>
-                                    </Paragraphs>
-                                    <Style>
-                                      <Border>
-                                        <Style>None</Style>
-                                      </Border>
-                                      <BottomBorder>
-                                        <Color>LightGrey</Color>
-                                        <Style>Solid</Style>
-                                        <Width>1pt</Width>
-                                      </BottomBorder>
-                                      <BackgroundColor>White</BackgroundColor>
-                                      <PaddingLeft>2pt</PaddingLeft>
-                                      <PaddingRight>2pt</PaddingRight>
-                                      <PaddingTop>2pt</PaddingTop>
-                                      <PaddingBottom>2pt</PaddingBottom>
-                                    </Style>
-                                  </Textbox>
-                                </CellContents>
-                              </TablixHeader>
-                              <Visibility>
-                                <Hidden>true</Hidden>
-                              </Visibility>
-                              <KeepWithGroup>Before</KeepWithGroup>
-                            </TablixMember>
+                            <TablixMember />
                           </TablixMembers>
-                          <Visibility>
-                            <ToggleItem>Album</ToggleItem>
-                          </Visibility>
                         </TablixMember>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>2.11979in</Size>
+                            <Size>2.17187in</Size>
                             <CellContents>
-                              <Textbox Name="Textbox40">
-                                <rd:DefaultName>Textbox40</rd:DefaultName>
+                              <Textbox Name="Textbox42">
+                                <rd:DefaultName>Textbox42</rd:DefaultName>
                                 <CanGrow>true</CanGrow>
                                 <KeepTogether>true</KeepTogether>
                                 <Paragraphs>
@@ -1157,54 +873,103 @@ ORDER BY SalesAmt DESC;</CommandText>
                               </Textbox>
                             </CellContents>
                           </TablixHeader>
-                          <TablixMembers>
-                            <TablixMember>
-                              <TablixHeader>
-                                <Size>2.17187in</Size>
-                                <CellContents>
-                                  <Textbox Name="Textbox25">
-                                    <rd:DefaultName>Textbox25</rd:DefaultName>
-                                    <CanGrow>true</CanGrow>
-                                    <KeepTogether>true</KeepTogether>
-                                    <Paragraphs>
-                                      <Paragraph>
-                                        <TextRuns>
-                                          <TextRun>
-                                            <Value />
-                                            <Style>
-                                              <FontWeight>Normal</FontWeight>
-                                              <Color>#333333</Color>
-                                            </Style>
-                                          </TextRun>
-                                        </TextRuns>
-                                        <Style>
-                                          <TextAlign>Right</TextAlign>
-                                        </Style>
-                                      </Paragraph>
-                                    </Paragraphs>
-                                    <Style>
-                                      <Border>
-                                        <Style>None</Style>
-                                      </Border>
-                                      <BottomBorder>
-                                        <Color>LightGrey</Color>
-                                        <Style>Solid</Style>
-                                        <Width>1pt</Width>
-                                      </BottomBorder>
-                                      <BackgroundColor>White</BackgroundColor>
-                                      <PaddingLeft>2pt</PaddingLeft>
-                                      <PaddingRight>2pt</PaddingRight>
-                                      <PaddingTop>2pt</PaddingTop>
-                                      <PaddingBottom>2pt</PaddingBottom>
-                                    </Style>
-                                  </Textbox>
-                                </CellContents>
-                              </TablixHeader>
-                            </TablixMember>
-                          </TablixMembers>
+                          <Visibility>
+                            <Hidden>true</Hidden>
+                          </Visibility>
                           <KeepWithGroup>Before</KeepWithGroup>
                         </TablixMember>
                       </TablixMembers>
+                      <Visibility>
+                        <Hidden>true</Hidden>
+                        <ToggleItem>Album</ToggleItem>
+                      </Visibility>
+                    </TablixMember>
+                    <TablixMember>
+                      <TablixHeader>
+                        <Size>2.11979in</Size>
+                        <CellContents>
+                          <Textbox Name="Textbox40">
+                            <rd:DefaultName>Textbox40</rd:DefaultName>
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value />
+                                    <Style>
+                                      <FontWeight>Normal</FontWeight>
+                                      <Color>#333333</Color>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style />
+                              </Paragraph>
+                            </Paragraphs>
+                            <Style>
+                              <Border>
+                                <Style>None</Style>
+                              </Border>
+                              <BottomBorder>
+                                <Color>LightGrey</Color>
+                                <Style>Solid</Style>
+                                <Width>1pt</Width>
+                              </BottomBorder>
+                              <BackgroundColor>White</BackgroundColor>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                      <TablixMembers>
+                        <TablixMember>
+                          <TablixHeader>
+                            <Size>2.17187in</Size>
+                            <CellContents>
+                              <Textbox Name="Textbox26">
+                                <rd:DefaultName>Textbox26</rd:DefaultName>
+                                <CanGrow>true</CanGrow>
+                                <KeepTogether>true</KeepTogether>
+                                <Paragraphs>
+                                  <Paragraph>
+                                    <TextRuns>
+                                      <TextRun>
+                                        <Value>Total</Value>
+                                        <Style>
+                                          <FontWeight>Normal</FontWeight>
+                                          <Color>#333333</Color>
+                                        </Style>
+                                      </TextRun>
+                                    </TextRuns>
+                                    <Style>
+                                      <TextAlign>Right</TextAlign>
+                                    </Style>
+                                  </Paragraph>
+                                </Paragraphs>
+                                <Style>
+                                  <Border>
+                                    <Style>None</Style>
+                                  </Border>
+                                  <BottomBorder>
+                                    <Color>LightGrey</Color>
+                                    <Style>Solid</Style>
+                                    <Width>1pt</Width>
+                                  </BottomBorder>
+                                  <BackgroundColor>White</BackgroundColor>
+                                  <PaddingLeft>2pt</PaddingLeft>
+                                  <PaddingRight>2pt</PaddingRight>
+                                  <PaddingTop>2pt</PaddingTop>
+                                  <PaddingBottom>2pt</PaddingBottom>
+                                </Style>
+                              </Textbox>
+                            </CellContents>
+                          </TablixHeader>
+                        </TablixMember>
+                      </TablixMembers>
+                      <KeepWithGroup>Before</KeepWithGroup>
                     </TablixMember>
                   </TablixMembers>
                 </TablixMember>
@@ -1321,12 +1086,12 @@ ORDER BY SalesAmt DESC;</CommandText>
                       </TablixMembers>
                     </TablixMember>
                   </TablixMembers>
+                  <KeepWithGroup>Before</KeepWithGroup>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DS_AlbumSales</DataSetName>
-            <Top>0.06944in</Top>
-            <Height>1.03124in</Height>
+            <Height>0.98958in</Height>
             <Width>9.03124in</Width>
             <Style>
               <Border>
@@ -1335,14 +1100,14 @@ ORDER BY SalesAmt DESC;</CommandText>
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>2.32292in</Height>
+        <Height>1.25in</Height>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Body>
-      <Width>9.06124in</Width>
+      <Width>9.09374in</Width>
       <Page>
         <PageHeader>
           <Height>0.39361in</Height>
@@ -1391,7 +1156,7 @@ ORDER BY SalesAmt DESC;</CommandText>
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.68958in</Height>
+          <Height>0.66875in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1415,7 +1180,7 @@ ORDER BY SalesAmt DESC;</CommandText>
               <Top>0.18472in</Top>
               <Left>0.00917in</Left>
               <Height>0.31737in</Height>
-              <Width>9.02207in</Width>
+              <Width>8.47in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>

@@ -30,3 +30,10 @@ Thumbs.db
 
 # prevents objects over 100mb in size from being added
 **/.pbi/cache.abf
+
+#for baseball fantasy project, ignore these files
+*.env
+venv/
+__pycache__/
+*.pyc
+logs/

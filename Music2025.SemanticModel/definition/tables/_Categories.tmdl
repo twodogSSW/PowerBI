@@ -574,7 +574,7 @@ table _Categories
 		lineageTag: 7a846929-104e-4ba4-85e5-b3250cd581b6
 
 	/// CategorySelector
-	column CategorySelector
+	column Selection
 		lineageTag: 53bfbef8-72ed-48f6-94ea-04cd1be52231
 		summarizeBy: none
 		sourceColumn: [Value1]

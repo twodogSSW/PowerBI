@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.0.0/schema.json",
   "displayName": "Top Hide",
   "name": "1c5da6d607aad2a554d5",
   "options": {
@@ -195,7 +195,7 @@
                           "Entity": "_Categories"
                         }
                       },
-                      "Property": "CategorySelector"
+                      "Property": "Selection"
                     }
                   },
                   "howCreated": 0
@@ -278,7 +278,7 @@
                           "Entity": "_Categories"
                         }
                       },
-                      "Property": "CategorySelector"
+                      "Property": "Selection"
                     }
                   }
                 }
@@ -292,7 +292,7 @@
                           "Entity": "_Categories"
                         }
                       },
-                      "Property": "CategorySelector"
+                      "Property": "Selection"
                     }
                   }
                 ]

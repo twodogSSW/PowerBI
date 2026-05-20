@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.0.0/schema.json",
   "displayName": "PApps Hide form",
   "name": "995833f4a324418061aa",
   "options": {
@@ -1097,7 +1097,7 @@
                           "Entity": "_Categories"
                         }
                       },
-                      "Property": "CategorySelector"
+                      "Property": "Selection"
                     }
                   },
                   "howCreated": 0
@@ -1180,7 +1180,7 @@
                           "Entity": "_Categories"
                         }
                       },
-                      "Property": "CategorySelector"
+                      "Property": "Selection"
                     }
                   }
                 }
@@ -1194,7 +1194,7 @@
                           "Entity": "_Categories"
                         }
                       },
-                      "Property": "CategorySelector"
+                      "Property": "Selection"
                     }
                   }
                 ]

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "342edb4fb10a15b4a75a",
   "position": {
     "x": 0,
@@ -23,7 +23,7 @@
                       "Entity": "_Categories"
                     }
                   },
-                  "Property": "CategorySelector"
+                  "Property": "Selection"
                 }
               },
               "queryRef": "EntitySelector.EntitySelector",
@@ -43,7 +43,7 @@
                     "Entity": "_Categories"
                   }
                 },
-                "Property": "CategorySelector"
+                "Property": "Selection"
               }
             },
             "direction": "Ascending"
@@ -102,7 +102,7 @@
                                   "Entity": "_Categories"
                                 }
                               },
-                              "Property": "CategorySelector"
+                              "Property": "Selection"
                             }
                           }
                         ],

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "e893b8672e73858e88b8",
   "position": {
     "x": 898.639798488665,
@@ -7,7 +7,7 @@
     "z": 7000,
     "height": 187.16180371352783,
     "width": 381.0079575596817,
-    "tabOrder": 3000
+    "tabOrder": 2000
   },
   "visualGroup": {
     "displayName": "PowerBI",

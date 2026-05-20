@@ -32,6 +32,7 @@ ref table _BusinessDrivers
 ref table Calendar
 ref table _Categories
 ref table TrackNotes
+ref table dimDateSlicer
 
 ref role 'Depeche Mode Fan'
 ref role 'East Africa Region'
