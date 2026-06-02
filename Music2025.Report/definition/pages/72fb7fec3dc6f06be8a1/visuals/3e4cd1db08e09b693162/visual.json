@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "3e4cd1db08e09b693162",
   "position": {
     "x": 0,
@@ -147,23 +147,5 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "67f691e00a5558192a22",
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "0088f20dcd7789800038",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Calendar"
-              }
-            },
-            "Property": "LastRefreshDate"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
-  }
+  "parentGroupName": "67f691e00a5558192a22"
 }

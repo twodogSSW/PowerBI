@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "7e27b38c07ee57488d18",
   "position": {
-    "x": 7.0204265149919562,
-    "y": 573.24239413064788,
-    "z": 2000,
-    "height": 50.42743865709933,
-    "width": 213.94279686591,
+    "x": 7.2865275142314987,
+    "y": 451.76470588235293,
+    "z": 3000,
+    "height": 49.791271347248575,
+    "width": 212.52371916508537,
     "tabOrder": 0
   },
   "visual": {
@@ -260,7 +260,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "' btn Review Track Sales'"
+                  "Value": "' btn Show Top 10'"
                 }
               }
             },
@@ -310,6 +310,6 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "dd4e9894947d1b804478",
+  "parentGroupName": "bc5e1cbf4a1e782007b0",
   "howCreated": "InsertVisualButton"
 }

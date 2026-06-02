@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "d8fef6f0cf94f75bac08",
   "position": {
     "x": 7.369204812206573,
@@ -85,7 +85,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'''TrackList''[Track - Artist]'"
+                                "Value": "'''RecordLabel''[RecordLabel]'"
                               }
                             }
                           ]
@@ -113,7 +113,7 @@
                                 "0": [
                                   {
                                     "Literal": {
-                                      "Value": "'''TrackList''[Track - Artist]'"
+                                      "Value": "'''RecordLabel''[RecordLabel]'"
                                     }
                                   }
                                 ]
@@ -137,7 +137,7 @@
                         },
                         "valueMap": [
                           {
-                            "0": "Title - Artist"
+                            "0": "Record Label"
                           }
                         ]
                       }
@@ -431,23 +431,5 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "c6a4ae61824dddb0822e",
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "05456c295e9d7c587910",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Categories"
-              }
-            },
-            "Property": "Selection"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
-  }
+  "parentGroupName": "c6a4ae61824dddb0822e"
 }

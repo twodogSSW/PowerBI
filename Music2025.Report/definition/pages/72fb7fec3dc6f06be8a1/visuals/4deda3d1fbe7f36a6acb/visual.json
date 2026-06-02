@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "4deda3d1fbe7f36a6acb",
   "position": {
-    "x": 11.067861374710263,
-    "y": 13.784272726589041,
+    "x": 11.076222486827605,
+    "y": 14.517578452972185,
     "z": 1000,
-    "height": 398.27586206896552,
-    "width": 702.06280788177344,
-    "tabOrder": 1000
+    "height": 419.46362990614659,
+    "width": 702.59317464834021,
+    "tabOrder": 2000
   },
   "visualGroup": {
     "displayName": "Text Boxes",

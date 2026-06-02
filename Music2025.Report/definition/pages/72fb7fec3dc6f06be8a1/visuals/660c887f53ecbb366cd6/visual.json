@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "660c887f53ecbb366cd6",
   "position": {
     "x": 641.4883016373276,
@@ -23,7 +23,7 @@
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontFamily": "Segoe UI Semibold",
-                      "fontSize": "12pt",
+                      "fontSize": "14pt",
                       "textDecoration": "underline"
                     }
                   }
@@ -56,7 +56,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Use the slicers to filter by category or time period — including Month, Quarter, and Year — to explore trends, compare performance, and uncover insights. Each page adapts dynamically to your selections, enabling focused analysis and export-ready views.",
+                    "value": "Use the slicers to filter by category to explore trends, compare performance, and uncover insights. Each page adapts dynamically to your selections, enabling focused analysis and export-ready views.",
                     "textStyle": {
                       "fontSize": "12pt"
                     }

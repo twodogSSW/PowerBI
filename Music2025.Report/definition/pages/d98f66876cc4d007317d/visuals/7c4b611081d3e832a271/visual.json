@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "7c4b611081d3e832a271",
   "position": {
-    "x": 569.65820144963891,
-    "y": 65.635304994779816,
+    "x": 372.70211271750065,
+    "y": 15.886750226777647,
     "z": 1000,
-    "height": 316.68431476658378,
-    "width": 560.63120312578621,
-    "tabOrder": 1000
+    "height": 312.60115606936415,
+    "width": 480.92485549132948,
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "tableEx",
@@ -20,15 +20,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RecordLabel"
+                      "Entity": "PurchasedFrom"
                     }
                   },
-                  "Property": "RecordLabel"
+                  "Property": "Purchased From"
                 }
               },
-              "queryRef": "RecordLabel.RecordLabel",
-              "nativeQueryRef": "Record Label",
-              "displayName": "Record Label"
+              "queryRef": "PurchasedFrom.Purchased From",
+              "nativeQueryRef": "Retail Sales - Albums",
+              "displayName": "Retail Sales - Albums"
             },
             {
               "field": {
@@ -739,5 +739,6 @@
         "howCreated": "User"
       }
     ]
-  }
+  },
+  "isHidden": true
 }

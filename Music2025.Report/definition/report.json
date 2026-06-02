@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
   "themeCollection": {
     "baseTheme": {
       "name": "CY24SU10",
@@ -31,7 +31,7 @@
           "expanded": {
             "expr": {
               "Literal": {
-                "Value": "true"
+                "Value": "false"
               }
             }
           },
@@ -71,13 +71,8 @@
           "type": "Image"
         },
         {
-          "name": "shape8982134108706878.png",
-          "path": "shape8982134108706878.png",
-          "type": "Image"
-        },
-        {
-          "name": "Close08076570752541401.svg",
-          "path": "Close08076570752541401.svg",
+          "name": "calendar7449748688136498.svg",
+          "path": "calendar7449748688136498.svg",
           "type": "Image"
         },
         {
@@ -86,13 +81,18 @@
           "type": "Image"
         },
         {
+          "name": "Close08076570752541401.svg",
+          "path": "Close08076570752541401.svg",
+          "type": "Image"
+        },
+        {
           "name": "PowerBI9462177568529606.png",
           "path": "PowerBI9462177568529606.png",
           "type": "Image"
         },
         {
-          "name": "calendar7449748688136498.svg",
-          "path": "calendar7449748688136498.svg",
+          "name": "shape8982134108706878.png",
+          "path": "shape8982134108706878.png",
           "type": "Image"
         }
       ]

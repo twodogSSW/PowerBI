@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "67f691e00a5558192a22",
   "position": {
     "x": 4.8175920440670161,
@@ -7,7 +7,7 @@
     "z": 5000,
     "height": 33.083740948632268,
     "width": 1269.0531182512241,
-    "tabOrder": 10000
+    "tabOrder": 8000
   },
   "visualGroup": {
     "displayName": "Footer",

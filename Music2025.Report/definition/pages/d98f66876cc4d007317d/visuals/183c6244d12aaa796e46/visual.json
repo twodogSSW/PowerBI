@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "183c6244d12aaa796e46",
   "position": {
     "x": 232,
@@ -7,7 +7,7 @@
     "z": 1000,
     "height": 176.3085399449036,
     "width": 1041.3057851239669,
-    "tabOrder": 3000
+    "tabOrder": 4000
   },
   "visualGroup": {
     "displayName": "Middle Row",

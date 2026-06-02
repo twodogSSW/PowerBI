@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "1fbbe23c692ccf0b3581",
   "position": {
     "x": 0,
@@ -27,6 +27,7 @@
                 }
               },
               "queryRef": "Geography.City",
+              "nativeQueryRef": "City",
               "active": true
             }
           ]
@@ -38,13 +39,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Region"
+                      "Entity": "Geography"
                     }
                   },
                   "Property": "Continent"
                 }
               },
-              "queryRef": "Region.Continent"
+              "queryRef": "Geography.Continent",
+              "nativeQueryRef": "Continent"
             }
           ]
         },
