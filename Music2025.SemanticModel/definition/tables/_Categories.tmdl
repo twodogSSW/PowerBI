@@ -147,9 +147,9 @@ table _Categories
 	/// AllSales
 	measure AllSales = ```
 			
-			    //
+			 //
 			    CALCULATE(
-			        SUM(TrackSales[SalesAmt]),
+			        IF(Artist[IsAlbumCategory]=1,SUM(AlbumSales[SalesAmt]),SUM(TrackSales[SalesAmt])),
 			        REMOVEFILTERS(TrackList[Track - Artist]),
 			        REMOVEFILTERS(Genre[Genre]),
 			        REMOVEFILTERS(Artist[Artist]),
@@ -160,7 +160,7 @@ table _Categories
 			        KEEPFILTERS(Calendar[Date])
 			    )
 			```
-		formatString: \$#,0;(\$#,0);\$#,0
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
 		displayFolder: KPI
 		lineageTag: c7f677ed-5055-4df9-8c11-296a14601fe0
 
@@ -572,6 +572,21 @@ table _Categories
 			```
 		displayFolder: URL
 		lineageTag: 7a846929-104e-4ba4-85e5-b3250cd581b6
+
+	measure _ASelectedCategories =
+			
+			
+			VAR SelectedCategory =
+			    SELECTEDVALUE(_Categories[Category Order])
+			
+			RETURN SelectedCategory
+			--SWITCH(
+			--    TRUE(),
+			--    SelectedCategory = 3, SelectedCategory,
+			--    "User clicked something else"
+			--)
+		formatString: 0
+		lineageTag: a65c6a8e-10a7-4d65-8443-73a30bcb4bf6
 
 	/// CategorySelector
 	column Selection

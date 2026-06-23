@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "d7f6ef4e0c1335e8d966",
   "position": {
     "x": 235,
@@ -104,15 +104,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RecordLabel"
+                      "Entity": "Artist"
                     }
                   },
-                  "Property": "RecordLabel"
+                  "Property": "Artist"
                 }
               },
-              "queryRef": "RecordLabel.RecordLabel",
-              "nativeQueryRef": "Record Label",
-              "displayName": "Record Label"
+              "queryRef": "Artist.Artist",
+              "nativeQueryRef": "Artist",
+              "displayName": "Artist"
             }
           ],
           "fieldParameters": [

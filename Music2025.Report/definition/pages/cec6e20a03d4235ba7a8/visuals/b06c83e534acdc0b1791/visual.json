@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "b06c83e534acdc0b1791",
   "position": {
     "x": 0,
@@ -26,13 +26,28 @@
                   "Property": "AllSales"
                 }
               },
-              "queryRef": "_CategoriesKPI.AllSales",
+              "queryRef": "_Categories.AllSales",
               "nativeQueryRef": "AllSales"
             }
           ]
         }
       },
       "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Categories"
+                  }
+                },
+                "Property": "AllSales"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
         "isDefaultSort": true
       }
     },

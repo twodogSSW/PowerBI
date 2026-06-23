@@ -5000,6 +5000,15 @@ cultureInfo en-US
 			          }
 			        },
 			        {
+			          "Track Sale": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Source": {
+			              "Type": "User"
+			            }
+			          }
+			        },
+			        {
 			          "Title Sale": {
 			            "LastModified": "2025-12-28T22:10:53.474Z"
 			          }
@@ -5007,11 +5016,6 @@ cultureInfo en-US
 			        {
 			          "Title Sales": {
 			            "LastModified": "2025-12-28T22:11:00.284Z"
-			          }
-			        },
-			        {
-			          "Track Sale": {
-			            "LastModified": "2025-12-28T22:11:09.483Z"
 			          }
 			        },
 			        {
@@ -5075,16 +5079,6 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "title auction": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.485
-			          }
-			        },
-			        {
 			          "track auction": {
 			            "Type": "Noun",
 			            "State": "Suggested",
@@ -5095,7 +5089,17 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "title transaction": {
+			          "title auction": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "track transaction": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
@@ -5105,7 +5109,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "track transaction": {
+			          "title transaction": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
@@ -6335,6 +6339,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "album%_Chg_LgBox": {
@@ -6371,6 +6378,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "album$_diff": {
@@ -6407,6 +6417,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "track$_diff": {
@@ -6443,6 +6456,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "track%_Chg_LgBox": {
@@ -6479,6 +6495,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "album$_PosOrNeg": {
@@ -6505,6 +6524,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "track$_PosOrNeg": {
@@ -6664,6 +6686,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "album$_prev": {
@@ -6700,6 +6725,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "track$_prev": {
@@ -6735,6 +6763,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "_ExecutivePg": {
@@ -8716,7 +8747,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "DynamicDemoCount": {
+			          "DynamicDemo_Count": {
 			            "Type": "Noun",
 			            "State": "Generated",
 			            "Weight": 0.99
@@ -10314,7 +10345,7 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "entity__category.category_selector": {
+			    "entity__category.selection": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "_Categories",
@@ -10328,105 +10359,12 @@ cultureInfo en-US
 			      },
 			      "Terms": [
 			        {
-			          "category selector": {
+			          "selection": {
 			            "State": "Generated"
 			          }
 			        },
 			        {
-			          "CategorySelector": {
-			            "Type": "Noun",
-			            "State": "Generated",
-			            "Weight": 0.99
-			          }
-			        },
-			        {
-			          "selector": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "classification selector": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.6
-			          }
-			        },
-			        {
-			          "class selector": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.582
-			          }
-			        },
-			        {
-			          "group selector": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.582
-			          }
-			        },
-			        {
-			          "type selector": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.582
-			          }
-			        },
-			        {
-			          "grouping selector": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.582
-			          }
-			        },
-			        {
-			          "kind selector": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.582
-			          }
-			        },
-			        {
-			          "category chooser": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.5
-			          }
-			        },
-			        {
-			          "category picker": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.5
-			          }
-			        },
-			        {
-			          "chooser": {
+			          "assortment": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
@@ -10436,13 +10374,63 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "picker": {
+			          "collection": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
 			              "Agent": "Thesaurus"
 			            },
 			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "variety": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "mixture": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "medley": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "miscellany": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "choice": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
 			          }
 			        }
 			      ]
@@ -13249,7 +13237,7 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "demographics.demographic__slicer": {
+			    "demographics.demographic_slicer": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Demographics",
@@ -13263,14 +13251,15 @@ cultureInfo en-US
 			      },
 			      "Terms": [
 			        {
-			          "demographic - slicer": {
+			          "demographic slicer": {
 			            "State": "Generated"
 			          }
 			        },
 			        {
-			          "demographic slicer": {
+			          "Demographic_Slicer": {
+			            "Type": "Noun",
 			            "State": "Generated",
-			            "Weight": 0.97
+			            "Weight": 0.99
 			          }
 			        },
 			        {
@@ -14497,6 +14486,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "album%_Chg_LgBox_Narrative": {
@@ -14533,6 +14525,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "album$_chg%": {
@@ -14589,6 +14584,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "track$_chg%": {
@@ -14645,6 +14643,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "album$_%ChgColor": {
@@ -15093,6 +15094,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "album 3 0d narrative": {
@@ -15196,6 +15200,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "album 6 0d narrative": {
@@ -15299,6 +15306,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "tracks 3 0d narrative": {
@@ -15402,6 +15412,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "tracks 6 0d narrative": {
@@ -15505,6 +15518,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "album 3 0d color code": {
@@ -15548,6 +15564,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "tracks 3 0d color code": {
@@ -15591,6 +15610,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "tracks 6 0d color code": {
@@ -16961,6 +16983,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "album 6 0d color code": {
@@ -17256,6 +17281,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "track%_Chg_LgBox_Narrative": {
@@ -17292,6 +17320,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "track$_%ChgColor": {
@@ -17338,6 +17369,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "album 9 0d narrative": {
@@ -17441,6 +17475,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "album 9 0d color code": {
@@ -17484,6 +17521,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "tracks 9 0d color code": {
@@ -17527,6 +17567,9 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
 			        {
 			          "tracks 9 0d narrative": {
@@ -17630,7 +17673,121 @@ cultureInfo en-US
 			        }
 			      },
 			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
 			      "Terms": [
+			        {
+			          "start of week": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "start": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "twitch of week": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "jump of week": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "jerk of week": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "flinch of week": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "jolt of week": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "twitch": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "jump": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "jerk": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "flinch": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "jolt": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
 			        {
 			          "Week": {
 			            "State": "Suggested",
@@ -17641,10 +17798,855 @@ cultureInfo en-US
 			            "Weight": 0.9
 			          }
 			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "artist.artist_URL": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Artist",
+			          "ConceptualProperty": "ArtistURL"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "artist URL": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "ArtistURL": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "URL": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "artist website": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "website": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "artist site": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "site": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "artist web address": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.589
+			          }
+			        },
+			        {
+			          "web address": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.571
+			          }
+			        }
 			      ]
+			    },
+			    "entity__category.entity__ASelectedCategories": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Categories",
+			          "ConceptualProperty": "_ASelectedCategories"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "_ASelectedCategories": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "dim_date_slicer": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dimDateSlicer"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dim date slicer": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "dimDateSlicer": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "slicer": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "date slicer": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "dim moment slicer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "moment slicer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "dim period slicer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "period slicer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        }
+			      ]
+			    },
+			    "dim_date_slicer.year": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dimDateSlicer",
+			          "ConceptualProperty": "Year"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "year": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "yr": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
 			    }
 			  },
 			  "Relationships": {
+			    "track_list_has_genre1": {
+			      "Binding": {
+			        "ConceptualEntity": "TrackList"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "track_list": {
+			          "Target": {
+			            "Entity": "track_list"
+			          }
+			        },
+			        "genre": {
+			          "Target": {
+			            "Entity": "genre"
+			          },
+			          "Nouns": [
+			            {
+			              "fk genre": {
+			                "State": "Generated"
+			              }
+			            }
+			          ]
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "track_list"
+			            },
+			            "Object": {
+			              "Role": "genre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "track_lists_have_Genres"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "genre"
+			            },
+			            "Object": {
+			              "Role": "track_list"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "Genres_have_track_lists"
+			        }
+			      ]
+			    },
+			    "track_list_has_artist1": {
+			      "Binding": {
+			        "ConceptualEntity": "TrackList"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "track_list": {
+			          "Target": {
+			            "Entity": "track_list"
+			          }
+			        },
+			        "artist": {
+			          "Target": {
+			            "Entity": "artist"
+			          },
+			          "Nouns": [
+			            {
+			              "fk artist": {
+			                "State": "Generated"
+			              }
+			            }
+			          ]
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "track_list"
+			            },
+			            "Object": {
+			              "Role": "artist"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "track_lists_have_Musicians"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "artist"
+			            },
+			            "Object": {
+			              "Role": "track_list"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "Musicians_have_track_lists"
+			        }
+			      ]
+			    },
+			    "track_list_has_album1": {
+			      "Binding": {
+			        "ConceptualEntity": "TrackList"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "track_list": {
+			          "Target": {
+			            "Entity": "track_list"
+			          }
+			        },
+			        "album": {
+			          "Target": {
+			            "Entity": "album"
+			          },
+			          "Nouns": [
+			            {
+			              "fk album": {
+			                "State": "Generated"
+			              }
+			            }
+			          ]
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "track_list"
+			            },
+			            "Object": {
+			              "Role": "album"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "track_lists_have_albums"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "album"
+			            },
+			            "Object": {
+			              "Role": "track_list"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "albums_have_track_lists"
+			        }
+			      ]
+			    },
+			    "geography_has_region1": {
+			      "Binding": {
+			        "ConceptualEntity": "Geography"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "geography": {
+			          "Target": {
+			            "Entity": "geography"
+			          }
+			        },
+			        "region": {
+			          "Target": {
+			            "Entity": "region"
+			          },
+			          "Nouns": [
+			            {
+			              "fk region": {
+			                "State": "Generated"
+			              }
+			            }
+			          ]
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "geography"
+			            },
+			            "Object": {
+			              "Role": "region"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "Geographies_have_regions"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "region"
+			            },
+			            "Object": {
+			              "Role": "geography"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "regions_have_Geographies"
+			        }
+			      ]
+			    },
+			    "album_sale_has_album1": {
+			      "Binding": {
+			        "ConceptualEntity": "AlbumSales"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "album_sale": {
+			          "Target": {
+			            "Entity": "album_sale"
+			          }
+			        },
+			        "album": {
+			          "Target": {
+			            "Entity": "album"
+			          },
+			          "Nouns": [
+			            {
+			              "fk album": {
+			                "State": "Generated"
+			              }
+			            }
+			          ]
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "album_sale"
+			            },
+			            "Object": {
+			              "Role": "album"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "AlbumSales_have_albums"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "album"
+			            },
+			            "Object": {
+			              "Role": "album_sale"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "albums_have_AlbumSales"
+			        }
+			      ]
+			    },
+			    "album_note_has_album1": {
+			      "Binding": {
+			        "ConceptualEntity": "AlbumNotes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "album_note": {
+			          "Target": {
+			            "Entity": "album_note"
+			          }
+			        },
+			        "album": {
+			          "Target": {
+			            "Entity": "album"
+			          },
+			          "Nouns": [
+			            {
+			              "fk album": {
+			                "State": "Generated"
+			              }
+			            }
+			          ]
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "album_note"
+			            },
+			            "Object": {
+			              "Role": "album"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "album_notes_have_albums"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "album"
+			            },
+			            "Object": {
+			              "Role": "album_note"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "albums_have_album_notes"
+			        }
+			      ]
+			    },
+			    "track_note_has_track_list": {
+			      "Binding": {
+			        "ConceptualEntity": "TrackNotes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "track_note": {
+			          "Target": {
+			            "Entity": "track_note"
+			          }
+			        },
+			        "track_list": {
+			          "Target": {
+			            "Entity": "track_list"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "track_note"
+			            },
+			            "Object": {
+			              "Role": "track_list"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "track_notes_have_track_lists"
+			        }
+			      ]
+			    },
+			    "track_sale_has_calendar": {
+			      "Binding": {
+			        "ConceptualEntity": "TrackSales"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "track_sale": {
+			          "Target": {
+			            "Entity": "track_sale"
+			          }
+			        },
+			        "calendar": {
+			          "Target": {
+			            "Entity": "calendar"
+			          }
+			        }
+			      }
+			    },
+			    "track_sale_has_purchased_from": {
+			      "Binding": {
+			        "ConceptualEntity": "TrackSales"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "track_sale": {
+			          "Target": {
+			            "Entity": "track_sale"
+			          }
+			        },
+			        "purchased_from": {
+			          "Target": {
+			            "Entity": "purchased_from"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "track_sale"
+			            },
+			            "Object": {
+			              "Role": "purchased_from"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "Track_Sales_have_purchased_from"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "purchased_from"
+			            },
+			            "Object": {
+			              "Role": "track_sale"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "purchased_from_have_Track_Sales"
+			        }
+			      ]
+			    },
+			    "track_sale_has_track_list": {
+			      "Binding": {
+			        "ConceptualEntity": "TrackSales"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "track_sale": {
+			          "Target": {
+			            "Entity": "track_sale"
+			          }
+			        },
+			        "track_list": {
+			          "Target": {
+			            "Entity": "track_list"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "track_sale"
+			            },
+			            "Object": {
+			              "Role": "track_list"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "Track_Sales_have_track_lists"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "track_list"
+			            },
+			            "Object": {
+			              "Role": "track_sale"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "track_lists_have_Track_Sales"
+			        }
+			      ]
+			    },
+			    "track_sale_has_geography": {
+			      "Binding": {
+			        "ConceptualEntity": "TrackSales"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "track_sale": {
+			          "Target": {
+			            "Entity": "track_sale"
+			          }
+			        },
+			        "geography": {
+			          "Target": {
+			            "Entity": "geography"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "track_sale"
+			            },
+			            "Object": {
+			              "Role": "geography"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "Track_Sales_have_Geographies"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "geography"
+			            },
+			            "Object": {
+			              "Role": "track_sale"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "Geographies_have_Track_Sales"
+			        }
+			      ]
+			    },
+			    "demographics_has_entity__BusinessDriver": {
+			      "Binding": {
+			        "ConceptualEntity": "Demographics"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "demographics": {
+			          "Target": {
+			            "Entity": "demographics"
+			          }
+			        },
+			        "entity__BusinessDriver": {
+			          "Target": {
+			            "Entity": "entity__BusinessDriver"
+			          }
+			        }
+			      }
+			    },
+			    "demographics_has_track_list": {
+			      "Binding": {
+			        "ConceptualEntity": "Demographics"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "demographics": {
+			          "Target": {
+			            "Entity": "demographics"
+			          }
+			        },
+			        "track_list": {
+			          "Target": {
+			            "Entity": "track_list"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "demographics"
+			            },
+			            "Object": {
+			              "Role": "track_list"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "demographics_have_track_lists"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "track_list"
+			            },
+			            "Object": {
+			              "Role": "demographics"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "track_lists_have_demographics"
+			        }
+			      ]
+			    },
+			    "artist_has_record_label": {
+			      "Binding": {
+			        "ConceptualEntity": "Artist"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "artist": {
+			          "Target": {
+			            "Entity": "artist"
+			          }
+			        },
+			        "record_label": {
+			          "Target": {
+			            "Entity": "record_label"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "artist"
+			            },
+			            "Object": {
+			              "Role": "record_label"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "Musicians_have_record_labels"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "record_label"
+			            },
+			            "Object": {
+			              "Role": "artist"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "record_labels_have_Musicians"
+			        }
+			      ]
+			    },
+			    "album_sale_has_calendar": {
+			      "Binding": {
+			        "ConceptualEntity": "AlbumSales"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "album_sale": {
+			          "Target": {
+			            "Entity": "album_sale"
+			          }
+			        },
+			        "calendar": {
+			          "Target": {
+			            "Entity": "calendar"
+			          }
+			        }
+			      }
+			    },
 			    "album_sale_has_purchased_from": {
 			      "Binding": {
 			        "ConceptualEntity": "AlbumSales"
@@ -17737,126 +18739,53 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "album_sale_has_album": {
+			    "dim_date_slicer_has_year": {
 			      "Binding": {
-			        "ConceptualEntity": "AlbumSales"
+			        "ConceptualEntity": "dimDateSlicer"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "album_sale": {
+			        "dim_date_slicer": {
 			          "Target": {
-			            "Entity": "album_sale"
+			            "Entity": "dim_date_slicer"
 			          }
 			        },
-			        "album": {
+			        "dim_date_slicer.year": {
 			          "Target": {
-			            "Entity": "album"
-			          },
-			          "Nouns": [
-			            {
-			              "fk album": {
-			                "State": "Generated"
-			              }
-			            }
-			          ]
+			            "Entity": "dim_date_slicer.year"
+			          }
 			        }
 			      },
 			      "Phrasings": [
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "album_sale"
+			              "Role": "dim_date_slicer"
 			            },
 			            "Object": {
-			              "Role": "album"
+			              "Role": "dim_date_slicer.year"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "AlbumSales_have_albums"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "album"
-			            },
-			            "Object": {
-			              "Role": "album_sale"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "albums_have_AlbumSales"
+			          "ID": "dim_date_slicers_have_years"
 			        }
 			      ]
 			    },
-			    "album_note_has_album": {
+			    "artist_has_artist_URL": {
 			      "Binding": {
-			        "ConceptualEntity": "AlbumNotes"
+			        "ConceptualEntity": "Artist"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "album_note": {
+			        "artist": {
 			          "Target": {
-			            "Entity": "album_note"
+			            "Entity": "artist"
 			          }
 			        },
-			        "album": {
+			        "artist.artist_URL": {
 			          "Target": {
-			            "Entity": "album"
-			          },
-			          "Nouns": [
-			            {
-			              "fk album": {
-			                "State": "Generated"
-			              }
-			            }
-			          ]
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "album_note"
-			            },
-			            "Object": {
-			              "Role": "album"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "album_notes_have_albums"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "album"
-			            },
-			            "Object": {
-			              "Role": "album_note"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "albums_have_album_notes"
-			        }
-			      ]
-			    },
-			    "track_sale_has_entity__ExecutivePg_tracks_9_0d_narrative": {
-			      "Binding": {
-			        "ConceptualEntity": "TrackSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "track_sale": {
-			          "Target": {
-			            "Entity": "track_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.tracks_9_0d_narrative": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.tracks_9_0d_narrative"
+			            "Entity": "artist.artist_URL"
 			          }
 			        }
 			      },
@@ -17864,444 +18793,15 @@ cultureInfo en-US
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "track_sale"
+			              "Role": "artist"
 			            },
 			            "Object": {
-			              "Role": "entity__ExecutivePg.tracks_9_0d_narrative"
+			              "Role": "artist.artist_URL"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "TrackSales_have_tracks_9_0d_narrative"
-			        }
-			      ]
-			    },
-			    "track_sale_has_entity__ExecutivePg_tracks_9_0d_color_code": {
-			      "Binding": {
-			        "ConceptualEntity": "TrackSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "track_sale": {
-			          "Target": {
-			            "Entity": "track_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.tracks_9_0d_color_code": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.tracks_9_0d_color_code"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "track_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.tracks_9_0d_color_code"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "TrackSales_have_tracks_9_0d_color_code"
-			        }
-			      ]
-			    },
-			    "album_sale_has_entity__ExecutivePg_album_9_0d_color_code": {
-			      "Binding": {
-			        "ConceptualEntity": "AlbumSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "album_sale": {
-			          "Target": {
-			            "Entity": "album_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.album_9_0d_color_code": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.album_9_0d_color_code"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "album_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.album_9_0d_color_code"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "AlbumSales_have_album_9_0d_color_code"
-			        }
-			      ]
-			    },
-			    "album_sale_has_entity__ExecutivePg_album_9_0d_narrative": {
-			      "Binding": {
-			        "ConceptualEntity": "AlbumSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "album_sale": {
-			          "Target": {
-			            "Entity": "album_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.album_9_0d_narrative": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.album_9_0d_narrative"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "album_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.album_9_0d_narrative"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "AlbumSales_have_album_9_0d_narrative"
-			        }
-			      ]
-			    },
-			    "track_sale_has_entity__ExecutivePg_track_ChgColor": {
-			      "Binding": {
-			        "ConceptualEntity": "TrackSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "track_sale": {
-			          "Target": {
-			            "Entity": "track_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.track_ChgColor": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.track_ChgColor"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "track_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.track_ChgColor"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "TrackSales_have_track_ChgColor"
-			        }
-			      ]
-			    },
-			    "track_sale_has_entity__ExecutivePg_track_Chg_LgBox_Narrative": {
-			      "Binding": {
-			        "ConceptualEntity": "TrackSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "track_sale": {
-			          "Target": {
-			            "Entity": "track_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.track_Chg_LgBox_Narrative": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.track_Chg_LgBox_Narrative"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "track_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.track_Chg_LgBox_Narrative"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "TrackSales_have_track_Chg_LgBox_Narrative"
-			        }
-			      ]
-			    },
-			    "album_sale_has_entity__ExecutivePg_album_6_0d_color_code": {
-			      "Binding": {
-			        "ConceptualEntity": "AlbumSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "album_sale": {
-			          "Target": {
-			            "Entity": "album_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.album_6_0d_color_code": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.album_6_0d_color_code"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "album_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.album_6_0d_color_code"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "AlbumSales_have_album_6_0d_color_code"
-			        }
-			      ]
-			    },
-			    "track_sale_has_entity__ExecutivePg_tracks_6_0d_color_code": {
-			      "Binding": {
-			        "ConceptualEntity": "TrackSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "track_sale": {
-			          "Target": {
-			            "Entity": "track_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.tracks_6_0d_color_code": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.tracks_6_0d_color_code"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "track_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.tracks_6_0d_color_code"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "TrackSales_have_tracks_6_0d_color_code"
-			        }
-			      ]
-			    },
-			    "track_sale_has_entity__ExecutivePg_tracks_3_0d_color_code": {
-			      "Binding": {
-			        "ConceptualEntity": "TrackSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "track_sale": {
-			          "Target": {
-			            "Entity": "track_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.tracks_3_0d_color_code": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.tracks_3_0d_color_code"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "track_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.tracks_3_0d_color_code"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "TrackSales_have_tracks_3_0d_color_code"
-			        }
-			      ]
-			    },
-			    "album_sale_has_entity__ExecutivePg_album_3_0d_color_code": {
-			      "Binding": {
-			        "ConceptualEntity": "AlbumSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "album_sale": {
-			          "Target": {
-			            "Entity": "album_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.album_3_0d_color_code": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.album_3_0d_color_code"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "album_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.album_3_0d_color_code"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "AlbumSales_have_album_3_0d_color_code"
-			        }
-			      ]
-			    },
-			    "track_sale_has_entity__ExecutivePg_tracks_6_0d_narrative": {
-			      "Binding": {
-			        "ConceptualEntity": "TrackSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "track_sale": {
-			          "Target": {
-			            "Entity": "track_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.tracks_6_0d_narrative": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.tracks_6_0d_narrative"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "track_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.tracks_6_0d_narrative"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "TrackSales_have_tracks_6_0d_narrative"
-			        }
-			      ]
-			    },
-			    "track_sale_has_entity__ExecutivePg_tracks_3_0d_narrative": {
-			      "Binding": {
-			        "ConceptualEntity": "TrackSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "track_sale": {
-			          "Target": {
-			            "Entity": "track_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.tracks_3_0d_narrative": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.tracks_3_0d_narrative"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "track_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.tracks_3_0d_narrative"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "TrackSales_have_tracks_3_0d_narrative"
-			        }
-			      ]
-			    },
-			    "album_sale_has_entity__ExecutivePg_album_6_0d_narrative": {
-			      "Binding": {
-			        "ConceptualEntity": "AlbumSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "album_sale": {
-			          "Target": {
-			            "Entity": "album_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.album_6_0d_narrative": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.album_6_0d_narrative"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "album_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.album_6_0d_narrative"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "AlbumSales_have_album_6_0d_narrative"
-			        }
-			      ]
-			    },
-			    "album_sale_has_entity__ExecutivePg_album_3_0d_narrative": {
-			      "Binding": {
-			        "ConceptualEntity": "AlbumSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "album_sale": {
-			          "Target": {
-			            "Entity": "album_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.album_3_0d_narrative": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.album_3_0d_narrative"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "album_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.album_3_0d_narrative"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "AlbumSales_have_album_3_0d_narrative"
+			          "ID": "Musicians_have_artist_URLs"
 			        }
 			      ]
 			    },
@@ -18395,204 +18895,6 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "length_sec_indicates_how_long_track_lists_are"
-			        }
-			      ]
-			    },
-			    "geography_has_longitude": {
-			      "Binding": {
-			        "ConceptualEntity": "Geography"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "geography": {
-			          "Target": {
-			            "Entity": "geography"
-			          }
-			        },
-			        "geography.longitude": {
-			          "Target": {
-			            "Entity": "geography.longitude"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "geography"
-			            },
-			            "Object": {
-			              "Role": "geography.longitude"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "Geographies_have_longitudes"
-			        }
-			      ]
-			    },
-			    "geography_has_latitude": {
-			      "Binding": {
-			        "ConceptualEntity": "Geography"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "geography": {
-			          "Target": {
-			            "Entity": "geography"
-			          }
-			        },
-			        "geography.latitude": {
-			          "Target": {
-			            "Entity": "geography.latitude"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "geography"
-			            },
-			            "Object": {
-			              "Role": "geography.latitude"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "Geographies_have_latitudes"
-			        }
-			      ]
-			    },
-			    "album_sale_has_entity__ExecutivePg_album_ChgColor": {
-			      "Binding": {
-			        "ConceptualEntity": "AlbumSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "album_sale": {
-			          "Target": {
-			            "Entity": "album_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.album_ChgColor": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.album_ChgColor"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "album_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.album_ChgColor"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "AlbumSales_have_album_ChgColor"
-			        }
-			      ]
-			    },
-			    "track_sale_has_entity__ExecutivePg_track_chg": {
-			      "Binding": {
-			        "ConceptualEntity": "TrackSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "track_sale": {
-			          "Target": {
-			            "Entity": "track_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.track_chg": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.track_chg"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "track_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.track_chg"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "TrackSales_have_track_chg"
-			        }
-			      ]
-			    },
-			    "album_sale_has_entity__ExecutivePg_album_chg": {
-			      "Binding": {
-			        "ConceptualEntity": "AlbumSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "album_sale": {
-			          "Target": {
-			            "Entity": "album_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.album_chg": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.album_chg"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "album_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.album_chg"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "AlbumSales_have_album_chg"
-			        }
-			      ]
-			    },
-			    "album_sale_has_entity__ExecutivePg_album_Chg_LgBox_Narrative": {
-			      "Binding": {
-			        "ConceptualEntity": "AlbumSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "album_sale": {
-			          "Target": {
-			            "Entity": "album_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.album_Chg_LgBox_Narrative": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.album_Chg_LgBox_Narrative"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "album_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.album_Chg_LgBox_Narrative"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "AlbumSales_have_album_Chg_LgBox_Narrative"
 			        }
 			      ]
 			    },
@@ -18704,7 +19006,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "TrackSales_have_cash"
+			          "ID": "Track_Sales_have_cash"
 			        }
 			      ]
 			    },
@@ -18849,7 +19151,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "TrackSales_have_bitcoins"
+			          "ID": "Track_Sales_have_bitcoins"
 			        },
 			        {
 			          "Adjective": {
@@ -18876,7 +19178,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "bitcoin_indicates_how_expensive_TrackSales_are"
+			          "ID": "bitcoin_indicates_how_expensive_Track_Sales_are"
 			        }
 			      ]
 			    },
@@ -18909,7 +19211,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "TrackSales_have_cc"
+			          "ID": "Track_Sales_have_cc"
 			        },
 			        {
 			          "Adjective": {
@@ -18936,7 +19238,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "cc_indicates_how_expensive_TrackSales_are"
+			          "ID": "cc_indicates_how_expensive_Track_Sales_are"
 			        }
 			      ]
 			    },
@@ -19192,270 +19494,6 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "track_sale_has_entity__ExecutivePg_track_prev": {
-			      "Binding": {
-			        "ConceptualEntity": "TrackSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "track_sale": {
-			          "Target": {
-			            "Entity": "track_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.track_prev": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.track_prev"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "track_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.track_prev"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "TrackSales_have_track_prev"
-			        }
-			      ]
-			    },
-			    "album_sale_has_entity__ExecutivePg_album_prev": {
-			      "Binding": {
-			        "ConceptualEntity": "AlbumSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "album_sale": {
-			          "Target": {
-			            "Entity": "album_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.album_prev": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.album_prev"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "album_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.album_prev"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "AlbumSales_have_album_prev"
-			        }
-			      ]
-			    },
-			    "album_sale_has_entity__ExecutivePg_track_PosOrNeg": {
-			      "Binding": {
-			        "ConceptualEntity": "AlbumSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "album_sale": {
-			          "Target": {
-			            "Entity": "album_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.track_PosOrNeg": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.track_PosOrNeg"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "album_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.track_PosOrNeg"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "AlbumSales_have_track_PosOrNeg"
-			        }
-			      ]
-			    },
-			    "album_sale_has_entity__ExecutivePg_album_PosOrNeg": {
-			      "Binding": {
-			        "ConceptualEntity": "AlbumSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "album_sale": {
-			          "Target": {
-			            "Entity": "album_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.album_PosOrNeg": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.album_PosOrNeg"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "album_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.album_PosOrNeg"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "AlbumSales_have_album_PosOrNeg"
-			        }
-			      ]
-			    },
-			    "track_sale_has_entity__ExecutivePg_track_Chg_LgBox": {
-			      "Binding": {
-			        "ConceptualEntity": "TrackSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "track_sale": {
-			          "Target": {
-			            "Entity": "track_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.track_Chg_LgBox": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.track_Chg_LgBox"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "track_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.track_Chg_LgBox"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "TrackSales_have_track_Chg_LgBox"
-			        }
-			      ]
-			    },
-			    "track_sale_has_entity__ExecutivePg_track_diff": {
-			      "Binding": {
-			        "ConceptualEntity": "TrackSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "track_sale": {
-			          "Target": {
-			            "Entity": "track_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.track_diff": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.track_diff"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "track_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.track_diff"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "TrackSales_have_track_diff"
-			        }
-			      ]
-			    },
-			    "album_sale_has_entity__ExecutivePg_album_diff": {
-			      "Binding": {
-			        "ConceptualEntity": "AlbumSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "album_sale": {
-			          "Target": {
-			            "Entity": "album_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.album_diff": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.album_diff"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "album_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.album_diff"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "AlbumSales_have_album_diff"
-			        }
-			      ]
-			    },
-			    "album_sale_has_entity__ExecutivePg_album_Chg_LgBox": {
-			      "Binding": {
-			        "ConceptualEntity": "AlbumSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "album_sale": {
-			          "Target": {
-			            "Entity": "album_sale"
-			          }
-			        },
-			        "entity__ExecutivePg.album_Chg_LgBox": {
-			          "Target": {
-			            "Entity": "entity__ExecutivePg.album_Chg_LgBox"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "album_sale"
-			            },
-			            "Object": {
-			              "Role": "entity__ExecutivePg.album_Chg_LgBox"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "AlbumSales_have_album_Chg_LgBox"
-			        }
-			      ]
-			    },
 			    "track_sale_has_sales_amt": {
 			      "Binding": {
 			        "ConceptualEntity": "TrackSales"
@@ -19485,7 +19523,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "TrackSales_have_SalesAmts"
+			          "ID": "Track_Sales_have_SalesAmts"
 			        },
 			        {
 			          "Adjective": {
@@ -19512,7 +19550,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "SalesAmt_indicates_how_expensive_TrackSales_are"
+			          "ID": "SalesAmt_indicates_how_expensive_Track_Sales_are"
 			        }
 			      ]
 			    },
@@ -19545,7 +19583,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "TrackSales_have_SaleCounts"
+			          "ID": "Track_Sales_have_SaleCounts"
 			        }
 			      ]
 			    },
@@ -19578,7 +19616,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "TrackSales_have_dates"
+			          "ID": "Track_Sales_have_dates"
 			        }
 			      ]
 			    },
@@ -20710,6 +20748,38 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
+			    "dim_date_slicer_slice": {
+			      "Binding": {
+			        "ConceptualEntity": "dimDateSlicer"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date_slicer": {
+			          "Target": {
+			            "Entity": "dim_date_slicer"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Verb": {
+			            "Subject": {
+			              "Role": "dim_date_slicer"
+			            },
+			            "Verbs": [
+			              {
+			                "slice": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ]
+			          },
+			          "State": "Generated",
+			          "Weight": 0.75,
+			          "ID": "dim_date_slicers_slice"
+			        }
+			      ]
+			    },
 			    "purchased_from_Retail": {
 			      "Binding": {
 			        "ConceptualEntity": "PurchasedFrom"
@@ -20739,535 +20809,6 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.75,
 			          "ID": "purchased_from_Retail"
-			        }
-			      ]
-			    },
-			    "album_sale_has_calendar": {
-			      "Binding": {
-			        "ConceptualEntity": "AlbumSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "album_sale": {
-			          "Target": {
-			            "Entity": "album_sale"
-			          }
-			        },
-			        "calendar": {
-			          "Target": {
-			            "Entity": "calendar"
-			          }
-			        }
-			      }
-			    },
-			    "artist_has_record_label": {
-			      "Binding": {
-			        "ConceptualEntity": "Artist"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "artist": {
-			          "Target": {
-			            "Entity": "artist"
-			          }
-			        },
-			        "record_label": {
-			          "Target": {
-			            "Entity": "record_label"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "artist"
-			            },
-			            "Object": {
-			              "Role": "record_label"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "Musicians_have_record_labels"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "record_label"
-			            },
-			            "Object": {
-			              "Role": "artist"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "record_labels_have_Musicians"
-			        }
-			      ]
-			    },
-			    "demographics_has_track_list": {
-			      "Binding": {
-			        "ConceptualEntity": "Demographics"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "demographics": {
-			          "Target": {
-			            "Entity": "demographics"
-			          }
-			        },
-			        "track_list": {
-			          "Target": {
-			            "Entity": "track_list"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "demographics"
-			            },
-			            "Object": {
-			              "Role": "track_list"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "demographics_have_track_lists"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "track_list"
-			            },
-			            "Object": {
-			              "Role": "demographics"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "track_lists_have_demographics"
-			        }
-			      ]
-			    },
-			    "demographics_has_entity__BusinessDriver": {
-			      "Binding": {
-			        "ConceptualEntity": "Demographics"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "demographics": {
-			          "Target": {
-			            "Entity": "demographics"
-			          }
-			        },
-			        "entity__BusinessDriver": {
-			          "Target": {
-			            "Entity": "entity__BusinessDriver"
-			          }
-			        }
-			      }
-			    },
-			    "geography_has_region": {
-			      "Binding": {
-			        "ConceptualEntity": "Geography"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "geography": {
-			          "Target": {
-			            "Entity": "geography"
-			          }
-			        },
-			        "region": {
-			          "Target": {
-			            "Entity": "region"
-			          },
-			          "Nouns": [
-			            {
-			              "fk region": {
-			                "State": "Generated"
-			              }
-			            }
-			          ]
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "geography"
-			            },
-			            "Object": {
-			              "Role": "region"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "Geographies_have_regions"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "region"
-			            },
-			            "Object": {
-			              "Role": "geography"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "regions_have_Geographies"
-			        }
-			      ]
-			    },
-			    "track_list_has_album": {
-			      "Binding": {
-			        "ConceptualEntity": "TrackList"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "track_list": {
-			          "Target": {
-			            "Entity": "track_list"
-			          }
-			        },
-			        "album": {
-			          "Target": {
-			            "Entity": "album"
-			          },
-			          "Nouns": [
-			            {
-			              "fk album": {
-			                "State": "Generated"
-			              }
-			            }
-			          ]
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "track_list"
-			            },
-			            "Object": {
-			              "Role": "album"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "track_lists_have_albums"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "album"
-			            },
-			            "Object": {
-			              "Role": "track_list"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "albums_have_track_lists"
-			        }
-			      ]
-			    },
-			    "track_list_has_artist": {
-			      "Binding": {
-			        "ConceptualEntity": "TrackList"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "track_list": {
-			          "Target": {
-			            "Entity": "track_list"
-			          }
-			        },
-			        "artist": {
-			          "Target": {
-			            "Entity": "artist"
-			          },
-			          "Nouns": [
-			            {
-			              "fk artist": {
-			                "State": "Generated"
-			              }
-			            }
-			          ]
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "track_list"
-			            },
-			            "Object": {
-			              "Role": "artist"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "track_lists_have_Musicians"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "artist"
-			            },
-			            "Object": {
-			              "Role": "track_list"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "Musicians_have_track_lists"
-			        }
-			      ]
-			    },
-			    "track_list_has_genre": {
-			      "Binding": {
-			        "ConceptualEntity": "TrackList"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "track_list": {
-			          "Target": {
-			            "Entity": "track_list"
-			          }
-			        },
-			        "genre": {
-			          "Target": {
-			            "Entity": "genre"
-			          },
-			          "Nouns": [
-			            {
-			              "fk genre": {
-			                "State": "Generated"
-			              }
-			            }
-			          ]
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "track_list"
-			            },
-			            "Object": {
-			              "Role": "genre"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "track_lists_have_Genres"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "genre"
-			            },
-			            "Object": {
-			              "Role": "track_list"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "Genres_have_track_lists"
-			        }
-			      ]
-			    },
-			    "track_sale_has_geography": {
-			      "Binding": {
-			        "ConceptualEntity": "TrackSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "track_sale": {
-			          "Target": {
-			            "Entity": "track_sale"
-			          }
-			        },
-			        "geography": {
-			          "Target": {
-			            "Entity": "geography"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "track_sale"
-			            },
-			            "Object": {
-			              "Role": "geography"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "TrackSales_have_Geographies"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "geography"
-			            },
-			            "Object": {
-			              "Role": "track_sale"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "Geographies_have_TrackSales"
-			        }
-			      ]
-			    },
-			    "track_sale_has_track_list": {
-			      "Binding": {
-			        "ConceptualEntity": "TrackSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "track_sale": {
-			          "Target": {
-			            "Entity": "track_sale"
-			          }
-			        },
-			        "track_list": {
-			          "Target": {
-			            "Entity": "track_list"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "track_sale"
-			            },
-			            "Object": {
-			              "Role": "track_list"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "TrackSales_have_track_lists"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "track_list"
-			            },
-			            "Object": {
-			              "Role": "track_sale"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "track_lists_have_TrackSales"
-			        }
-			      ]
-			    },
-			    "track_sale_has_purchased_from": {
-			      "Binding": {
-			        "ConceptualEntity": "TrackSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "track_sale": {
-			          "Target": {
-			            "Entity": "track_sale"
-			          }
-			        },
-			        "purchased_from": {
-			          "Target": {
-			            "Entity": "purchased_from"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "track_sale"
-			            },
-			            "Object": {
-			              "Role": "purchased_from"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "TrackSales_have_purchased_from"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "purchased_from"
-			            },
-			            "Object": {
-			              "Role": "track_sale"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "purchased_from_have_TrackSales"
-			        }
-			      ]
-			    },
-			    "track_sale_has_calendar": {
-			      "Binding": {
-			        "ConceptualEntity": "TrackSales"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "track_sale": {
-			          "Target": {
-			            "Entity": "track_sale"
-			          }
-			        },
-			        "calendar": {
-			          "Target": {
-			            "Entity": "calendar"
-			          }
-			        }
-			      }
-			    },
-			    "track_note_has_track_list": {
-			      "Binding": {
-			        "ConceptualEntity": "TrackNotes"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "track_note": {
-			          "Target": {
-			            "Entity": "track_note"
-			          }
-			        },
-			        "track_list": {
-			          "Target": {
-			            "Entity": "track_list"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "track_note"
-			            },
-			            "Object": {
-			              "Role": "track_list"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "track_notes_have_track_lists"
 			        }
 			      ]
 			    }

@@ -1,9 +1,9 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "102a7c69273f1c937352",
   "position": {
     "x": 8.5941644562334218,
-    "y": 1.909814323607427,
+    "y": 1.5478485470429675,
     "z": 1000,
     "height": 90.716180371352777,
     "width": 216.76392572944295,
@@ -570,7 +570,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'🤔Use this selector to filter the data by specific Retailers🤔'"
+                  "Value": "'🤔Use this selector to customize the existing date range🤔'"
                 }
               }
             },

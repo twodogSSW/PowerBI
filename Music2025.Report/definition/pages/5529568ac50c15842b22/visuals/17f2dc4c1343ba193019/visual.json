@@ -1,9 +1,9 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "17f2dc4c1343ba193019",
   "position": {
-    "x": 8.488262910798122,
-    "y": 572.47250343707037,
+    "x": 8,
+    "y": 156,
     "z": 2000,
     "height": 50,
     "width": 215,
@@ -88,7 +88,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Review Album Sales'"
+                  "Value": "'Review Album Sales 📀'"
                 }
               }
             },
@@ -109,7 +109,7 @@
             "leftMargin": {
               "expr": {
                 "Literal": {
-                  "Value": "20L"
+                  "Value": "5L"
                 }
               }
             },
@@ -216,6 +216,13 @@
               "expr": {
                 "Literal": {
                   "Value": "'6af2daf5db04b08d7159'"
+                }
+              }
+            },
+            "tooltip": {
+              "expr": {
+                "Literal": {
+                  "Value": "'If you are working with Track sales, this will clear the screen and start from the Album Sales Decomposition'"
                 }
               }
             }

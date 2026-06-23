@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
   "displayName": "Executive - Reset",
   "name": "18f6b5e2bb1247c8722a",
   "options": {
@@ -300,15 +300,6 @@
                   }
                 }
               ]
-            }
-          },
-          "2d745db30ca9911d2be9": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {},
-              "display": {
-                "mode": "hidden"
-              }
             }
           },
           "33e32b51f46664ff340b": {
@@ -1006,15 +997,6 @@
             "singleVisual": {
               "visualType": "card",
               "objects": {}
-            }
-          },
-          "dcfc84a73212bd8a5b97": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {},
-              "display": {
-                "mode": "hidden"
-              }
             }
           },
           "de9361c02e1548bd8340": {

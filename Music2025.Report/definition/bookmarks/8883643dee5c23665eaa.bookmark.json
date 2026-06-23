@@ -5,11 +5,10 @@
   "options": {
     "applyOnlyToTargetVisuals": true,
     "targetVisualNames": [
-      "bc5e1cbf4a1e782007b0",
       "7e27b38c07ee57488d18",
-      "342edb4fb10a15b4a75a",
+      "7c4b611081d3e832a271",
       "be345c12d81a4432a268",
-      "7c4b611081d3e832a271"
+      "bc5e1cbf4a1e782007b0"
     ],
     "suppressData": true
   },
@@ -23,7 +22,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "c1d31244760386481008",
+                  "name": "b68f0fc273048a9b80e5",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -48,7 +47,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "a5a45e411177b0157b53",
+                  "name": "2374dcffd6b4e7c11490",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -101,7 +100,7 @@
                                       [
                                         {
                                           "Literal": {
-                                            "Value": "'''TrackList''[Track - Artist]'"
+                                            "Value": "'''Genre''[Genre]'"
                                           }
                                         }
                                       ]
@@ -177,13 +176,13 @@
                         },
                         "Right": {
                           "Literal": {
-                            "Value": "'''TrackList''[Track - Artist]'"
+                            "Value": "'''Genre''[Genre]'"
                           }
                         }
                       }
                     }
                   },
-                  "displayName": "Title - Artist"
+                  "displayName": "Genre"
                 }
               ]
             }
@@ -192,7 +191,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "5e215640daad273e331b",
+                  "name": "3527c7353973600b7bad",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -217,7 +216,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "ef32ba8000d546902dd5",
+                  "name": "c450f7fb268ed1761982",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -309,7 +308,7 @@
                   "howCreated": 1
                 },
                 {
-                  "name": "60ec986bbc6a1099be29",
+                  "name": "b4aae444e5816c50e9ed",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -324,7 +323,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "f13a6652c35edd4525b6",
+                  "name": "2fb994a08aa9a35d49e0",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -339,16 +338,16 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "919c727191504cb1b50d",
+                  "name": "c848bd7d913d5e0b66c1",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "TrackList"
+                          "Entity": "Genre"
                         }
                       },
-                      "Property": "Track - Artist"
+                      "Property": "Genre"
                     }
                   },
                   "howCreated": 0
@@ -379,10 +378,10 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "TrackList"
+                          "Entity": "Genre"
                         }
                       },
-                      "Property": "Track - Artist"
+                      "Property": "Genre"
                     }
                   },
                   {
@@ -472,7 +471,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "4dca963dce123ca21065",
+                  "name": "13a032916d050b527e8e",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -497,7 +496,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "6bc437755e723926aeaa",
+                  "name": "2a185a4cceb9ea8c3d42",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -522,7 +521,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "910915d0050a08d07b75",
+                  "name": "9aa3514c0a0496436e83",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -553,7 +552,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "40752446daead6751860",
+                  "name": "6040893603b3b2edc424",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -590,7 +589,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "331958f96a50561a0597",
+                  "name": "415f4628dc8c12dad388",
                   "type": "Advanced",
                   "expression": {
                     "Aggregation": {
@@ -610,7 +609,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "2ce41d4a870952c0c37d",
+                  "name": "d9a89a6090c675558c06",
                   "type": "Advanced",
                   "expression": {
                     "Aggregation": {
@@ -630,7 +629,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "bb006a61a7416a0908c2",
+                  "name": "38843efb928a1229d0dc",
                   "type": "Advanced",
                   "expression": {
                     "Aggregation": {
@@ -680,7 +679,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "c30aafab4e11d000b922",
+                  "name": "456d9b4b4212b057089b",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -705,7 +704,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "a6e4495006aa53204768",
+                  "name": "23c65482cc87224a03d2",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -730,7 +729,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "ea90571462766d4470e0",
+                  "name": "fd903ad2ad992006b3cd",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -755,7 +754,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "e4586880e8a07363720d",
+                  "name": "a0b35a4ca7791009810a",
                   "type": "Advanced",
                   "expression": {
                     "Aggregation": {
@@ -775,7 +774,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "3824bf0e9b823153402a",
+                  "name": "2ae8029860a3b0d574d7",
                   "type": "Advanced",
                   "expression": {
                     "Aggregation": {
@@ -795,7 +794,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "e62fc40a925b6c5b0094",
+                  "name": "5c2f9200320da11c7642",
                   "type": "Advanced",
                   "expression": {
                     "Aggregation": {
@@ -845,7 +844,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "af6daef39e86a7ab3ab0",
+                  "name": "a1e479060e10d3753b07",
                   "type": "Categorical",
                   "expression": {
                     "Column": {

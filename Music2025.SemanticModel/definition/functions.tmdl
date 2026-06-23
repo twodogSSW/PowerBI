@@ -328,3 +328,12 @@ function 'pbi.Categories_RptURL' = ```
 		```
 	lineageTag: b53c776a-b1bc-4cf7-98d2-2ca625f7e97d
 
+function 'pbi.WhichCategory' = ```
+		(CategoryFld:anyref) 
+			=>
+		    // Get the number of the item chosen in the category
+			VAR SEL = SELECTEDVALUE( CategoryFld, -1 )
+		    RETURN SEL
+		```
+	lineageTag: 81827c89-5eae-4c65-9e47-fc747e36a88c
+

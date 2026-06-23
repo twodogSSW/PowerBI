@@ -1,10 +1,10 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "eb33c0d9a7094e570b29",
   "position": {
     "x": 7.369204812206573,
     "y": 6.0009797025723444,
-    "z": 3000,
+    "z": 4000,
     "height": 96.015675241157538,
     "width": 214.75968309859152,
     "tabOrder": 2000
@@ -73,14 +73,14 @@
             "relativeDuration": {
               "expr": {
                 "Literal": {
-                  "Value": "3D"
+                  "Value": "6D"
                 }
               }
             },
             "relativePeriod": {
               "expr": {
                 "Literal": {
-                  "Value": "'Years'"
+                  "Value": "'Months'"
                 }
               }
             }
@@ -172,8 +172,8 @@
                                     "TimeUnit": 0
                                   }
                                 },
-                                "Amount": -3,
-                                "TimeUnit": 3
+                                "Amount": -6,
+                                "TimeUnit": 2
                               }
                             },
                             "TimeUnit": 0

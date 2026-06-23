@@ -1,9 +1,9 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "7c4b611081d3e832a271",
   "position": {
-    "x": 372.70211271750065,
-    "y": 15.886750226777647,
+    "x": 0,
+    "y": 0,
     "z": 1000,
     "height": 312.60115606936415,
     "width": 480.92485549132948,
@@ -20,15 +20,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "PurchasedFrom"
+                      "Entity": "Genre"
                     }
                   },
-                  "Property": "Purchased From"
+                  "Property": "Genre"
                 }
               },
-              "queryRef": "PurchasedFrom.Purchased From",
-              "nativeQueryRef": "Retail Sales - Albums",
-              "displayName": "Retail Sales - Albums"
+              "queryRef": "Genre.Genre",
+              "nativeQueryRef": "Genre",
+              "displayName": "Genre"
             },
             {
               "field": {

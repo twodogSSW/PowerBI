@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "8ebc00ea805a4b33d557",
   "position": {
-    "x": 13.218106035352271,
-    "y": 21.401205607456458,
-    "z": 1000,
+    "x": 13.218106035352266,
+    "y": 21.401205607456465,
+    "z": 1500,
     "height": 390.57200233608035,
     "width": 681.24084951430962,
-    "tabOrder": 1000
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,14 +19,16 @@
               {
                 "textRuns": [
                   {
-                    "value": "After injuring my body in March 2024, I was unable to work and spent six months rehabbing and recooperating.  During that time, I were unable to use the computer and to keep up with Power Bi, I had to spend time reading and watching videos.  But that's not enough if you want to keep up with the changes. My contract ended with the CDC and I was on my own.",
+                    "value": "After injuring my body in March 2024, I was unable to work and spent six months with physical therapists, recooperating.  During that time, I were unable to use the computer and to keep up with Power Bi, I had to spend time reading and watching videos.  But that's not enough if you want to keep up with the changes. My contract ended with the CDC and I was on my own.",
                     "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
                       "fontSize": "13.3333px"
                     }
                   },
                   {
                     "value": "             ",
                     "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
                       "color": "#262a76"
                     }
                   }
@@ -42,7 +44,10 @@
               {
                 "textRuns": [
                   {
-                    "value": "I wanted to return to the workforce, so my goal was returning to normal and being able to work an 8 hour workday (at the least)."
+                    "value": "I wanted to return to the workforce, so my goal was returning to normal and being able to work an 8 hour workday (at the least).",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI Semibold"
+                    }
                   }
                 ]
               },
@@ -56,7 +61,10 @@
               {
                 "textRuns": [
                   {
-                    "value": "So in late August 2024 as I became able to return to what I like to do, I built a music database with SQL Server 2022, and used the data to power the PowerBI Report."
+                    "value": "So in late August 2024 as I became able to return to what I like to do, started to built a music database and PowerBI report with SQL Server 2025 as the backend, and used the data to power the PowerBI Report.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI Semibold"
+                    }
                   }
                 ]
               },
@@ -70,7 +78,10 @@
               {
                 "textRuns": [
                   {
-                    "value": "The report is composed of the following."
+                    "value": "The report is composed of the following.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI Semibold"
+                    }
                   }
                 ]
               },
@@ -84,21 +95,30 @@
               {
                 "textRuns": [
                   {
-                    "value": "Over 23,5K of music tracks, including Tracks and their detail which includes album, artists, genres and the record labels,"
+                    "value": "Over 23,5K of music tracks, including Tracks and their detail which includes album, artists, genres and the record labels,",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI Semibold"
+                    }
                   }
                 ]
               },
               {
                 "textRuns": [
                   {
-                    "value": "SQL Code to create the tables and connect them to PBI, and update them monthly."
+                    "value": "SQL Code to create the tables and connect them to PBI, and update them monthly.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI Semibold"
+                    }
                   }
                 ]
               },
               {
                 "textRuns": [
                   {
-                    "value": "Drawing inspiration from the book \"BIG BOOK OF DASHBOARDS - Visualizing your data using real world business scenarios\"."
+                    "value": "Drawing inspiration from the book \"BIG BOOK OF DASHBOARDS - Visualizing your data using real world business scenarios\".",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI Semibold"
+                    }
                   }
                 ]
               },
@@ -112,7 +132,10 @@
               {
                 "textRuns": [
                   {
-                    "value": "Please let me know what you think!"
+                    "value": "Please let me know what you think!",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI Semibold"
+                    }
                   }
                 ],
                 "horizontalTextAlignment": "center"
@@ -122,6 +145,7 @@
                   {
                     "value": "(more to come!)",
                     "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
                       "fontStyle": "italic"
                     }
                   }
@@ -154,14 +178,14 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                  "Value": "'''Segoe UI Bold'', wf_segoe-ui_bold, helvetica, arial, sans-serif'"
                 }
               }
             },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "13D"
                 }
               }
             },
@@ -196,5 +220,5 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "4deda3d1fbe7f36a6acb"
+  "parentGroupName": "5d3df9ab64857c370b34"
 }

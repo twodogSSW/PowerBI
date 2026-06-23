@@ -1,10 +1,10 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "d8fef6f0cf94f75bac08",
   "position": {
     "x": 7.369204812206573,
     "y": 115.71870349392225,
-    "z": 2000,
+    "z": 3000,
     "height": 207.36190456237676,
     "width": 215,
     "tabOrder": 1000
@@ -85,7 +85,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'''RecordLabel''[RecordLabel]'"
+                                "Value": "'''Artist''[Artist]'"
                               }
                             }
                           ]
@@ -113,7 +113,7 @@
                                 "0": [
                                   {
                                     "Literal": {
-                                      "Value": "'''RecordLabel''[RecordLabel]'"
+                                      "Value": "'''Artist''[Artist]'"
                                     }
                                   }
                                 ]
@@ -137,7 +137,7 @@
                         },
                         "valueMap": [
                           {
-                            "0": "Record Label"
+                            "0": "Artist"
                           }
                         ]
                       }

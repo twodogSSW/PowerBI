@@ -1,10 +1,10 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "a88b69b85a3346e65ac0",
   "position": {
     "x": 0,
     "y": 0,
-    "z": 1000,
+    "z": 0,
     "height": 322,
     "width": 836.37519872813994,
     "tabOrder": 1000
@@ -104,16 +104,16 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "RecordLabel"
+                      "Entity": "Artist"
                     }
                   },
-                  "Property": "RecordLabel"
+                  "Property": "Artist"
                 }
               },
-              "queryRef": "RecordLabel.RecordLabel",
-              "nativeQueryRef": "Record Label",
+              "queryRef": "Artist.Artist",
+              "nativeQueryRef": "Artist",
               "active": true,
-              "displayName": "Record Label"
+              "displayName": "Artist"
             }
           ],
           "fieldParameters": [
@@ -129,7 +129,8 @@
                 }
               },
               "index": 0,
-              "length": 1
+              "length": 1,
+              "sortDirection": "Ascending"
             }
           ]
         },
@@ -186,16 +187,16 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "_Categories"
+                    "Entity": "Artist"
                   }
                 },
-                "Property": "Sale $"
+                "Property": "Artist"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
         ]
       }
@@ -1248,6 +1249,36 @@
           "selector": {
             "metadata": "TrackList.Track - Artist"
           }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "85.59102329708867D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "total": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendar"
+                        }
+                      },
+                      "Property": "Start of Month"
+                    }
+                  }
+                ]
+              }
+            ],
+            "metadata": "_Categories.Sale $"
+          }
         }
       ],
       "columnHeaders": [
@@ -1776,7 +1807,7 @@
             "Property": "Track - Artist"
           }
         },
-        "type": "Categorical",
+        "type": "Advanced",
         "howCreated": "User",
         "isHiddenInViewMode": true
       },
@@ -1795,6 +1826,20 @@
         "type": "Categorical",
         "howCreated": "User",
         "isHiddenInViewMode": true
+      },
+      {
+        "name": "014c9f643578ad0c2be0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Artist"
+              }
+            },
+            "Property": "Artist"
+          }
+        },
+        "type": "Categorical"
       }
     ]
   }

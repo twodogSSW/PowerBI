@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "5d3df9ab64857c370b34",
   "position": {
-    "x": 247.18110236220474,
-    "y": 146.26771653543307,
-    "z": 1000,
-    "height": 493.22834645669292,
-    "width": 731.33858267716539,
-    "tabOrder": 9000
+    "x": 258.0930241034979,
+    "y": 160.38450106443005,
+    "z": 2000,
+    "height": 419.46362990614659,
+    "width": 702.59317464834021,
+    "tabOrder": 4000
   },
   "visualGroup": {
     "displayName": "About me..",
@@ -27,8 +27,9 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#BE5D5D'"
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
                     }
                   }
                 }

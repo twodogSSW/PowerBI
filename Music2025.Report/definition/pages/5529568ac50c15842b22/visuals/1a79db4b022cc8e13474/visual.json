@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "1a79db4b022cc8e13474",
   "position": {
     "x": 8.488262910798122,
@@ -73,14 +73,14 @@
             "relativeDuration": {
               "expr": {
                 "Literal": {
-                  "Value": "6D"
+                  "Value": "2D"
                 }
               }
             },
             "relativePeriod": {
               "expr": {
                 "Literal": {
-                  "Value": "'Months'"
+                  "Value": "'Years'"
                 }
               }
             }
@@ -172,8 +172,8 @@
                                     "TimeUnit": 0
                                   }
                                 },
-                                "Amount": -6,
-                                "TimeUnit": 2
+                                "Amount": -2,
+                                "TimeUnit": 3
                               }
                             },
                             "TimeUnit": 0

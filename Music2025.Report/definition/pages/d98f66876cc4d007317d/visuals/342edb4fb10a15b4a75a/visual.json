@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "342edb4fb10a15b4a75a",
   "position": {
-    "x": 0,
-    "y": 0,
-    "z": 2500,
-    "height": 204.48694214860427,
-    "width": 212.84741396911949,
-    "tabOrder": 1000
+    "x": 7.9395057796091608,
+    "y": 123.15283564563353,
+    "z": 1500,
+    "height": 204,
+    "width": 213,
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "slicer",
@@ -85,7 +85,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'''PurchasedFrom''[Purchased From]'"
+                                "Value": "'''Genre''[Genre]'"
                               }
                             }
                           ]
@@ -113,7 +113,7 @@
                                 "0": [
                                   {
                                     "Literal": {
-                                      "Value": "'''PurchasedFrom''[Purchased From]'"
+                                      "Value": "'''Genre''[Genre]'"
                                     }
                                   }
                                 ]
@@ -137,7 +137,7 @@
                         },
                         "valueMap": [
                           {
-                            "0": "Retail Sales - Albums"
+                            "0": "Genre"
                           }
                         ]
                       }
@@ -303,7 +303,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Slicer Show options'"
+                  "Value": "'Choose Category'"
                 }
               }
             }
@@ -391,6 +391,6 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "bc5e1cbf4a1e782007b0",
+  "parentGroupName": "dd4e9894947d1b804478",
   "isHidden": true
 }

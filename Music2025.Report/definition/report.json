@@ -31,7 +31,7 @@
           "expanded": {
             "expr": {
               "Literal": {
-                "Value": "false"
+                "Value": "true"
               }
             }
           },
@@ -76,23 +76,8 @@
           "type": "Image"
         },
         {
-          "name": "Close05229020427385156.svg",
-          "path": "Close05229020427385156.svg",
-          "type": "Image"
-        },
-        {
-          "name": "Close08076570752541401.svg",
-          "path": "Close08076570752541401.svg",
-          "type": "Image"
-        },
-        {
           "name": "PowerBI9462177568529606.png",
           "path": "PowerBI9462177568529606.png",
-          "type": "Image"
-        },
-        {
-          "name": "shape8982134108706878.png",
-          "path": "shape8982134108706878.png",
           "type": "Image"
         }
       ]

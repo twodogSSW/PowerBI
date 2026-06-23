@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "ef378b7a53507815e497",
   "position": {
     "x": 219.71653543307087,
@@ -44,20 +44,6 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Region"
-                    }
-                  },
-                  "Property": "Region"
-                }
-              },
-              "queryRef": "Region.Region",
-              "nativeQueryRef": "Region"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
                       "Entity": "Artist"
                     }
                   },
@@ -65,7 +51,23 @@
                 }
               },
               "queryRef": "Artist.Artist",
-              "nativeQueryRef": "Artist"
+              "nativeQueryRef": "Artist",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Region"
+                    }
+                  },
+                  "Property": "Region"
+                }
+              },
+              "queryRef": "Region.Region",
+              "nativeQueryRef": "Region",
+              "active": false
             },
             {
               "field": {
@@ -80,6 +82,7 @@
               },
               "queryRef": "PurchasedFrom.PurchasedFrom",
               "nativeQueryRef": "Purchased From",
+              "active": false,
               "displayName": "Purchased From"
             },
             {
@@ -94,7 +97,8 @@
                 }
               },
               "queryRef": "TrackList.Title",
-              "nativeQueryRef": "Title"
+              "nativeQueryRef": "Title",
+              "active": false
             },
             {
               "field": {
@@ -108,7 +112,8 @@
                 }
               },
               "queryRef": "Genre.Genre",
-              "nativeQueryRef": "Genre"
+              "nativeQueryRef": "Genre",
+              "active": false
             }
           ]
         }
@@ -137,6 +142,47 @@
         "isDefaultSort": true
       }
     },
+    "expansionStates": [
+      {
+        "roles": [
+          "ExplainBy"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "Artist.Artist"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Region.Region"
+            ],
+            "isCollapsed": true
+          },
+          {
+            "queryRefs": [
+              "PurchasedFrom.PurchasedFrom"
+            ],
+            "isCollapsed": true
+          },
+          {
+            "queryRefs": [
+              "TrackList.Title"
+            ],
+            "isCollapsed": true
+          },
+          {
+            "queryRefs": [
+              "Genre.Genre"
+            ],
+            "isCollapsed": true
+          }
+        ],
+        "root": {}
+      }
+    ],
     "objects": {
       "tree": [
         {
@@ -352,5 +398,6 @@
         "howCreated": "User"
       }
     ]
-  }
+  },
+  "isHidden": true
 }
