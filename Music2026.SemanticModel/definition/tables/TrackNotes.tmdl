@@ -1,0 +1,88 @@
+/// Table used to store Track notes (many notes per single Track)
+table TrackNotes
+	lineageTag: 0058b5a2-0636-4e1f-ba5a-decece567d33
+
+	/// pkTrackNotes
+	column pkTrackNotes
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 355e9e38-a5c0-4de6-9ab2-264beb6f028f
+		summarizeBy: none
+		sourceColumn: pkTrackNotes
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	/// fkTrackList
+	column fkTrackList
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 352067d1-ad2d-43c1-92f9-8f0520aa5204
+		summarizeBy: none
+		sourceColumn: fkTrackList
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// TrackNotesDate
+	column TrackNotesDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 68470b10-b174-4d5e-acbb-caf21df3dbf1
+		summarizeBy: none
+		sourceColumn: TrackNotesDate
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// TrackNotes
+	column TrackNotes
+		dataType: string
+		lineageTag: a9ad711c-9e3a-4f69-b2e1-3028d20a51bc
+		summarizeBy: none
+		sourceColumn: TrackNotes
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column NewTrackNotesAdded
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 45bf1ca6-a5c0-40ac-9c45-50bf55d99e76
+		summarizeBy: none
+		sourceColumn: NewTrackNotesAdded
+
+		annotation SummarizationSetBy = Automatic
+
+	column TrackNotesUpdated
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 132bc2de-7e87-4dd6-ac45-584028ce7e6a
+		summarizeBy: none
+		sourceColumn: TrackNotesUpdated
+
+		annotation SummarizationSetBy = Automatic
+
+	partition TrackNotes = m
+		mode: import
+		source = ```
+				let
+				    Source = Sql.Database(ServerName, DBName, [Query=
+				  "SELECT pkTrackNotes, fkTrackList, TrackNotesDate,TrackNotes, NewTrackNotesAdded, TrackNotesUpdated
+				   FROM [dbo].[TrackNotes]", 
+				  CommandTimeout=#duration(0, 0, 10, 0)]),
+				    MarkedKeys = Table.AddKey(Source, {"pkTrackNotes"}, true)
+				in
+				    MarkedKeys
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,16 @@
+/// STDESKTOP\MSSQLSERVER02
+expression ServerName = "STDESKTOP\MSSQLSERVER04" meta [IsParameterQuery=true, Type="Any", IsParameterQueryRequired=true]
+	lineageTag: c05813f7-3eb5-4d56-8f38-65bc11ad4a5e
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+/// "MUSIC2024"
+expression DBName = "MUSIC2026" meta [IsParameterQuery=true, Type="Any", IsParameterQueryRequired=true]
+	lineageTag: d400e2b7-92bf-4e1b-b325-1ad10f057817
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+

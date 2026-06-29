@@ -1,0 +1,151 @@
+/// Table used to store sales of Track Sales
+table TrackSales
+	lineageTag: d1fe4f8d-bc56-4b65-9185-817afb88c0e2
+
+	/// pkTrackSales
+	column pkTrackSales
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e8f1b1aa-e877-4486-a856-65d9b51e6e4d
+		summarizeBy: none
+		sourceColumn: pkTrackSales
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	/// fkPurchasedFrom
+	column fkTrackList
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: be3ecdb8-8af1-409a-b958-47ca589dcd49
+		summarizeBy: none
+		sourceColumn: fkTrackList
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// fkGeographyNo
+	column fkGeographyNo
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b76a87c3-2a3c-4806-9dd2-b83017e268ec
+		summarizeBy: none
+		sourceColumn: fkGeographyNo
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Salesdate
+	column Salesdate
+		dataType: dateTime
+		formatString: mm/dd/yy
+		lineageTag: b83443f6-37a5-4bfa-bd70-e685cfa13d81
+		summarizeBy: none
+		sourceColumn: Salesdate
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	/// SaleCount
+	column SaleCount
+		dataType: int64
+		formatString: #,0
+		lineageTag: d1de4602-47b9-4325-ba1f-bf41eac2c82e
+		summarizeBy: none
+		sourceColumn: SaleCount
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	/// SalesAmt
+	column SalesAmt
+		dataType: double
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 066d1870-cd15-4f8c-8596-5393a0a0622a
+		summarizeBy: none
+		sourceColumn: SalesAmt
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	/// fkPurchasedFrom
+	column fkPurchasedFrom
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6b6c7c7e-b828-4530-90c7-ff63aa4c435c
+		summarizeBy: none
+		sourceColumn: fkPurchasedFrom
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// CC
+	column CC
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 4b9ea7de-38f5-4df1-b2e0-cb6baae807ff
+		summarizeBy: none
+		sourceColumn: CC
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	/// Bitcoin
+	column Bitcoin
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: d19e76db-df7a-4ace-9f3a-d7d92ac1be5d
+		summarizeBy: none
+		sourceColumn: Bitcoin
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	/// Cash
+	column Cash
+		dataType: double
+		lineageTag: 9c8e3e57-6975-4ee7-aab0-8c7d9bae6d89
+		summarizeBy: none
+		sourceColumn: Cash
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition TrackSales = m
+		mode: import
+		source = ```
+				let    
+				    Source = Sql.Database(ServerName, DBName, [CommandTimeout=#duration(0, 1, 0, 0), Query="SELECT #(lf)    [pkTrackSales]#(lf)    ,[fkTrackList]#(lf)    ,[fkGeographyNo]#(lf)    ,[Salesdate]#(lf)    ,[SaleCount]#(lf)    ,[SalesAmt]#(lf)    ,[fkPurchasedFrom]#(lf)    --,[Include]#(lf)    ,[CC]#(lf)    ,[Bitcoin]#(lf)    ,Cash#(lf)  FROM #(lf)    [dbo].[TrackSales]#(lf)--where [Salesdate] >= '11/1/2024 12:00:00 AM'"]),
+				    MarkedKeys = Table.AddKey(Source, {"pkTrackSales"}, true)
+				in
+				    MarkedKeys
+				```
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

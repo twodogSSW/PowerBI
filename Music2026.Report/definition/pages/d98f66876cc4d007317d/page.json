@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "d98f66876cc4d007317d",
+  "displayName": "Summary of All Sales🏆",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "objects": {
+    "outspace": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#E6E6E6'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "7c4b611081d3e832a271",
+      "target": "d62553e5261f6121f6da",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7c4b611081d3e832a271",
+      "target": "4919710b2cb363b1542d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7c4b611081d3e832a271",
+      "target": "83a23f423f1cc66821d0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7c4b611081d3e832a271",
+      "target": "be345c12d81a4432a268",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7c4b611081d3e832a271",
+      "target": "62b8f646284d613b5771",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7c4b611081d3e832a271",
+      "target": "1a5b6df0983469e9c781",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7c4b611081d3e832a271",
+      "target": "ca1ef6f1de6a6507b3cb",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7c4b611081d3e832a271",
+      "target": "bf9a21be3667e201156b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7c4b611081d3e832a271",
+      "target": "df97c724da2e820ae7cd",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7c4b611081d3e832a271",
+      "target": "c677a9516bccaa64cdb0",
+      "type": "NoFilter"
+    }
+  ]
+}

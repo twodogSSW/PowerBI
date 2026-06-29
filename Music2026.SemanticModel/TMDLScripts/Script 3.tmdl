@@ -1,0 +1,44 @@
+createOrReplace
+
+	function 'pbi.Categories_RptURL' = ```
+			(CategoryFld:anyref) //build the URL Link to send report
+					=> 
+			
+			   Var URLCategory = 
+			   	SWITCH(
+					pbi.All_SelectedCategory(),
+						0,"https://app.powerbi.com/groups/b22fc384-04be-4bb0-aa07-c3d212b9e483/rdlreports/2b90c547-dd27-45d7-acad-91671357765c?",   --_URL[URLTracks],
+						1,"https://app.powerbi.com/groups/b22fc384-04be-4bb0-aa07-c3d212b9e483/rdlreports/bf9074e6-214e-4084-b39a-abadbb90d0ff?",   --_URL[URLGenres],
+						2,"https://app.powerbi.com/groups/b22fc384-04be-4bb0-aa07-c3d212b9e483/rdlreports/95f35ed5-2ce9-4167-8fee-a31ae555ff0c?",	--_URL[URLArtists],
+						3,"https://app.powerbi.com/groups/b22fc384-04be-4bb0-aa07-c3d212b9e483/rdlreports/fd371a35-821d-469b-87a9-1d6c261e7fb5?",	--_URL[URLAlbums],
+						4,"https://app.powerbi.com/groups/b22fc384-04be-4bb0-aa07-c3d212b9e483/rdlreports/ed799109-f4e9-48f0-b5df-0485f27ecfe5?",   --_URL[URLRecLabels],
+						5,"https://app.powerbi.com/groups/b22fc384-04be-4bb0-aa07-c3d212b9e483/rdlreports/047faf11-f612-46e5-a416-66d5bcb7531f?",	--_URL[URLRegions],
+					BLANK()
+					)
+				
+				VAR Fldrp =//"rp"
+			   	SWITCH(
+					pbi.All_SelectedCategory(),
+						0,"rp:Tracks=",		--_URL[URLTracks],
+						1,"rp:Genre=",   	--_URL[URLGenres],
+						2,"rp:Artists=",	--_URL[URLArtists],
+						3, "rp:Album=",		--_URL[URLAlbums],
+						4,"rp:RecordLabel=",--_URL[URLRecLabels],
+						5,"rp:Region=",		--_URL[URLRegions],
+					BLANK()
+					)
+						 
+				VAR TrackParams =
+					CONCATENATEX(
+						VALUES( CategoryFld),			//
+						Fldrp & CategoryFld,
+						"&"
+					)
+			VAR SD = Calendar[StartDate_prm]
+			VAR ED = Calendar[EndDate_prm]
+			VAR Exp = "&experience=power-bi"
+			RETURN
+			  URLCategory & TrackParams & "&" & SD & "&" & ED & Exp
+			```
+		lineageTag: b53c776a-b1bc-4cf7-98d2-2ca625f7e97d
+
