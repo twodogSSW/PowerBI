@@ -1,0 +1,14 @@
+DEFINE
+    FUNCTION pbi.ExecSumm_Momentum_Narrative = (ChangePct:decimal,CalNumber:anyval) 
+		=>
+	
+        IF(
+            ChangePct < 0,
+                "❌ (" & CalNumber & " Days): " & FORMAT(ChangePct, "0.0%"),
+                "✅ (" & CalNumber & " Days): " & FORMAT(ChangePct, "0.0%") 
+            )
+
+EVALUATE
+    {
+        pbi.ExecSumm_Momentum_Narrative(ChangePct, CalNumber)
+    }

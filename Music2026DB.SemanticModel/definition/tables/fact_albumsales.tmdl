@@ -1,0 +1,132 @@
+table fact_albumsales
+	lineageTag: a82f38f6-eac1-4b54-b536-98df295f96f4
+
+	column AlbumSalesID
+		dataType: int64
+		formatString: 0
+		lineageTag: f16e2708-b9c9-4f51-99de-f00f09b9b563
+		summarizeBy: count
+		sourceColumn: AlbumSalesID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AlbumID
+		dataType: int64
+		formatString: 0
+		lineageTag: 85aa9cfb-ffac-43b1-be3b-016111a87066
+		summarizeBy: count
+		sourceColumn: AlbumID
+
+		annotation SummarizationSetBy = Automatic
+
+	column GeographyID
+		dataType: int64
+		formatString: 0
+		lineageTag: a3bc2f22-9978-46ac-9a9d-b1c802c2546e
+		summarizeBy: count
+		sourceColumn: GeographyID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PurchasedFromID
+		dataType: int64
+		formatString: 0
+		lineageTag: c038166f-3d3e-4389-8f39-f683c31915ee
+		summarizeBy: count
+		sourceColumn: PurchasedFromID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fc648b2d-f8b1-475e-b1d7-9a053559ffae
+		summarizeBy: none
+		sourceColumn: SalesDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column SaleCount
+		dataType: int64
+		formatString: 0
+		lineageTag: ffc1b801-ef72-454b-9fa0-4ccf8fc5c9a8
+		summarizeBy: sum
+		sourceColumn: SaleCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesAmt
+		dataType: double
+		lineageTag: 0e9230e0-9340-4a1a-9b40-2aec1427b72e
+		summarizeBy: sum
+		sourceColumn: SalesAmt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FileDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c6bcc852-796e-4f76-a91f-6dd5fd957d14
+		summarizeBy: none
+		sourceColumn: FileDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ModDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c66f7307-9b44-4240-bf10-43de211c1e7f
+		summarizeBy: none
+		sourceColumn: ModDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CC
+		dataType: double
+		lineageTag: 34b70955-145b-4482-a9f3-c9c1365a0430
+		summarizeBy: sum
+		sourceColumn: CC
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Bitcoin
+		dataType: double
+		lineageTag: b46e342f-3fa8-4d63-b9ad-f7d09e682b56
+		summarizeBy: sum
+		sourceColumn: Bitcoin
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Cash
+		dataType: double
+		lineageTag: 9925dfc9-ad5a-4a15-82fc-f9aee7aace21
+		summarizeBy: sum
+		sourceColumn: Cash
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fact_albumsales = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery="disabled", Implementation="2.0", Protocol=null]),
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
+				    music2026_gold_Schema = workspace_Database{[Name="music2026_gold",Kind="Schema"]}[Data],
+				    fact_albumsales_Table = music2026_gold_Schema{[Name="fact_albumsales",Kind="Table"]}[Data]
+				in
+				    fact_albumsales_Table
+

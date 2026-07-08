@@ -1,0 +1,58 @@
+relationship 7e06099c-bc59-1e35-f5ad-9adc75ef98a7
+	fromColumn: Demographics.Demographic
+	toColumn: _BusinessDrivers.Demographic
+
+relationship 5c08116f-547b-156d-3922-db511c376bb6
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Album.AlbumID
+	toColumn: AlbumNotes.fkAlbum
+
+relationship 0fc8e66c-5461-538c-d8e8-d32476d49350
+	fromColumn: TrackList.AlbumID
+	toColumn: Album.AlbumID
+
+relationship b7d59496-2b1f-f275-d4ba-8e6003f2f4e9
+	fromColumn: TrackList.ArtistID
+	toColumn: Artist.ArtistID
+
+relationship c1f6b8bf-28a9-b426-7fb5-92c4ce40ae45
+	fromColumn: TrackList.GenreID
+	toColumn: Genre.GenreID
+
+relationship d578a9b9-a2b7-bd44-e750-8b8a6e47c32e
+	fromColumn: Geography.RegionID
+	toColumn: Region.RegionID
+
+relationship AutoDetected_5a395525-8030-40fe-901f-bd41993468bd
+	fromColumn: Demographics.TrackID
+	toColumn: TrackList.TrackID
+
+relationship AutoDetected_f5fd9854-200c-4504-b60d-fb0ed89c3eb0
+	fromColumn: TrackSales.TrackID
+	toColumn: TrackList.TrackID
+
+relationship AutoDetected_aabd9a9b-b4f1-41ae-ac44-3844e0e69d01
+	fromColumn: TrackSales.GeographyID
+	toColumn: Geography.GeographyID
+
+relationship AutoDetected_5ad5aa08-f87a-4a68-b520-162d5ed50e37
+	fromColumn: TrackSales.PurchasedFromID
+	toColumn: PurchasedFrom.PurchasedFromID
+
+relationship 817da233-0895-6288-3a21-697cf745848a
+	fromColumn: TrackSales.SalesDate
+	toColumn: Calendar.Date
+
+relationship AutoDetected_7e0e1ff4-0a54-4743-865b-93b8512dd6d3
+	fromColumn: AlbumSales.AlbumID
+	toColumn: Album.AlbumID
+
+relationship AutoDetected_10729981-0c9c-4cec-be46-b30daee708b1
+	fromColumn: AlbumSales.GeographyID
+	toColumn: Geography.GeographyID
+
+relationship AutoDetected_8a32aef9-7a59-49d5-a306-4d5fa5dd03e4
+	fromColumn: AlbumSales.PurchasedFromID
+	toColumn: PurchasedFrom.PurchasedFromID
+

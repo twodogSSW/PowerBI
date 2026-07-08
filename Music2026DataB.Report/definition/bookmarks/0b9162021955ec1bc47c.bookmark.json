@@ -1,0 +1,697 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "Reset",
+  "name": "0b9162021955ec1bc47c",
+  "options": {
+    "targetVisualNames": [
+      "3414da7c5a0744e1e897"
+    ]
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "fb9c64dd75d8975152ce",
+    "sections": {
+      "fb9c64dd75d8975152ce": {
+        "filters": {
+          "byExpr": [
+            {
+              "name": "d6fadc6d15260b699d07",
+              "type": "Categorical",
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TrackList"
+                    }
+                  },
+                  "Property": "Artist - Track"
+                }
+              },
+              "howCreated": 1
+            },
+            {
+              "name": "9e433b907cc07d621d91",
+              "type": "Categorical",
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Artist"
+                    }
+                  },
+                  "Property": "Artist"
+                }
+              },
+              "howCreated": 1
+            },
+            {
+              "name": "272b1106e84d23d05a0e",
+              "type": "Categorical",
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Genre"
+                    }
+                  },
+                  "Property": "Genre"
+                }
+              },
+              "howCreated": 1
+            },
+            {
+              "name": "c88c0c63d09005276d63",
+              "type": "Categorical",
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RecordLabel"
+                    }
+                  },
+                  "Property": "RecordLabel"
+                }
+              },
+              "howCreated": 1
+            },
+            {
+              "name": "fc3b04ec60301c69c4a9",
+              "type": "Categorical",
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PurchasedFrom"
+                    }
+                  },
+                  "Property": "PurchasedFrom"
+                }
+              },
+              "howCreated": 1
+            }
+          ]
+        },
+        "visualContainers": {
+          "7102b729cb5d657aab12": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "254c86ffc4019f9c4d75",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "d1",
+                        "Entity": "Demographics",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "d1"
+                                      }
+                                    },
+                                    "Property": "DynamicDemo_Count"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Demographics"
+                        }
+                      },
+                      "Property": "DynamicDemo_Count"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "236a6cb50921be41c7c1",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Demographics"
+                        }
+                      },
+                      "Property": "Gender"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c0109cff1d416bd196b0",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Demographics"
+                        }
+                      },
+                      "Property": "DemoLabel"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "TornadoChart1452517688218",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Demographics"
+                        }
+                      },
+                      "Property": "DemoLabel"
+                    }
+                  }
+                },
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Demographics"
+                        }
+                      },
+                      "Property": "Gender"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "513b89f2d806a45260c9": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "ce431974080ed03ded0d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendar"
+                        }
+                      },
+                      "Property": "Date_Footer"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "98ecd3bf07423558ccad": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "d8275b508acb6b5a971e",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendar"
+                        }
+                      },
+                      "Property": "LastRefreshDate"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "1b2ef930ed216c50a439": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "f6f6a540e761d695440d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Demographics"
+                        }
+                      },
+                      "Property": "Demographic_Slicer"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "selection": [
+                    {
+                      "properties": {
+                        "strictSingleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "false"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "dateRange": [
+                    {
+                      "properties": {
+                        "includeToday": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "true"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Demographics"
+                        }
+                      },
+                      "Property": "Demographic_Slicer"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "444c6ed75bca218287c3": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "943e45fe1cb2adddb268": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "984585dc480c0900c98c": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "3f64aff7e28228bc7e35",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "_",
+                        "Entity": "_BusinessDrivers",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "_"
+                                    }
+                                  },
+                                  "Property": "DisplayName"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Men 18'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Men 18–34'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Men 34–54'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Men 54+'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_BusinessDrivers"
+                        }
+                      },
+                      "Property": "DisplayName"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1bbc950c81971de8791c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Demographics"
+                            }
+                          },
+                          "Property": "DemoCount - Copy"
+                        }
+                      },
+                      "Function": 5
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "f9060471e338a915b7a9",
+                  "type": "Advanced",
+                  "expression": {
+                    "Arithmetic": {
+                      "Left": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Demographics"
+                            }
+                          },
+                          "Property": "DemoCount_Selected"
+                        }
+                      },
+                      "Right": {
+                        "ScopedEval": {
+                          "Expression": {
+                            "Measure": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Demographics"
+                                }
+                              },
+                              "Property": "DemoCount_Selected"
+                            }
+                          },
+                          "Scope": []
+                        }
+                      },
+                      "Operator": 3
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "4dc3b236747717cd535a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Demographics"
+                        }
+                      },
+                      "Property": "DynamicDemo_Count"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "donutChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_BusinessDrivers"
+                        }
+                      },
+                      "Property": "DisplayName"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_BusinessDrivers"
+                        }
+                      },
+                      "Property": "DisplayName"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "08b01063c000837269bb": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "2f70c28ce0b9dc89c803": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "3414da7c5a0744e1e897": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "58ae53a0334b032ce0b9": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "def3bbdfdddd4600346a": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "c76fab4eb57ba91b8073",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_BusinessDrivers"
+                        }
+                      },
+                      "Property": "DisplayName"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "670a676bc097488368ee",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "TrackList"
+                        }
+                      },
+                      "Property": "Artist - Track"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "774959a961031ba0554d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Demographics"
+                        }
+                      },
+                      "Property": "DemoCount_Selected"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "pivotTable",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "TrackList"
+                        }
+                      },
+                      "Property": "Artist - Track"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Columns": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_BusinessDrivers"
+                        }
+                      },
+                      "Property": "DisplayName"
+                    }
+                  }
+                ],
+                "Rows": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "TrackList"
+                        }
+                      },
+                      "Property": "Artist - Track"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "efbfe5e001a7c3e5edd4": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              },
+              "visible": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

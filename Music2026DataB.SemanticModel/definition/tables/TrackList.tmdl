@@ -1,0 +1,183 @@
+/// Table of each unique track and track details
+table TrackList
+	lineageTag: 502901bc-3365-446f-8c7f-470a1e6ece21
+
+	/// Title
+	column Title
+		dataType: string
+		lineageTag: 1a95e08d-cce4-4435-8e45-ea020b1b2703
+		summarizeBy: none
+		sourceColumn: Title
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Year
+	column Year
+		dataType: int64
+		lineageTag: 42335b86-ead5-4e0f-9c6d-fca28663cdb7
+		summarizeBy: none
+		sourceColumn: Year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Composer
+	column Composer
+		dataType: string
+		lineageTag: 954dbda7-26ce-43c2-ad41-4c36e6c56422
+		summarizeBy: none
+		sourceColumn: Composer
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column TrackID
+		dataType: int64
+		formatString: 0
+		lineageTag: c224d1bd-1c43-41b4-a99d-cd06f76a6e15
+		summarizeBy: none
+		sourceColumn: TrackID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TrackNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: 5da020da-ee09-44b9-a12b-00821c50acaf
+		summarizeBy: sum
+		sourceColumn: TrackNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column FileSize
+		dataType: string
+		lineageTag: 18bfeea4-d528-4a85-8a3b-cedf6c9c5658
+		summarizeBy: none
+		sourceColumn: FileSize
+
+		annotation SummarizationSetBy = Automatic
+
+	column FilePath
+		dataType: string
+		lineageTag: 6ff1248f-3451-484c-b65a-9ddc60c8f515
+		summarizeBy: none
+		sourceColumn: FilePath
+
+		annotation SummarizationSetBy = Automatic
+
+	column AlbumID
+		dataType: int64
+		formatString: 0
+		lineageTag: ffa2a941-7c8f-433f-a6fb-8ca94b464356
+		summarizeBy: none
+		sourceColumn: AlbumID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ArtistID
+		dataType: int64
+		formatString: 0
+		lineageTag: 8bffa194-3c4f-45a6-a4bc-c5c2ff10e955
+		summarizeBy: none
+		sourceColumn: ArtistID
+
+		annotation SummarizationSetBy = Automatic
+
+	column GenreID
+		dataType: int64
+		formatString: 0
+		lineageTag: b2860969-d1b8-44b3-bac3-c32b25391fa8
+		summarizeBy: none
+		sourceColumn: GenreID
+
+		annotation SummarizationSetBy = Automatic
+
+	column RecordLabelID
+		dataType: int64
+		formatString: 0
+		lineageTag: 92c1ce02-462d-4fe2-9222-65c80ba36ced
+		summarizeBy: count
+		sourceColumn: RecordLabelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Length_sec
+		dataType: int64
+		formatString: 0
+		lineageTag: 624dded3-0821-4cbf-8571-85314e57338c
+		summarizeBy: sum
+		sourceColumn: Length_sec
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Artist - Track'
+		dataType: string
+		lineageTag: 129576c8-aeca-4f11-9b9a-34af0cfd0ce0
+		summarizeBy: none
+		sourceColumn: Artist - Track
+
+		annotation SummarizationSetBy = Automatic
+
+	column Album
+		dataType: string
+		lineageTag: 1d95ee03-d827-476b-8e05-071e40b18365
+		summarizeBy: none
+		sourceColumn: Album
+
+		annotation SummarizationSetBy = Automatic
+
+	column Artist
+		dataType: string
+		lineageTag: 7ccaebbb-2781-4c40-88aa-02c6487eb5ac
+		summarizeBy: none
+		sourceColumn: Artist
+
+		annotation SummarizationSetBy = Automatic
+
+	column Genre
+		dataType: string
+		lineageTag: 443254ef-4b11-41a2-b044-d758a19594f8
+		summarizeBy: none
+		sourceColumn: Genre
+
+		annotation SummarizationSetBy = Automatic
+
+	column RecordLabel
+		dataType: string
+		lineageTag: 9067e88a-365a-4471-8e27-c94638281e3f
+		summarizeBy: none
+		sourceColumn: RecordLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Title - Artist'
+		dataType: string
+		lineageTag: 82157dc4-ca0c-47ca-a8bd-9d6fd6c84135
+		summarizeBy: none
+		sourceColumn: Title - Artist
+
+		annotation SummarizationSetBy = Automatic
+
+	partition TrackList = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery="disabled", Implementation="2.0", Protocol=null]),
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
+				    music2026_gold_Schema = workspace_Database{[Name="music2026_gold",Kind="Schema"]}[Data],
+				    dim_tracklist_Table = music2026_gold_Schema{[Name="dim_tracklist",Kind="Table"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(dim_tracklist_Table,{{"TrackArtist", "Artist - Track"}}),
+				    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Title - Artist", each [Title] & " - " &  [Artist])
+				in
+				    #"Added Custom"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

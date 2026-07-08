@@ -1,0 +1,57 @@
+table dim_purchasedfrom
+	lineageTag: a93c907a-4882-4e9b-9c0a-6cb6637c47ea
+
+	column PurchasedFromID
+		dataType: int64
+		formatString: 0
+		lineageTag: 32abed24-3829-484b-ab76-4d918d27f96b
+		summarizeBy: count
+		sourceColumn: PurchasedFromID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PurchasedFrom
+		dataType: string
+		lineageTag: 458f5409-bfe0-4d58-8ebf-ba4b4b33dc57
+		summarizeBy: none
+		sourceColumn: PurchasedFrom
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comments
+		dataType: string
+		lineageTag: 86d92e2c-f612-41d7-915c-5da40e4c2acf
+		summarizeBy: none
+		sourceColumn: Comments
+
+		annotation SummarizationSetBy = Automatic
+
+	column FileDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ef447c26-fb03-43f2-b888-1934b0781d3f
+		summarizeBy: none
+		sourceColumn: FileDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 92e25e18-b8ae-4778-9ece-41584ed0e1db
+		summarizeBy: none
+		sourceColumn: ModDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_purchasedfrom = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery="disabled", Implementation="2.0", Protocol=null]),
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
+				    music2026_gold_Schema = workspace_Database{[Name="music2026_gold",Kind="Schema"]}[Data],
+				    dim_purchasedfrom_Table = music2026_gold_Schema{[Name="dim_purchasedfrom",Kind="Table"]}[Data]
+				in
+				    dim_purchasedfrom_Table
+

@@ -1,0 +1,55 @@
+/// Measures used in Business Drivers Page
+table _BusinessDrivers
+	lineageTag: 125cf666-bac4-4cb7-88a1-30430f5a442f
+
+	/// Demographic
+	column Demographic
+		lineageTag: eb02ec91-51bd-4dcb-8412-ef145906a944
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Demographic]
+
+		annotation SummarizationSetBy = Automatic
+
+	/// DisplayName
+	column DisplayName
+		lineageTag: 0260a439-2a4e-49b2-bfed-b30334b7c933
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [DisplayName]
+		sortByColumn: SortOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	/// SortOrder
+	column SortOrder
+		formatString: 0
+		lineageTag: 6b6cb347-ddb7-4f35-8c15-7abbbf8a34c1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [SortOrder]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _BusinessDrivers = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "Demographic", STRING,
+				    "DisplayName", STRING,
+				    "SortOrder", INTEGER,
+				        {
+				            {"Males18",     "Men 18",        1},
+				            {"Males1834",   "Men 18–34",     2},
+				            {"Males3454",   "Men 34–54",     3},
+				            {"Males54",     "Men 54+",       4},
+				            {"Females18",   "Women 18",      5},
+				            {"Females1834", "Women 18–34",   6},
+				            {"Females3454", "Women 34–54",   7},
+				            {"Females54",   "Women 54+",     8}
+				        }
+				)
+
+	annotation PBI_Id = 135c6a3e84d74716937eec6a0ccd83a3
+

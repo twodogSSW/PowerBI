@@ -1,0 +1,168 @@
+/// Table used to store Geographic details Descriptions (unique records)
+table Geography
+	lineageTag: 9022b6a0-cca9-4059-8f0f-e5d82dd25af6
+
+	/// Selected
+	measure Selected$ = ```
+			
+			SWITCH(
+			  TRUE(),
+			  HASONEFILTER( TrackList[Artist - Track] ),
+			    SUM( TrackSales[SalesAmt] ),
+			  HASONEFILTER( 'Album'[Album]),
+			    SUM( AlbumSales[SalesAmt] ),
+			  // Default if nothing picked
+			  SUM( TrackSales[SalesAmt] )
+			)
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 225b506c-e2f1-4e28-a469-13c4c6597e33
+
+		changedProperty = IsHidden
+
+	column GeographyID
+		dataType: int64
+		formatString: 0
+		lineageTag: 086e9bfc-c9ce-4ed2-ac9c-b18f84524a57
+		summarizeBy: none
+		sourceColumn: GeographyID
+
+		annotation SummarizationSetBy = Automatic
+
+	/// City
+	column City
+		dataType: string
+		lineageTag: 38e966eb-b720-463c-8816-c5006fd3becf
+		dataCategory: City
+		summarizeBy: none
+		sourceColumn: City
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// State
+	column State
+		dataType: string
+		lineageTag: a3e1b6c7-11ef-4fe9-a6f5-ef05816ff808
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: State
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Province
+	column Province
+		dataType: string
+		lineageTag: 8c291a6e-fe9e-446a-874d-6487ec21c128
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: Province
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Country
+	column Country
+		dataType: string
+		lineageTag: bcf9758f-f03a-451d-82c9-49d549215fea
+		dataCategory: County
+		summarizeBy: none
+		sourceColumn: Country
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Continent
+	column Continent
+		dataType: string
+		lineageTag: 63f7e7d4-f361-4f5f-b128-27f6b808b3dc
+		dataCategory: Continent
+		summarizeBy: none
+		sourceColumn: Continent
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegionID
+		dataType: int64
+		formatString: 0
+		lineageTag: ce423f4a-0f9a-411a-ab95-4749ee23592a
+		summarizeBy: none
+		sourceColumn: RegionID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CityPopulation
+		dataType: int64
+		formatString: 0
+		lineageTag: a5533d3f-9598-40b9-abf3-1882f1dd4e3a
+		summarizeBy: sum
+		sourceColumn: CityPopulation
+
+		annotation SummarizationSetBy = Automatic
+
+	column latitude
+		dataType: double
+		lineageTag: 6e2e946c-7ae7-4b22-a98d-b77784cb9064
+		summarizeBy: sum
+		sourceColumn: latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column longitude
+		dataType: double
+		lineageTag: 351654f0-c56f-4c8c-90b5-46a6de82322c
+		summarizeBy: sum
+		sourceColumn: longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FileDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a7898554-b5c5-4c95-8308-39de5622f7af
+		summarizeBy: none
+		sourceColumn: FileDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ModDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a89aa780-3a58-4a11-ba58-1a54e88551ac
+		summarizeBy: none
+		sourceColumn: ModDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Geography = m
+		mode: import
+		source = ```
+				let
+				   Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery="disabled", Implementation="2.0", Protocol=null]),
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
+				    music2026_gold_Schema = workspace_Database{[Name="music2026_gold",Kind="Schema"]}[Data],
+				    dim_geography_Table = music2026_gold_Schema{[Name="dim_geography",Kind="Table"]}[Data]    
+				in
+				    #"dim_geography_Table"
+				```
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

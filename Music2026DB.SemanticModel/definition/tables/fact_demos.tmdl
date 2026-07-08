@@ -1,0 +1,122 @@
+table fact_demos
+	lineageTag: 5aa26f03-405b-4e95-83f8-e4b894c35e6c
+
+	column DemoID
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d6d14b8-7f29-48d3-8ca9-46a8c4f21f71
+		summarizeBy: count
+		sourceColumn: DemoID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TrackID
+		dataType: int64
+		formatString: 0
+		lineageTag: 323a6947-2822-4424-9d27-0c21055cbf43
+		summarizeBy: count
+		sourceColumn: TrackID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Males18
+		dataType: int64
+		formatString: 0
+		lineageTag: 3e37d68e-41fb-4bee-b809-f34068cf5808
+		summarizeBy: sum
+		sourceColumn: Males18
+
+		annotation SummarizationSetBy = Automatic
+
+	column Males1834
+		dataType: int64
+		formatString: 0
+		lineageTag: 4a778d4e-3b0a-4c68-a041-336c72880a9e
+		summarizeBy: sum
+		sourceColumn: Males1834
+
+		annotation SummarizationSetBy = Automatic
+
+	column Males3454
+		dataType: int64
+		formatString: 0
+		lineageTag: 3c8ced51-4eb0-4a75-9b77-a014af5632d3
+		summarizeBy: sum
+		sourceColumn: Males3454
+
+		annotation SummarizationSetBy = Automatic
+
+	column Males54
+		dataType: int64
+		formatString: 0
+		lineageTag: 069ad257-a747-44d3-b84c-4b240afb63ed
+		summarizeBy: sum
+		sourceColumn: Males54
+
+		annotation SummarizationSetBy = Automatic
+
+	column Females18
+		dataType: int64
+		formatString: 0
+		lineageTag: d8423260-6f22-4be4-97be-071df5121c63
+		summarizeBy: sum
+		sourceColumn: Females18
+
+		annotation SummarizationSetBy = Automatic
+
+	column Females1834
+		dataType: int64
+		formatString: 0
+		lineageTag: 108c11ed-d32f-4e0e-9730-e362e8df0773
+		summarizeBy: sum
+		sourceColumn: Females1834
+
+		annotation SummarizationSetBy = Automatic
+
+	column Females3454
+		dataType: int64
+		formatString: 0
+		lineageTag: 0b0362ff-4866-46a3-b69e-558779cb514d
+		summarizeBy: sum
+		sourceColumn: Females3454
+
+		annotation SummarizationSetBy = Automatic
+
+	column Females54
+		dataType: int64
+		formatString: 0
+		lineageTag: 5626fcf4-8983-4a5c-8fdf-446cfea5feac
+		summarizeBy: sum
+		sourceColumn: Females54
+
+		annotation SummarizationSetBy = Automatic
+
+	column FileDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cc352917-23d1-4265-ba43-4165ecab3658
+		summarizeBy: none
+		sourceColumn: FileDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 45c334e3-3581-4115-bac1-18be83bd5fe5
+		summarizeBy: none
+		sourceColumn: ModDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_demos = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery="disabled", Implementation="2.0", Protocol=null]),
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
+				    music2026_gold_Schema = workspace_Database{[Name="music2026_gold",Kind="Schema"]}[Data],
+				    fact_demos_Table = music2026_gold_Schema{[Name="fact_demos",Kind="Table"]}[Data]
+				in
+				    fact_demos_Table
+

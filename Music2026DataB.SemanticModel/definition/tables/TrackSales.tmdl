@@ -1,0 +1,166 @@
+/// Table used to store sales of Track Sales
+table TrackSales
+	lineageTag: d1fe4f8d-bc56-4b65-9185-817afb88c0e2
+
+	/// SaleCount
+	column SaleCount
+		dataType: int64
+		formatString: #,0
+		lineageTag: d1de4602-47b9-4325-ba1f-bf41eac2c82e
+		summarizeBy: none
+		sourceColumn: SaleCount
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	/// SalesAmt
+	column SalesAmt
+		dataType: double
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 066d1870-cd15-4f8c-8596-5393a0a0622a
+		summarizeBy: none
+		sourceColumn: SalesAmt
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	/// CC
+	column CC
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 4b9ea7de-38f5-4df1-b2e0-cb6baae807ff
+		summarizeBy: none
+		sourceColumn: CC
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	/// Bitcoin
+	column Bitcoin
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: d19e76db-df7a-4ace-9f3a-d7d92ac1be5d
+		summarizeBy: none
+		sourceColumn: Bitcoin
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	/// Cash
+	column Cash
+		dataType: double
+		lineageTag: 9c8e3e57-6975-4ee7-aab0-8c7d9bae6d89
+		summarizeBy: none
+		sourceColumn: Cash
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TrackSalesID
+		dataType: int64
+		formatString: 0
+		lineageTag: 2af83df6-6cb7-4022-b78a-7ae9e1b6047b
+		summarizeBy: count
+		sourceColumn: TrackSalesID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TrackID
+		dataType: int64
+		formatString: 0
+		lineageTag: b24f46f4-af9f-4a51-b7a2-eadb5f7bc7de
+		summarizeBy: none
+		sourceColumn: TrackID
+
+		annotation SummarizationSetBy = Automatic
+
+	column GeographyID
+		dataType: int64
+		formatString: 0
+		lineageTag: e41117e2-0017-4847-9b2f-5f743aff2f75
+		summarizeBy: none
+		sourceColumn: GeographyID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PurchasedFromID
+		dataType: int64
+		formatString: 0
+		lineageTag: 51fe51e3-2906-4e92-b0bc-a2682620e180
+		summarizeBy: none
+		sourceColumn: PurchasedFromID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4cf3da79-710d-4c0f-8228-d4454fc5b6d9
+		summarizeBy: none
+		sourceColumn: SalesDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column FileDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 051d5f5e-8f52-4d2d-8ead-d7b3d6421097
+		summarizeBy: none
+		sourceColumn: FileDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ModDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f9f16782-253c-4369-9345-2dc64bafb63a
+		summarizeBy: none
+		sourceColumn: ModDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Include
+		dataType: int64
+		formatString: 0
+		lineageTag: c1c073d1-f3c9-4277-adf8-b1d7c5637212
+		summarizeBy: sum
+		sourceColumn: Include
+
+		annotation SummarizationSetBy = Automatic
+
+	partition TrackSales = m
+		mode: import
+		source = ```
+				let    
+				    Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery="disabled", Implementation="2.0", Protocol=null]),
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
+				    music2026_gold_Schema = workspace_Database{[Name="music2026_gold",Kind="Schema"]}[Data],
+				    fact_tracksales_Table = music2026_gold_Schema{[Name="fact_tracksales",Kind="Table"]}[Data]
+				
+				in
+				    #"fact_tracksales_Table"
+				```
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

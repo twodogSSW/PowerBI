@@ -1,0 +1,140 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "fb9c64dd75d8975152ce",
+  "displayName": "Business Drivers",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d6fadc6d15260b699d07",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "TrackList"
+              }
+            },
+            "Property": "Artist - Track"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "9e433b907cc07d621d91",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Artist"
+              }
+            },
+            "Property": "Artist"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "272b1106e84d23d05a0e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Genre"
+              }
+            },
+            "Property": "Genre"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "c88c0c63d09005276d63",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "RecordLabel"
+              }
+            },
+            "Property": "RecordLabel"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "fc3b04ec60301c69c4a9",
+        "displayName": "Retailers",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "PurchasedFrom"
+              }
+            },
+            "Property": "PurchasedFrom"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      }
+    ],
+    "filterSortOrder": "Ascending"
+  },
+  "objects": {
+    "outspace": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#EBEFF4'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "def3bbdfdddd4600346a",
+      "target": "7102b729cb5d657aab12",
+      "type": "DataFilter"
+    },
+    {
+      "source": "def3bbdfdddd4600346a",
+      "target": "2f70c28ce0b9dc89c803",
+      "type": "DataFilter"
+    },
+    {
+      "source": "def3bbdfdddd4600346a",
+      "target": "f56458c9e6e0b00e6206",
+      "type": "DataFilter"
+    },
+    {
+      "source": "def3bbdfdddd4600346a",
+      "target": "984585dc480c0900c98c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "7102b729cb5d657aab12",
+      "target": "984585dc480c0900c98c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "7102b729cb5d657aab12",
+      "target": "f56458c9e6e0b00e6206",
+      "type": "DataFilter"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+/// Table used to store name of location where Track/Album purchased from (Retailer)
+table PurchasedFrom
+	lineageTag: cfc53502-9865-4e8f-97f1-5634c7ca5ba7
+
+	/// pkPurchasedFrom
+	column PurchasedFromID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e3dfb442-84dd-4b10-bddd-3224e79bbed9
+		summarizeBy: none
+		sourceColumn: PurchasedFromID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// PurchasedFrom
+	column PurchasedFrom
+		dataType: string
+		lineageTag: 97fc77ae-01a0-45a4-b3df-51d13ac70224
+		summarizeBy: none
+		sourceColumn: PurchasedFrom
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Comments
+	column Comments
+		dataType: string
+		lineageTag: 980c1418-98e6-4f12-8627-4379f2522940
+		summarizeBy: none
+		sourceColumn: Comments
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Purchased From
+	column 'Purchased From'
+		dataType: string
+		lineageTag: 87ce474d-697c-43cc-823c-5a5571146207
+		summarizeBy: none
+		sourceColumn: Purchased From
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition PurchasedFrom = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(ServerName, DBName,
+				        [Query="SELECT #(lf)    [pkPurchasedFrom]#(lf)    ,[PurchasedFrom]#(lf)    ,[Comments]#(lf)  FROM #(lf)    [Music2024].[dbo].[PurchasedFrom]"]),
+				    MarkedKeys = Table.AddKey(Source, {"pkPurchasedFrom"}, true),
+				    #"Duplicated Column" = Table.DuplicateColumn(MarkedKeys, "PurchasedFrom", "PurchasedFrom - Copy"),
+				    #"Renamed Columns" = Table.RenameColumns(#"Duplicated Column",{{"PurchasedFrom - Copy", "Purchased From"}, {"pkPurchasedFrom", "PurchasedFromID"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

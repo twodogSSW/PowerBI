@@ -1,0 +1,25 @@
+DEFINE
+    FUNCTION pbi.ExecSumm_Momentum = (SalesCategory:anyref,CalNumber: numeric) 
+		=>
+	
+	Var CalNumberNeg = (-1 * CalNumber)
+
+    VAR CurrentPeriod =
+        CALCULATE(            
+			SalesCategory,
+            DATESINPERIOD('Calendar'[Date], TODAY(), CalNumberNeg, DAY),
+            REMOVEFILTERS('Calendar')
+        )
+    VAR PreviousPeriod =
+        CALCULATE(
+            SalesCategory,
+            DATESINPERIOD('Calendar'[Date], TODAY() - CalNumber, CalNumberNeg, DAY),
+            REMOVEFILTERS('Calendar')
+        )
+    RETURN
+		DIVIDE(CurrentPeriod - PreviousPeriod, PreviousPeriod, 0)
+
+EVALUATE
+    {
+        pbi.ExecSumm_Momentum(SalesCategory, CalNumber)
+    }

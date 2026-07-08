@@ -1,0 +1,160 @@
+table dim_tracklist
+	lineageTag: b1be1308-dfc2-4fea-845f-d686c77bdb0b
+
+	column TrackID
+		dataType: string
+		lineageTag: 58da69fd-825b-4014-a715-5978b87b08f5
+		summarizeBy: none
+		sourceColumn: TrackID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Title
+		dataType: string
+		lineageTag: f8142844-6705-420c-8bdc-4476efad297c
+		summarizeBy: none
+		sourceColumn: Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column TrackNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: ebb23963-bf33-4b8e-a51d-dc1f66a5571d
+		summarizeBy: sum
+		sourceColumn: TrackNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 1163bd63-d680-493a-a3f0-92375dc5a9db
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column LengthSeconds
+		dataType: double
+		lineageTag: 49afffa7-9f6d-47fe-b196-b0642372dbee
+		summarizeBy: sum
+		sourceColumn: LengthSeconds
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FileSize
+		dataType: string
+		lineageTag: 2c90177e-8e89-4d5c-929f-476621bd940f
+		summarizeBy: none
+		sourceColumn: FileSize
+
+		annotation SummarizationSetBy = Automatic
+
+	column FilePath
+		dataType: string
+		lineageTag: 38b9023d-91a9-4731-af73-d7b15a2c4322
+		summarizeBy: none
+		sourceColumn: FilePath
+
+		annotation SummarizationSetBy = Automatic
+
+	column FileName
+		dataType: string
+		lineageTag: 589efca3-aac9-41a2-9280-bbab1e823390
+		summarizeBy: none
+		sourceColumn: FileName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Composer
+		dataType: string
+		lineageTag: e11933d2-f7be-477a-9ec4-97daaa9b1866
+		summarizeBy: none
+		sourceColumn: Composer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Include
+		dataType: string
+		lineageTag: 085dfd44-663e-4cf9-9a6d-82047f7b9cf4
+		summarizeBy: none
+		sourceColumn: Include
+
+		annotation SummarizationSetBy = Automatic
+
+	column AlbumName
+		dataType: string
+		lineageTag: 309f8379-7d23-4b08-821f-4b0d27bc189c
+		summarizeBy: none
+		sourceColumn: AlbumName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Artist
+		dataType: string
+		lineageTag: 7bf8b51f-5834-498c-b405-05f6f01a6c6a
+		summarizeBy: none
+		sourceColumn: Artist
+
+		annotation SummarizationSetBy = Automatic
+
+	column Genre
+		dataType: string
+		lineageTag: bae9ad09-a63b-4142-bd9c-cd7b51f3e27a
+		summarizeBy: none
+		sourceColumn: Genre
+
+		annotation SummarizationSetBy = Automatic
+
+	column RecordLabel
+		dataType: string
+		lineageTag: 428ad12b-b5e5-430f-873a-e43f3504116a
+		summarizeBy: none
+		sourceColumn: RecordLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column ArtistURL
+		dataType: string
+		lineageTag: 2518beb8-dbf7-44d9-95fa-3ea51a099d8d
+		summarizeBy: none
+		sourceColumn: ArtistURL
+
+		annotation SummarizationSetBy = Automatic
+
+	column FileDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 438b5ebd-686d-4e8d-b0d2-887319f8b48d
+		summarizeBy: none
+		sourceColumn: FileDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ModDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 50594d51-a2d3-4a6b-a64b-2440961a3755
+		summarizeBy: none
+		sourceColumn: ModDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition dim_tracklist = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery="disabled", Implementation="2.0", Protocol=null]),
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
+				    music2026_gold_Schema = workspace_Database{[Name="music2026_gold",Kind="Schema"]}[Data],
+				    dim_tracklist_Table = music2026_gold_Schema{[Name="dim_tracklist",Kind="Table"]}[Data]
+				in
+				    dim_tracklist_Table
+

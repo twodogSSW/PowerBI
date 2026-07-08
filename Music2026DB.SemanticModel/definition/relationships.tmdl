@@ -1,0 +1,77 @@
+relationship ca0be3c2-bdbd-43ca-abd0-1076a83f0ded
+	fromColumn: AlbumSales.fkGeographyNo
+	toColumn: Geography.GeographyID
+
+	annotation PBI_IsFromSource = FS
+
+relationship c9b864e6-6563-4401-a878-978d80e9c760
+	fromColumn: AlbumSales.fkPurchasedFrom
+	toColumn: PurchasedFrom.PurchasedFromID
+
+	annotation PBI_IsFromSource = FS
+
+relationship 5b6e889d-5e61-480f-8733-6c3e253deb36
+	fromColumn: TrackSales.fkGeographyNo
+	toColumn: Geography.GeographyID
+
+	annotation PBI_IsFromSource = FS
+
+relationship 43cfd5cc-cec3-416f-bb98-8987b2101749
+	fromColumn: TrackSales.fkTrackList
+	toColumn: TrackList.TrackListID
+
+	annotation PBI_IsFromSource = FS
+
+relationship e9401ca2-2502-5eeb-3749-db60c7633a91
+	fromColumn: TrackSales.fkPurchasedFrom
+	toColumn: PurchasedFrom.PurchasedFromID
+
+relationship 8e98b50d-6a33-54f0-055e-f0604030f7a4
+	fromColumn: Demographics.fkTrackList
+	toColumn: TrackList.TrackListID
+
+	annotation PBI_IsFromSource = FS
+
+relationship 7b5e62ee-6e13-3d1e-97f3-39e4cd10142d
+	toCardinality: many
+	fromColumn: TrackNotes.fkTrackList
+	toColumn: TrackList.TrackListID
+
+relationship 7e06099c-bc59-1e35-f5ad-9adc75ef98a7
+	fromColumn: Demographics.Demographic
+	toColumn: _BusinessDrivers.Demographic
+
+relationship ee4e2e52-dbe6-a544-bb92-5475744150bf
+	fromColumn: TrackSales.Salesdate
+	toColumn: Calendar.Date
+
+relationship 196dd8a3-56f8-a797-9472-6597c0783558
+	fromColumn: AlbumSales.Salesdate
+	toColumn: Calendar.Date
+
+relationship cb676372-02da-4002-ffa7-bcd749a650b8
+	fromColumn: TrackList.fkAlbum
+	toColumn: Album.AlbumID
+
+relationship 839e9d53-7965-f3bd-6e19-4de7c86dbb31
+	fromColumn: AlbumSales.fkAlbum
+	toColumn: Album.AlbumID
+
+relationship 5c08116f-547b-156d-3922-db511c376bb6
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Album.AlbumID
+	toColumn: AlbumNotes.fkAlbum
+
+relationship cbb86db4-6047-9eae-243d-cab4c51a896b
+	fromColumn: TrackList.fkGenre
+	toColumn: Genre.GenreID
+
+relationship bf264124-be8f-2ed9-585c-d1e26d7bc314
+	fromColumn: Geography.fkRegion
+	toColumn: Region.RegionID
+
+relationship dbb049a1-b964-fb84-4f25-836002ee9bc6
+	fromColumn: TrackList.fkArtist
+	toColumn: Artist.ArtistID
+

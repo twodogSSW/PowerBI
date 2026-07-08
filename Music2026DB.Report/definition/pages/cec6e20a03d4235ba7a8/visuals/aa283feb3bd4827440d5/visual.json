@@ -1,0 +1,55 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "aa283feb3bd4827440d5",
+  "position": {
+    "x": 6.2714857629335787,
+    "y": 5.0419113494207224,
+    "z": 1000,
+    "height": 172.54883047986496,
+    "width": 367.63925729442968,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "PowerApps_PBI_CV_C29F1DCC_81F5_4973_94AD_0517D44CC06A",
+    "query": {
+      "queryState": {
+        "table": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Artist"
+                    }
+                  },
+                  "Property": "ArtistID"
+                }
+              },
+              "queryRef": "Artist.pkArtist",
+              "nativeQueryRef": "pkArtist"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "appId": {
+              "expr": {
+                "Literal": {
+                  "Value": "'/providers/Microsoft.PowerApps/apps/db147bcc-ff89-4aed-813f-8d7b813fa67d'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "e893b8672e73858e88b8",
+  "isHidden": true
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Music2026DataB"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2c4d16be-883e-405b-8a98-461d81363043"
+  }
+}

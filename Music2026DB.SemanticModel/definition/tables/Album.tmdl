@@ -1,0 +1,93 @@
+/// Table used to store album data
+table Album
+	lineageTag: 9c94af43-c824-4ccd-8258-a9bedc4afc63
+
+	/// Album
+	column Album
+		dataType: string
+		lineageTag: 4bc3df03-e7cb-441e-aa83-346670995237
+		summarizeBy: none
+		sourceColumn: Album
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Name
+	/// AlbumArtist
+	/// 
+	column AlbumArtist = ```
+			
+			//if more than one artist on an album, label as compilation
+			
+			VAR ThisAlbumID =
+			    'Album'[AlbumID]
+			
+			VAR ArtistCount =
+			    CALCULATE(
+			        DISTINCTCOUNT( TrackList[fkArtist] ),
+			        TrackList[fkAlbum] = ThisAlbumID
+			    )
+			
+			VAR SingleArtistID =
+			    CALCULATE(
+			        SELECTEDVALUE( TrackList[fkArtist] ),
+			        TrackList[fkAlbum] = ThisAlbumID
+			    )
+			
+			RETURN
+			    IF(
+			        ArtistCount = 1,
+			        // only runs when exactly one artist → safe to lookup
+			        LOOKUPVALUE(
+			            Artist[Artist],
+			            Artist[ArtistID],
+			            SingleArtistID
+			        ),
+			        "Compilation"
+			    )
+			
+			```
+		lineageTag: 7102b0ab-30c5-427f-a2c0-fee2a0946018
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// AlbumSized
+	column AlbumSized
+		dataType: string
+		lineageTag: ad09451e-f759-4d2a-94fa-ba5b1f4584f7
+		summarizeBy: none
+		sourceColumn: AlbumSized
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column AlbumID
+		dataType: int64
+		formatString: 0
+		lineageTag: b36cce43-8a1c-4fe3-9642-7ab7655eec20
+		summarizeBy: none
+		sourceColumn: AlbumID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Album = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery="disabled", Implementation="2.0", Protocol=null]),
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
+				    music2026_gold_Schema = workspace_Database{[Name="music2026_gold",Kind="Schema"]}[Data],
+				    dim_album_Table = music2026_gold_Schema{[Name="dim_album",Kind="Table"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(dim_album_Table,{"FileDate", "ModDate", "Include"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

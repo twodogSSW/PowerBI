@@ -1,0 +1,150 @@
+/// Table used to store sales of albums
+table AlbumSales
+	lineageTag: 4efc2010-3cf2-48b9-ad78-66e8d8436f80
+
+	column SaleCount
+		dataType: int64
+		formatString: #,0
+		lineageTag: cec99f73-1b5d-406c-8ebc-745b87248118
+		summarizeBy: none
+		sourceColumn: SaleCount
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column SalesAmt
+		dataType: double
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 051768ca-a552-4166-baaa-083b29eea9d6
+		summarizeBy: none
+		sourceColumn: SalesAmt
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column CC
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: cc6feb17-3758-467b-a8eb-4e42c7494b3c
+		summarizeBy: none
+		sourceColumn: CC
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column Bitcoin
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 83900480-18d5-42df-92ea-16936a772f40
+		summarizeBy: none
+		sourceColumn: Bitcoin
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column Cash
+		dataType: double
+		lineageTag: 3651a829-d543-44e3-bbf4-9548f83daa84
+		summarizeBy: none
+		sourceColumn: Cash
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AlbumSalesID
+		dataType: int64
+		formatString: 0
+		lineageTag: 43c50708-d95d-4190-af39-63e9665d1497
+		summarizeBy: count
+		sourceColumn: AlbumSalesID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AlbumID
+		dataType: int64
+		formatString: 0
+		lineageTag: 1a4db175-c790-4e39-bdb5-70cf10a58a8e
+		summarizeBy: none
+		sourceColumn: AlbumID
+
+		annotation SummarizationSetBy = Automatic
+
+	column GeographyID
+		dataType: int64
+		formatString: 0
+		lineageTag: 9fef2222-2151-4d99-b00b-647a8da550c5
+		summarizeBy: none
+		sourceColumn: GeographyID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PurchasedFromID
+		dataType: int64
+		formatString: 0
+		lineageTag: 1262ce60-4d9c-497e-9dca-6ac60f88b7f8
+		summarizeBy: none
+		sourceColumn: PurchasedFromID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f3eb3dda-fb84-421d-8687-53d5ea88a0af
+		summarizeBy: none
+		sourceColumn: SalesDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column FileDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e03e0919-a32e-4510-89f6-526327312c01
+		summarizeBy: none
+		sourceColumn: FileDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ModDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7fbb8ec3-b026-4afd-a6ab-e98cf5a06e0e
+		summarizeBy: none
+		sourceColumn: ModDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition AlbumSales = m
+		mode: import
+		source =
+				let
+				   Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery="disabled", Implementation="2.0", Protocol=null]),
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
+				    music2026_gold_Schema = workspace_Database{[Name="music2026_gold",Kind="Schema"]}[Data],
+				    fact_Albumsales_Table = music2026_gold_Schema{[Name="fact_Albumsales",Kind="Table"]}[Data]
+				in
+				    #"fact_Albumsales_Table"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

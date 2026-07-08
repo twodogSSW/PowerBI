@@ -1,0 +1,49 @@
+table dim_recordlabel
+	lineageTag: 24755788-b547-4444-9bdd-1db49352899e
+
+	column RecordLabelID
+		dataType: int64
+		formatString: 0
+		lineageTag: 6abf2325-add4-476f-88cf-466301b8e46b
+		summarizeBy: count
+		sourceColumn: RecordLabelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column RecordLabel
+		dataType: string
+		lineageTag: 14d219fd-5440-4d40-b7a1-a84e5dcddef9
+		summarizeBy: none
+		sourceColumn: RecordLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column FileDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f51f7046-9f53-433f-ad8d-70bbdaae509e
+		summarizeBy: none
+		sourceColumn: FileDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 37df6f6f-d80c-443b-a157-bd42fc53bf9c
+		summarizeBy: none
+		sourceColumn: ModDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_recordlabel = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery="disabled", Implementation="2.0", Protocol=null]),
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
+				    music2026_gold_Schema = workspace_Database{[Name="music2026_gold",Kind="Schema"]}[Data],
+				    dim_recordlabel_Table = music2026_gold_Schema{[Name="dim_recordlabel",Kind="Table"]}[Data]
+				in
+				    dim_recordlabel_Table
+

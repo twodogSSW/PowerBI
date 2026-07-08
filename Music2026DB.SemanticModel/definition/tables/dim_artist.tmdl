@@ -1,0 +1,74 @@
+table dim_artist
+	lineageTag: 4e3d3536-920a-4131-8ec6-4eb9f96f7def
+
+	column ArtistID
+		dataType: int64
+		formatString: 0
+		lineageTag: fbd632f0-56d4-4f7b-ab00-66f3ad07ae99
+		summarizeBy: count
+		sourceColumn: ArtistID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Artist
+		dataType: string
+		lineageTag: a8699b01-5b85-488d-970e-325a00e195de
+		summarizeBy: none
+		sourceColumn: Artist
+
+		annotation SummarizationSetBy = Automatic
+
+	column RecordLabel
+		dataType: string
+		lineageTag: 3776845e-0e81-461a-8a84-9c30f3672022
+		summarizeBy: none
+		sourceColumn: RecordLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column FileDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: efa984ea-287f-46d4-ac43-f1a4ba5bee14
+		summarizeBy: none
+		sourceColumn: FileDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e905b7ae-7fdc-4533-a884-5db467f94e88
+		summarizeBy: none
+		sourceColumn: ModDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Include
+		dataType: int64
+		formatString: 0
+		lineageTag: 369d78f4-6535-47d4-8822-5ec807c0aaa4
+		summarizeBy: sum
+		sourceColumn: Include
+
+		annotation SummarizationSetBy = Automatic
+
+	column URLHardcoded
+		dataType: string
+		lineageTag: 39c1376c-d10d-4380-a648-618956f77063
+		summarizeBy: none
+		sourceColumn: URLHardcoded
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_artist = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery="disabled", Implementation="2.0", Protocol=null]),
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
+				    music2026_gold_Schema = workspace_Database{[Name="music2026_gold",Kind="Schema"]}[Data],
+				    dim_artist_Table = music2026_gold_Schema{[Name="dim_artist",Kind="Table"]}[Data]
+				in
+				    dim_artist_Table
+

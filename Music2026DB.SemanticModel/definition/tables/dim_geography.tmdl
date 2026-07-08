@@ -1,0 +1,123 @@
+table dim_geography
+	lineageTag: 5b1d8229-674b-453e-b97b-d9b285d293d1
+
+	column GeographyID
+		dataType: int64
+		formatString: 0
+		lineageTag: 6c340d40-5622-4ffd-b060-8c767ebb02c1
+		summarizeBy: count
+		sourceColumn: GeographyID
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegionID
+		dataType: int64
+		formatString: 0
+		lineageTag: 64ecfeb0-5256-4657-bd45-aee01b95a9b7
+		summarizeBy: count
+		sourceColumn: RegionID
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 5ff75e0b-3689-405c-8b4a-3714b34c4c9a
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 0a491914-65e2-4e9a-8469-2be55a5984d0
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Province
+		dataType: string
+		lineageTag: 635d3648-ba04-4c66-919c-e19e5db9f24d
+		summarizeBy: none
+		sourceColumn: Province
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: d1b6111f-eadb-4626-ae15-daa1b2088816
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Continent
+		dataType: string
+		lineageTag: 4e7c140c-bdc6-46c8-b4f3-974dc1281ac6
+		summarizeBy: none
+		sourceColumn: Continent
+
+		annotation SummarizationSetBy = Automatic
+
+	column CityPopulation
+		dataType: int64
+		formatString: 0
+		lineageTag: 5b754899-2773-41a3-a171-1ed5da9da25a
+		summarizeBy: sum
+		sourceColumn: CityPopulation
+
+		annotation SummarizationSetBy = Automatic
+
+	column latitude
+		dataType: double
+		lineageTag: ccb03d51-a8a6-4cdf-aeed-9407e25c3814
+		summarizeBy: sum
+		sourceColumn: latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column longitude
+		dataType: double
+		lineageTag: fbb7d0a0-c384-425c-bfe9-a7002b5509b0
+		summarizeBy: sum
+		sourceColumn: longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FileDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fa69af64-a598-424a-bb8c-7f72d96a38d0
+		summarizeBy: none
+		sourceColumn: FileDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ModDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 23463df3-ad77-4546-8cb8-49fe833f5a07
+		summarizeBy: none
+		sourceColumn: ModDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition dim_geography = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery="disabled", Implementation="2.0", Protocol=null]),
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
+				    music2026_gold_Schema = workspace_Database{[Name="music2026_gold",Kind="Schema"]}[Data],
+				    dim_geography_Table = music2026_gold_Schema{[Name="dim_geography",Kind="Table"]}[Data]
+				in
+				    dim_geography_Table
+

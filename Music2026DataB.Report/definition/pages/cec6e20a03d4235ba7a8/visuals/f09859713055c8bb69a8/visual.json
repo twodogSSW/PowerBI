@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "f09859713055c8bb69a8",
+  "position": {
+    "x": 1140,
+    "y": 24,
+    "z": 7001,
+    "height": 17.955112219451372,
+    "width": 64.101748807631168,
+    "tabOrder": 5002
+  },
+  "visualGroup": {
+    "displayName": "URL Buttons",
+    "groupMode": "ScaleMode"
+  },
+  "parentGroupName": "8b4d1504b570122d7617"
+}

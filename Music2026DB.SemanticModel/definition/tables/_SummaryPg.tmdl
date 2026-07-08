@@ -1,0 +1,361 @@
+/// Measures used in Summary Page
+table _SummaryPg
+	lineageTag: f898eabb-30b5-4dbf-9c58-80477071e615
+
+	/// Track
+	measure Track = ```
+			
+			    pbi.GetTopCategory(TrackList[Track - Artist], TrackSales[SalesAmt], 'Calendar'[Date])
+			```
+		displayFolder: Categories
+		lineageTag: 757b84e0-a6c8-4874-a13e-190d61613368
+
+	/// Track
+	measure 'Track #' = ```
+			
+			    pbi.GetTopCategoryCnt(TrackList[Track - Artist], SUM(TrackSales[SaleCount]), 'Calendar'[Date],_SummaryPg[Track])
+			```
+		displayFolder: Categories
+		lineageTag: 112cbd98-b661-49f4-abe3-c15cf132daad
+
+	/// Track
+	measure 'Track $' = ```
+			
+			    pbi.GetTopCategoryDol(TrackList[Track - Artist], SUM( TrackSales[SalesAmt]), 'Calendar'[Date],'_SummaryPg'[Track])
+			```
+		displayFolder: Categories
+		lineageTag: 00df11cb-a727-4647-8bc8-aba55c77e201
+
+	/// Artist
+	measure Artist = ```
+			
+			   pbi.GetTopCategory(Artist[artist], TrackSales[SalesAmt], 'Calendar'[Date])
+			
+			```
+		displayFolder: Categories
+		lineageTag: 60c15c76-a43c-43d3-9f80-f4f9221c45ca
+
+	/// Artist $
+	measure 'Artist $' =
+			
+			pbi.GetTopCategoryDol( Artist[Artist], SUM( TrackSales[SalesAmt]), 'Calendar'[Date],'_SummaryPg'[Artist])
+		displayFolder: Categories
+		lineageTag: 106a6bc5-bfd5-452a-8729-0ce62b23a730
+
+	/// Artist #
+	measure 'Artist #' = ```
+			
+			    pbi.GetTopCategoryCnt( Artist[Artist], SUM(TrackSales[SaleCount]), 'Calendar'[Date],_SummaryPg[Artist])
+			
+			```
+		displayFolder: Categories
+		lineageTag: 1a01376f-9751-4861-ab49-8e93b69cec8f
+
+	/// Genre
+	measure Genre = ```
+			
+			   pbi.GetTopCategory(Genre[Genre], TrackSales[SalesAmt], 'Calendar'[Date])
+			
+			```
+		displayFolder: Categories
+		lineageTag: fd9ba220-afc8-44a6-a488-e62362088b46
+
+	/// Genre
+	measure 'Genre $' = ```
+			
+			    pbi.GetTopCategoryDol( Genre[Genre], SUM( TrackSales[SalesAmt]), 'Calendar'[Date],'_SummaryPg'[Genre])
+			
+			```
+		displayFolder: Categories
+		lineageTag: 7bb50f59-a656-4bef-b976-598ab7fe15db
+
+	/// Genre
+	measure 'Genre #' = ```
+			
+			    pbi.GetTopCategoryCnt( Genre[Genre], SUM(TrackSales[SaleCount]), 'Calendar'[Date],_SummaryPg[Genre])
+			```
+		displayFolder: Categories
+		lineageTag: 618ccee8-560b-4629-afcb-4fe6b19e501b
+
+	/// Album
+	measure Album = ```
+			
+			    pbi.GetTopCategory('Album'[AlbumSized], AlbumSales[SalesAmt], 'Calendar'[Date])
+			```
+		displayFolder: Categories
+		lineageTag: f046eee7-8112-4bd7-ad36-27446c7d4daa
+
+	/// Album $
+	measure 'Album $' = ```
+			
+			    pbi.GetTopCategoryDol( 'Album'[AlbumSized], SUM(AlbumSales[SalesAmt]), 'Calendar'[Date],'_SummaryPg'[Album])
+			
+			```
+		displayFolder: Categories
+		lineageTag: 03942e1f-c973-4170-96b7-172e88b36a3d
+
+	/// Album #
+	measure 'Album #' = ```
+			
+			    pbi.GetTopCategoryCnt( 'Album'[AlbumSized], SUM(AlbumSales[SaleCount]), 'Calendar'[Date],'_SummaryPg'[Album])
+			```
+		displayFolder: Categories
+		lineageTag: a640c592-b490-4275-94fb-240547b34998
+
+	/// Record Label
+	measure 'Record Label' = ```
+			
+			    pbi.GetTopCategory(RecordLabel[RecordLabel], TrackSales[SalesAmt], 'Calendar'[Date])
+			
+			```
+		displayFolder: Categories
+		lineageTag: b364b1e4-c8cb-49f1-a7c3-6e0911e962ad
+
+	/// Record Label
+	measure 'Record Label $' = ```
+			
+			    pbi.GetTopCategoryDol( RecordLabel[RecordLabel], SUM( TrackSales[SalesAmt]), 'Calendar'[Date],'_SummaryPg'[Record Label])
+			```
+		displayFolder: Categories
+		lineageTag: f90ccc47-1106-41ec-be0c-c886b927bf83
+
+	/// Record Label
+	measure 'Record Label #' = ```
+			
+			    pbi.GetTopCategoryCnt( RecordLabel[RecordLabel], SUM(TrackSales[SaleCount]), 'Calendar'[Date],_SummaryPg[Record Label])
+			
+			
+			```
+		displayFolder: Categories
+		lineageTag: 5a462be5-3939-4af5-bfbc-7f49864fd03b
+
+	/// Region
+	measure Region = ```
+			
+			    pbi.GetTopCategory(Region[Region] , TrackSales[SalesAmt], 'Calendar'[Date])
+			
+			```
+		displayFolder: Categories
+		lineageTag: 9121155e-b148-479b-8dfe-25e7ce859a88
+
+	/// Region
+	measure 'Region $' = ```
+			
+			     pbi.GetTopCategoryDol( Region[Region], SUM( TrackSales[SalesAmt]), 'Calendar'[Date],'_SummaryPg'[Region])
+			
+			```
+		displayFolder: Categories
+		lineageTag: 8a3afd31-0ad5-472a-a0fb-f47fec475dae
+
+	/// Region
+	measure 'Region #' = ```
+			
+			    pbi.GetTopCategoryCnt( Region[Region], SUM(TrackSales[SaleCount]), 'Calendar'[Date],_SummaryPg[Region])
+			
+			```
+		displayFolder: Categories
+		lineageTag: e205d03c-fc7e-4656-a4d2-a6aa5a7876b0
+
+	/// Retail Track
+	measure 'Retail Track' = ```
+			
+			    pbi.GetTopCategory(PurchasedFrom[PurchasedFrom], TrackSales[SalesAmt], 'Calendar'[Date])
+			```
+		displayFolder: Categories
+		lineageTag: aa1744db-bac1-4d0c-93fd-3c920b5a3bae
+
+	/// Retail Track
+	measure 'Retail Tracks $' = ```
+			
+			    pbi.GetTopCategoryDol(  PurchasedFrom[PurchasedFrom], SUM( TrackSales[SalesAmt]), 'Calendar'[Date],'_SummaryPg'[Retail Track])
+			
+			```
+		displayFolder: Categories
+		lineageTag: 77a3fccf-3361-48ce-857f-d53203a59ac3
+
+	/// Retail Track
+	measure 'Retail Tracks #' = ```
+			
+			    pbi.GetTopCategoryCnt( PurchasedFrom[PurchasedFrom], SUM(TrackSales[SaleCount]), 'Calendar'[Date],_SummaryPg[Retail Track])
+			
+			```
+		displayFolder: Categories
+		lineageTag: 15c20313-0afa-4086-84e9-3c2b655601fc
+
+	/// Retail Album
+	measure 'Retail Album' = ```
+			
+			   pbi.GetTopCategory(PurchasedFrom[PurchasedFrom], AlbumSales[SalesAmt], 'Calendar'[Date])
+			
+			```
+		displayFolder: Categories
+		lineageTag: cb78ffd2-7ed9-406e-b740-eb8fdbeeaba1
+
+	/// Retail Album
+	measure 'Retail Album $' = ```
+			
+			    pbi.GetTopCategoryDol(  PurchasedFrom[PurchasedFrom], SUM( AlbumSales[SalesAmt]), 'Calendar'[Date],'_SummaryPg'[Retail Album])
+			
+			```
+		displayFolder: Categories
+		lineageTag: 592cb68d-a206-4567-b9ed-9b5f61aa0cc7
+
+	/// Retail Album
+	measure 'Retail Album #' = ```
+			
+			    pbi.GetTopCategoryCnt( PurchasedFrom[PurchasedFrom], SUM(AlbumSales[SaleCount]), 'Calendar'[Date],_SummaryPg[Retail Album])
+			```
+		displayFolder: Categories
+		lineageTag: f0924cd4-caca-49dc-a73f-e425466a6e72
+
+	/// Top10_Rank
+	measure Top10_Rank = ```
+			
+			        SWITCH(
+			            pbi.All_SelectedCategory(),
+			            0, RANKX(ALLSELECTED(TrackList[Track - Artist]), [Sale #], , DESC, DENSE),
+			            1, RANKX(ALLSELECTED(Genre[Genre]), [Sale #], , DESC, DENSE),
+			            2, RANKX(ALLSELECTED(Artist[Artist]), [Sale #], , DESC, DENSE),
+			            3, RANKX(ALLSELECTED('Album'[Album]), [Sale #], , DESC, DENSE),
+			            4, RANKX(ALLSELECTED(RecordLabel[RecordLabel]), [Sale #], , DESC, DENSE),
+			            5, RANKX(ALLSELECTED(Region[Region]), [Sale #], , DESC, DENSE),
+			            6, RANKX(ALLSELECTED(PurchasedFrom[PurchasedFrom]), [Sale #], , DESC, DENSE),
+			            7, RANKX(ALLSELECTED(PurchasedFrom[Purchased From]), [Sale #], , DESC, DENSE),
+			            BLANK()
+			        )
+			```
+		formatString: 0
+		displayFolder: _Top10Headers
+		lineageTag: e22e0192-aea8-4024-8fae-97d042d2d1f7
+
+	/// Top10_Title
+	measure Top10_Title = ```
+			
+			    
+			        SWITCH(
+			            pbi.All_SelectedCategory(),
+			            0, "📀🎶Top 10 Tracks: ",
+			            1, "📚  Top 10 Genres: ",
+			            2, "👩‍🎤  Top 10 Artists: ",
+			            3, "💿  Top 10 Albums: ",
+			            4, "📀  Top 10 Record Labels: ",
+			            5, "🌍  Top 10 Regions: ",
+			            6, "💸  Top 10 Retail Sale - Tracks: ",
+			            7, "🏷️💸 Top 10 Retail Sale - Albums ",
+			            "Other"  // Optional default if Field doesn't match any case
+			        )
+			```
+		displayFolder: _Top10Headers
+		lineageTag: e1a4fb0f-5fd4-425f-ac67-f5ba48134b9d
+
+	/// Top10_SubTitle
+	measure Top10_SubTitle = ```
+			
+			    VAR FieldSwitch =
+			        SWITCH(
+			            pbi.All_SelectedCategory(),
+			            0, "📀🎶 $ by Track: ",
+			            1, "📚 $ by Genre: ",
+			            2, "👩‍🎤 $ by Artist: ",
+			            3, "💿 $ by Album: ",
+			            4, "📀 $ by Record Label: ",
+			            5, "🌍 $ by Region: ",
+			            6, "💸 $ by Retail Sale: - Tracks: ",
+			            7, "🏷️💸 $ by Retail Sale: - Albums ",
+			            "Other"  // Optional default if Field doesn't match any case
+			        )
+			
+			    Return 
+			        "Sales - " & 
+			            FORMAT(MIN(Calendar[Date]), "MM/dd/yy") & " - " &
+			            FORMAT(MAX(Calendar[Date]), "MM/dd/yy")
+			```
+		displayFolder: _Top10Headers
+		lineageTag: 0d1429f0-abd9-48d0-8436-4e0d845856a2
+
+	/// TrackCombo
+	measure _TrackCombo = ```
+			
+			    pbi.TopCombo(_SummaryPg[Track], _SummaryPg[Track $], _SummaryPg[Track #])
+			 
+			```
+		displayFolder: _All SalesCard Fields
+		lineageTag: 5808319c-c474-4064-8cff-da452da19eed
+
+	/// ArtistCombo
+	measure _ArtistCombo = ```
+			
+			    pbi.TopCombo(_SummaryPg[Artist], _SummaryPg[Artist $], _SummaryPg[Artist #])
+			```
+		displayFolder: _All SalesCard Fields
+		lineageTag: bb8248b1-2923-4e44-b92b-a627dd4279b8
+
+	/// GenreCombo
+	measure _GenreCombo = ```
+			
+			    pbi.TopCombo(_SummaryPg[Genre], _SummaryPg[Genre $], _SummaryPg[Genre #])
+			
+			```
+		displayFolder: _All SalesCard Fields
+		lineageTag: cf0a2ad3-ff29-4398-b423-bce57305483d
+
+	/// AlbumCombo
+	measure _AlbumCombo = ```
+			
+			    pbi.TopCombo(_SummaryPg[Album], _SummaryPg[Album $], _SummaryPg[Album #])
+			
+			```
+		displayFolder: _All SalesCard Fields
+		lineageTag: 0285280f-8d8c-468d-9aeb-e0abd51f32ca
+
+	/// RegionCombo
+	measure _RegionCombo = ```
+			
+			     pbi.TopCombo(_SummaryPg[Region], _SummaryPg[Region $], _SummaryPg[Region #])
+			```
+		displayFolder: _All SalesCard Fields
+		lineageTag: c3de5c6e-5405-4754-bb4b-f1843fdaa694
+
+	/// RecLabelCombo
+	measure _RecLabelCombo = ```
+			
+			    pbi.TopCombo(_SummaryPg[Record Label], _SummaryPg[Record Label $], _SummaryPg[Record Label #])
+			
+			```
+		displayFolder: _All SalesCard Fields
+		lineageTag: 34e3298b-8ee1-454e-b6c3-49179e7a1ce6
+
+	/// RetailTrackCombo
+	measure _RetailTrackCombo = ```
+			
+			     pbi.TopCombo(_SummaryPg[Retail Track], _SummaryPg[Retail Tracks $], _SummaryPg[Retail Tracks #])
+			```
+		displayFolder: _All SalesCard Fields
+		lineageTag: acb7446b-87fc-4a67-87da-b56313db290e
+
+	/// RetailAlbumCombo
+	measure _RetailAlbumCombo = ```
+			
+			     pbi.TopCombo(_SummaryPg[Retail Album], _SummaryPg[Retail Album $], _SummaryPg[Retail Album #])
+			
+			```
+		displayFolder: _All SalesCard Fields
+		lineageTag: b021b470-0ebd-4def-97c0-8f1553b1a21d
+
+	column Value
+		isHidden
+		lineageTag: b53ee1c0-d8b8-428b-95e1-1362a13b31f5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition _SummaryPg = calculated
+		mode: import
+		source = GENERATESERIES(1, 2, 0.05)
+
+	annotation PBI_Id = b0ddb08cd2804389a5418019d98c3a5d
+
