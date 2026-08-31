@@ -1,13 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "d8fef6f0cf94f75bac08",
   "position": {
-    "x": 7.369204812206573,
-    "y": 115.71870349392225,
+    "x": 7.1820448877805481,
+    "y": 113.11720698254364,
     "z": 3000,
-    "height": 207.36190456237676,
-    "width": 215,
-    "tabOrder": 3000
+    "height": 207.38154613466332,
+    "width": 215.46134663341644
   },
   "visual": {
     "visualType": "slicer",
@@ -137,7 +136,7 @@
                         },
                         "valueMap": [
                           {
-                            "0": "Title (Artist-Title)"
+                            "0": "Track - by Artist/Title"
                           }
                         ]
                       }
@@ -435,7 +434,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "39e43817493dd1b3c2a9",
+        "name": "7e587ebdb113718e07b6",
         "field": {
           "Column": {
             "Expression": {

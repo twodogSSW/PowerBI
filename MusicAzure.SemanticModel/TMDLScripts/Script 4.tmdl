@@ -1,0 +1,16 @@
+createOrReplace
+
+	function 'pbi.TopCombo' = ```
+			
+				 	(Category:anyref,SalesColumn:anyref,CountColumn:anyref)  
+					=>
+				
+				Var Combo =
+			       Category & 
+				    UNICHAR(10) & format(SalesColumn, "$#,##0" ) & 
+			        UNICHAR(10) & format(CountColumn, "#,##0" )
+			
+				RETURN Combo
+			```
+		lineageTag: cf76ff40-59bd-4e04-9ae7-557c031f1be5
+

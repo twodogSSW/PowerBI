@@ -1,0 +1,57 @@
+table _Demo_Switch
+	lineageTag: a9e584c4-5cd5-428e-9753-dfba43f8232f
+
+	column 'All Demos on this page'
+		lineageTag: 74cb624d-363a-4ada-8240-71e205131197
+		summarizeBy: none
+		sourceColumn: [DemographicLabel]
+		sortByColumn: AgeGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	column AgeGroup
+		formatString: 0
+		lineageTag: 42ca2168-84dd-4828-a0dd-b81236f04780
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [AgeGroup]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender = ```
+			
+			IF(
+			    LEFT( _Demo_Switch[All Demos on this page], 3 ) = "Men",
+			    "Men",
+			    "Women"
+			)
+			
+			```
+		lineageTag: 58eaa40b-919d-4443-bd04-d98c664f0525
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Demo_Switch = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE(
+				    "DemographicLabel", STRING,
+				    "AgeGroup", INTEGER,
+				    {
+				        {"Men <=18", 1},
+				        {"Men 18-34", 2},
+				        {"Men 35-54", 3},
+				        {"Men 54+", 4},
+				        {"Women <=18", 1},
+				        {"Women 18-34", 2},
+				        {"Women 35-54", 3},
+				        {"Women 54+", 4}
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = db960b03d2944916a974907567f1b36f
+

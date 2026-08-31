@@ -1,0 +1,277 @@
+/// Table used to store Artist/Recording group information (unique records)
+table Artist
+	lineageTag: d5807c9a-cb2e-4798-b4ed-7970fdfd26e2
+
+	measure SelectedWikiURL = ```
+			
+			    VAR ArtistName =
+			        SELECTEDVALUE(Artist[Artist])
+			
+			    VAR HasArtist =
+			        NOT ISBLANK(ArtistName)
+			
+			    VAR MainURL =
+			        SELECTEDVALUE(Artist[ArtistURL])
+			
+			    RETURN
+			    IF(
+			        HasArtist,
+			            IF(
+			                NOT ISBLANK(MainURL),
+			                MainURL,
+			                "https://en.wikipedia.org/wiki/" &
+			                    SUBSTITUTE(ArtistName, " ", "_")
+			            ),
+			        BLANK()
+			    )
+			
+			```
+		isHidden
+		lineageTag: c631595a-32d8-400c-9ece-7f78c7f3e43c
+
+		changedProperty = IsHidden
+
+	measure SelectedHomePageURL = ```
+			
+			    VAR Hardcoded =
+			        SELECTEDVALUE(Artist[URLHardcoded])
+			
+			    VAR HomeURL =
+			        SELECTEDVALUE(Artist[HomePageURL])
+			
+			    VAR ArtistURL =
+			        SELECTEDVALUE(Artist[ArtistURL])
+			
+			    RETURN
+			    IF(
+			        NOT ISBLANK(Hardcoded),
+			            Hardcoded,                      -- Priority 1
+			            IF(
+			                NOT ISBLANK(HomeURL),
+			                    HomeURL,                -- Priority 2
+			                    ArtistURL               -- Priority 3
+			            )
+			    )
+			```
+		isHidden
+		lineageTag: 1cdfa948-4fee-466b-af35-4e15c462b3b1
+
+		changedProperty = IsHidden
+
+	measure SelectedWikiURLTooltip =
+			
+			VAR ArtistName =
+			    SELECTEDVALUE(Artist[Artist])
+			RETURN
+			IF(
+			    NOT ISBLANK(ArtistName),
+			    "Connect to " & ArtistName & "'s Wikipedia page",
+			    "Click on the Artist Category and an artist, to see their wikipedia page"
+			)
+		isHidden
+		lineageTag: 6adcd392-217e-407a-bd19-5a84300db3e9
+
+		changedProperty = IsHidden
+
+	measure SelectedHomePageTooltip =
+			
+			VAR ArtistName =
+			    SELECTEDVALUE(Artist[Artist])
+			RETURN
+			IF(
+			    NOT ISBLANK(ArtistName),
+			    "Connect to " & ArtistName & "'s Home page",
+			    "Click on the Artist Category and an artist, to see their home page"
+			)
+		isHidden
+		lineageTag: e5910028-212c-441f-9889-46f701f519d7
+
+		changedProperty = IsHidden
+
+	measure IsAlbumCategory = ```
+			
+			    --2 is the artist category - Artist category order
+			    VAR 
+			        SelectedCat = SELECTEDVALUE(_Categories[Category Order])
+			    RETURN 
+			        IF(SelectedCat = 3, --if artist is selected
+			        1, 0)               --true else false
+			    
+			```
+		formatString: 0
+		isHidden
+		lineageTag: 63d52266-d549-449a-ba30-f8e4e19626e3
+
+		changedProperty = IsHidden
+
+	measure FillColor = ```
+			
+			IF(
+			    [IsArtistCategory] = 0,
+			    "#1090FF",        -- or whatever your normal button color is
+			    "#FFFFFF00"       -- transparent (ARGB)
+			)
+			
+			```
+		isHidden
+		lineageTag: 69c47464-6bfe-4440-86b4-c3c46d79dee7
+
+		changedProperty = IsHidden
+
+	measure IsArtistCategory = ```
+			
+			    --2 is the artist category - Artist category order
+			    VAR 
+			        SelectedCat = SELECTEDVALUE(_Categories[Category Order])
+			    RETURN 
+			        IF(SelectedCat = 2, --if artist is selected
+			        1, 0)               --true else false
+			```
+		formatString: 0
+		isHidden
+		lineageTag: 6a0e6838-6832-45c0-b7ce-735f2ae88a5d
+
+		changedProperty = IsHidden
+
+	column Artist
+		dataType: string
+		lineageTag: 0d87610b-8afc-4c62-946a-08cf2a0d64b0
+		summarizeBy: none
+		sourceColumn: Artist
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ArtistURL
+		dataType: string
+		lineageTag: ae9fe3b5-7956-40c4-8cd0-6b258922daa2
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: ArtistURL
+
+		annotation SummarizationSetBy = Automatic
+
+	column HomePageURL
+		dataType: string
+		lineageTag: 425dac3f-40a3-42d7-8190-74cee1345223
+		summarizeBy: none
+		sourceColumn: HomePageURL
+
+		annotation SummarizationSetBy = Automatic
+
+	column URLHardcoded
+		dataType: string
+		lineageTag: 35a0bae2-cf04-4e3d-a608-a664a264c634
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: URLHardcoded
+
+		annotation SummarizationSetBy = Automatic
+
+	column ArtistID
+		dataType: int64
+		formatString: 0
+		lineageTag: 21366973-c292-408a-a27a-c57c6fccb25c
+		summarizeBy: none
+		sourceColumn: ArtistID
+
+		annotation SummarizationSetBy = Automatic
+
+	column fkRecordLabel
+		dataType: int64
+		formatString: 0
+		lineageTag: 20f5cd6a-05bb-4de6-8a12-82462b2c3a49
+		summarizeBy: none
+		sourceColumn: fkRecordLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column skArtist
+		dataType: int64
+		formatString: 0
+		lineageTag: 090187d3-b085-4532-93ad-b46a7e1a0f42
+		summarizeBy: sum
+		sourceColumn: skArtist
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Artist = m
+		mode: import
+		source =
+				let
+				    //Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    Source = Databricks.Catalogs(ServerName, HTTP_PATH, null),
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
+				    music_gold_Schema = workspace_Database{[Name="music_gold",Kind="Schema"]}[Data],
+				    dim_artist_Table = music_gold_Schema{[Name="dim_artist",Kind="Table"]}[Data],
+				
+				
+				    // Optional: CleanArtist (kept for future use, not needed for Wikipedia)
+				    CleanArtist = Table.AddColumn(dim_artist_Table, "CleanArtist", each
+				        let
+				            Artist = [Artist],
+				            ReplacedAmp = Text.Replace(Artist, "&", "and"),
+				            Allowed = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+				            Clean =
+				                Text.Combine(
+				                    List.Select(
+				                        Text.ToList(ReplacedAmp),
+				                        each Text.Contains(Allowed, _)
+				                    )
+				                )
+				        in
+				            Clean
+				    ),
+				
+				    // Wikipedia URL builder
+				    ArtistURL = Table.AddColumn(CleanArtist, "ArtistURL", each
+				        let
+				            ArtistName = [Artist],
+				
+				            // Replace spaces with underscores
+				            Step1 = Text.Replace(ArtistName, " ", "_"),
+				
+				            // Replace & with "and"
+				            Step2 = Text.Replace(Step1, "&", "and"),
+				
+				            // Replace ? with %3F (URL encoding)
+				            Step3 = Text.Replace(Step2, "?", "%3F")
+				
+				        in
+				            "https://en.wikipedia.org/wiki/" & Step3
+				    ),
+				
+				    // Homepage URL builder (strip all non-alphanumeric)
+				    HomePageURL = Table.AddColumn(ArtistURL, "HomePageURL", each
+				        let
+				            Artist = [Artist],
+				            Allowed = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+				            Clean =
+				                Text.Combine(
+				                    List.Select(
+				                        Text.ToList(Artist),
+				                        each Text.Contains(Allowed, _)
+				                    )
+				                ),
+				            URL = "https://www." & Clean & ".com"
+				        in
+				            URL
+				    ),
+				
+				    MarkedKeys = Table.AddKey(HomePageURL, {"pkArtist"}, true),
+				    #"Changed Type" = Table.TransformColumnTypes(MarkedKeys,{{"ArtistURL", type text}, {"HomePageURL", type text}}),
+				
+				    // Remove CleanArtist if you don't want it in the model
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"CleanArtist"}),
+				    #"Filtered Rows" = Table.SelectRows(#"Removed Columns", each true),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Filtered Rows",{"pkArtist", "Artist", "ArtistURL", "HomePageURL", "URLHardcoded"}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Reordered Columns",{"Include", "FileDate", "ModDate"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns1",{{"pkArtist", "ArtistID"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

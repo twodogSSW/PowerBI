@@ -172,17 +172,27 @@ table Artist
 	column ArtistID
 		dataType: int64
 		formatString: 0
-		lineageTag: 6ee38c0f-1d78-472c-9249-1631d9892efa
+		lineageTag: 21366973-c292-408a-a27a-c57c6fccb25c
 		summarizeBy: none
 		sourceColumn: ArtistID
 
 		annotation SummarizationSetBy = Automatic
 
-	column RecordLabel
-		dataType: string
-		lineageTag: 1a005295-6288-4ff3-a783-4b4c8f01da49
+	column fkRecordLabel
+		dataType: int64
+		formatString: 0
+		lineageTag: 20f5cd6a-05bb-4de6-8a12-82462b2c3a49
 		summarizeBy: none
-		sourceColumn: RecordLabel
+		sourceColumn: fkRecordLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column skArtist
+		dataType: int64
+		formatString: 0
+		lineageTag: 090187d3-b085-4532-93ad-b46a7e1a0f42
+		summarizeBy: sum
+		sourceColumn: skArtist
 
 		annotation SummarizationSetBy = Automatic
 
@@ -190,10 +200,11 @@ table Artist
 		mode: import
 		source =
 				let
-				   Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery="disabled", Implementation="2.0", Protocol=null]),
+				   Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
 				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
-				    music2026_gold_Schema = workspace_Database{[Name="music2026_gold",Kind="Schema"]}[Data],
-				    dim_artist_Table = music2026_gold_Schema{[Name="dim_artist",Kind="Table"]}[Data],
+				    music_gold_Schema = workspace_Database{[Name="music_gold",Kind="Schema"]}[Data],
+				    dim_artist_Table = music_gold_Schema{[Name="dim_artist",Kind="Table"]}[Data],
+				
 				
 				    // Optional: CleanArtist (kept for future use, not needed for Wikipedia)
 				    CleanArtist = Table.AddColumn(dim_artist_Table, "CleanArtist", each
@@ -247,16 +258,17 @@ table Artist
 				            URL
 				    ),
 				
-				    MarkedKeys = Table.AddKey(HomePageURL, {"ArtistID"}, true),
+				    MarkedKeys = Table.AddKey(HomePageURL, {"pkArtist"}, true),
 				    #"Changed Type" = Table.TransformColumnTypes(MarkedKeys,{{"ArtistURL", type text}, {"HomePageURL", type text}}),
 				
 				    // Remove CleanArtist if you don't want it in the model
 				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"CleanArtist"}),
 				    #"Filtered Rows" = Table.SelectRows(#"Removed Columns", each true),
-				    #"Reordered Columns" = Table.ReorderColumns(#"Filtered Rows",{"ArtistID", "Artist", "RecordLabel", "ArtistURL", "HomePageURL", "URLHardcoded"}),
-				    #"Removed Columns1" = Table.RemoveColumns(#"Reordered Columns",{"Include", "FileDate", "ModDate"})
+				    #"Reordered Columns" = Table.ReorderColumns(#"Filtered Rows",{"pkArtist", "Artist", "ArtistURL", "HomePageURL", "URLHardcoded"}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Reordered Columns",{"Include", "FileDate", "ModDate"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns1",{{"pkArtist", "ArtistID"}})
 				in
-				    #"Removed Columns1"
+				    #"Renamed Columns"
 
 	annotation PBI_ResultType = Table
 

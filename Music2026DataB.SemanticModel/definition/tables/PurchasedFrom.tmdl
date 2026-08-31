@@ -2,15 +2,6 @@
 table PurchasedFrom
 	lineageTag: cfc53502-9865-4e8f-97f1-5634c7ca5ba7
 
-	column PurchasedFromID
-		dataType: int64
-		formatString: 0
-		lineageTag: 1f8ec942-0e99-4d44-b26d-e3c68010dd26
-		summarizeBy: none
-		sourceColumn: PurchasedFromID
-
-		annotation SummarizationSetBy = Automatic
-
 	/// PurchasedFrom
 	column PurchasedFrom
 		dataType: string
@@ -41,19 +32,29 @@ table PurchasedFrom
 
 		annotation SummarizationSetBy = Automatic
 
+	column pkPurchasedFrom
+		dataType: int64
+		formatString: 0
+		lineageTag: b2b20da4-8fc2-4181-8982-2b08f1b2f4f1
+		summarizeBy: none
+		sourceColumn: pkPurchasedFrom
+
+		annotation SummarizationSetBy = Automatic
+
 	partition PurchasedFrom = m
 		mode: import
 		source =
 				let
 				   Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery="disabled", Implementation="2.0", Protocol=null]),
 				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
-				    music2026_gold_Schema = workspace_Database{[Name="music2026_gold",Kind="Schema"]}[Data],
+				    music2026_gold_Schema = workspace_Database{[Name="music_gold",Kind="Schema"]}[Data],
 				    dim_purchasedfrom_Table = music2026_gold_Schema{[Name="dim_purchasedfrom",Kind="Table"]}[Data],
 				    #"Removed Columns" = Table.RemoveColumns(dim_purchasedfrom_Table,{"FileDate", "ModDate"}),
 				    #"Duplicated Column" = Table.DuplicateColumn(#"Removed Columns", "PurchasedFrom", "PurchasedFrom - Copy"),
-				    #"Renamed Columns" = Table.RenameColumns(#"Duplicated Column",{{"PurchasedFrom - Copy", "Purchased From"}})
+				    #"Renamed Columns" = Table.RenameColumns(#"Duplicated Column",{{"PurchasedFrom - Copy", "Purchased From"}}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Renamed Columns",{"skPurchasedFrom"})
 				in
-				    #"Renamed Columns"
+				    #"Removed Columns1"
 
 	annotation PBI_ResultType = Table
 

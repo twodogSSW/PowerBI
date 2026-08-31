@@ -3,13 +3,13 @@ table TrackNotes
 	lineageTag: 0058b5a2-0636-4e1f-ba5a-decece567d33
 
 	/// pkTrackNotes
-	column TrackNotesID
+	column pkTrackNotes
 		dataType: int64
 		isHidden
 		formatString: 0
 		lineageTag: 355e9e38-a5c0-4de6-9ab2-264beb6f028f
 		summarizeBy: none
-		sourceColumn: TrackNotesID
+		sourceColumn: pkTrackNotes
 
 		changedProperty = IsHidden
 
@@ -21,7 +21,7 @@ table TrackNotes
 		isHidden
 		formatString: 0
 		lineageTag: 352067d1-ad2d-43c1-92f9-8f0520aa5204
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: fkTrackList
 
 		changedProperty = IsHidden
@@ -51,15 +51,45 @@ table TrackNotes
 
 		annotation SummarizationSetBy = Automatic
 
+	column NewTrackNotesAdded
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5d39d86f-0e72-4901-babe-fae46f399822
+		summarizeBy: none
+		sourceColumn: NewTrackNotesAdded
+
+		annotation SummarizationSetBy = Automatic
+
+	column TrackNotesUpdated
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c516ec9c-aa85-495a-95c1-0c13350d5ec2
+		summarizeBy: none
+		sourceColumn: TrackNotesUpdated
+
+		annotation SummarizationSetBy = Automatic
+
+	column skTrackNotes
+		dataType: int64
+		formatString: 0
+		lineageTag: 277dfbe6-d977-492e-83a7-80cfb5118853
+		summarizeBy: sum
+		sourceColumn: skTrackNotes
+
+		annotation SummarizationSetBy = Automatic
+
 	partition TrackNotes = m
 		mode: import
-		source =
+		source = ```
 				let
-				    Source = Sql.Database(ServerName, DBName, [Query="SELECT [pkTrackNotes]#(lf)      ,[fkTrackList]#(lf)      ,[TrackNotesDate]#(lf)      ,[TrackNotes]#(lf)      --,[NewTrackNotesAdded]#(lf)      --,[TrackNotesUpdated]#(lf)  FROM [dbo].[TrackNotes]#(lf)", CommandTimeout=#duration(0, 0, 10, 0)]),
-				    MarkedKeys = Table.AddKey(Source, {"pkTrackNotes"}, true),
-				    #"Renamed Columns" = Table.RenameColumns(MarkedKeys,{{"pkTrackNotes", "TrackNotesID"}})
+				    Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", null),
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
+				    music_gold_Schema = workspace_Database{[Name="music_gold",Kind="Schema"]}[Data],
+				    dim_album_Table = music_gold_Schema{[Name="dim_tracknotes",Kind="Table"]}[Data],
+				    #"Removed Top Rows" = Table.Skip(dim_album_Table,1)   
 				in
-				    #"Renamed Columns"
+				    #"Removed Top Rows"
+				```
 
 	annotation PBI_NavigationStepName = Navigation
 

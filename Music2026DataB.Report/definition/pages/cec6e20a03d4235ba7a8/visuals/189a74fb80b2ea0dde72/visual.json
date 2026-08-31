@@ -1,13 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "189a74fb80b2ea0dde72",
   "position": {
     "x": 7,
     "y": 330,
     "z": 1000,
     "height": 100,
-    "width": 215,
-    "tabOrder": 0
+    "width": 215
   },
   "visual": {
     "visualType": "slicer",
@@ -41,7 +40,7 @@
             "numericStart": {
               "expr": {
                 "Literal": {
-                  "Value": "3.191891195797325e-16D"
+                  "Value": "-0.09999999999999969D"
                 }
               }
             },
@@ -85,7 +84,7 @@
                         },
                         "Right": {
                           "Literal": {
-                            "Value": "3.191891195797325e-16D"
+                            "Value": "-0.09999999999999969D"
                           }
                         }
                       }
@@ -480,5 +479,23 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "c6a4ae61824dddb0822e"
+  "parentGroupName": "c6a4ae61824dddb0822e",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f92e36f0383bbe099040",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_PctThreshold"
+              }
+            },
+            "Property": "PctThreshold"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
 }

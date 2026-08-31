@@ -1,0 +1,117 @@
+/// Table of each unique track and track details
+table TrackList
+	lineageTag: 502901bc-3365-446f-8c7f-470a1e6ece21
+
+	/// Title
+	column Title
+		dataType: string
+		lineageTag: 1a95e08d-cce4-4435-8e45-ea020b1b2703
+		summarizeBy: none
+		sourceColumn: Title
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Composer
+	column Composer
+		dataType: string
+		lineageTag: 954dbda7-26ce-43c2-ad41-4c36e6c56422
+		summarizeBy: none
+		sourceColumn: Composer
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Track - Artist'
+		dataType: string
+		lineageTag: 82157dc4-ca0c-47ca-a8bd-9d6fd6c84135
+		summarizeBy: none
+		sourceColumn: Track - Artist
+
+		annotation SummarizationSetBy = Automatic
+
+	column pkTrackList
+		dataType: int64
+		formatString: 0
+		lineageTag: 72f7d84f-6a5d-40f7-815c-f34e0ec5ec07
+		summarizeBy: none
+		sourceColumn: pkTrackList
+
+		annotation SummarizationSetBy = Automatic
+
+	column ArtistID
+		dataType: int64
+		formatString: 0
+		lineageTag: 91e37e09-7043-403b-a1b0-ddae7209e7fd
+		summarizeBy: none
+		sourceColumn: ArtistID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AlbumID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 0c21a00a-9966-4925-aba4-46e68578a322
+		summarizeBy: count
+		sourceColumn: AlbumID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column fkGenre
+		dataType: int64
+		formatString: 0
+		lineageTag: 339679aa-e7e7-4f03-b6c7-bfb5cf39e692
+		summarizeBy: none
+		sourceColumn: fkGenre
+
+		annotation SummarizationSetBy = Automatic
+
+	column length_sec
+		dataType: string
+		lineageTag: 629b7004-6e37-44b5-bfdc-4bb90b0ec931
+		summarizeBy: none
+		sourceColumn: length_sec
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Artist - Track'
+		dataType: string
+		lineageTag: 40076cce-e6fe-48ed-b932-204611637d97
+		summarizeBy: none
+		sourceColumn: Artist - Track
+
+		annotation SummarizationSetBy = Automatic
+
+	partition TrackList = m
+		mode: import
+		source =
+				let
+				    //Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery="disabled", Implementation="2.0", Protocol=null]),
+				    Source = Databricks.Catalogs(ServerName, HTTP_PATH, null),
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
+				    music2026_gold_Schema = workspace_Database{[Name="music_gold",Kind="Schema"]}[Data],
+				    dim_tracklist_Table = music2026_gold_Schema{[Name="dim_tracklist",Kind="Table"]}[Data],
+				    #"Merged Queries1" = Table.NestedJoin(dim_tracklist_Table, {"fkArtist"}, Artist, {"ArtistID"}, "Artist", JoinKind.LeftOuter),
+				    #"Expanded Artist1" = Table.ExpandTableColumn(#"Merged Queries1", "Artist", {"Artist"}, {"Artist.Artist"}),
+				    #"Added Custom1" = Table.AddColumn(#"Expanded Artist1", "ArtistTrack", each [Artist.Artist] & " - " & [Title]),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Added Custom1",{{"ArtistTrack", "Artist - Track"}}),
+				    #"Added Custom2" = Table.AddColumn(#"Renamed Columns1", "Title - Artist", each [Title] & " - " & [Artist.Artist]),
+				    #"Removed Columns" = Table.RemoveColumns(#"Added Custom2",{"FileDate", "ModDate", "Include", "skTrackList","Artist.Artist"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Title - Artist", "Track - Artist"}}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Renamed Columns",{"pkTrackList", "Title", "fkArtist", "fkAlbum", "Year", "Track", "fkGenre", "length_sec", "filesize", "FilePath", "FileName", "Composer", "Track - Artist"}),
+				    #"Removed Columns2" = Table.RemoveColumns(#"Reordered Columns",{"Year", "Track", "filesize", "FilePath", "FileName"}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Removed Columns2",{{"fkArtist", "ArtistID"}, {"fkAlbum", "AlbumID"}})
+				in
+				    #"Renamed Columns2"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -69,9 +69,18 @@ table Album
 	column AlbumID
 		dataType: int64
 		formatString: 0
-		lineageTag: b36cce43-8a1c-4fe3-9642-7ab7655eec20
+		lineageTag: 9979086f-9a35-4e8d-a8bc-31589ce5c586
 		summarizeBy: none
 		sourceColumn: AlbumID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Include
+		dataType: int64
+		formatString: 0
+		lineageTag: 99d64e56-e940-4f85-a737-fdddf0b8a1fe
+		summarizeBy: sum
+		sourceColumn: Include
 
 		annotation SummarizationSetBy = Automatic
 
@@ -79,13 +88,14 @@ table Album
 		mode: import
 		source =
 				let
-				    Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery="disabled", Implementation="2.0", Protocol=null]),
+				    Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", null),
 				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
-				    music2026_gold_Schema = workspace_Database{[Name="music2026_gold",Kind="Schema"]}[Data],
-				    dim_album_Table = music2026_gold_Schema{[Name="dim_album",Kind="Table"]}[Data],
-				    #"Removed Columns" = Table.RemoveColumns(dim_album_Table,{"FileDate", "ModDate", "Include"})
+				    music_gold_Schema = workspace_Database{[Name="music_gold",Kind="Schema"]}[Data],
+				    dim_album_Table = music_gold_Schema{[Name="dim_album",Kind="Table"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(dim_album_Table,{"skAlbum", "FileDate", "ModDate"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"pkAlbum", "AlbumID"}})
 				in
-				    #"Removed Columns"
+				    #"Renamed Columns"
 
 	annotation PBI_ResultType = Table
 

@@ -1,0 +1,125 @@
+/// Table of each unique track and track details
+table TrackList
+	lineageTag: 502901bc-3365-446f-8c7f-470a1e6ece21
+
+	/// Title
+	column Title
+		dataType: string
+		lineageTag: 1a95e08d-cce4-4435-8e45-ea020b1b2703
+		summarizeBy: none
+		sourceColumn: Title
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Composer
+	column Composer
+		dataType: string
+		lineageTag: 954dbda7-26ce-43c2-ad41-4c36e6c56422
+		summarizeBy: none
+		sourceColumn: Composer
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Track - Artist'
+		dataType: string
+		lineageTag: 82157dc4-ca0c-47ca-a8bd-9d6fd6c84135
+		summarizeBy: none
+		sourceColumn: Track - Artist
+
+		annotation SummarizationSetBy = Automatic
+
+	column pkTrackList
+		dataType: int64
+		formatString: 0
+		lineageTag: 72f7d84f-6a5d-40f7-815c-f34e0ec5ec07
+		summarizeBy: none
+		sourceColumn: pkTrackList
+
+		annotation SummarizationSetBy = Automatic
+
+	column ArtistID
+		dataType: int64
+		formatString: 0
+		lineageTag: 91e37e09-7043-403b-a1b0-ddae7209e7fd
+		summarizeBy: none
+		sourceColumn: ArtistID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AlbumID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 0c21a00a-9966-4925-aba4-46e68578a322
+		summarizeBy: none
+		sourceColumn: AlbumID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column fkGenre
+		dataType: int64
+		formatString: 0
+		lineageTag: 339679aa-e7e7-4f03-b6c7-bfb5cf39e692
+		summarizeBy: none
+		sourceColumn: fkGenre
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Artist - Track'
+		dataType: string
+		lineageTag: 40076cce-e6fe-48ed-b932-204611637d97
+		summarizeBy: none
+		sourceColumn: Artist - Track
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: double
+		lineageTag: 69d8f5f5-c2f1-4a8e-8211-5e4bd78f3f7d
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Track
+		dataType: double
+		lineageTag: 281a597c-4e5c-41be-8eeb-281a766fbd32
+		summarizeBy: sum
+		sourceColumn: Track
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition TrackList = m
+		mode: import
+		source =
+				let
+				   Source = Sql.Database("steven-edit-sql.database.windows.net", "Music2026"),
+				    #"Tbl" = Source{[Schema = "dbo", Item = "TrackList"]}[Data],
+				    #"Removed Columns1" = Table.RemoveColumns(Tbl,{"length_sec", "filesize", "FileDate", "ModDate", "FilePath", "Album", "Artist", "Demos", "Genre", "TrackSales","FileName","Include"}),
+				
+				    #"Merged Queries1" = Table.NestedJoin(#"Removed Columns1", {"fkArtist"}, Artist, {"ArtistID"}, "Artist", JoinKind.LeftOuter),
+				    #"Expanded Artist1" = Table.ExpandTableColumn(#"Merged Queries1", "Artist", {"Artist"}, {"Artist.Artist"}),
+				    #"Added Custom1" = Table.AddColumn(#"Expanded Artist1", "ArtistTrack", each [Artist.Artist] & " - " & [Title]),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Added Custom1",{{"ArtistTrack", "Artist - Track"}}),
+				    #"Added Custom2" = Table.AddColumn(#"Renamed Columns1", "Title - Artist", each [Title] & " - " & [Artist.Artist]),
+				    #"Removed Artist.Artist" = Table.RemoveColumns(#"Added Custom2",{"Artist.Artist"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Artist.Artist",{{"Title - Artist", "Track - Artist"}}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Renamed Columns",{"pkTrackList", "Title", "fkArtist", "fkAlbum", "Year", "Track", "fkGenre", "Composer", "Track - Artist"}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Reordered Columns",{{"fkArtist", "ArtistID"}, {"fkAlbum", "AlbumID"}})
+				in
+				    #"Renamed Columns2"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

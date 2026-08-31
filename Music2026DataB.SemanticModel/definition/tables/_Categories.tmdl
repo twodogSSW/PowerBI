@@ -28,9 +28,8 @@ table _Categories
 			    )
 			    + 0
 			```
+		formatString: #,0
 		lineageTag: 6e0112d7-9198-466f-a38d-151b102bb2af
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	/// Sale
 	measure 'Sale $ PrevMonth' = ```
@@ -160,9 +159,11 @@ table _Categories
 			        KEEPFILTERS(Calendar[Date])
 			    )
 			```
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		formatString: \$#,0;(\$#,0);\$#,0
 		displayFolder: KPI
 		lineageTag: c7f677ed-5055-4df9-8c11-296a14601fe0
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
 	/// CountRows_All
 	measure CountRows_All = ```
@@ -560,12 +561,12 @@ table _Categories
 			    
 			  SWITCH(
 			    pbi.All_SelectedCategory(),
-			        0, pbi.Categories_RptURL(TrackList[TrackID]), //_URL[URLTracks],
-			        1, pbi.Categories_RptURL(Genre[GenreID]), //_URL[URLGenres],
+			        0, pbi.Categories_RptURL(TrackList[pkTrackList]), //_URL[URLTracks],
+			        1, pbi.Categories_RptURL(Genre[pkGenre]), //_URL[URLGenres],
 			        2, pbi.Categories_RptURL(Artist[ArtistID]), //_URL[URLArtists],
 			        3, pbi.Categories_RptURL('Album'[AlbumID]), //URL[URLAlbums],
-			        4, pbi.Categories_RptURL(RecordLabel[RecordLabelID]),//_URL[URLRecLabels],
-			        5, pbi.Categories_RptURL(Region[RegionID]),//
+			        4, pbi.Categories_RptURL(RecordLabel[pkRecordLabel]),//_URL[URLRecLabels],
+			        5, pbi.Categories_RptURL(Region[pkRegion]),//
 			        BLANK()
 			    )
 			
@@ -656,14 +657,14 @@ table _Categories
 		source = ```
 				
 				    {
-				        ("Title (Artist-Title)", NAMEOF(TrackList[Artist - Track]), 0),
-				        ("Genre", NAMEOF('TrackList'[Genre]), 1),
-				        ("Artist", NAMEOF('TrackList'[Artist]), 2),
+				        ("Track - by Artist/Title", NAMEOF(TrackList[Artist - Track]), 0),
+				        ("Genre", NAMEOF('Genre'[Genre]), 1),
+				        ("Artist", NAMEOF('Artist'[Artist]), 2),
 				        ("Album", NAMEOF('Album'[Album]), 3),
-				        ("Record Label", NAMEOF('TrackList'[RecordLabel]), 4),
-				        ("Region", NAMEOF('Region'[Region]), 5),
-				        ("Retail Sales - Tracks", NAMEOF('PurchasedFrom'[PurchasedFrom]), 6),
-				        ("Retail Sales - Albums", NAMEOF('PurchasedFrom'[Purchased From]), 7)
+				        ("Record Label", NAMEOF('RecordLabel'[RecordLabel]), 4),
+				        ("Region - track sales", NAMEOF('Region'[Region]), 5),
+				        ("Retail - track sales", NAMEOF('PurchasedFrom'[PurchasedFrom]), 6),
+				        ("Retail - album Sales", NAMEOF('PurchasedFrom'[Purchased From]), 7)
 				    }
 				```
 

@@ -85,7 +85,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'''TrackList''[RecordLabel]'"
+                                "Value": "'''Artist''[Artist]'"
                               }
                             }
                           ]
@@ -113,7 +113,7 @@
                                 "0": [
                                   {
                                     "Literal": {
-                                      "Value": "'''TrackList''[RecordLabel]'"
+                                      "Value": "'''Artist''[Artist]'"
                                     }
                                   }
                                 ]
@@ -137,7 +137,7 @@
                         },
                         "valueMap": [
                           {
-                            "0": "Record Label"
+                            "0": "Artist"
                           }
                         ]
                       }

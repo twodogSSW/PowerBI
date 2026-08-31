@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "MusicAzure"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "fb16a54e-14b3-4e88-9671-8aabce05a839"
+  }
+}

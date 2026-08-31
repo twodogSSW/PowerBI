@@ -1,0 +1,10 @@
+DEFINE
+    FUNCTION pbi.All_Sales0or1 = (ChangePct:decimal) 
+		=>
+    
+        SWITCH(
+            TRUE(),
+            ChangePct > 0, 0,
+            ChangePct < 0, 1,
+            0
+        )

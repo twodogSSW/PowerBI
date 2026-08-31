@@ -1,281 +1,159 @@
-/// Table used to store Demographics of each Track (popularity among age groups)
 table Demographics
-	lineageTag: 58a39f59-d175-4288-aab3-a5ca8fdc0867
+	lineageTag: 1e5b8192-4519-4367-be25-df3c57b6c13f
 
-	/// DemoCount_Selected
-	measure DemoCount_Selected = ```
+	measure 'Avg DemoCount' = ```
 			
-			
-			IF(
-			    HASONEVALUE(Demographics[Demographic]),
-			    SUM(Demographics[DemoCount]),
-			    BLANK()  // or 0, or "Multiple selected"
+			AVERAGEX(
+			    VALUES(Demographics[pkDemo]),
+			    CALCULATE( SUM(Demographics[DemoCount#]) )
 			)
 			
 			```
-		formatString: 0
-		lineageTag: 1e0153b6-9e22-44f6-8c22-3b95cffb8516
-
-		changedProperty = IsHidden
-
-	/// DemoCountM
-	measure DemoCountM = ```
-			
-			    SUM(Demographics[DemoCount])
-			
-			
-			```
-		formatString: 0
-		lineageTag: 708aebfa-6e34-4650-b31d-37398f6a75d6
-
-		changedProperty = IsHidden
-
-	/// DemoCount_Tornado
-	measure DemoCount_Tornado =
-			
-			VAR Gender = SELECTEDVALUE(Demographics[Gender])
-			VAR CountM = Demographics[DemoCountM]
-			RETURN
-			IF(Gender = "Male", -CountM, CountM)
-		formatString: #,0
-		lineageTag: 18928e72-1e34-4255-a681-0f7f589705b6
-
-		changedProperty = IsHidden
-
-	/// DynamicDemoCount
-	measure DynamicDemo_Count =
-			
-			VAR SelCount = COUNTROWS( VALUES( 'TrackList'[Artist - Track] ) )
-			VAR ThisValue = Demographics[DemoCount_Tornado]
-			VAR AvgAll = CALCULATE(
-			    AVERAGEX(
-			        VALUES( 'TrackList'[Artist - Track] ),
-			        Demographics[DemoCount_Tornado]
-			    ),
-			    ALL( 'TrackList'[Artist - Track] )
-			)
-			VAR AvgSelected = AVERAGEX(
-			    VALUES( 'TrackList'[Artist - Track] ),
-			    Demographics[DemoCount_Tornado]
-			)
-			VAR Result = SWITCH(
-			    TRUE(),
-			    SelCount = 0, AvgAll,
-			    SelCount = 1, ThisValue,
-			    SelCount > 1, AvgSelected,
-			    BLANK()
-			)
-			RETURN
-			    IF(Result = 0, BLANK(), Result)
-		lineageTag: ea0e1738-0cf5-4e62-8db4-96d17a5dfec7
-
-		changedProperty = IsHidden
+		lineageTag: 6ca662fb-2c3b-4b3c-a5e0-79660f2eab3e
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	/// Demographic
+	measure 'Avg Men' =
+			
+			AVERAGEX(
+			    VALUES(Demographics[pkDemo]),
+			    CALCULATE(
+			        SUM(Demographics[DemoCount#]),
+			        FILTER(Demographics, LEFT(Demographics[Demographic], 3) = "Men")
+			    )
+			)
+		formatString: 0
+		lineageTag: 561bd4e4-7e2e-42ba-a42e-1964e02f59d1
+
+	measure 'Avg Women' =
+			
+			AVERAGEX(
+			    VALUES(Demographics[pkDemo]),
+			    CALCULATE(
+			        SUM(Demographics[DemoCount#]),
+			        FILTER(Demographics, LEFT(Demographics[Demographic], 5) = "Women")
+			    )
+			)
+		formatString: 0
+		lineageTag: e58c8cff-14dd-48f3-a419-6ec7455cb255
+
+	measure 'Avg Women (Negative)' =
+			
+			- [Avg Women]
+		formatString: 0
+		lineageTag: 8c44b8c9-e0c8-4731-bb17-ef05a9b12344
+
+	measure DemoCount_Tornado = ```
+			
+			VAR GenderSelected = SELECTEDVALUE(_Demo_Switch[Gender])
+			RETURN
+			    SWITCH(
+			        GenderSelected,
+			        "Men", AVERAGE(Demographics[DemoCount#]),
+			        "Women", AVERAGE(Demographics[DemoCount#])
+			    )
+			
+			```
+		formatString: 0
+		lineageTag: 63099fa2-6698-4cd7-85c9-ae5b4e9462cc
+
+	column fkTrackList
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: f147f816-af1a-4c12-b831-1dda63f0f6fb
+		summarizeBy: none
+		sourceColumn: fkTrackList
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
 	column Demographic
 		dataType: string
-		lineageTag: 16e19e4d-3104-4938-befb-8ce7b4bfafb0
+		lineageTag: f66849e2-4df1-4735-b61b-2d450701a6d5
 		summarizeBy: none
 		sourceColumn: Demographic
 
-		changedProperty = IsHidden
-
 		annotation SummarizationSetBy = Automatic
 
-	/// DemoCount
 	column DemoCount
-		dataType: int64
-		formatString: 0
-		lineageTag: 70fe3e6a-13f6-4b5b-8345-ef40a728c454
-		summarizeBy: sum
+		dataType: string
+		lineageTag: 4f3e89e5-887e-4be4-be23-1d8ea405b29f
+		summarizeBy: none
 		sourceColumn: DemoCount
 
-		changedProperty = IsHidden
-
 		annotation SummarizationSetBy = Automatic
 
-	/// Gender
-	column Gender =
-			
-			IF(
-			    LEFT(Demographics[Demographic], 1) = "F",
-			    "Women",
-			    "Men"
-			)
-		lineageTag: 486d5a33-29ac-40a8-8ba3-be251174b7c7
-		summarizeBy: none
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
-	/// AgeGroup
-	column AgeGroup = ```
-			
-			VAR demo = Demographics[Demographic]
-			RETURN
-			SWITCH(
-			    TRUE(),
-			    LEFT(demo, 7) = "Females", MID(demo, 8, LEN(demo) - 7),
-			    LEFT(demo, 5) = "Males", MID(demo, 6, LEN(demo) - 5),
-			    BLANK()
-			)
-			
-			```
-		lineageTag: cb791adb-a72f-4f7a-be42-7fd4a36bf5d7
-		summarizeBy: none
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
-	/// DemoCount_Tornado_Column
-	column DemoCount_Tornado_Column = ```
-			
-			IF(
-			    Demographics[Gender] = "Male",
-			    -Demographics[DemoCount],
-			    Demographics[DemoCount]
-			)
-			
-			```
+	column pkDemo
+		dataType: int64
+		isHidden
 		formatString: 0
-		lineageTag: b32cd07a-a276-423a-9902-ceec9c21a741
+		lineageTag: cacb4e64-fc05-4884-85e2-6d21d7d30866
 		summarizeBy: none
+		sourceColumn: pkDemo
 
 		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = User
 
-	/// DemoLabel
-	column DemoLabel = ```
-			
-			VAR demo = Demographics[Demographic]
-			VAR gender = 
-			    SWITCH(TRUE(),
-			        LEFT(demo, 7) = "Females", "Women",
-			        LEFT(demo, 5) = "Males", "Men",
-			        BLANK()
-			    )
-			VAR rawAge = 
-			    SWITCH(TRUE(),
-			        LEFT(demo, 7) = "Females", MID(demo, 8, LEN(demo) - 7),
-			        LEFT(demo, 5) = "Males", MID(demo, 6, LEN(demo) - 5),
-			        BLANK()
-			    )
-			VAR formattedAge = 
-			    SWITCH(TRUE(),
-			        rawAge = "18", "18",
-			        rawAge = "1834", "18–34",
-			        rawAge = "3454", "34–54",
-			        rawAge = "54+", "54+",
-			        rawAge // fallback
-			    )
-			RETURN
-			    IF(NOT(ISBLANK(gender)) && NOT(ISBLANK(formattedAge)),
-			        gender & " " & formattedAge,
-			        BLANK()
-			    )
-			
-			```
-		lineageTag: 3b57047b-3623-4704-a1d0-161ce097d392
-		summarizeBy: none
-		sortByColumn: SortOrder
-
-		changedProperty = SortByColumn
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
-	/// SortOrder
-	column SortOrder =
-			
-			SWITCH(
-			    Demographics[Demographic],
-			    "Males18", 1,
-			    "Females18", 2,
-			    "Females1834", 3,
-			    "Males1834", 4,
-			    "Females3454", 5,
-			    "Males3454", 6,
-			    "Females54", 7,
-			    "Males54", 8,
-			    99
-			)
+	column DemoCount#
+		dataType: int64
 		formatString: 0
-		lineageTag: bb94b05b-248c-455a-b33e-1a6c8e370c38
+		lineageTag: d7a30da0-a4f5-4ef0-b651-c9fe7cc6be71
 		summarizeBy: none
-
-		changedProperty = SortByColumn
-
-		changedProperty = IsHidden
+		sourceColumn: DemoCount#
 
 		annotation SummarizationSetBy = User
-
-	/// Demographic - Slicer
-	column Demographic_Slicer
-		dataType: string
-		lineageTag: 63da9ac1-9188-4f36-b2e5-1182bb810c9f
-		summarizeBy: none
-		sourceColumn: Demographic_Slicer
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
-	column DemoID
-		dataType: int64
-		formatString: 0
-		lineageTag: 8fc05e5c-c716-4462-aca0-08dc6fd233fb
-		summarizeBy: count
-		sourceColumn: DemoID
-
-		annotation SummarizationSetBy = Automatic
-
-	column TrackID
-		dataType: int64
-		formatString: 0
-		lineageTag: b38c215e-f454-4c88-91f0-ffb7c2d5c87c
-		summarizeBy: none
-		sourceColumn: TrackID
-
-		annotation SummarizationSetBy = Automatic
 
 	partition Demographics = m
 		mode: import
-		source =
+		source = ```
 				let
-				    Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery="disabled", Implementation="2.0", Protocol=null]),
+				    Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", null),
 				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
-				    music2026_gold_Schema = workspace_Database{[Name="music2026_gold",Kind="Schema"]}[Data],
-				    fact_demos_Table = music2026_gold_Schema{[Name="fact_demos",Kind="Table"]}[Data],
-				    #"Removed Columns1" = Table.RemoveColumns(fact_demos_Table,{"FileDate", "ModDate"}),
-				    #"demos" = Table.UnpivotOtherColumns(#"Removed Columns1", {"DemoID", "TrackID"}, "Attribute", "Value"),
-				    #"Renamed Columns" = Table.RenameColumns(#"demos",{{"Attribute", "Demographic"}, {"Value", "DemoCount"}}),
-				    #"Duplicated Column" = Table.DuplicateColumn(#"Renamed Columns", "DemoCount", "DemoCount - Copy"),
-				    #"Changed Type" = Table.TransformColumnTypes(#"Duplicated Column",{{"DemoCount - Copy", type text}}),
-				    #"Duplicated Column1" = Table.DuplicateColumn(#"Changed Type", "Demographic", "Demographic - Copy"),
-				    #"Renamed Columns1" = Table.RenameColumns(#"Duplicated Column1",{{"Demographic - Copy", "Demographic - Slicer"}}),
-				    #"Replaced Value" = Table.ReplaceValue(#"Renamed Columns1","Males54","Men 54+",Replacer.ReplaceText,{"Demographic - Slicer"}),
-				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","Males54","Men 54+",Replacer.ReplaceText,{"Demographic - Slicer"}),
-				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1","Females54","Women 54+",Replacer.ReplaceText,{"Demographic - Slicer"}),
-				    #"Replaced Value3" = Table.ReplaceValue(#"Replaced Value2","Females3454","Women 34-54",Replacer.ReplaceText,{"Demographic - Slicer"}),
-				    #"Replaced Value4" = Table.ReplaceValue(#"Replaced Value3","Males1834","Men 18-34",Replacer.ReplaceText,{"Demographic - Slicer"}),
-				    #"Replaced Value5" = Table.ReplaceValue(#"Replaced Value4","Males3454","Men 34-54",Replacer.ReplaceText,{"Demographic - Slicer"}),
-				    #"Replaced Value6" = Table.ReplaceValue(#"Replaced Value5","Females1834","Women 18-34",Replacer.ReplaceText,{"Demographic - Slicer"}),
-				    #"Replaced Value7" = Table.ReplaceValue(#"Replaced Value6","Females18","Women 18",Replacer.ReplaceText,{"Demographic - Slicer"}),
-				    #"Replaced Value8" = Table.ReplaceValue(#"Replaced Value7","Males18","Men 18",Replacer.ReplaceText,{"Demographic - Slicer"}),
-				    #"Removed Columns" = Table.RemoveColumns(#"Replaced Value8",{"DemoCount - Copy"}),
-				    #"Renamed Columns2" = Table.RenameColumns(#"Removed Columns",{{"Demographic - Slicer", "Demographic_Slicer"}})
+				    music_gold_Schema = workspace_Database{[Name="music_gold",Kind="Schema"]}[Data],
+				    dim_album_Table = music_gold_Schema{[Name="fact_demos",Kind="Table"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(dim_album_Table,{"FileDate", "ModDate"}),
+				    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Removed Columns", {"pkDemo", "skTrackList"}, "Attribute", "Value"),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Unpivoted Columns",{"pkDemo", "skTrackList", "Attribute", "Value"}),
+				    #"Renamed Columns All" = Table.RenameColumns(#"Reordered Columns",{{"skTrackList", "fkTrackList"}, {"Attribute", "Demographic"}, {"Value", "DemoCount"}})
+				    
+				      // Replacement rules
+				    ,Replacements = {
+				        {"Males1834", "Men 18-34"},
+				        {"Males18", "Men <=18"},
+				        {"Males3454", "Men 35-54"},        
+				        {"Males54", "Men 54+"},       
+				        {"Females1834", "Women 18-34"},
+				        {"Females18", "Women <=18"},
+				        {"Females3454", "Women 35-54"},        
+				        {"Females54", "Women 54+"}      
+				    },
+				
+				    // Apply all replacements to the Demographic column
+				    #"Replaced Value" =
+				        List.Accumulate(
+				            Replacements,
+				            #"Renamed Columns All",
+				            (state, current) =>
+				                Table.ReplaceValue(
+				                    state,
+				                    current{0},
+				                    current{1},
+				                    Replacer.ReplaceText,
+				                    {"Demographic"}
+				                )
+				        ),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Replaced Value",{{"DemoCount", type text}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Changed Type", "DemoCount", "DemoCount - Copy"),
+				    #"Changed DemoCount to Int" = Table.TransformColumnTypes(#"Duplicated Column",{{"DemoCount - Copy", Int64.Type}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed DemoCount to Int",{{"DemoCount - Copy", "DemoCount#"}})
 				in
-				    #"Renamed Columns2"
-
-	changedProperty = IsHidden
-
-	annotation PBI_ResultType = Table
+				    #"Renamed Columns"
+				```
 
 	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
 

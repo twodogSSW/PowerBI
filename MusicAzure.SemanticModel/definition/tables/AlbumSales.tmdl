@@ -1,0 +1,123 @@
+/// Table used to store sales of albums
+table AlbumSales
+	lineageTag: 4efc2010-3cf2-48b9-ad78-66e8d8436f80
+
+	column SalesAmt
+		dataType: decimal
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 051768ca-a552-4166-baaa-083b29eea9d6
+		summarizeBy: none
+		sourceColumn: SalesAmt
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column CC
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: cc6feb17-3758-467b-a8eb-4e42c7494b3c
+		summarizeBy: none
+		sourceColumn: CC
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column Bitcoin
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 83900480-18d5-42df-92ea-16936a772f40
+		summarizeBy: none
+		sourceColumn: Bitcoin
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column Cash
+		dataType: decimal
+		lineageTag: 3651a829-d543-44e3-bbf4-9548f83daa84
+		summarizeBy: none
+		sourceColumn: Cash
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pkAlbumSales
+		dataType: int64
+		formatString: 0
+		lineageTag: 8fd7cc62-89a1-4847-bb59-282af5cf424a
+		summarizeBy: sum
+		sourceColumn: pkAlbumSales
+
+		annotation SummarizationSetBy = Automatic
+
+	column fkAlbum
+		dataType: int64
+		formatString: 0
+		lineageTag: fb40a655-a730-4a19-ae97-1fe3e1e0f43c
+		summarizeBy: none
+		sourceColumn: fkAlbum
+
+		annotation SummarizationSetBy = Automatic
+
+	column fkGeographyNo
+		dataType: int64
+		formatString: 0
+		lineageTag: e925944f-0cd3-4757-a961-23f30a892ad3
+		summarizeBy: none
+		sourceColumn: fkGeographyNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Salesdate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a01ca99e-3322-4aca-b5bb-ebc006009fa2
+		summarizeBy: none
+		sourceColumn: Salesdate
+
+		annotation SummarizationSetBy = Automatic
+
+	column SaleCount
+		dataType: int64
+		formatString: 0
+		lineageTag: 118a8be4-7160-43fe-b26c-e68b91149bc6
+		summarizeBy: sum
+		sourceColumn: SaleCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column fkPurchasedFrom
+		dataType: int64
+		formatString: 0
+		lineageTag: 17002060-c76d-4422-937f-339fb4637c6e
+		summarizeBy: none
+		sourceColumn: fkPurchasedFrom
+
+		annotation SummarizationSetBy = Automatic
+
+	partition AlbumSales = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("steven-edit-sql.database.windows.net", "Music2026"),
+				    #"Tbl" = Source{[Schema = "dbo", Item = "AlbumSales"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(Tbl,{"FileDate", "ModDate", "Album", "Geography", "PurchasedFrom"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

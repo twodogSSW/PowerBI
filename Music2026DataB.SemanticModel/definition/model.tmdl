@@ -8,7 +8,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["Album","Genre","AlbumNotes","Artist","Geography","PurchasedFrom","RecordLabel","Region","TrackList","TrackSales","ServerName","DBName","AlbumSales","Demographics","TrackNotes"]
+annotation PBI_QueryOrder = ["Album","Genre","AlbumNotes","Artist","Geography","PurchasedFrom","RecordLabel","Region","TrackList","TrackSales","ServerName","DBName","AlbumSales","TrackNotes","Demographics"]
 
 annotation PBI_ProTooling = ["TMDLView_Desktop","DaxQueryView_Desktop","DevMode"]
 
@@ -16,7 +16,6 @@ ref table Album
 ref table AlbumNotes
 ref table AlbumSales
 ref table Artist
-ref table Demographics
 ref table Geography
 ref table PurchasedFrom
 ref table RecordLabel
@@ -32,7 +31,9 @@ ref table _BusinessDrivers
 ref table Calendar
 ref table _Categories
 ref table TrackNotes
-ref table dimDateSlicer
+ref table _DateSlicer
+ref table Demographics
+ref table _Demo_Switch
 
 ref role 'Depeche Mode Fan'
 ref role 'East Africa Region'

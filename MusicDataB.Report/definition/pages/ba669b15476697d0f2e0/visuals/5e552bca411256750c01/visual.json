@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "5e552bca411256750c01",
+  "position": {
+    "x": 639.92527287993278,
+    "y": 0,
+    "z": 0,
+    "height": 108.71691624646155,
+    "width": 625.3712549443236,
+    "tabOrder": 0
+  },
+  "visualGroup": {
+    "displayName": "Track Sales",
+    "groupMode": "ScaleMode"
+  },
+  "parentGroupName": "52622e2269248f75b4cc"
+}

@@ -1,0 +1,7 @@
+role 'Depeche Mode Fan'
+	modelPermission: read
+
+	tablePermission Artist = [Artist] == "Depeche Mode"
+
+	annotation PBI_Id = 108f39f563004bc1ad4ce7f999adf406
+

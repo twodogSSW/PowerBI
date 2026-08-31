@@ -2,18 +2,6 @@
 table TrackSales
 	lineageTag: d1fe4f8d-bc56-4b65-9185-817afb88c0e2
 
-	/// SaleCount
-	column SaleCount
-		dataType: int64
-		formatString: #,0
-		lineageTag: d1de4602-47b9-4325-ba1f-bf41eac2c82e
-		summarizeBy: none
-		sourceColumn: SaleCount
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = User
-
 	/// SalesAmt
 	column SalesAmt
 		dataType: double
@@ -69,42 +57,6 @@ table TrackSales
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column TrackSalesID
-		dataType: int64
-		formatString: 0
-		lineageTag: 2af83df6-6cb7-4022-b78a-7ae9e1b6047b
-		summarizeBy: count
-		sourceColumn: TrackSalesID
-
-		annotation SummarizationSetBy = Automatic
-
-	column TrackID
-		dataType: int64
-		formatString: 0
-		lineageTag: b24f46f4-af9f-4a51-b7a2-eadb5f7bc7de
-		summarizeBy: none
-		sourceColumn: TrackID
-
-		annotation SummarizationSetBy = Automatic
-
-	column GeographyID
-		dataType: int64
-		formatString: 0
-		lineageTag: e41117e2-0017-4847-9b2f-5f743aff2f75
-		summarizeBy: none
-		sourceColumn: GeographyID
-
-		annotation SummarizationSetBy = Automatic
-
-	column PurchasedFromID
-		dataType: int64
-		formatString: 0
-		lineageTag: 51fe51e3-2906-4e92-b0bc-a2682620e180
-		summarizeBy: none
-		sourceColumn: PurchasedFromID
-
-		annotation SummarizationSetBy = Automatic
-
 	column SalesDate
 		dataType: dateTime
 		formatString: Long Date
@@ -114,36 +66,75 @@ table TrackSales
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation UnderlyingDateTimeDataType = Date
-
-	column FileDate
-		dataType: dateTime
-		formatString: Long Date
-		lineageTag: 051d5f5e-8f52-4d2d-8ead-d7b3d6421097
-		summarizeBy: none
-		sourceColumn: FileDate
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation UnderlyingDateTimeDataType = Date
-
-	column ModDate
-		dataType: dateTime
-		formatString: Long Date
-		lineageTag: f9f16782-253c-4369-9345-2dc64bafb63a
-		summarizeBy: none
-		sourceColumn: ModDate
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation UnderlyingDateTimeDataType = Date
-
-	column Include
+	column pkTrackSales
 		dataType: int64
 		formatString: 0
-		lineageTag: c1c073d1-f3c9-4277-adf8-b1d7c5637212
+		lineageTag: 5683af38-b54b-4392-8686-8ee65679cade
 		summarizeBy: sum
-		sourceColumn: Include
+		sourceColumn: pkTrackSales
+
+		annotation SummarizationSetBy = Automatic
+
+	column SaleCount
+		dataType: int64
+		formatString: #,0
+		lineageTag: dad74495-8e1c-4c40-9b17-69e2c446ed01
+		summarizeBy: sum
+		sourceColumn: SaleCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column FkTrackList
+		dataType: int64
+		formatString: 0
+		lineageTag: 299925f1-ea10-4ec1-a64a-38edb563ae15
+		summarizeBy: none
+		sourceColumn: FkTrackList
+
+		annotation SummarizationSetBy = Automatic
+
+	column FkGeographyNo
+		dataType: int64
+		formatString: 0
+		lineageTag: 34d874ad-d6ba-41e1-be57-fedf57b61b7c
+		summarizeBy: none
+		sourceColumn: FkGeographyNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column FkPurchasedFrom
+		dataType: int64
+		formatString: 0
+		lineageTag: 11433d1c-1034-4607-8c35-e0ea283b4dce
+		summarizeBy: none
+		sourceColumn: FkPurchasedFrom
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: cc2fa17b-1989-4e8e-968a-b6f07e616ca4
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 86647746-85de-4a41-9e9a-ce35a6863219
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: int64
+		formatString: 0
+		lineageTag: 1162f32f-b601-45ff-b686-712c550c355d
+		summarizeBy: sum
+		sourceColumn: Day
 
 		annotation SummarizationSetBy = Automatic
 
@@ -153,11 +144,12 @@ table TrackSales
 				let    
 				    Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery="disabled", Implementation="2.0", Protocol=null]),
 				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
-				    music2026_gold_Schema = workspace_Database{[Name="music2026_gold",Kind="Schema"]}[Data],
-				    fact_tracksales_Table = music2026_gold_Schema{[Name="fact_tracksales",Kind="Table"]}[Data]
-				
+				    music2026_gold_Schema = workspace_Database{[Name="music_gold",Kind="Schema"]}[Data],
+				    fact_tracksales_Table = music2026_gold_Schema{[Name="fact_tracksales",Kind="Table"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(fact_tracksales_Table,{"FileDate", "ModDate"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Removed Columns",{{"SalesCount", "SaleCount"}})
 				in
-				    #"fact_tracksales_Table"
+				    #"Renamed Columns1"
 				```
 
 	annotation PBI_ResultType = Table

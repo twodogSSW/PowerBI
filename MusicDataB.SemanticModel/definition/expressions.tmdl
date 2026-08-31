@@ -1,0 +1,16 @@
+/// dbc-889876c1-2aee.cloud.databricks.com
+expression ServerName = "dbc-889876c1-2aee.cloud.databricks.com" meta [IsParameterQuery=true, Type="Any", IsParameterQueryRequired=true]
+	lineageTag: c05813f7-3eb5-4d56-8f38-65bc11ad4a5e
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+/// /sql/1.0/warehouses/4a6aab97cf7a86de
+expression HTTP_PATH = "/sql/1.0/warehouses/4a6aab97cf7a86de" meta [IsParameterQuery=true, Type="Any", IsParameterQueryRequired=true]
+	lineageTag: d400e2b7-92bf-4e1b-b325-1ad10f057817
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+

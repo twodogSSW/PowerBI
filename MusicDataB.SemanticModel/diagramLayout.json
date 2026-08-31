@@ -1,0 +1,322 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 138.52722337243259,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 609.01288104743765,
+            "y": 218.3309498804644
+          },
+          "nodeIndex": "AlbumNotes",
+          "nodeLineageTag": "787fb0e1-dfc6-4a0d-92fb-d8072b85a4a4",
+          "size": {
+            "height": 145,
+            "width": 182.55157619947727
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 674.54371600598233
+          },
+          "nodeIndex": "AlbumSales",
+          "nodeLineageTag": "4efc2010-3cf2-48b9-ad78-66e8d8436f80",
+          "size": {
+            "height": 176,
+            "width": 185
+          },
+          "zIndex": 21,
+          "expandedHeight": 420.68553235113995
+        },
+        {
+          "location": {
+            "x": 1117.7272621318623,
+            "y": 596.26935277699238
+          },
+          "nodeIndex": "Artist",
+          "nodeLineageTag": "d5807c9a-cb2e-4798-b4ed-7970fdfd26e2",
+          "size": {
+            "height": 104,
+            "width": 218.68911273141589
+          },
+          "zIndex": 8,
+          "expandedHeight": 410.39971814643388
+        },
+        {
+          "location": {
+            "x": 998.0573172902532,
+            "y": 0
+          },
+          "nodeIndex": "Genre",
+          "nodeLineageTag": "b9f852f2-6409-4fd1-a9b3-d9ec35799f10",
+          "size": {
+            "height": 104,
+            "width": 223.2063047979085
+          },
+          "zIndex": 18,
+          "expandedHeight": 177.66977035636899
+        },
+        {
+          "location": {
+            "x": 285.68552194919465,
+            "y": 921.50718156444316
+          },
+          "nodeIndex": "Geography",
+          "nodeLineageTag": "9022b6a0-cca9-4059-8f0f-e5d82dd25af6",
+          "size": {
+            "height": 128,
+            "width": 224.96561586701546
+          },
+          "zIndex": 19,
+          "expandedHeight": 309.03438413298477
+        },
+        {
+          "location": {
+            "x": 490.86820455883719,
+            "y": 553.69699372880154
+          },
+          "nodeIndex": "PurchasedFrom",
+          "nodeLineageTag": "cfc53502-9865-4e8f-97f1-5634c7ca5ba7",
+          "size": {
+            "height": 104,
+            "width": 197.22707724467688
+          },
+          "zIndex": 9,
+          "expandedHeight": 200
+        },
+        {
+          "location": {
+            "x": 1596.8080667318497,
+            "y": 755.87680579305606
+          },
+          "nodeIndex": "RecordLabel",
+          "nodeLineageTag": "9baacb9f-5f7a-443a-be4b-b77d4351f7c5",
+          "size": {
+            "height": 104,
+            "width": 218.88753653193885
+          },
+          "zIndex": 14,
+          "expandedHeight": 234.72349686440066
+        },
+        {
+          "location": {
+            "x": 653.48351776839536,
+            "y": 840.19772436758035
+          },
+          "nodeIndex": "Region",
+          "nodeLineageTag": "1026b12f-7b1e-45e1-9fdb-39caa750682b",
+          "size": {
+            "height": 104,
+            "width": 218.94269311169205
+          },
+          "zIndex": 22,
+          "expandedHeight": 271.25
+        },
+        {
+          "location": {
+            "x": 842.41334023459547,
+            "y": 436.66189976092892
+          },
+          "nodeIndex": "TrackList",
+          "nodeLineageTag": "502901bc-3365-446f-8c7f-470a1e6ece21",
+          "size": {
+            "height": 152,
+            "width": 176
+          },
+          "zIndex": 16,
+          "expandedHeight": 309.93839249458267
+        },
+        {
+          "location": {
+            "x": 7.5286534441539459,
+            "y": 0
+          },
+          "nodeIndex": "TrackSales",
+          "nodeLineageTag": "d1fe4f8d-bc56-4b65-9185-817afb88c0e2",
+          "size": {
+            "height": 352.55730688830789,
+            "width": 200
+          },
+          "zIndex": 17
+        },
+        {
+          "location": {
+            "x": 1902.2471586593747,
+            "y": 80.758109544662659
+          },
+          "nodeIndex": "_PctThreshold",
+          "nodeLineageTag": "ef3e2812-67c3-4dc0-8eb4-3984fcfce263",
+          "size": {
+            "height": 72,
+            "width": 234
+          },
+          "zIndex": 12,
+          "expandedHeight": 145
+        },
+        {
+          "location": {
+            "x": 9.03438413298474,
+            "y": 335.77794360926595
+          },
+          "nodeIndex": "Calendar",
+          "nodeLineageTag": "fca5410b-58b9-40bf-8964-2a1c781ac37d",
+          "size": {
+            "height": 104,
+            "width": 185.56303757713866
+          },
+          "zIndex": 20,
+          "expandedHeight": 200
+        },
+        {
+          "location": {
+            "x": 1226.8180334543813,
+            "y": 861.35782873739834
+          },
+          "nodeIndex": "TrackNotes",
+          "nodeLineageTag": "0058b5a2-0636-4e1f-ba5a-decece567d33",
+          "size": {
+            "height": 104,
+            "width": 169
+          },
+          "zIndex": 15,
+          "expandedHeight": 224
+        },
+        {
+          "location": {
+            "x": 1661.0515950022943,
+            "y": 252.18481211430662
+          },
+          "nodeIndex": "_PeriodSelector",
+          "nodeLineageTag": "f4defc31-cc5d-44ba-8a05-dcdf894fe235",
+          "size": {
+            "height": 72,
+            "width": 234
+          },
+          "zIndex": 11,
+          "expandedHeight": 152
+        },
+        {
+          "location": {
+            "x": 1907.5781189417851,
+            "y": 173.90065652859906
+          },
+          "nodeIndex": "_BusinessDrivers",
+          "nodeLineageTag": "125cf666-bac4-4cb7-88a1-30430f5a442f",
+          "size": {
+            "height": 104,
+            "width": 214.42550104519978
+          },
+          "zIndex": 6,
+          "expandedHeight": 153.75
+        },
+        {
+          "location": {
+            "x": 1395.4427015125643,
+            "y": 0
+          },
+          "nodeIndex": "_Categories",
+          "nodeLineageTag": "5c27c8e2-ae70-4845-a228-f5623a4c6ec0",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 1660.8216576141749,
+            "y": 82.5
+          },
+          "nodeIndex": "_ExecutivePg",
+          "size": {
+            "height": 72,
+            "width": 234
+          },
+          "zIndex": 4,
+          "expandedHeight": 200
+        },
+        {
+          "location": {
+            "x": 1661.75,
+            "y": 168.75
+          },
+          "nodeIndex": "_SummaryPg",
+          "size": {
+            "height": 72,
+            "width": 222.75
+          },
+          "zIndex": 5,
+          "expandedHeight": 211.25
+        },
+        {
+          "location": {
+            "x": 483.30229643631003,
+            "y": 0
+          },
+          "nodeIndex": "Album",
+          "nodeLineageTag": "9c94af43-c824-4ccd-8258-a9bedc4afc63",
+          "size": {
+            "height": 104,
+            "width": 172.75
+          },
+          "zIndex": 13,
+          "expandedHeight": 224
+        },
+        {
+          "location": {
+            "x": 1373.7965407707798,
+            "y": 197.87608035525002
+          },
+          "nodeIndex": "Demographics",
+          "nodeLineageTag": "1e5b8192-4519-4367-be25-df3c57b6c13f",
+          "size": {
+            "height": 197.61031315950629,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1899.8796743373707,
+            "y": 0.034029215540726909
+          },
+          "nodeIndex": "_DateSlicer",
+          "size": {
+            "height": 72,
+            "width": 234
+          },
+          "zIndex": 2,
+          "expandedHeight": 200
+        },
+        {
+          "location": {
+            "x": 1767.6540271644151,
+            "y": 439.1038778367602
+          },
+          "nodeIndex": "_Demo_Switch",
+          "nodeLineageTag": "a9e584c4-5cd5-428e-9753-dfba43f8232f",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 3
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 66.412938742485707,
+      "pinKeyFieldsToTop": true,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

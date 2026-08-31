@@ -3,10 +3,10 @@
   "name": "7c4b611081d3e832a271",
   "position": {
     "x": 0,
-    "y": 0,
+    "y": 3.488165500456307,
     "z": 0,
-    "height": 312.60115606936415,
-    "width": 480.92485549132948,
+    "height": 343.46666666666664,
+    "width": 481.06666666666666,
     "tabOrder": 2000
   },
   "visual": {
@@ -20,15 +20,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "TrackList"
+                      "Entity": "Artist"
                     }
                   },
-                  "Property": "RecordLabel"
+                  "Property": "Artist"
                 }
               },
-              "queryRef": "TrackList.RecordLabel",
-              "nativeQueryRef": "Record Label",
-              "displayName": "Record Label"
+              "queryRef": "Artist.Artist",
+              "nativeQueryRef": "Artist",
+              "displayName": "Artist"
             },
             {
               "field": {

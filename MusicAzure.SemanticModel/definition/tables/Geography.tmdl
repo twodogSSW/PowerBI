@@ -1,0 +1,115 @@
+/// Table used to store Geographic details Descriptions (unique records)
+table Geography
+	lineageTag: 9022b6a0-cca9-4059-8f0f-e5d82dd25af6
+
+	/// Selected
+	measure Selected$ = ```
+			
+			SWITCH(
+			  TRUE(),
+			  HASONEFILTER( TrackList[Artist - Track] ),
+			    SUM( TrackSales[SalesAmt] ),
+			  HASONEFILTER( 'Album'[Album]),
+			    SUM( AlbumSales[SalesAmt] ),
+			  // Default if nothing picked
+			  SUM( TrackSales[SalesAmt] )
+			)
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 225b506c-e2f1-4e28-a469-13c4c6597e33
+
+		changedProperty = IsHidden
+
+	/// City
+	column City
+		dataType: string
+		lineageTag: 38e966eb-b720-463c-8816-c5006fd3becf
+		dataCategory: City
+		summarizeBy: none
+		sourceColumn: City
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// State
+	column State
+		dataType: string
+		lineageTag: a3e1b6c7-11ef-4fe9-a6f5-ef05816ff808
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: State
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Province
+	column Province
+		dataType: string
+		lineageTag: 8c291a6e-fe9e-446a-874d-6487ec21c128
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: Province
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Country
+	column Country
+		dataType: string
+		lineageTag: bcf9758f-f03a-451d-82c9-49d549215fea
+		dataCategory: County
+		summarizeBy: none
+		sourceColumn: Country
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Continent
+	column Continent
+		dataType: string
+		lineageTag: 63f7e7d4-f361-4f5f-b128-27f6b808b3dc
+		dataCategory: Continent
+		summarizeBy: none
+		sourceColumn: Continent
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column pkGeography
+		dataType: int64
+		formatString: 0
+		lineageTag: 1c83ce9b-2e1f-4212-b2e0-69273c4b8f63
+		summarizeBy: none
+		sourceColumn: pkGeography
+
+		annotation SummarizationSetBy = Automatic
+
+	column fkRegion
+		dataType: int64
+		formatString: 0
+		lineageTag: 21cd7d20-53d0-40e3-800b-527946ed11b2
+		summarizeBy: none
+		sourceColumn: fkRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Geography = m
+		mode: import
+		source =
+				let
+				     Source = Sql.Database("steven-edit-sql.database.windows.net", "Music2026"),
+				     #"Tbl" = Source{[Schema = "dbo", Item = "Geography"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(#"Tbl",{"CityPopulation", "FileDate", "ModDate", "latitude", "longitude", "AlbumSales", "Region", "TrackSales"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

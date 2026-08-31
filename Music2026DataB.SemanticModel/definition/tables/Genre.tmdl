@@ -13,48 +13,26 @@ table Genre
 
 		annotation SummarizationSetBy = Automatic
 
-	column GenreID
+	column pkGenre
 		dataType: int64
 		formatString: 0
-		lineageTag: 9cde5b2c-56d3-404b-9ad9-b6418106505b
+		lineageTag: 0d055645-5ef8-45d4-bfff-308ca3da5f7d
 		summarizeBy: none
-		sourceColumn: GenreID
+		sourceColumn: pkGenre
 
 		annotation SummarizationSetBy = Automatic
-
-	column FileDate
-		dataType: dateTime
-		formatString: Long Date
-		lineageTag: 3ee0429c-7de0-4a0a-8631-149c46af597c
-		summarizeBy: none
-		sourceColumn: FileDate
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation UnderlyingDateTimeDataType = Date
-
-	column ModDate
-		dataType: dateTime
-		formatString: Long Date
-		lineageTag: c2950d9c-16cf-4081-8d7f-9e8c86324c6f
-		summarizeBy: none
-		sourceColumn: ModDate
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation UnderlyingDateTimeDataType = Date
 
 	partition Genre = m
 		mode: import
 		source =
 				let
-				    Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery="disabled", Implementation="2.0", Protocol=null]),
+				    Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
 				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
-				    music2026_gold_Schema = workspace_Database{[Name="music2026_gold",Kind="Schema"]}[Data],
+				    music2026_gold_Schema = workspace_Database{[Name="music_gold",Kind="Schema"]}[Data],
 				    dim_genre_Table = music2026_gold_Schema{[Name="dim_genre",Kind="Table"]}[Data],
-				    RemoveCapitalization= Table.TransformColumns(dim_genre_Table, {{"Genre", Text.Proper, type text}})
+				    #"Removed Columns" = Table.RemoveColumns(dim_genre_Table,{"Include", "skGenre", "FileDate", "ModDate"})
 				in
-				    RemoveCapitalization
+				    #"Removed Columns"
 
 	annotation PBI_ResultType = Table
 

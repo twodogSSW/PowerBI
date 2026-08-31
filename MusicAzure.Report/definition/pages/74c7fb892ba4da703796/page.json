@@ -1,0 +1,100 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "74c7fb892ba4da703796",
+  "displayName": "Geography 🌍",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "3817a246269517284e70",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "TrackList"
+              }
+            },
+            "Property": "Artist - Track"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "38e2ee1400352175d179",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Artist"
+              }
+            },
+            "Property": "Artist"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      }
+    ],
+    "filterSortOrder": "Ascending"
+  },
+  "pageBinding": {
+    "name": "00dc79d3161c5f441ffc",
+    "type": "Default",
+    "parameters": [],
+    "acceptsFilterContext": "None"
+  },
+  "objects": {
+    "outspace": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#E6E6E6'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "54d2789dcc9bfb9088a3",
+      "target": "7b096b2c435cdea70df2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "8352185da00f652f07b0",
+      "target": "7b096b2c435cdea70df2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "44da4292dbf0a234cd36",
+      "target": "7b096b2c435cdea70df2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "44da4292dbf0a234cd36",
+      "target": "8352185da00f652f07b0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "8352185da00f652f07b0",
+      "target": "44da4292dbf0a234cd36",
+      "type": "DataFilter"
+    },
+    {
+      "source": "1fbbe23c692ccf0b3581",
+      "target": "7b096b2c435cdea70df2",
+      "type": "DataFilter"
+    }
+  ]
+}

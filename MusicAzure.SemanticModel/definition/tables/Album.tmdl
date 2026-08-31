@@ -1,0 +1,118 @@
+/// Table used to store album data
+table Album
+	lineageTag: 9c94af43-c824-4ccd-8258-a9bedc4afc63
+
+	/// Album
+	column Album
+		dataType: string
+		lineageTag: 4bc3df03-e7cb-441e-aa83-346670995237
+		summarizeBy: none
+		sourceColumn: Album
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Name
+	/// AlbumArtist
+	/// 
+	column AlbumArtist = ```
+			
+			//if more than one artist on an album, label as compilation
+			
+			VAR ThisAlbumID =
+			    'Album'[AlbumID]
+			
+			VAR ArtistCount =
+			    CALCULATE(
+			        DISTINCTCOUNT( TrackList[ArtistID] ),
+			        TrackList[AlbumID] = ThisAlbumID
+			    )
+			
+			VAR SingleArtistID =
+			    CALCULATE(
+			        SELECTEDVALUE( TrackList[ArtistID] ),
+			        TrackList[AlbumID] = ThisAlbumID
+			    )
+			
+			RETURN
+			    IF(
+			        ArtistCount = 1,
+			        // only runs when exactly one artist → safe to lookup
+			        LOOKUPVALUE(
+			            Artist[Artist],
+			            Artist[ArtistID],
+			            SingleArtistID
+			        ),
+			        "Compilation"
+			    )
+			
+			```
+		lineageTag: 7102b0ab-30c5-427f-a2c0-fee2a0946018
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// AlbumSized
+	column AlbumSized
+		dataType: string
+		lineageTag: ad09451e-f759-4d2a-94fa-ba5b1f4584f7
+		summarizeBy: none
+		sourceColumn: AlbumSized
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column AlbumID
+		dataType: int64
+		formatString: 0
+		lineageTag: 9979086f-9a35-4e8d-a8bc-31589ce5c586
+		summarizeBy: none
+		sourceColumn: AlbumID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Include
+		dataType: int64
+		formatString: 0
+		lineageTag: 99d64e56-e940-4f85-a737-fdddf0b8a1fe
+		summarizeBy: sum
+		sourceColumn: Include
+
+		annotation SummarizationSetBy = Automatic
+
+	column FileDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c29476c2-f4d2-4cf5-9e62-cd1d86e8aa64
+		summarizeBy: none
+		sourceColumn: FileDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d4103d15-c675-4255-9918-01cf3c645f9d
+		summarizeBy: none
+		sourceColumn: ModDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Album = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("steven-edit-sql.database.windows.net", "Music2026"),
+				  #"Nav" = Source{[Schema = "dbo", Item = "Album"]}[Data],
+				  #"Renamed Columns" = Table.RenameColumns(Nav,{{"pkAlbum", "AlbumID"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

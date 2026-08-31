@@ -1,0 +1,55 @@
+/// Used to choose between Week Month Quarter and Year
+table _PeriodSelector
+	lineageTag: f4defc31-cc5d-44ba-8a05-dcdf894fe235
+
+	/// DynamicDateGrain
+	column DynamicDateGrain
+		dataType: string
+		lineageTag: f506b9b9-77d0-4a27-aa29-2a436ee3e91b
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'DynamicDateGrain Order'
+
+		relatedColumnDetails
+			groupByColumn: 'DynamicDateGrain Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	/// DynamicDateGrain
+	column 'DynamicDateGrain Fields'
+		lineageTag: d214dae9-ae46-4d38-ad26-ed309546e742
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'DynamicDateGrain Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	/// DynamicDateGrain
+	column 'DynamicDateGrain Order'
+		formatString: 0
+		lineageTag: 4d10c0c0-1a3f-47e2-a54e-7f40b5debff6
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = User
+
+	partition _PeriodSelector = calculated
+		mode: import
+		source = ```
+				
+				    {
+				        ("Week", NAMEOF('Calendar'[Start of Week]), 0),
+				        ("Month", NAMEOF('Calendar'[Start of Month]), 1),
+				        ("Quarter", NAMEOF('Calendar'[Start of Quarter]), 2),
+				        ("Year", NAMEOF('Calendar'[Start of Year]), 3)
+				    }
+				```
+
+	annotation PBI_Id = 724aa12e77654ad98e786aa260a5e2fc
+

@@ -25,7 +25,7 @@ table _BusinessDrivers
 	column SortOrder
 		formatString: 0
 		lineageTag: 6b6cb347-ddb7-4f35-8c15-7abbbf8a34c1
-		summarizeBy: none
+		summarizeBy: sum
 		isNameInferred
 		sourceColumn: [SortOrder]
 

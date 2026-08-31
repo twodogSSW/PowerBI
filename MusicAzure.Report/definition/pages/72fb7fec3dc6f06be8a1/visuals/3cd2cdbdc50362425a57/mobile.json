@@ -1,0 +1,231 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/2.6.0/schema.json",
+  "position": {
+    "x": 0,
+    "y": 59,
+    "z": 3000,
+    "height": 445,
+    "width": 315,
+    "tabOrder": 1000
+  },
+  "objects": {
+    "general": [
+      {
+        "properties": {
+          "paragraphs": [
+            {
+              "textRuns": [
+                {
+                  "value": "Report Pages",
+                  "textStyle": {
+                    "fontWeight": "bold",
+                    "fontFamily": "Segoe UI Semibold",
+                    "fontSize": "14pt",
+                    "textDecoration": "underline"
+                  }
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "value": "Home",
+                  "textStyle": {
+                    "fontFamily": "Segoe UI Semibold",
+                    "textDecoration": "underline"
+                  }
+                },
+                {
+                  "value": " 🏠                                                                                                                                                                              Welcome Screen (This page)!😁"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "value": "Executive Summary",
+                  "textStyle": {
+                    "fontFamily": "Segoe UI Semibold",
+                    "textDecoration": "underline"
+                  }
+                },
+                {
+                  "value": " ",
+                  "textStyle": {
+                    "fontFamily": "Segoe UI Semibold"
+                  }
+                },
+                {
+                  "value": "🤵🏿"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "value": "High-level KPIs and trends across all sales categories — ideal for quick stakeholder updates."
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "value": "Summary of All Sales",
+                  "textStyle": {
+                    "fontFamily": "Segoe UI Semibold",
+                    "textDecoration": "underline"
+                  }
+                },
+                {
+                  "value": " 🔝"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "value": "Combined view of track and album sales with filters for time, category, and retailer."
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "value": "Categories ",
+                  "textStyle": {
+                    "fontFamily": "Segoe UI Semibold",
+                    "textDecoration": "underline"
+                  }
+                },
+                {
+                  "value": "🎵"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "value": "Drill-down into individual track performance, with navigation to all category pages."
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "value": "Explore sales by genre, artist, album, label, region, and retailer — with dynamic filtering. "
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "value": "Decomposition",
+                  "textStyle": {
+                    "fontFamily": "Segoe UI Semibold",
+                    "textDecoration": "underline"
+                  }
+                },
+                {
+                  "value": " ♻️"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "value": "Visual breakdown of metric relationships to uncover what drives sales outcomes."
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "value": "Business Drivers",
+                  "textStyle": {
+                    "fontFamily": "Segoe UI Semibold",
+                    "textDecoration": "underline"
+                  }
+                },
+                {
+                  "value": " ",
+                  "textStyle": {
+                    "fontFamily": "Segoe UI Semibold"
+                  }
+                },
+                {
+                  "value": "👯‍♀️"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "value": "Data views of demographics that determine popularity of a specific Track"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "visualContainerObjects": {
+    "title": [],
+    "background": [],
+    "general": [],
+    "border": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": -0.1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "visualHeader": []
+  }
+}

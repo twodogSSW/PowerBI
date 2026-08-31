@@ -1,0 +1,66 @@
+relationship AutoDetected_db133296-22ee-4781-9b83-65edc7012ce3
+	fromColumn: Artist.fkRecordLabel
+	toColumn: RecordLabel.pkRecordLabel
+
+relationship AutoDetected_68aaec7d-74d6-4765-8574-439b1255f714
+	fromColumn: TrackList.ArtistID
+	toColumn: Artist.ArtistID
+
+relationship AutoDetected_6e76630b-d0aa-4ea3-b718-006708bdc863
+	fromColumn: TrackList.fkGenre
+	toColumn: Genre.pkGenre
+
+relationship AutoDetected_8315e223-5a9a-41bf-8f61-6f83999e4453
+	fromColumn: TrackNotes.fkTrackList
+	toColumn: TrackList.pkTrackList
+
+relationship 70d36d05-e0b3-af53-a769-1f4fa455727b
+	fromColumn: AlbumNotes.fkAlbum
+	toColumn: Album.AlbumID
+
+relationship bcdf2c94-a64b-bdf5-3ae5-f40b0ec0f9e6
+	fromColumn: Demographics.Demographic
+	toColumn: _Demo_Switch.'All Demos on this page'
+
+relationship AutoDetected_7c03f6a4-bc4c-4ef1-84e2-5b89c8dbd0c6
+	fromColumn: Geography.fkRegion
+	toColumn: Region.pkRegion
+
+relationship AutoDetected_d9293d8d-7b16-413d-a53f-770dd7bef50f
+	fromColumn: TrackSales.fkPurchasedFrom
+	toColumn: PurchasedFrom.pkPurchasedFrom
+
+relationship AutoDetected_1d1caa13-4271-44dc-9c3b-1fa4cb2be793
+	fromColumn: TrackSales.fkTrackList
+	toColumn: TrackList.pkTrackList
+
+relationship AutoDetected_e609b904-ed59-4b8e-a508-05d7fadfd4a7
+	fromColumn: AlbumSales.fkAlbum
+	toColumn: Album.AlbumID
+
+relationship AutoDetected_b23fe087-e9cd-4c44-93c7-2f2233c8aaaf
+	fromColumn: AlbumSales.fkPurchasedFrom
+	toColumn: PurchasedFrom.pkPurchasedFrom
+
+relationship 7c0235da-116b-42c3-adf7-f5f76e928753
+	fromColumn: AlbumSales.Salesdate
+	toColumn: Calendar.Date
+
+relationship 0ea3981d-56f4-57aa-651a-8d604fbe8da4
+	fromColumn: TrackSales.Salesdate
+	toColumn: Calendar.Date
+
+relationship 5220bb57-4196-752e-5973-9bbdb35fc193
+	fromColumn: TrackSales.fkGeographyNo
+	toColumn: Geography.pkGeography
+
+relationship 2471d228-8cdc-59c8-998c-b3222a57a476
+	fromColumn: AlbumSales.fkGeographyNo
+	toColumn: Geography.pkGeography
+
+relationship eef77223-7bbb-49e6-b7f8-eb975a4a5093
+	fromColumn: TrackList.AlbumID
+	toColumn: Album.AlbumID
+
+	annotation PBI_IsFromSource = FS
+

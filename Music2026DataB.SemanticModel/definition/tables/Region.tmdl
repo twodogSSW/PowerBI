@@ -24,49 +24,27 @@ table Region
 
 		annotation SummarizationSetBy = Automatic
 
-	column RegionID
+	column pkRegion
 		dataType: int64
 		formatString: 0
-		lineageTag: 00f8855c-af24-4230-934f-e8532f0921f9
+		lineageTag: ca6f281b-3f40-41bc-8185-916472494d33
 		summarizeBy: none
-		sourceColumn: RegionID
+		sourceColumn: pkRegion
 
 		annotation SummarizationSetBy = Automatic
-
-	column FileDate
-		dataType: dateTime
-		formatString: Long Date
-		lineageTag: 47ab0eb4-40fe-4dd1-9d69-2af95194e4e5
-		summarizeBy: none
-		sourceColumn: FileDate
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation UnderlyingDateTimeDataType = Date
-
-	column ModDate
-		dataType: dateTime
-		formatString: Long Date
-		lineageTag: 4aaee6bc-978c-4d01-9736-24f8997cf6ae
-		summarizeBy: none
-		sourceColumn: ModDate
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation UnderlyingDateTimeDataType = Date
 
 	partition Region = m
 		mode: import
-		source =
+		source = ```
 				let
 				    Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery="disabled", Implementation="2.0", Protocol=null]),
-				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
-				    music2026_gold_Schema = workspace_Database{[Name="music2026_gold",Kind="Schema"]}[Data],
-				    dim_region_Table = music2026_gold_Schema{[Name="dim_region",Kind="Table"]}[Data],
-				    RemoveRegionCaps= Table.TransformColumns(dim_region_Table, {{"Region", Text.Proper, type text}}),
-				    RemoveContCaps= Table.TransformColumns(RemoveRegionCaps, {{"Continent", Text.Proper, type text}})
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],    
+				    music_gold_Schema = workspace_Database{[Name="music_gold",Kind="Schema"]}[Data],
+				    dim_region_Table = music_gold_Schema{[Name="dim_region",Kind="Table"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(dim_region_Table,{"skRegion", "FileDate", "ModDate"})
 				in
-				    RemoveContCaps
+				    #"Removed Columns"
+				```
 
 	annotation PBI_ResultType = Table
 

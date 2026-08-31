@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "a88b69b85a3346e65ac0",
   "position": {
     "x": 0,
@@ -111,9 +111,9 @@
                 }
               },
               "queryRef": "TrackList.Artist - Track",
-              "nativeQueryRef": "Title (Artist-Title)",
+              "nativeQueryRef": "Track - by Artist/Title",
               "active": true,
-              "displayName": "Title (Artist-Title)"
+              "displayName": "Track - by Artist/Title"
             }
           ],
           "fieldParameters": [

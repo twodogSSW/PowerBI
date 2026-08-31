@@ -2,17 +2,6 @@
 table AlbumSales
 	lineageTag: 4efc2010-3cf2-48b9-ad78-66e8d8436f80
 
-	column SaleCount
-		dataType: int64
-		formatString: #,0
-		lineageTag: cec99f73-1b5d-406c-8ebc-745b87248118
-		summarizeBy: none
-		sourceColumn: SaleCount
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = User
-
 	column SalesAmt
 		dataType: double
 		formatString: \$#,0;(\$#,0);\$#,0
@@ -64,42 +53,6 @@ table AlbumSales
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column AlbumSalesID
-		dataType: int64
-		formatString: 0
-		lineageTag: 43c50708-d95d-4190-af39-63e9665d1497
-		summarizeBy: count
-		sourceColumn: AlbumSalesID
-
-		annotation SummarizationSetBy = Automatic
-
-	column AlbumID
-		dataType: int64
-		formatString: 0
-		lineageTag: 1a4db175-c790-4e39-bdb5-70cf10a58a8e
-		summarizeBy: none
-		sourceColumn: AlbumID
-
-		annotation SummarizationSetBy = Automatic
-
-	column GeographyID
-		dataType: int64
-		formatString: 0
-		lineageTag: 9fef2222-2151-4d99-b00b-647a8da550c5
-		summarizeBy: none
-		sourceColumn: GeographyID
-
-		annotation SummarizationSetBy = Automatic
-
-	column PurchasedFromID
-		dataType: int64
-		formatString: 0
-		lineageTag: 1262ce60-4d9c-497e-9dca-6ac60f88b7f8
-		summarizeBy: none
-		sourceColumn: PurchasedFromID
-
-		annotation SummarizationSetBy = Automatic
-
 	column SalesDate
 		dataType: dateTime
 		formatString: Long Date
@@ -111,27 +64,77 @@ table AlbumSales
 
 		annotation UnderlyingDateTimeDataType = Date
 
-	column FileDate
-		dataType: dateTime
-		formatString: Long Date
-		lineageTag: e03e0919-a32e-4510-89f6-526327312c01
-		summarizeBy: none
-		sourceColumn: FileDate
+	column pkAlbumSales
+		dataType: int64
+		formatString: 0
+		lineageTag: 8fd7cc62-89a1-4847-bb59-282af5cf424a
+		summarizeBy: sum
+		sourceColumn: pkAlbumSales
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation UnderlyingDateTimeDataType = Date
-
-	column ModDate
-		dataType: dateTime
-		formatString: Long Date
-		lineageTag: 7fbb8ec3-b026-4afd-a6ab-e98cf5a06e0e
-		summarizeBy: none
-		sourceColumn: ModDate
+	column SaleCount
+		dataType: int64
+		formatString: #,0
+		lineageTag: 4476fbca-d14b-43ff-9582-65604a8e8820
+		summarizeBy: sum
+		sourceColumn: SaleCount
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation UnderlyingDateTimeDataType = Date
+	column FkAlbum
+		dataType: int64
+		formatString: 0
+		lineageTag: 83882938-8426-4e1d-9992-f68c3042cd93
+		summarizeBy: none
+		sourceColumn: FkAlbum
+
+		annotation SummarizationSetBy = Automatic
+
+	column FkGeographyNo
+		dataType: int64
+		formatString: 0
+		lineageTag: 38ea4893-df89-4973-9ae1-d907571e4972
+		summarizeBy: none
+		sourceColumn: FkGeographyNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column FkPurchasedFrom
+		dataType: int64
+		formatString: 0
+		lineageTag: d28ae890-29ba-463d-a0ae-6335f4c00ea8
+		summarizeBy: none
+		sourceColumn: FkPurchasedFrom
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: ac8e91cd-e0c1-4391-9fb7-43859270354d
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 92d670db-f1f9-49d0-8b8b-94dc80b9d978
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: int64
+		formatString: 0
+		lineageTag: b8a9cf6f-ad61-4e02-8c67-013ba78e45c6
+		summarizeBy: sum
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
 
 	partition AlbumSales = m
 		mode: import
@@ -139,10 +142,12 @@ table AlbumSales
 				let
 				   Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery="disabled", Implementation="2.0", Protocol=null]),
 				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
-				    music2026_gold_Schema = workspace_Database{[Name="music2026_gold",Kind="Schema"]}[Data],
-				    fact_Albumsales_Table = music2026_gold_Schema{[Name="fact_Albumsales",Kind="Table"]}[Data]
+				    music2026_gold_Schema = workspace_Database{[Name="music_gold",Kind="Schema"]}[Data],
+				    fact_Albumsales_Table = music2026_gold_Schema{[Name="fact_Albumsales",Kind="Table"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(fact_Albumsales_Table,{"FileDate", "ModDate"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Removed Columns",{{"SalesCount", "SaleCount"}})
 				in
-				    #"fact_Albumsales_Table"
+				    #"Renamed Columns1"
 
 	annotation PBI_ResultType = Table
 

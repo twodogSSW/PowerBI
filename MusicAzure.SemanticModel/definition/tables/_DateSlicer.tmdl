@@ -1,0 +1,20 @@
+table _DateSlicer
+	lineageTag: 0859fb74-df96-4be8-af02-2170f910bb1d
+
+	column Year
+		formatString: 0
+		lineageTag: 94c83837-c3a1-4c45-bfb1-060f1d35b0e3
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Calendar[Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _DateSlicer = calculated
+		mode: import
+		source =
+				
+				VALUES('Calendar'[Year])
+
+	annotation PBI_Id = f9821f4e963e4406a01ec07a877c5799
+

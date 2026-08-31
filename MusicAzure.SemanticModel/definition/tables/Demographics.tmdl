@@ -1,0 +1,156 @@
+table Demographics
+	lineageTag: 1e5b8192-4519-4367-be25-df3c57b6c13f
+
+	measure 'Avg DemoCount' = ```
+			
+			AVERAGEX(
+			    VALUES(Demographics[pkDemo]),
+			    CALCULATE( SUM(Demographics[DemoCount#]) )
+			)
+			
+			```
+		lineageTag: 6ca662fb-2c3b-4b3c-a5e0-79660f2eab3e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Men' =
+			
+			AVERAGEX(
+			    VALUES(Demographics[pkDemo]),
+			    CALCULATE(
+			        SUM(Demographics[DemoCount#]),
+			        FILTER(Demographics, LEFT(Demographics[Demographic], 3) = "Men")
+			    )
+			)
+		formatString: 0
+		lineageTag: 561bd4e4-7e2e-42ba-a42e-1964e02f59d1
+
+	measure 'Avg Women' =
+			
+			AVERAGEX(
+			    VALUES(Demographics[pkDemo]),
+			    CALCULATE(
+			        SUM(Demographics[DemoCount#]),
+			        FILTER(Demographics, LEFT(Demographics[Demographic], 5) = "Women")
+			    )
+			)
+		formatString: 0
+		lineageTag: e58c8cff-14dd-48f3-a419-6ec7455cb255
+
+	measure 'Avg Women (Negative)' =
+			
+			- [Avg Women]
+		formatString: 0
+		lineageTag: 8c44b8c9-e0c8-4731-bb17-ef05a9b12344
+
+	measure DemoCount_Tornado = ```
+			
+			VAR GenderSelected = SELECTEDVALUE(_Demo_Switch[Gender])
+			RETURN
+			    SWITCH(
+			        GenderSelected,
+			        "Men", AVERAGE(Demographics[DemoCount#]),
+			        "Women", AVERAGE(Demographics[DemoCount#])
+			    )
+			
+			```
+		formatString: 0
+		lineageTag: 63099fa2-6698-4cd7-85c9-ae5b4e9462cc
+
+	column Demographic
+		dataType: string
+		lineageTag: f66849e2-4df1-4735-b61b-2d450701a6d5
+		summarizeBy: none
+		sourceColumn: Demographic
+
+		annotation SummarizationSetBy = Automatic
+
+	column DemoCount
+		dataType: string
+		lineageTag: 4f3e89e5-887e-4be4-be23-1d8ea405b29f
+		summarizeBy: none
+		sourceColumn: DemoCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column pkDemo
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: cacb4e64-fc05-4884-85e2-6d21d7d30866
+		summarizeBy: none
+		sourceColumn: pkDemo
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column DemoCount#
+		dataType: int64
+		formatString: 0
+		lineageTag: d7a30da0-a4f5-4ef0-b651-c9fe7cc6be71
+		summarizeBy: none
+		sourceColumn: DemoCount#
+
+		annotation SummarizationSetBy = User
+
+	column fkTrackList
+		dataType: int64
+		formatString: 0
+		lineageTag: 861d85ec-c483-4fa3-913c-10b640796be4
+		summarizeBy: sum
+		sourceColumn: fkTrackList
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Demographics = m
+		mode: import
+		source = ```
+				let
+				    Source = Sql.Database("steven-edit-sql.database.windows.net", "Music2026"),
+				    #"Tbl" = Source{[Schema = "dbo", Item = "Demos"]}[Data],
+				
+				    #"Removed Columns" = Table.RemoveColumns(#"Tbl",{"FileDate", "ModDate","TrackList"}),
+				    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Removed Columns", {"pkDemo","fkTrackList"}, "Attribute", "Value"),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Unpivoted Columns",{{"fkTrackList", "skTrackList"}}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Renamed Columns1",{"skTrackList", "pkDemo", "Attribute", "Value"}),
+				    #"Renamed Columns All" = Table.RenameColumns(#"Reordered Columns",{{"skTrackList", "fkTrackList"}, {"Attribute", "Demographic"}, {"Value", "DemoCount"}})
+				    
+				      // Replacement rules
+				    ,Replacements = {
+				        {"Males1834", "Men 18-34"},
+				        {"Males18", "Men <=18"},
+				        {"Males3454", "Men 35-54"},        
+				        {"Males54", "Men 54+"},       
+				        {"Females1834", "Women 18-34"},
+				        {"Females18", "Women <=18"},
+				        {"Females3454", "Women 35-54"},        
+				        {"Females54", "Women 54+"}      
+				    },
+				
+				    // Apply all replacements to the Demographic column
+				    #"Replaced Value" =
+				        List.Accumulate(
+				            Replacements,
+				            #"Renamed Columns All",
+				            (state, current) =>
+				                Table.ReplaceValue(
+				                    state,
+				                    current{0},
+				                    current{1},
+				                    Replacer.ReplaceText,
+				                    {"Demographic"}
+				                )
+				        ),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Replaced Value",{{"DemoCount", type text}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Changed Type", "DemoCount", "DemoCount - Copy"),
+				    #"Changed DemoCount to Int" = Table.TransformColumnTypes(#"Duplicated Column",{{"DemoCount - Copy", Int64.Type}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed DemoCount to Int",{{"DemoCount - Copy", "DemoCount#"}})
+				in
+				    #"Renamed Columns"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

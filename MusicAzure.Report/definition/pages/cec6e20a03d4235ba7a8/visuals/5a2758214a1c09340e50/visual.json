@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "5a2758214a1c09340e50",
+  "position": {
+    "x": 1075.4015748031493,
+    "y": 60.472440944881889,
+    "z": 3000,
+    "height": 279.18110236220474,
+    "width": 200.56692913385828,
+    "tabOrder": 7000
+  },
+  "visualGroup": {
+    "displayName": "Gauge",
+    "groupMode": "ScaleMode"
+  }
+}

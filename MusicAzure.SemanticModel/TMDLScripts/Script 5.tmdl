@@ -1,0 +1,26 @@
+createOrReplace
+
+	function 'pbi.GetTopCategory' = ```
+			
+				 	(Category:anyref, SalesColumn:anyref, DateColumn:anyref) 
+					=>
+				
+			    VAR TopCategory =
+			        CONCATENATEX(
+			            FILTER(
+			                VALUES(Category),
+			                RANKX(
+			                    ALL(Category),
+			                    CALCULATE(
+			                        SUM(SalesColumn),
+			                        KEEPFILTERS(DateColumn)
+			                    )
+			                ) = 1
+			            ),
+			            Category,
+			            "" 
+			        )
+			    RETURN TopCategory
+			```
+		lineageTag: cdf68ac8-2c00-4155-a1f4-13f8a3547729
+

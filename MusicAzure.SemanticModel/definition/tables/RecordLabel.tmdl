@@ -1,0 +1,40 @@
+/// Table used to store name of the record label where each track is connected to
+table RecordLabel
+	lineageTag: 9baacb9f-5f7a-443a-be4b-b77d4351f7c5
+
+	/// RecordLabel
+	column RecordLabel
+		dataType: string
+		lineageTag: 1ca87e2d-bf5d-48ce-adde-3272b173ea09
+		summarizeBy: none
+		sourceColumn: RecordLabel
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column pkRecordLabel
+		dataType: int64
+		formatString: 0
+		lineageTag: c412104f-d6d1-4e93-99b2-2ae6dbdb2f3d
+		summarizeBy: none
+		sourceColumn: pkRecordLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	partition RecordLabel = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("steven-edit-sql.database.windows.net", "Music2026"),
+				    #"Tbl" = Source{[Schema = "dbo", Item = "RecordLabel"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(#"Tbl",{"FileDate", "ModDate","Artist"})
+				in
+				    #"Removed Columns"
+
+	changedProperty = IsHidden
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

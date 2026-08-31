@@ -21,15 +21,6 @@ table Geography
 
 		changedProperty = IsHidden
 
-	column GeographyID
-		dataType: int64
-		formatString: 0
-		lineageTag: 086e9bfc-c9ce-4ed2-ac9c-b18f84524a57
-		summarizeBy: none
-		sourceColumn: GeographyID
-
-		annotation SummarizationSetBy = Automatic
-
 	/// City
 	column City
 		dataType: string
@@ -90,77 +81,35 @@ table Geography
 
 		annotation SummarizationSetBy = Automatic
 
-	column RegionID
+	column pkGeography
 		dataType: int64
 		formatString: 0
-		lineageTag: ce423f4a-0f9a-411a-ab95-4749ee23592a
+		lineageTag: 1c83ce9b-2e1f-4212-b2e0-69273c4b8f63
 		summarizeBy: none
-		sourceColumn: RegionID
+		sourceColumn: pkGeography
 
 		annotation SummarizationSetBy = Automatic
 
-	column CityPopulation
+	column fkRegion
 		dataType: int64
 		formatString: 0
-		lineageTag: a5533d3f-9598-40b9-abf3-1882f1dd4e3a
-		summarizeBy: sum
-		sourceColumn: CityPopulation
-
-		annotation SummarizationSetBy = Automatic
-
-	column latitude
-		dataType: double
-		lineageTag: 6e2e946c-7ae7-4b22-a98d-b77784cb9064
-		summarizeBy: sum
-		sourceColumn: latitude
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column longitude
-		dataType: double
-		lineageTag: 351654f0-c56f-4c8c-90b5-46a6de82322c
-		summarizeBy: sum
-		sourceColumn: longitude
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column FileDate
-		dataType: dateTime
-		formatString: Long Date
-		lineageTag: a7898554-b5c5-4c95-8308-39de5622f7af
+		lineageTag: 21cd7d20-53d0-40e3-800b-527946ed11b2
 		summarizeBy: none
-		sourceColumn: FileDate
+		sourceColumn: fkRegion
 
 		annotation SummarizationSetBy = Automatic
-
-		annotation UnderlyingDateTimeDataType = Date
-
-	column ModDate
-		dataType: dateTime
-		formatString: Long Date
-		lineageTag: a89aa780-3a58-4a11-ba58-1a54e88551ac
-		summarizeBy: none
-		sourceColumn: ModDate
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation UnderlyingDateTimeDataType = Date
 
 	partition Geography = m
 		mode: import
-		source = ```
+		source =
 				let
-				   Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery="disabled", Implementation="2.0", Protocol=null]),
+				    Source = Databricks.Catalogs("dbc-889876c1-2aee.cloud.databricks.com", "/sql/1.0/warehouses/4a6aab97cf7a86de", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
 				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
-				    music2026_gold_Schema = workspace_Database{[Name="music2026_gold",Kind="Schema"]}[Data],
-				    dim_geography_Table = music2026_gold_Schema{[Name="dim_geography",Kind="Table"]}[Data]    
+				    music_gold_Schema = workspace_Database{[Name="music_gold",Kind="Schema"]}[Data],
+				    dim_geography_Table = music_gold_Schema{[Name="dim_geography",Kind="Table"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(dim_geography_Table,{"CityPopulation", "FileDate", "ModDate", "latitude", "longitude", "skGeography"})
 				in
-				    #"dim_geography_Table"
-				```
+				    #"Removed Columns"
 
 	annotation PBI_ResultType = Table
 
